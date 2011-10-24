@@ -1,10 +1,12 @@
+#ifndef MYNETWORK_C
+#define MYNETWORK_C
 /*******************************************************************************
- * @file udpcli01.c
+ * @file myNetwork.c
  * @author James Anderson <jra798>
- * @date 10/11/2011
+ * @date 10/24/2011
  * @version 1.0
  * @brief reads in specified file and sends to specified IP then wites receved 
- *  messages to output file
+   messages to output file
  ******************************************************************************/
 
 #include	"unp.h"
@@ -44,3 +46,4 @@ int main(int argc, char **argv)
     
     exit(0);
 }
+#endif

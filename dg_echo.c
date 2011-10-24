@@ -1,3 +1,5 @@
+#ifndef DG_ECHO_C
+#define DG_ECHO_C
 /*******************************************************************************
  * @file dg_echo.c
  * @author James Anderson <jra798>
@@ -22,3 +24,4 @@ void dg_echo(int sockfd, SA *pcliaddr, socklen_t clilen)
         sendto(sockfd, mesg, n, 0, pcliaddr, len);
     }
 }
+#endif

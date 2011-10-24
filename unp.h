@@ -1,3 +1,5 @@
+#ifndef UNP_H
+#define UNP_H
 /*******************************************************************************
  * @file unp.h
  * @author James Anderson <jra798>
@@ -27,3 +29,5 @@
      
 void     dg_cli(FILE *, FILE *, int, const SA *, socklen_t);
 void     dg_echo(int, SA *, socklen_t);
+
+#endif

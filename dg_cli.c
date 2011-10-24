@@ -1,3 +1,5 @@
+#ifndef DG_CLI_C
+#define DG_CLI_C
 /*******************************************************************************
  * @file dg_cli.c
  * @author James Anderson <jra798>
@@ -25,3 +27,4 @@ void dg_cli(FILE *in_fp, FILE *out_fp, int sockfd, const SA *pservaddr, socklen_
     }
 
 }
+#endif
