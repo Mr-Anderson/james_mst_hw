@@ -1,0 +1,9 @@
+Script started on Fri 23 Apr 2010 01:39:28 AM CDT
+test_library.cpp: In member function ‘void Test_library::test_search()’:
+test_library.cpp:114: error: ‘search [with generic = int](((Vector<int>&)(& test)), 42)’ cannot be used as a function
+test_library.cpp: In member function ‘void Test_library::test_binary_search()’:
+test_library.cpp:147: error: ‘search [with generic = int](((Vector<int>&)(& test)), 42)’ cannot be used as a function
+library.hpp: In function ‘unsigned int search(Vector<generic>&, generic) [with generic = int]’:
+test_library.cpp:108:   instantiated from here
+library.hpp:16: error: no match for ‘operator!=’ in ‘vector != data’
+library.hpp:16: error: invalid use of member (did you forget the ‘&’ ?)

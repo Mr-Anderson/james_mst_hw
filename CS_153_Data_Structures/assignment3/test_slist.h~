@@ -1,0 +1,71 @@
+#ifndef TEST_SLIST_H
+#define TEST_SLIST_H
+//////////////////////////////////////////////////////////////////////
+/// @file test_slist.h
+/// @author James Anderson  Section A
+/// @brief Heder file for test_slist class for assignment 1
+////////////////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////////////////
+/// @class test_slist
+/// @brief Used to test the various fetures and limits of the slist class
+////////////////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////////////////
+/// @fn Test_slist::test_constructor ()
+/// @brief function checks the functionality of the constructor in the 
+/// slist class 
+/// @post function will check the constructor of the slist class
+////////////////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////////////////
+/// @fn Test_slist::test_push_back ()
+/// @brief function checks the functionality of the pushback function in the 
+/// array class checks the out of bounds error as well as the container full error
+/// @post function will check the push back as well as the container full and out 
+/// of bounds errors
+////////////////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////////////////
+/// @fn Test_slist::test_pop_back ()
+/// @brief function checks the functionality of the  popback function in the 
+/// array class and also checks the container empty error 
+/// @post function will check the  popback function as well as the container
+/// empty error
+////////////////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////////////////
+/// @fn Test_slist::test_clear ()
+/// @brief function checks the functionality of the clear  function in the 
+/// slist class 
+/// @post function will check the clear function 
+////////////////////////////////////////////////////////////////////// 
+
+
+#include <cppunit/extensions/HelperMacros.h>
+#include <cppunit/config/SourcePrefix.h>
+#include "slist.h"
+#include "exception.h"
+#include "math.h"
+
+class Test_slist : public CPPUNIT_NS::TestFixture
+{
+  private:
+    CPPUNIT_TEST_SUITE (Test_slist);
+    CPPUNIT_TEST (test_constructor);
+    CPPUNIT_TEST (test_copy);
+    CPPUNIT_TEST (test_assignment);
+    CPPUNIT_TEST (test_push_front);
+    CPPUNIT_TEST (test_pop_front);
+    CPPUNIT_TEST (test_clear);
+    CPPUNIT_TEST (test_remove);
+    CPPUNIT_TEST_SUITE_END ();
+
+  protected:
+  
+    void test_push_front ();
+    void test_copy ();
+    void test_assignment ();
+    void test_pop_front ();
+    void test_constructor ();
+    void test_clear ();
+    void test_remove ();
+    
+};
+
+#endif

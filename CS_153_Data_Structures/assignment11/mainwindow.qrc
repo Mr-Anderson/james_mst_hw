@@ -1,0 +1,16 @@
+
+<!DOCTYPE RCC>
+<RCC version = "1.0">
+	<qresource>
+		<file>0.expert</file>
+		<file>1.expert</file>
+		<file>2.expert</file>
+		<file>0.intermediate</file>
+		<file>1.intermediate</file>
+		<file>2.intermediate</file>
+		<file>0.novice</file>
+		<file>1.novice</file>
+		<file>2.novice</file>	
+		<file>icon.gif</file>
+	</qresource>
+</RCC>

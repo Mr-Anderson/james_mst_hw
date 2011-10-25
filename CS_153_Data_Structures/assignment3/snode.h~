@@ -1,0 +1,32 @@
+ #ifndef SNODE_H
+#define SNODE_H
+
+//////////////////////////////////////////////////////////////////////
+/// @file slistiteratior.h
+/// @author James Anderson  CS 153 Section A
+/// @brief Heder file for vector class for assignment 3
+////////////////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////////////////
+/// @class vector
+/// @brief vector is used to create and edit an array with error handleing fetures 
+///  giving programers the ability to push back items delete items clear and read
+///  back items it has errors of out of bounds and container empty
+////////////////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////////////////
+/// @fn Vector<generic>::Vector ()
+/// @brief creates a new vector 
+/// @pre needs the type of variable to be sored in the vector
+/// @post creates a new vector  
+/// @param generic holds the type of variable the vector will hold
+////////////////////////////////////////////////////////////////////// 
+
+template <class generic>
+struct SNode
+{
+    SNode<generic> * forward;
+    generic data;
+};
+
+#endif
+
+
