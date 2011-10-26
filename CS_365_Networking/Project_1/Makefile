@@ -8,14 +8,14 @@
 
 CXX = g++
 
-all: udpcli01   udpserv01
+all: client server
 
-udpcli01: udpcli01.c unp.h dg_cli.c
+client: client.c unp.h dg_cli.c myTCP.c myNetwork.c
 	$(CXX) $< -o $@ 
 
-udpserv01: udpserv01.c unp.h dg_echo.c
+server: server.c unp.h dg_echo.c myTCP.c myNetwork.c
 	$(CXX) $< -o $@ 
 
 clean:
-	rm -f udpcli01 udpserv01
+	rm -f client server
 

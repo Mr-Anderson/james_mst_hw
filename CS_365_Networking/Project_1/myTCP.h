@@ -14,8 +14,11 @@ template <class generic>
 class myTCP
 {
     public:
-        void sendto(int sockfd, sendline, n , 0, pservaddr, servlen);
-        int recvfrom(sockfd, recvline, MAXLINE, 0, NULL, NULL);
+        void sendto(int sid, const void *buffer, size_t bufferLength 
+                    ,int flag, struct sockaddr *addr, socklen_t addrLength);
+                    
+        int recvfrom(int sid, const void *buffer , size_t bufferLength
+                     , int flag, sockaddr *addrLength, int addrLength);
 
 };
 #endif

@@ -11,8 +11,20 @@
 
 #include	"myTCP.h"
 
-void myTCP::sendto(sockfd, sendline, n , 0, pservaddr, servlen);
+void myTCP::void sendto(int sid, const void *buffer, size_t bufferLength 
+            ,int flag, struct sockaddr *addr, socklen_t addrLength)
+    {
+    
+    
+    
+    };
 
+int myTCP::recvfrom(int sid, const void *buffer , size_t bufferLength
+                     , int flag, sockaddr *addrLength, int addrLength);
+    {
+    
+    
+    };
 
 
 #endif

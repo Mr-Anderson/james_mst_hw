@@ -26,10 +26,6 @@
 
 #define SERV_PORT        9877   
 #define SA  struct sockaddr
-
-//tcp parameter defines
-#define WINSIZE         1024 //sender receiver buffer sizeof
-#define MSS             256  //the maximum number of bytes in the data field of a TCP segment
      
 void     dg_cli(FILE *, FILE *, int, const SA *, socklen_t);
 void     dg_echo(int, SA *, socklen_t);
