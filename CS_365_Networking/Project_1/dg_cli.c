@@ -9,19 +9,21 @@
  ******************************************************************************/
 
 #include    "unp.h"
+#include	"myTCP.h"
 
 void dg_cli(FILE *in_fp, FILE *out_fp, int sockfd, const SA *pservaddr, socklen_t servlen)
 {
     int n;
     char    sendline[MAXLINE], recvline[MAXLINE + 1];
+    myTCP tcp;
     
     while (!feof(in_fp)) 
     {
         n = fread(sendline, 1, MAXLINE ,in_fp);
     
-        sendto(sockfd, sendline, n , 0, pservaddr, servlen);
+        tcp.sendto(sockfd, sendline, n , 0, pservaddr, servlen);
 
-        n = recvfrom(sockfd, recvline, MAXLINE, 0, NULL, NULL);
+        n = tcp.recvfrom(sockfd, recvline, MAXLINE, 0, NULL, NULL);
         
         fwrite(recvline ,1, n , out_fp);
     }

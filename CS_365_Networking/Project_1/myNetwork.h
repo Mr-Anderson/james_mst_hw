@@ -1,26 +1,25 @@
-#ifndef MYTCP_H
-#define MYTCP_H
+#ifndef MYNETWORK_H
+#define MYNETWORK_H
 /*******************************************************************************
- * @file myTCP.h
+ * @file myNetwork.h
  * @author James Anderson <jra798>
  * @date 10/11/2011
  * @version 1.0
- * @brief TCP protocal code 
+ * @brief simulates an unreliable network
  ******************************************************************************/
 
 #include	"unp.h"
 
 template <class generic>
-class myTCP
+class myNetwork
 {
     public:
-        bool open();
-        
-        bool close();
     
         void sendto(int, const void, size_t, int, sockaddr, socklen_t);
                     
         int recvfrom(int, const void, size_t, int, sockaddr, int);
+        
+        
 
 };
 #endif

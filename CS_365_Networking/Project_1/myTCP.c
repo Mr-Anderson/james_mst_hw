@@ -1,5 +1,5 @@
-#ifndef MYTCP_H
-#define MYTCP_H
+#ifndef MYTCP_C
+#define MYTCP_C
 /*******************************************************************************
  * @file myTCP.c
  * @author James Anderson <jra798>
@@ -11,20 +11,21 @@
 
 #include	"myTCP.h"
 
-void myTCP::void sendto(int sid, const void *buffer, size_t bufferLength 
-            ,int flag, struct sockaddr *addr, socklen_t addrLength)
-    {
-    
-    
-    
-    };
-
-int myTCP::recvfrom(int sid, const void *buffer , size_t bufferLength
-                     , int flag, sockaddr *addrLength, int addrLength);
-    {
-    
-    
-    };
 
 
+void myTCP::void sendto(int sid, const void *buffer, size_t bufferLength,
+                        int flag, sockaddr *addr, socklen_t addrLength)
+{
+    
+    
+    
+};
+
+int myTCP::recvfrom(int sid, const void *buffer , size_t bufferLength, 
+				    int flag, sockaddr *addr, int addrLength);
+{
+  
+    
+    
+};
 #endif
