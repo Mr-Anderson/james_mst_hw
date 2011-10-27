@@ -1,5 +1,3 @@
-#ifndef MYTCP_C
-#define MYTCP_C
 /*******************************************************************************
  * @file myTCP.c
  * @author James Anderson <jra798>
@@ -11,19 +9,31 @@
 
 #include	"myTCP.h"
 
-myTCP::myTCP(string ip_address, int port_number)
+myTCP::myTCP()
 {
+}
 
-    FILE * in_pf;
-    FILE * out_pf;
+myTCP::myTCP(int port_number)
+{
+	init(port_number);
+}
 
-    bzero(&servaddr, sizeof(servaddr));
-    servaddr.sin_family = AF_INET;
-    servaddr.sin_port = htons(SERV_PORT);
-    inet_pton(AF_INET, argv[1], &servaddr.sin_addr);
+myTCP::myTCP(char * ip_address, int port_number)
+{
+	init(ip_address, port_number);
+}
 
-    sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+void myTCP::init(int port_number)
+{
+	//Server
+	net.init(port_number, true);
+}
 
+void myTCP::init(char * ip_address, int port_number)
+{
+	//Client
+	net.init(port_number, false);
+	strcpy(server_ip_address, ip_address, 4);
 }
 
 void myTCP::void sendto(int sid, const void *buffer, size_t bufferLength,
@@ -32,13 +42,12 @@ void myTCP::void sendto(int sid, const void *buffer, size_t bufferLength,
     
     
     
-};
+}
 
 int myTCP::recvfrom(int sid, const void *buffer , size_t bufferLength, 
-				    int flag, sockaddr *addr, int addrLength);
+				    int flag, sockaddr *addr, int addrLength)
 {
   
     
     
-};
-#endif
+}

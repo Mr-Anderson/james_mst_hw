@@ -9,25 +9,27 @@
  ******************************************************************************/
 
 #include	"unp.h"
+#include	"MyNetwork.h"
 
-template <class generic>
 class myTCP
 {
     public:
     
+	myTCP();
         myTCP(int port_number);//constructor for reciever
-     
-        myTCP(string ip_address, int port_number);//constructor for sender
+        myTCP(char * ip_address, int port_number);//constructor for sender
         
+	void init(int port_number);
+	void init(char * ip_address, int port_number);
+
         void send(const void *msg, size_t len);//function to send data
         
         int recv(const void *buf, size_t len);//function to recieve data
         
     private:
-    
-        int     sockfd;
-        struct sockaddr_in  servaddr;
-        int port_number
+    	myNetwork net;
+        int port_number;
+	char ip_address[4];
    
 };
 #endif

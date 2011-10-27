@@ -13,9 +13,11 @@
 class myNetwork
 {
 	public:
-
+		myNetwork();
 		myNetwork(int port, bool server);
 	
+		void init(int port, bool server);
+
         	void sendto(int, const void, size_t, int, sockaddr, socklen_t);
                     
         	int recvfrom(int, const void, size_t, int, sockaddr, int);

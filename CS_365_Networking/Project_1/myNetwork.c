@@ -8,7 +8,17 @@
 
 #include	"myNetwork.h"
 
+myNetwork::myNetwork()
+{
+
+}
+
 myNetwork::myNetwork(int port, bool server)
+{
+	init(port, server);
+}
+
+void myNetwork::init(int port, bool server)
 {
 	if(server)
 	{
@@ -31,7 +41,7 @@ myNetwork::myNetwork(int port, bool server)
 	}
 }
 
-void myNetwork::void sendto(int sid, const void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t addrLength)
+void myNetwork::sendto(int sid, const void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t addrLength)
 {
 	sendto(sid, buffer, bufferLength, flag, addr, addrLength);
 }
