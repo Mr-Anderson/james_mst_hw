@@ -18,10 +18,11 @@ class myNetwork
 	
 		void init(int port, bool server);
 
-        	void sendto(const void, size_t, int, sockaddr, socklen_t);
+		void mysendto(void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t addrLength);
                     
-        	int recvfrom(const void, size_t, int, sockaddr, int);
+		int myrecvfrom(void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t * addrLength);
         
+		void getMyIP(char * IP);
 	private:
 		int sockfd;
 		struct sockaddr_in servaddr;
