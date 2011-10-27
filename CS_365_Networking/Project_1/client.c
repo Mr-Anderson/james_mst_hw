@@ -9,33 +9,44 @@
 
 #include	"unp.h"
 #include    "dg_cli.c"
+#include	"myTCP.h"
 
 int main(int argc, char **argv)
 {
-    int     sockfd;
-    struct sockaddr_in  servaddr;
-    FILE * in_pf;
-    FILE * out_pf;
+
     
     if (argc != 4)
     {
-        fputs(" usage: udpcli <IPaddress> <InputFile> <OutputFile> \r \n", stderr);
+        fputs(" usage: udpcli <IPaddress> <Port> <InputFile> <OutputFile> \r \n", stderr);
         exit(0);
     }
     
-    bzero(&servaddr, sizeof(servaddr));
-    servaddr.sin_family = AF_INET;
-    servaddr.sin_port = htons(SERV_PORT);
-    inet_pton(AF_INET, argv[1], &servaddr.sin_addr);
+    //Create new TCP pipe
+    myTCP tcp(argv[1], argv[2]);
 
-    sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+    //Open input and output file
+    in_pf=fopen (argv[3] , "r");
+    out_pf=fopen (argv[4] , "w+");
 
-    in_pf=fopen (argv[2] , "r");
-    out_pf=fopen (argv[3] , "w+");
-
+    //if file opens 
     if (in_pf == NULL) perror ("Error opening file");
     else
     {
+        int n;
+        char sendline[MAXLINE], recvline[MAXLINE + 1];
+        
+        while (!feof(in_fp)) 
+        {
+            //read in file line
+            n = fread(sendline, 1, MAXLINE ,in_fp);
+           
+            tcp.send(sockfd, sendline, n , 0, pservaddr, servlen);
+
+            n = tcp.recv(sockfd, recvline, MAXLINE, 0, NULL, NULL);
+            
+            fwrite(recvline ,1, n , out_fp);
+        }
+        
         dg_cli(in_pf, out_pf, sockfd, (SA *) &servaddr, sizeof(servaddr));
         
         fclose (in_pf);
@@ -44,3 +55,4 @@ int main(int argc, char **argv)
     
     exit(0);
 }
+

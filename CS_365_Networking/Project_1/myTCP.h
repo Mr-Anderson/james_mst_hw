@@ -14,13 +14,21 @@ template <class generic>
 class myTCP
 {
     public:
-        bool open();
-        
-        bool close();
     
-        void sendto(int, const void, size_t, int, sockaddr, socklen_t);
-                    
-        int recvfrom(int, const void, size_t, int, sockaddr, int);
-
+        myTCP();//default constructor for reciever
+     
+        myTCP(string ip_address, int port_number);//constructor for sender
+        
+        void send(int, const void, size_t, int, sockaddr, socklen_t);//
+        
+        int recv(int, const void, size_t, int, sockaddr, int);
+        
+        myTCP(string ip_address, int port_number);
+        bool close();
+    private:
+    
+        int     sockfd;
+        struct sockaddr_in  servaddr;
+   
 };
 #endif

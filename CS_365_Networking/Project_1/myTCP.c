@@ -11,7 +11,20 @@
 
 #include	"myTCP.h"
 
+myTCP::myTCP(string ip_address, int port_number)
+{
 
+    FILE * in_pf;
+    FILE * out_pf;
+
+    bzero(&servaddr, sizeof(servaddr));
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_port = htons(SERV_PORT);
+    inet_pton(AF_INET, argv[1], &servaddr.sin_addr);
+
+    sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+
+}
 
 void myTCP::void sendto(int sid, const void *buffer, size_t bufferLength,
                         int flag, sockaddr *addr, socklen_t addrLength)
