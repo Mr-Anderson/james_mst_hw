@@ -1,5 +1,3 @@
-#ifndef MYNETWORK_H
-#define MYNETWORK_H
 /*******************************************************************************
  * @file myNetwork.c
  * @author James Anderson <jra798>
@@ -10,19 +8,35 @@
 
 #include	"myNetwork.h"
 
-void myNetwork::void sendto(int sid, const void *buffer, size_t bufferLength 
-            ,int flag, sockaddr *addr, socklen_t addrLength)
+myNetwork::myNetwork(int port, bool server)
 {
-    
-    
-    
-};
+	if(server)
+	{
+		bzero(&servaddr, sizeof(servaddr));
+		servaddr.sin_family      = AF_INET;
+		servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+		servaddr.sin_port        = htons(SERV_PORT);
+		
+		sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+		bind(sockfd, (SA *) &servaddr, sizeof(servaddr));
+	}
+	else
+	{
+		bzero(&servaddr, sizeof(servaddr));
+		servaddr.sin_family = AF_INET;
+		servaddr.sin_port = htons(SERV_PORT);
+		inet_pton(AF_INET, argv[1], &servaddr.sin_addr);
+		
+		sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+	}
+}
 
-int myNetwork::recvfrom(int sid, const void *buffer , size_t bufferLength
-                     , int flag, sockaddr *addr, int addrLength);
+void myNetwork::void sendto(int sid, const void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t addrLength)
 {
-    
-    
-};
+	sendto(sid, buffer, bufferLength, flag, addr, addrLength);
+}
 
-#endif
+int myNetwork::recvfrom(int sid, const void *buffer, size_t bufferLength, int flag, sockaddr *addr, int addrLength)
+{
+	recvfrom(sid, buffer, bufferLength, flag, addr, addrLength);
+}

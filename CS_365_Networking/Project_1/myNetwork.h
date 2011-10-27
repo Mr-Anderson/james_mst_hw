@@ -10,16 +10,20 @@
 
 #include	"unp.h"
 
-template <class generic>
 class myNetwork
 {
-    public:
-    
-        void sendto(int, const void, size_t, int, sockaddr, socklen_t);
-                    
-        int recvfrom(int, const void, size_t, int, sockaddr, int);
-        
-        
+	public:
 
+		myNetwork(int port, bool server);
+	
+        	void sendto(int, const void, size_t, int, sockaddr, socklen_t);
+                    
+        	int recvfrom(int, const void, size_t, int, sockaddr, int);
+        
+	private:
+		int sockfd;
+		struct sockaddr_in servaddr;
+		struct sockaddr_in cliaddr;
 };
+
 #endif
