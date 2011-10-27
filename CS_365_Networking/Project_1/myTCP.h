@@ -9,7 +9,7 @@
  ******************************************************************************/
 
 #include	"unp.h"
-#include	"MyNetwork.h"
+#include	"myNetwork.h"
 
 class myTCP
 {
@@ -17,10 +17,12 @@ class myTCP
     
 	myTCP();
         myTCP(int port_number);//constructor for reciever
+        
         myTCP(char * ip_address, int port_number);//constructor for sender
         
-	void init(int port_number);
-	void init(char * ip_address, int port_number);
+        void init(int port_number);//client
+        
+        void init(char * ip_address, int port_number);//server
 
         void send(const void *msg, size_t len);//function to send data
         
@@ -28,8 +30,25 @@ class myTCP
         
     private:
     	myNetwork net;
-        int port_number;
-	char ip_address[4];
-   
+        
+        int server_port_number;
+        int client_port_number;
+        
+        char server_ip_address[4];
+        char client_ip_address[4]
+    
+        typedef struct _MYTCP_Header 
+        {
+            struct tcphdr tcp_hdr;
+            u_short data_len; //  the actual number of bytes in the data field. 
+        } __attribute__ ((packed)) MYTCPHeader;
+        
+        
+        struct _MYTCP_Header server_header;
+        struct _MYTCP_Header client_header;
+        
+       
+        
+        bool server;
 };
 #endif

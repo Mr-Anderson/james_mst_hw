@@ -17,7 +17,7 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
-
+#include <netinet/tcp.h> 
 
 
 
@@ -30,6 +30,11 @@
 //tcp parameter defines
 #define WINSIZE         1024 //sender receiver buffer sizeof
 #define MSS             256  //the maximum number of bytes in the data field of a TCP segment
+#define W               4    // max windows
+
+#define CLIENT_ISN      0     //client inital sequence number
+#define SERVER_ISN      1000  //server intial sequence number
+     
      
 void     dg_cli(FILE *, FILE *, int, const SA *, socklen_t);
 void     dg_echo(int, SA *, socklen_t);

@@ -20,9 +20,6 @@ int main(int argc, char **argv)
         exit(0);
     }
     
-    //Create new TCP pipe
-    myTCP tcp(argv[1], argv[2]);
-
     //Open input and output file
     in_pf=fopen (argv[3] , "r");
     out_pf=fopen (argv[4] , "w+");
@@ -31,8 +28,12 @@ int main(int argc, char **argv)
     if (in_pf == NULL) perror ("Error opening file");
     else
     {
+        
         int n;
         char sendline[MAXLINE], recvline[MAXLINE + 1];
+        
+        //Create new TCP pipe
+        myTCP tcp(argv[1], argv[2]);
         
         while (!feof(in_fp)) 
         {
