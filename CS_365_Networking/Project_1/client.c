@@ -8,16 +8,15 @@
  ******************************************************************************/
 
 #include	"unp.h"
-#include    "dg_cli.c"
 #include	"myTCP.h"
 
 int main(int argc, char **argv)
 {
 
-    
-    if (argc != 4)
+    // check to see if their are the correct number of arguments
+    if (argc != 5)
     {
-        fputs(" usage: udpcli <IPaddress> <Port> <InputFile> <OutputFile> \r \n", stderr);
+        fputs(" usage: client <IPaddress> <Port> <InputFile> <OutputFile> \r \n", stderr);
         exit(0);
     }
     
@@ -40,15 +39,13 @@ int main(int argc, char **argv)
             //read in file line
             n = fread(sendline, 1, MAXLINE ,in_fp);
            
-            tcp.send(sockfd, sendline, n , 0, pservaddr, servlen);
+            tcp.send(sendline, n);
 
-            n = tcp.recv(sockfd, recvline, MAXLINE, 0, NULL, NULL);
+            n = tcp.recv(recvline, MAXLINE);
             
             fwrite(recvline ,1, n , out_fp);
         }
-        
-        dg_cli(in_pf, out_pf, sockfd, (SA *) &servaddr, sizeof(servaddr));
-        
+
         fclose (in_pf);
         fclose (out_pf);
     }

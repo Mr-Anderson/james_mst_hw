@@ -15,20 +15,19 @@ class myTCP
 {
     public:
     
-        myTCP();//default constructor for reciever
+        myTCP(int port_number);//constructor for reciever
      
         myTCP(string ip_address, int port_number);//constructor for sender
         
-        void send(int, const void, size_t, int, sockaddr, socklen_t);//
+        void send(const void *msg, size_t len);//function to send data
         
-        int recv(int, const void, size_t, int, sockaddr, int);
+        int recv(const void *buf, size_t len);//function to recieve data
         
-        myTCP(string ip_address, int port_number);
-        bool close();
     private:
     
         int     sockfd;
         struct sockaddr_in  servaddr;
+        int port_number
    
 };
 #endif

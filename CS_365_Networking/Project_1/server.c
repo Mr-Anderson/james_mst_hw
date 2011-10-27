@@ -7,22 +7,31 @@
  ******************************************************************************/
 
 #include    "unp.h"
-#include    "dg_echo.c"
+#include	"myTCP.h"
 
 int
 main(int argc, char **argv)
 {
-    int                 sockfd;
-    struct sockaddr_in  servaddr, cliaddr;
 
-    sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+    // check to see if their are the correct number of arguments
+    if (argc != 2)
+    {
+        fputs(" usage: server <Port> \r \n", stderr);
+        exit(0);
+    }
+    
+    //Create new TCP listener
+    myTCP tcp(argv[1]);
+    
+    int         n;
+    char        mesg[MAXLINE];
+    
+    //begin loop to echo data
+    for ( ; ; ) 
+    {
+        n = tcp.recv(mesg, MAXLINE);
 
-    bzero(&servaddr, sizeof(servaddr));
-    servaddr.sin_family      = AF_INET;
-    servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
-    servaddr.sin_port        = htons(SERV_PORT);
+        tcp.send(mesg, n);
+    }
 
-    bind(sockfd, (SA *) &servaddr, sizeof(servaddr));
-
-    dg_echo(sockfd, (SA *) &cliaddr, sizeof(cliaddr));
 }

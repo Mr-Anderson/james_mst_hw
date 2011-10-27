@@ -10,10 +10,10 @@ CXX = g++
 
 all: client server
 
-client: client.c unp.h dg_cli.c myTCP.c myNetwork.c
+client: client.c unp.h myTCP.c myNetwork.c
 	$(CXX) $< -o $@ 
 
-server: server.c unp.h dg_echo.c myTCP.c myNetwork.c
+server: server.c unp.h myTCP.c myNetwork.c
 	$(CXX) $< -o $@ 
 
 clean:
