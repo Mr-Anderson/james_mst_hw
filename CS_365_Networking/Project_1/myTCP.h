@@ -9,7 +9,7 @@
  ******************************************************************************/
 
 #include	"unp.h"
-#include	"MyNetwork.h"
+#include	"myNetwork.h"
 
 class myTCP
 {

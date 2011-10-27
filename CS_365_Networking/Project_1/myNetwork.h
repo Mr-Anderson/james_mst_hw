@@ -25,7 +25,6 @@ class myNetwork
 	private:
 		int sockfd;
 		struct sockaddr_in servaddr;
-		struct sockaddr_in cliaddr;
 };
 
 #endif
