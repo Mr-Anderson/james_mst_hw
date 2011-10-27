@@ -18,9 +18,9 @@ class myNetwork
 	
 		void init(int port, bool server);
 
-        	void sendto(int, const void, size_t, int, sockaddr, socklen_t);
+        	void sendto(const void, size_t, int, sockaddr, socklen_t);
                     
-        	int recvfrom(int, const void, size_t, int, sockaddr, int);
+        	int recvfrom(const void, size_t, int, sockaddr, int);
         
 	private:
 		int sockfd;

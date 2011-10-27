@@ -41,12 +41,12 @@ void myNetwork::init(int port, bool server)
 	}
 }
 
-void myNetwork::sendto(int sid, const void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t addrLength)
+void myNetwork::sendto(const void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t addrLength)
 {
-	sendto(sid, buffer, bufferLength, flag, addr, addrLength);
+	sendto(sockfd, buffer, bufferLength, flag, addr, addrLength);
 }
 
-int myNetwork::recvfrom(int sid, const void *buffer, size_t bufferLength, int flag, sockaddr *addr, int addrLength)
+int myNetwork::recvfrom(const void *buffer, size_t bufferLength, int flag, sockaddr *addr, int addrLength)
 {
-	recvfrom(sid, buffer, bufferLength, flag, addr, addrLength);
+	recvfrom(sockfd, buffer, bufferLength, flag, addr, addrLength);
 }
