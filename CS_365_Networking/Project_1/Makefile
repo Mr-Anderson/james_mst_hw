@@ -10,11 +10,11 @@ CXX = g++
 
 all: client server
 
-client: client.c unp.h myTCP.c myNetwork.c
-	$(CXX) $< -o $@ 
+client: client.c myTCP.cpp myNetwork.c
+	$(CXX) $^ -lpthread -o $@ 
 
-server: server.c unp.h myTCP.c myNetwork.c
-	$(CXX) $< -o $@ 
+server: server.c myTCP.cpp myNetwork.c
+	$(CXX) $^ -lpthread -o $@ 
 
 clean:
 	rm -f client server

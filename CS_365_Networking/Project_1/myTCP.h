@@ -10,45 +10,37 @@
 
 #include	"unp.h"
 #include	"myNetwork.h"
+#include    <pthread.h>
+#include    <vector>
 
-class myTCP
+using namespace std;
+
+ 
+
+typedef struct _MYTCP_Header 
 {
-    public:
-    
-	myTCP();
-        myTCP(int port_number);//constructor for reciever
-        
-        myTCP(char * ip_address, int port_number);//constructor for sender
-        
-        void init(int port_number);//client
-        
-        void init(char * ip_address, int port_number);//server
+    struct tcphdr tcp_hdr;
+    u_short data_len; //  the actual number of bytes in the data field. 
+} __attribute__ ((packed)) MYTCPHeader;
 
-        void send(const void *msg, size_t len);//function to send data
-        
-        int recv(const void *buf, size_t len);//function to recieve data
-        
-    private:
-    	myNetwork net;
-        
-        int server_port_number;
-        int client_port_number;
-        
-        char server_ip_address[4];
-        char client_ip_address[4]
-    
-        typedef struct _MYTCP_Header 
-        {
-            struct tcphdr tcp_hdr;
-            u_short data_len; //  the actual number of bytes in the data field. 
-        } __attribute__ ((packed)) MYTCPHeader;
-        
-        
-        struct _MYTCP_Header server_header;
-        struct _MYTCP_Header client_header;
-        
-       
-        
-        bool server;
-};
+
+
+//client
+void tcp_server_init(int port_number);
+
+//server
+void tcp_client_init(char * ip_address, int port_number);
+
+//function to send data
+void tcp_send(const void *msg, size_t len);
+
+//function to recieve data
+int tcp_recv(const void *buf, size_t len);
+
+//sender thread
+void * send_thread(void *arg);
+
+//recever thread
+void * recv_thread(void *arg);
+
 #endif

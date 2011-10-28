@@ -13,6 +13,9 @@
 int main(int argc, char **argv)
 {
 
+    FILE *in_fp; 
+    FILE *out_fp;
+
     // check to see if their are the correct number of arguments
     if (argc != 5)
     {
@@ -21,34 +24,36 @@ int main(int argc, char **argv)
     }
     
     //Open input and output file
-    in_pf=fopen (argv[3] , "r");
-    out_pf=fopen (argv[4] , "w+");
+    in_fp=fopen (argv[3] , "r");
+    out_fp=fopen (argv[4] , "w+");
 
     //if file opens 
-    if (in_pf == NULL) perror ("Error opening file");
+    if (in_fp == NULL) perror ("Error opening file");
     else
     {
         
         int n;
         char sendline[MAXLINE], recvline[MAXLINE + 1];
         
+        int port = atoi(argv[2]);
+        
         //Create new TCP pipe
-        myTCP tcp(argv[1], argv[2]);
+        tcp_client_init(argv[1], port);
         
         while (!feof(in_fp)) 
         {
             //read in file line
             n = fread(sendline, 1, MAXLINE ,in_fp);
            
-            tcp.send(sendline, n);
+            tcp_send(sendline, n);
 
-            n = tcp.recv(recvline, MAXLINE);
+            n = tcp_recv(recvline, MAXLINE);
             
             fwrite(recvline ,1, n , out_fp);
         }
 
-        fclose (in_pf);
-        fclose (out_pf);
+        fclose (in_fp);
+        fclose (out_fp);
     }
     
     exit(0);

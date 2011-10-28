@@ -20,8 +20,10 @@ main(int argc, char **argv)
         exit(0);
     }
     
+    int port = atoi(argv[1]);
+    
     //Create new TCP listener
-    myTCP tcp(argv[1]);
+    tcp_server_init(port);
     
     int         n;
     char        mesg[MAXLINE];
@@ -29,9 +31,9 @@ main(int argc, char **argv)
     //begin loop to echo data
     for ( ; ; ) 
     {
-        n = tcp.recv(mesg, MAXLINE);
+        n = tcp_recv(mesg, MAXLINE);
 
-        tcp.send(mesg, n);
+        tcp_send(mesg, n);
     }
 
 }
