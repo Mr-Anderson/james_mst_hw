@@ -30,24 +30,24 @@ struct tcp_buff
 
 enum client_state_t
 {
-   CLOSED,
-   SYN_SENT,
-   ESTABLISHED,
-   FIN_WAIT_1,
-   FIN_WAIT_2,
-   TIME_WAIT
+   CLI_CLOSED,
+   CLI_SYN_SENT,
+   CLI_ESTABLISHED,
+   CLI_FIN_WAIT_1,
+   CLI_FIN_WAIT_2,
+   CLI_TIME_WAIT
 };
 
 client_state_t client_state;
 
 enum server_state_t
 {
-    CLOSED,
-    LISTEN,
-    SYN_RCVD,
-    ESTABLISHED,
-    CLOSE_WAIT,
-    LAST_ACK
+    SRV_CLOSED,
+    SRV_LISTEN,
+    SRV_SYN_RCVD,
+    SRV_ESTABLISHED,
+    SRV_CLOSE_WAIT,
+    SRV_LAST_ACK
 };
 
 server_state_t server_state;
@@ -71,7 +71,7 @@ void tcp_server_init(int port_number)
 {
 	//Server
     server = true;
-    server_state = CLOSED;
+    server_state = SRV_CLOSED;
     net.init(port_number);
 	
     //Start threads
@@ -94,7 +94,7 @@ void tcp_client_init(char * ip_address, int port_number)
 {
 	//Client
     server = false;
-    client_state = CLOSED;
+    client_state = CLI_CLOSED;
     memcpy(server_ip_address, ip_address, 4);
     net.init(port_number, server_ip_address);
     
@@ -149,36 +149,68 @@ int tcp_recv(void *buffer , size_t bufferLength)
 
 void * send_thread(void *arg)
 {
+	while(true) //put some condition here
+	{
+		if(server)
+    		{
+			if(server_state == SRV_CLOSED)
+			{
+	
+			}
+			else if(server_state == SRV_LISTEN)
+			{
 
-    //cout << "aaaaaarg send" << endl;
-    
-    if(server)
-    {
-        
-    }
-    else
-    {
-        _MYTCP_Header header;
-        
-        if(client_state == CLOSED)
-        {
-            //setup header for intial syn
-            reset_head(&header);
-            header.tcp_hdr.seq = CLIENT_ISN;
-            header.tcp_hdr.syn = 1;
-        }
-        
-    }
-    
-    
+			}
+			else if(server_state == SRV_SYN_RCVD)
+			{
+	
+			}
+			else if(server_state == SRV_ESTABLISHED)
+			{
+	
+			}
+			else if(server_state == SRV_CLOSE_WAIT)
+			{
 
-    
-    //add header to no data
-    //send 
-    
-    //receive
-    
-    
+			}
+			else if(server_state == SRV_LAST_ACK)
+			{
+
+			}
+		}
+		else
+		{
+			_MYTCP_Header header;
+		
+			if(client_state == CLI_CLOSED)
+			{
+			    //setup header for intial syn
+			    reset_head(&header);
+			    header.tcp_hdr.seq = CLIENT_ISN;
+			    header.tcp_hdr.syn = 1;
+			}
+			else if(client_state == CLI_SYN_SENT)
+			{
+
+			}
+			else if(client_state == CLI_ESTABLISHED)
+			{
+	
+			}
+			else if(client_state == CLI_FIN_WAIT_1)
+			{
+
+			}
+			else if(client_state == CLI_FIN_WAIT_2)
+			{
+
+			}
+			else if(client_state == CLI_TIME_WAIT)
+			{
+
+			}
+		}
+	}    
 }        
 
 void * recv_thread(void *arg)
@@ -191,7 +223,7 @@ void * recv_thread(void *arg)
         {
             //recieve
             //strip header to client header
-            if(client_header.tcp_hdr.syn)
+            /*if(client_header.tcp_hdr.syn)
             {
                 server_header = client_header;
                 server_header.tcp_hdr.ack = 1;
@@ -205,7 +237,7 @@ void * recv_thread(void *arg)
                 
                 
                 
-            }
+            }*/
         }
     }
     else
