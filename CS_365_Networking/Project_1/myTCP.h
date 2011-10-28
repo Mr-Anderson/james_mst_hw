@@ -11,7 +11,7 @@
 #include	"unp.h"
 #include	"myNetwork.h"
 #include    <pthread.h>
-#include    <vector>
+#include    <deque>
 
 using namespace std;
 
@@ -35,12 +35,15 @@ void tcp_client_init(char * ip_address, int port_number);
 void tcp_send(const void *msg, size_t len);
 
 //function to recieve data
-int tcp_recv(const void *buf, size_t len);
+int tcp_recv(void *buf, size_t len);
 
 //sender thread
 void * send_thread(void *arg);
 
 //recever thread
 void * recv_thread(void *arg);
+
+//initalizes a header
+void reset_head(struct _MYTCP_Header *header);
 
 #endif

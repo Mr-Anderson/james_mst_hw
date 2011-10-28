@@ -20,11 +20,40 @@ char client_ip_address[4];
 
 bool server;
 
-struct _MYTCP_Header server_header;
-struct _MYTCP_Header client_header;
+size_t buff_len = WINDOW_SIZE +sizeof(struct _MYTCP_Header);
 
-vector <string> send_buff;
-vector <string> recv_buff;
+struct tcp_buff
+{
+    struct _MYTCP_Header header;
+    char data[WINDOW_SIZE];
+};
+
+enum client_state_t
+{
+   CLOSED,
+   SYN_SENT,
+   ESTABLISHED,
+   FIN_WAIT_1,
+   FIN_WAIT_2,
+   TIME_WAIT
+};
+
+client_state_t client_state;
+
+enum server_state_t
+{
+    CLOSED,
+    LISTEN,
+    SYN_RCVD,
+    ESTABLISHED,
+    CLOSE_WAIT,
+    LAST_ACK
+};
+
+server_state_t server_state;
+
+deque <tcp_buff> send_buff;
+deque <tcp_buff> recv_buff;
 
 pthread_mutex_t send_lock;
 pthread_mutex_t recv_lock;
@@ -32,11 +61,17 @@ pthread_mutex_t recv_lock;
 pthread_t sender;
 pthread_t receiver;
 
+sockaddr_in addr;
+socklen_t len;
+
+
+
 
 void tcp_server_init(int port_number)
 {
 	//Server
     server = true;
+    server_state = CLOSED;
     net.init(port_number);
 	
     //Start threads
@@ -59,7 +94,8 @@ void tcp_client_init(char * ip_address, int port_number)
 {
 	//Client
     server = false;
-    strcpy(server_ip_address, ip_address, 4);
+    client_state = CLOSED;
+    memcpy(server_ip_address, ip_address, 4);
     net.init(port_number, server_ip_address);
     
     
@@ -80,46 +116,60 @@ void tcp_client_init(char * ip_address, int port_number)
 
 void tcp_send(const void *buffer, size_t bufferLength)
 {
+    tcp_buff send_msg;
     
+    memcpy(send_msg.data, buffer, bufferLength); 
     
+    send_buff.push_back(send_msg);
+    
+    //net.mysendto(sendline, buff_len, 0, (sockaddr*)&addr, len);
     
 }
 
-int tcp_recv(const void *buffer , size_t bufferLength)
+int tcp_recv(void *buffer , size_t bufferLength)
 {
+    tcp_buff recv_msg;
     
+    while(recv_buff.empty())
+    {
+        continue;
+    }
     
+    recv_msg = recv_buff.front();
     
+    recv_buff.pop_front();
+    
+    memcpy(buffer , recv_msg.data , bufferLength);
+    
+    //net.myrecvfrom(recvline, buff_len, 0, (sockaddr*)&addr, &len);
+    
+    return recv_msg.header.data_len;
 }
 
 
 void * send_thread(void *arg)
 {
+
+    //cout << "aaaaaarg send" << endl;
+    
     if(server)
     {
         
     }
     else
     {
-        //setup header for intial syn
-        client_header.tcp_hdr.source = 0;
-        client_header.tcp_hdr.dest = 0;
-        client_header.tcp_hdr.seq = CLIENT_ISN;
-        client_header.tcp_hdr.ack_seq = 0;
-        client_header.tcp_hdr.res1 = 0;
-        client_header.tcp_hdr.doff = 0;
-        client_header.tcp_hdr.fin = 0;
-        client_header.tcp_hdr.syn = 1;
-        client_header.tcp_hdr.rst = 0;
-        client_header.tcp_hdr.psh = 0;
-        client_header.tcp_hdr.ack = 0;
-        client_header.tcp_hdr.urg = 0;
-        client_header.tcp_hdr.res2 = 0;
-        client_header.tcp_hdr.window = 0;
-        client_header.tcp_hdr.check = 0;
-        client_header.tcp_hdr.urg_ptr = 0;
-        client_header.data_len = 0;
+        _MYTCP_Header header;
+        
+        if(client_state == CLOSED)
+        {
+            //setup header for intial syn
+            reset_head(&header);
+            header.tcp_hdr.seq = CLIENT_ISN;
+            header.tcp_hdr.syn = 1;
+        }
+        
     }
+    
     
 
     
@@ -127,15 +177,17 @@ void * send_thread(void *arg)
     //send 
     
     //receive
-    */
+    
+    
 }        
 
 void * recv_thread(void *arg)
 {
-     
+    //cout << "aaaaaarg recv" << endl;
+    
     if(server)
     {
-        while()
+        while(1)
         {
             //recieve
             //strip header to client header
@@ -158,7 +210,31 @@ void * recv_thread(void *arg)
     }
     else
     {
-    }   
+    }
+      
 }
+
+void reset_head(struct _MYTCP_Header *header)
+{
+        header->tcp_hdr.source = 0;
+        header->tcp_hdr.dest = 0;
+        header->tcp_hdr.seq = 0;
+        header->tcp_hdr.ack_seq = 0;
+        header->tcp_hdr.res1 = 0;
+        header->tcp_hdr.doff = 0;
+        header->tcp_hdr.fin = 0;
+        header->tcp_hdr.syn = 0;
+        header->tcp_hdr.rst = 0;
+        header->tcp_hdr.psh = 0;
+        header->tcp_hdr.ack = 0;
+        header->tcp_hdr.urg = 0;
+        header->tcp_hdr.res2 = 0;
+        header->tcp_hdr.window = 0;
+        header->tcp_hdr.check = 0;
+        header->tcp_hdr.urg_ptr = 0;
+        header->data_len = 0;
+}
+
+
 
 

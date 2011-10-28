@@ -28,7 +28,7 @@
 #define SA  struct sockaddr
 
 //tcp parameter defines
-#define WINSIZE         1024 //sender receiver buffer sizeof
+#define WINDOW_SIZE         1024 //sender receiver buffer sizeof
 #define MSS             256  //the maximum number of bytes in the data field of a TCP segment
 #define W               4    // max windows
 
