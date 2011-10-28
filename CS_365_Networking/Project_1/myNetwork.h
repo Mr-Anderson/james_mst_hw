@@ -14,9 +14,11 @@ class myNetwork
 {
 	public:
 		myNetwork();
-		myNetwork(int port, bool server);
-	
-		void init(int port, bool server);
+		myNetwork(int port);
+		myNetwork(int port, char * ip);
+
+		void init(int port);
+		void init(int port, char * ip);
 
 		void mysendto(void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t addrLength);
                     

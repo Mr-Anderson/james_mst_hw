@@ -10,7 +10,7 @@ int main()
 {
 	myNetwork net;
 	
-	net.init(1337, true);
+	net.init(1337);
 
 	char my_ip[INET_ADDRSTRLEN];
 

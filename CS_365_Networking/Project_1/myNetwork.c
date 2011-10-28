@@ -13,32 +13,35 @@ myNetwork::myNetwork()
 
 }
 
-myNetwork::myNetwork(int port, bool server)
+myNetwork::myNetwork(int port)
 {
-	init(port, server);
+	init(port);
 }
 
-void myNetwork::init(int port, bool server)
+myNetwork::myNetwork(int port, char * ip)
 {
-	if(server)
-	{
-		bzero(&servaddr, sizeof(servaddr));
-		servaddr.sin_family      = AF_INET;
-		servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
-		servaddr.sin_port        = htons(port);
-		
-		sockfd = socket(AF_INET, SOCK_DGRAM, 0);
-		bind(sockfd, (SA *) &servaddr, sizeof(servaddr));
-	}
-	else
-	{
-		bzero(&servaddr, sizeof(servaddr));
-		servaddr.sin_family = AF_INET;
-		servaddr.sin_port = htons(port);
-		inet_pton(AF_INET, "131.151.154.38", &servaddr.sin_addr);
-		
-		sockfd = socket(AF_INET, SOCK_DGRAM, 0);
-	}
+	init(port, ip);
+}
+
+void myNetwork::init(int port)
+{
+	bzero(&servaddr, sizeof(servaddr));
+	servaddr.sin_family      = AF_INET;
+	servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+	servaddr.sin_port        = htons(port);
+	
+	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+	bind(sockfd, (SA *) &servaddr, sizeof(servaddr));
+}
+
+void myNetwork::init(int port, char * ip)
+{
+	bzero(&servaddr, sizeof(servaddr));
+	servaddr.sin_family = AF_INET;
+	servaddr.sin_port = htons(port);
+	inet_pton(AF_INET, ip, &servaddr.sin_addr);
+	
+	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 }
 
 void myNetwork::mysendto(void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t addrLength)
