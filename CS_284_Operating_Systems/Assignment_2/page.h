@@ -15,16 +15,8 @@
 #include "fstream"
 #include "iostream"
 
+
 using namespace std;
-
- 
-
-typedef struct _MYTCP_Header 
-{
-    struct tcphdr tcp_hdr;
-    u_short data_len; //  the actual number of bytes in the data field. 
-} __attribute__ ((packed)) MYTCPHeader;
-
 
 
 //client
@@ -47,5 +39,21 @@ void * recv_thread(void *arg);
 
 //initalizes a header
 void reset_head(struct _MYTCP_Header *header);
+
+
+//global variables for storing args
+FILE *programlist_fp;
+
+FILE *programtrace_fp;
+
+int page size;
+
+enum page_replacement_algo { lru, fifo, clock}; 
+
+page_replacement_algo algo;
+
+enum paging_mode { prepaging, demandpaging}; 
+
+paging_mode mode;
 
 #endif
