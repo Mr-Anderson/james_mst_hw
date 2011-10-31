@@ -28,6 +28,14 @@ struct tcp_buff
     char data[WINDOW_SIZE];
 };
 
+struct timeout
+{
+    //sequence number of packet sent
+    int seq_num;
+    //time it was sent on
+    int sent;
+};
+
 enum client_state_t
 {
    CLI_CLOSED,
@@ -54,12 +62,18 @@ server_state_t server_state;
 
 deque <tcp_buff> send_buff;
 deque <tcp_buff> recv_buff;
+deque <timeout> timeout_buff;
 
 pthread_mutex_t send_lock;
 pthread_mutex_t recv_lock;
+pthread_mutex_t timeout_lock;
+
 
 pthread_t sender;
 pthread_t receiver;
+pthread_t timeout;
+pthread_t server;
+pthread_t client;
 
 sockaddr_in addr;
 socklen_t len;
@@ -100,6 +114,14 @@ void tcp_client_init(char * ip_address, int port_number)
     
     
     //Start threads
+    if(pthread_create(&server, NULL, srv_thread, NULL))
+	{
+		cout << "ERROR" << endl;
+	}
+    if(pthread_create(&timeout, NULL, timeout_thread, NULL))
+	{
+		cout << "ERROR" << endl;
+	}
 	if(pthread_create(&sender, NULL, send_thread, NULL))
 	{
 		cout << "ERROR" << endl;
@@ -146,8 +168,8 @@ int tcp_recv(void *buffer , size_t bufferLength)
     return recv_msg.header.data_len;
 }
 
-
-void * send_thread(void *arg)
+// keeps track of the client state and iterates through tcp protocal
+void * cli_thread(void *arg)
 {
 	while(true) //put some condition here
 	{
@@ -213,6 +235,86 @@ void * send_thread(void *arg)
 	}    
 }        
 
+// keeps track of the server state and iterates through tcp protocal
+void * srv_thread(void *arg)
+{
+	while(true) //put some condition here
+	{
+		if(server)
+    		{
+			if(server_state == SRV_CLOSED)
+			{
+	
+			}
+			else if(server_state == SRV_LISTEN)
+			{
+
+			}
+			else if(server_state == SRV_SYN_RCVD)
+			{
+	
+			}
+			else if(server_state == SRV_ESTABLISHED)
+			{
+	
+			}
+			else if(server_state == SRV_CLOSE_WAIT)
+			{
+
+			}
+			else if(server_state == SRV_LAST_ACK)
+			{
+
+			}
+		}
+		else
+		{
+			_MYTCP_Header header;
+		
+			if(client_state == CLI_CLOSED)
+			{
+			    //setup header for intial syn
+			    reset_head(&header);
+			    header.tcp_hdr.seq = CLIENT_ISN;
+			    header.tcp_hdr.syn = 1;
+			}
+			else if(client_state == CLI_SYN_SENT)
+			{
+
+			}
+			else if(client_state == CLI_ESTABLISHED)
+			{
+	
+			}
+			else if(client_state == CLI_FIN_WAIT_1)
+			{
+
+			}
+			else if(client_state == CLI_FIN_WAIT_2)
+			{
+
+			}
+			else if(client_state == CLI_TIME_WAIT)
+			{
+
+			}
+		}
+	}    
+}  
+
+//constantly calls network send sending data in deque <tcp_buff> send_buff
+void * send_thread(void *arg)
+{
+  
+}   
+
+//constantly checks the timeout queue for timeouts 
+void * timeout_thread(void *arg)
+{
+  
+}  
+
+//constantly calls network recive and writes to deque <tcp_buff> rcv_buff
 void * recv_thread(void *arg)
 {
     //cout << "aaaaaarg recv" << endl;

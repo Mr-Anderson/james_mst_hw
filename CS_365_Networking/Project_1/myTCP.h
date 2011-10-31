@@ -37,6 +37,15 @@ void tcp_send(const void *msg, size_t len);
 //function to recieve data
 int tcp_recv(void *buf, size_t len);
 
+//server thread
+void * srv_thread(void *arg);
+
+//client thread
+void * cli_thread(void *arg);
+
+//timeout thread
+void * timeout_thread(void *arg);
+
 //sender thread
 void * send_thread(void *arg);
 
