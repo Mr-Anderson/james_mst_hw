@@ -15,6 +15,7 @@
 #include "fstream"
 #include "iostream"
 
+#define MEMORY_SIZE 512
 
 using namespace std;
 
@@ -55,5 +56,24 @@ page_replacement_algo algo;
 enum paging_mode { prepaging, demandpaging}; 
 
 paging_mode mode;
+
+struct Page
+{
+    unsigned long name;
+    int owner;
+    bool in_memory;
+    //time
+    //clock
+}
+
+struct Program
+{
+    int name;
+    int size;
+    vector <struct Page> Pagefile;
+}
+
+vector <struct Page *>;
+
 
 #endif
