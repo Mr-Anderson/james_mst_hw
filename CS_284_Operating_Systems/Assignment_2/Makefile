@@ -10,7 +10,7 @@ CXX = g++
 
 all: page_sim
 
-page_sim: page_sim.c page_sim.h
+page_sim: page_sim.cpp page_sim.h
 	$(CXX) $< -o $@ 
 
 

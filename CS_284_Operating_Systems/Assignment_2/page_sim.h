@@ -14,6 +14,7 @@
 #include "math.h"
 #include "fstream"
 #include "iostream"
+#include <vector>
 
 #define MEMORY_SIZE 512
 
@@ -49,7 +50,7 @@ FILE *programtrace_fp;
 
 int page_size;
 
-enum page_replacement_algo { lru, fifo, clock}; 
+enum page_replacement_algo { lru, fifo, clk}; 
 
 page_replacement_algo algo;
 
@@ -64,7 +65,7 @@ struct Page
     bool in_memory;
     //time
     //clock
-}
+};
 
 struct Program
 {
@@ -72,11 +73,11 @@ struct Program
     int size;
     int pages;
     vector <struct Page> pagefile;
-}
+};
 
-vector <struct Program> programs;
+vector <Program> programs;
 
-vector <struct Page *> main_memory;
+vector <Page *> main_memory;
 
 
 
