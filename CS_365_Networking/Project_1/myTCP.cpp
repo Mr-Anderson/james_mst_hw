@@ -173,66 +173,37 @@ void * cli_thread(void *arg)
 {
 	while(true) //put some condition here
 	{
-		if(server)
-    		{
-			if(server_state == SRV_CLOSED)
-			{
-	
-			}
-			else if(server_state == SRV_LISTEN)
-			{
-
-			}
-			else if(server_state == SRV_SYN_RCVD)
-			{
-	
-			}
-			else if(server_state == SRV_ESTABLISHED)
-			{
-	
-			}
-			else if(server_state == SRV_CLOSE_WAIT)
-			{
-
-			}
-			else if(server_state == SRV_LAST_ACK)
-			{
-
-			}
-		}
-		else
+    	if(client_state == CLI_CLOSED)
 		{
-			_MYTCP_Header header;
-		
-			if(client_state == CLI_CLOSED)
-			{
-			    //setup header for intial syn
-			    reset_head(&header);
-			    header.tcp_hdr.seq = CLIENT_ISN;
-			    header.tcp_hdr.syn = 1;
-			}
-			else if(client_state == CLI_SYN_SENT)
-			{
-
-			}
-			else if(client_state == CLI_ESTABLISHED)
-			{
-	
-			}
-			else if(client_state == CLI_FIN_WAIT_1)
-			{
-
-			}
-			else if(client_state == CLI_FIN_WAIT_2)
-			{
-
-			}
-			else if(client_state == CLI_TIME_WAIT)
-			{
-
-			}
+		    //setup header for intial syn
+            _MYTCP_Header header;		
+            reset_head(&header);
+		    header.tcp_hdr.seq = CLIENT_ISN;
+		    header.tcp_hdr.syn = 1;
+            net.mysendto(header, sizeof(header), 0, (sockaddr*)&addr, len);
+            client_state = CLI_SYN_SENT;
+	    }
+		else if(client_state == CLI_SYN_SENT)
+		{
+            
 		}
-	}    
+		else if(client_state == CLI_ESTABLISHED)
+		{
+
+		}
+		else if(client_state == CLI_FIN_WAIT_1)
+		{
+
+		}
+		else if(client_state == CLI_FIN_WAIT_2)
+		{
+
+		}
+		else if(client_state == CLI_TIME_WAIT)
+		{
+
+		}
+	}
 }        
 
 // keeps track of the server state and iterates through tcp protocal
@@ -240,64 +211,29 @@ void * srv_thread(void *arg)
 {
 	while(true) //put some condition here
 	{
-		if(server)
-    		{
-			if(server_state == SRV_CLOSED)
-			{
-	
-			}
-			else if(server_state == SRV_LISTEN)
-			{
-
-			}
-			else if(server_state == SRV_SYN_RCVD)
-			{
-	
-			}
-			else if(server_state == SRV_ESTABLISHED)
-			{
-	
-			}
-			else if(server_state == SRV_CLOSE_WAIT)
-			{
-
-			}
-			else if(server_state == SRV_LAST_ACK)
-			{
-
-			}
-		}
-		else
+		if(server_state == SRV_CLOSED)
 		{
-			_MYTCP_Header header;
-		
-			if(client_state == CLI_CLOSED)
-			{
-			    //setup header for intial syn
-			    reset_head(&header);
-			    header.tcp_hdr.seq = CLIENT_ISN;
-			    header.tcp_hdr.syn = 1;
-			}
-			else if(client_state == CLI_SYN_SENT)
-			{
 
-			}
-			else if(client_state == CLI_ESTABLISHED)
-			{
-	
-			}
-			else if(client_state == CLI_FIN_WAIT_1)
-			{
+		}
+		else if(server_state == SRV_LISTEN)
+		{
 
-			}
-			else if(client_state == CLI_FIN_WAIT_2)
-			{
+		}
+		else if(server_state == SRV_SYN_RCVD)
+		{
 
-			}
-			else if(client_state == CLI_TIME_WAIT)
-			{
+		}
+		else if(server_state == SRV_ESTABLISHED)
+		{
 
-			}
+		}
+		else if(server_state == SRV_CLOSE_WAIT)
+		{
+
+		}
+		else if(server_state == SRV_LAST_ACK)
+		{
+
 		}
 	}    
 }  
@@ -317,56 +253,36 @@ void * timeout_thread(void *arg)
 //constantly calls network recive and writes to deque <tcp_buff> rcv_buff
 void * recv_thread(void *arg)
 {
-    //cout << "aaaaaarg recv" << endl;
-    
-    if(server)
+    while(1)
     {
-        while(1)
-        {
-            //recieve
-            //strip header to client header
-            /*if(client_header.tcp_hdr.syn)
-            {
-                server_header = client_header;
-                server_header.tcp_hdr.ack = 1;
-                server_header.tcp_hdr.seq = CLIENT_ISN;
-                server_header.tcp_hdr.ack_seq = server_header.tcp_hdr.seq + 1;
-                
-                //add header to no data
-                //send to client
-                
-                //wait for recept
-                
-                
-                
-            }*/
-        }
+        tcp_buff recv_msg;
+        net.myrecvfrom(recv_msg, sizeof(recv_msg), 0, (sockaddr*)&addr, &len);
+
+        pthread_mutex_lock(recv_lock);
+        recv_buff.push_back(recv_msg);
+        pthread_mutex_unlock(recv_lock);        
     }
-    else
-    {
-    }
-      
 }
 
 void reset_head(struct _MYTCP_Header *header)
 {
-        header->tcp_hdr.source = 0;
-        header->tcp_hdr.dest = 0;
-        header->tcp_hdr.seq = 0;
-        header->tcp_hdr.ack_seq = 0;
-        header->tcp_hdr.res1 = 0;
-        header->tcp_hdr.doff = 0;
-        header->tcp_hdr.fin = 0;
-        header->tcp_hdr.syn = 0;
-        header->tcp_hdr.rst = 0;
-        header->tcp_hdr.psh = 0;
-        header->tcp_hdr.ack = 0;
-        header->tcp_hdr.urg = 0;
-        header->tcp_hdr.res2 = 0;
-        header->tcp_hdr.window = 0;
-        header->tcp_hdr.check = 0;
-        header->tcp_hdr.urg_ptr = 0;
-        header->data_len = 0;
+    header->tcp_hdr.source = 0;
+    header->tcp_hdr.dest = 0;
+    header->tcp_hdr.seq = 0;
+    header->tcp_hdr.ack_seq = 0;
+    header->tcp_hdr.res1 = 0;
+    header->tcp_hdr.doff = 0;
+    header->tcp_hdr.fin = 0;
+    header->tcp_hdr.syn = 0;
+    header->tcp_hdr.rst = 0;
+    header->tcp_hdr.psh = 0;
+    header->tcp_hdr.ack = 0;
+    header->tcp_hdr.urg = 0;
+    header->tcp_hdr.res2 = 0;
+    header->tcp_hdr.window = 0;
+    header->tcp_hdr.check = 0;
+    header->tcp_hdr.urg_ptr = 0;
+    header->data_len = 0;
 }
 
 
