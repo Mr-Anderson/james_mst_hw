@@ -70,10 +70,14 @@ struct Program
 {
     int name;
     int size;
-    vector <struct Page> Pagefile;
+    int pages;
+    vector <struct Page> pagefile;
 }
 
-vector <struct Page *>;
+vector <struct Program> programs;
+
+vector <struct Page *> main_memory;
+
 
 
 #endif

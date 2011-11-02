@@ -16,7 +16,9 @@ int main(int argc, char **argv)
     // check to see if their are the correct number of arguments
     if (argc != 6)
     {
-        fputs(" usage: page_sim <programlist file> <programtrace file> <page size> <page replacement algorithum : lru/fifo/clock > <prepaging/demandpaging : p/d> \r \n", stderr);
+        fputs(" usage: page_sim <programlist file>   \r \n", stderr);
+        fputs("<programtrace file> <page size>  \r \n", stderr);
+        fputs("<page replacement algorithum : lru/fifo/clock >  <prepaging/demandpaging : p/d> \r \n", stderr);
         exit(0);
     }
     
@@ -36,23 +38,60 @@ int main(int argc, char **argv)
     else if(argv[5] == d || argv[5] == D) mode = demandpaging;
     else perror ("Cannot determine paging mode selection");
     
-    if(argv[4] == lru || argv[4] == LRU)
-    {
-        algo == lru;
-        // do lru stuff
-    }
-    else if(argv[4] == fifo || argv[4] == FIFO) 
-    {
-        algo = fifo;
-        // do fifo stuff
-    }
-    else if(argv[4] == clock || argv[4] == CLOCK) 
-    {
-        algo = clock;
-    }
+    //get algorithum
+    if(argv[4] == lru || argv[4] == LRU) algo == lru;
+    else if(argv[4] == fifo || argv[4] == FIFO) algo = fifo;
+    else if(argv[4] == clock || argv[4] == CLOCK) algo = clock;
     else perror ("Cannot determine paging algorithum selection");
     
+    //read in program list
+    unsigned long unq_name = 0;
+    while(!feof(programlist_fp))
+    {
+        int n;
+        int name, size, pages;
+        struct Program program;
+        
+        n = fscanf(programlist_fp, "d", name);
+        n = fscanf(programlist_fp, "d", size);
+        
+        pages = size/page_size;
+        
+        program.name = name;
+        program.size = size;
+        program.pages = pages;
+        
+        //create pages
+        for(int i = 0; i < pages ; i++)
+        {
+            program.pagefile.name = unq_name;
+            program.pagefile.owner = name;
+            program.pagefile.in_memory = false;
+        }
+        
+        programs.push_back(program);
+    }
 
+/*     //read in programtrace and simulate 
+    while(!feof(progratrace_fp))
+    {
+        int n;
+        int name, size, pages;
+        struct Page program;
+        n = fscanf(programtrace_fp, "d", name);
+        n = fscanf(programlist_fp, "d", size);
+        
+        pages = size/page_size;
+        
+        program.name = name;
+        program.size = size;
+        program.pages = pages;
+        
+        programs.push_back(program);
+    } */
+    
+    fclose (programlist_fp);
+    fclose (programtrace_fp);
 
 }
 
