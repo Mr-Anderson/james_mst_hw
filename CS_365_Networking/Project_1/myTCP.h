@@ -46,9 +46,6 @@ void * cli_thread(void *arg);
 //timeout thread
 void * timeout_thread(void *arg);
 
-//sender thread
-void * send_thread(void *arg);
-
 //recever thread
 void * recv_thread(void *arg);
 
