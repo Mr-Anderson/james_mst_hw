@@ -78,7 +78,8 @@ pthread_t client;
 sockaddr_in addr;
 socklen_t len;
 
-
+int cli_seq;
+int srv_seq;
 
 
 void tcp_server_init(int port_number)
@@ -178,14 +179,28 @@ void * cli_thread(void *arg)
 		    //setup header for intial syn
             _MYTCP_Header header;		
             reset_head(&header);
-		    header.tcp_hdr.seq = CLIENT_ISN;
+            cli_seq = CLIENT_ISN;
+		    header.tcp_hdr.seq = cli_seq;
 		    header.tcp_hdr.syn = 1;
             net.mysendto(header, sizeof(header), 0, (sockaddr*)&addr, len);
             client_state = CLI_SYN_SENT;
+            recv_buff.clear();
 	    }
 		else if(client_state == CLI_SYN_SENT)
 		{
-            
+            if(!recv_buff.empty())
+            {
+                tcp_buff recv_msg;
+                pthread_mutex_lock(recv_lock);
+                recv_msg = recv_buff.front();
+                recv_buff.pop_front();
+                pthread_mutex_unlock(recv_lock);
+                if((recv_buff.header.tcp_hdr.syn == 1) && (recv_buff.header.tcp_hdr.ack == 1) && (recv_buff.header.tcp_hdr.ack_seq == (cli_seq + 1)))
+                {
+                    srv_seq = recv_buff.header.tcp_hdr.seq //server sequence number
+                    client_state = CLI_ESTABLISHED;
+                }
+            }
 		}
 		else if(client_state == CLI_ESTABLISHED)
 		{
@@ -217,7 +232,19 @@ void * srv_thread(void *arg)
 		}
 		else if(server_state == SRV_LISTEN)
 		{
-
+            if(!recv_buff.empty())
+            {
+                tcp_buff recv_msg;
+                pthread_mutex_lock(recv_lock);
+                recv_msg = recv_buff.front();
+                recv_buff.pop_front();
+                pthread_mutex_unlock(recv_lock);
+                if((recv_buff.header.tcp_hdr.syn == 1) && (recv_buff.header.tcp_hdr.ack == 0))
+                {
+                    cli_seq = recv_buff.header.tcp_hdr.seq //server sequence number
+                    server_state = SRV_SYN_RCVD;
+                }
+            }
 		}
 		else if(server_state == SRV_SYN_RCVD)
 		{
