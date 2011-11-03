@@ -65,7 +65,7 @@ struct Program
     int name;
     int size;
     int pages;
-    vector <struct Page> pagefile;
+    vector <Page> pagefile;
 };
 
 unsigned long total_pages = 0;

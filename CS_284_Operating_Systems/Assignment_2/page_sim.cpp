@@ -10,11 +10,13 @@
 #include	"page_sim.h"
 
 //removes the specified page from memory and loads another
-void pagefault(Page* remove, Page* load)
+void pagefault(Page *remove, Page *load)
 {
+    main_memory[remove->memory_location] = load;
+
     remove->in_memory = false;
     load->in_memory = true;
-    
+
     load->memory_location = remove->memory_location;
     
     // set clock and other vars for algos
@@ -29,9 +31,10 @@ void pagefault(Page* remove, Page* load)
     }
     else if (algo == fifo)
     {
-        fifo_queue.pop();
-        fifo_queue.push(load);
+        //fifo_queue.pop();
+        //fifo_queue.push(load);
     }
+
 }
 
 int main(int argc, char **argv)
@@ -152,20 +155,14 @@ int main(int argc, char **argv)
     }
     //fill last couple memory locations with null
     //since pagesize is in powers of 2 this should always fill exactly
+    memory_full = true;
     while((main_memory.size() * page_size) < MEMORY_SIZE)
     {
+        memory_full = false;
         Page *page_p = NULL;
         main_memory.push_back(page_p);
     }
     
-    if(main_memory.size() == (MEMORY_SIZE / page_size))
-    {
-        memory_full = true;
-    }
-    else
-    {
-        memory_full == false;
-    }
     
     //initialize page fault counter
     page_faults =0;
@@ -178,9 +175,11 @@ int main(int argc, char **argv)
         Program *program_p;
         Page *page_p;
         
+        //cout<<"running program trace"<< endl;
+        
         //read 
         fscanf(programtrace_fp, "%d", &program);
-        fscanf(programlist_fp, "%d", &location);
+        fscanf(programtrace_fp, "%d", &location);
         
         //calculate page location
         location = location/page_size;
@@ -188,12 +187,14 @@ int main(int argc, char **argv)
         //find program
         program_p = &programs[program];
         
+        //cout<<"seting to program "<<program<< "and page" << location << "/" << program_p->pagefile.size()<< endl;
         //find page
         page_p = &program_p->pagefile[location];
         
         // check to see if page is in memory
         if(page_p->in_memory)
         {
+            //cout<<"in memory"<< endl;
             // set clock and other vars for algos
             if(algo == lru)
             {
@@ -208,6 +209,7 @@ int main(int argc, char **argv)
         }
         else
         {
+            //cout<<"page fault"<< endl;
             //page fault
             page_faults++;
             
@@ -224,19 +226,24 @@ int main(int argc, char **argv)
             
             for(int j = 0; j < load_num; j++)
             {
+                //cout<<"adding page"<< endl;
+                
                  // handel page fault
                 if(memory_full)
                 {
+                    //cout<<"memory full"<< endl;
                     //look for page to replace
                     Page *replace_p = NULL;
                     if(algo == lru)
                     {
+                        //cout<<"running lru"<< endl;
                         // set lowest time to a memory time
                         unsigned long lowest_time = main_memory[0]->access_t;
                         replace_p = main_memory[0];
                         //check all memory for lowest time
                         for(int i = 0; i < main_memory.size(); i++)
                         {
+                            cout<<"main memory"<< i << "/"<< main_memory.size() << endl;
                             if(main_memory[i]->access_t < lowest_time)
                             {
                                 lowest_time = main_memory[i]->access_t;
@@ -246,6 +253,7 @@ int main(int argc, char **argv)
                     }
                     else if (algo == clk)
                     {
+                        //cout<<"running clock"<< endl;
                         while(replace_p == NULL)
                         {
                             //check clock hand
@@ -275,40 +283,58 @@ int main(int argc, char **argv)
                     }
                     else if (algo == fifo)
                     {
-                        
+                        //cout<<"running fifo"<< endl;
                         replace_p = fifo_queue.front();
                     }
                     
+                    //cout<<"replacing page"<< endl;
                     pagefault(replace_p, page_p);
                 }
                 else
                 {
                     //fill up remaining memory
-                    
+                    //cout<<"fill remaining"<< endl;
                     //set tracking bits
                     page_p->in_memory = true;
+                    //cout<<"1"<< endl;
                     page_p->memory_location = main_memory.size();
                     
                     if(algo == lru)
                     {
+                        //cout<<"lru"<< endl;
                         page_p->access_t = program_clock;
                         program_clock++;
                     }
                     else if (algo == clk)
                     {
+                        //cout<<"clk"<< endl;
                         page_p->used = true;
                     }
                     else if (algo == fifo)
                     {
+                        //cout<<"fifo"<< endl;
                         fifo_queue.push(page_p);
                     }
                     
+                    //cout<<"push onto memeory"<< endl;
                     //push into main memory
-                    main_memory.push_back(page_p);
-                    
-                    if(main_memory.size() == (MEMORY_SIZE / page_size))
+                    for(int k = 0; k < main_memory.size(); k++)
                     {
-                         memory_full = true;
+                        if(main_memory[k] == NULL )
+                        {
+                            main_memory[k] = page_p;
+                        }
+                    }
+                    
+                    
+                    //check to see if memory is full
+                    memory_full = true;
+                    for(int k = 0; k < main_memory.size(); k++)
+                    {
+                        if(main_memory[k] == NULL )
+                        {
+                             memory_full = false;
+                        }
                     }
                 }
                 //increment page for prepaging
