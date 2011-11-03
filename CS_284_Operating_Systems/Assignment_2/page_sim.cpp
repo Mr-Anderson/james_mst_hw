@@ -14,10 +14,8 @@ void pagefault(Page *remove, Page *load)
 {
     main_memory[remove->memory_location] = load;
 
-    pages_in_mem++;
     remove->in_memory = false;
     load->in_memory = true;
-    pages_in_mem--;
 
     load->memory_location = remove->memory_location;
     
@@ -92,12 +90,8 @@ int main(int argc, char **argv)
         
         //cout<< "adding program "<< name << endl;
         
-        pages = size/page_size;
+        pages = ceil(size/page_size);
         
-        if (size%page_size != 0)
-        {
-            pages++;
-        }
         
         program.name = name;
         program.size = size;
@@ -139,7 +133,6 @@ int main(int argc, char **argv)
         {
             Page *page_p = &programs[i].pagefile[j];
             
-            pages_in_mem++;
             
             //set tracking bits
             page_p->in_memory = true;
@@ -207,12 +200,19 @@ int main(int argc, char **argv)
         
         //cout<<"seting to program "<<program<< "and page" << location << "/" << program_p->pagefile.size()<< endl;
         //find page
-        page_p = &program_p->pagefile[location];
+        page_p = &programs[program].pagefile[location];
         
         // check to see if page is in memory
-        if(page_p->in_memory )
+        if(page_p->in_memory)
         {
             //cout<<"in memory"<< endl;
+            
+            if(main_memory[ page_p->memory_location] != page_p)
+            {
+                cout<<"not really in memory"<<endl;
+                //page_faults++;
+            }
+            
             // set clock and other vars for algos
             if(algo == lru)
             {
@@ -227,7 +227,7 @@ int main(int argc, char **argv)
         }
         else
         {
-            //cout<<"page fault"<< endl;
+            cout<<"page fault"<< endl;
             //page fault
             page_faults++;
             
@@ -306,7 +306,10 @@ int main(int argc, char **argv)
                     }
                     
                     //cout<<"replacing page"<< endl;
+                    printf("replace in memory: %d , page in memory: %d \n" ,replace_p->in_memory,page_p->in_memory);
                     pagefault(replace_p, page_p);
+                    printf("replace in memory: %d , page in memory: %d \n" ,replace_p->in_memory,page_p->in_memory);
+                    
                 }
                 else
                 {
@@ -362,8 +365,7 @@ int main(int argc, char **argv)
             }
         }
     } 
-    
-    cout<< "pages in mem:" <<pages_in_mem<<endl; 
+     
     cout<< "memory size:" << main_memory.size()<<endl;
     cout<< "page faults:" <<page_faults<<endl; 
     
