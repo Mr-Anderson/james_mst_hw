@@ -14,33 +14,13 @@
 #include "math.h"
 #include "fstream"
 #include "iostream"
+#include "time.h"
 #include <vector>
+#include <queue>
 
 #define MEMORY_SIZE 512
 
 using namespace std;
-
-
-//client
-void tcp_server_init(int port_number);
-
-//server
-void tcp_client_init(char * ip_address, int port_number);
-
-//function to send data
-void tcp_send(const void *msg, size_t len);
-
-//function to recieve data
-int tcp_recv(void *buf, size_t len);
-
-//sender thread
-void * send_thread(void *arg);
-
-//recever thread
-void * recv_thread(void *arg);
-
-//initalizes a header
-void reset_head(struct _MYTCP_Header *header);
 
 
 //global variables for storing args
@@ -58,13 +38,26 @@ enum paging_mode { prepaging, demandpaging};
 
 paging_mode mode;
 
+unsigned long  program_clock;
+
+int page_faults;
+
+bool memory_full;
+
+int clock_hand;
+
 struct Page
 {
-    unsigned long name;
+    int name;
     int owner;
     bool in_memory;
-    //time
-    //clock
+    int memory_location;
+    
+    // for lru and clock
+    unsigned long access_t ;
+    
+    //for clock
+    bool used ;
 };
 
 struct Program
@@ -75,10 +68,14 @@ struct Program
     vector <struct Page> pagefile;
 };
 
+unsigned long total_pages = 0;
+
+
 vector <Program> programs;
 
 vector <Page *> main_memory;
 
+queue <Page *> fifo_queue;
 
 
 #endif
