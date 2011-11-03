@@ -77,5 +77,6 @@ vector <Page *> main_memory;
 
 queue <Page *> fifo_queue;
 
+int pages_in_mem;
 
 #endif
