@@ -79,4 +79,6 @@ queue <Page *> fifo_queue;
 
 int pages_in_mem;
 
+char mode_out[8] , algo_out[13];
+
 #endif

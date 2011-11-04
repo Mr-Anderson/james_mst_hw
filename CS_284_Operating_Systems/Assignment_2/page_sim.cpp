@@ -50,33 +50,50 @@ int main(int argc, char **argv)
     }
     
     //open program list file
-
     programlist_fp = fopen (argv[1] , "r");
     if (programlist_fp == NULL) perror ("Error opening program list file");
     
     programtrace_fp = fopen (argv[2] , "r");
     if (programtrace_fp == NULL) perror ("Error opening program trace file");
     
-    page_size =  atoi(argv[3]);
-    //do page cration stuff
-    
-    //cout<< "argv[6]:" << argv[4] << endl;
+    //get page size
+    if (page_size%2 == 0)
+    {
+        page_size =  atoi(argv[3]);
+    }
+    else perror ("Error page size is not a multiple of 2");
     
     //get mode
-    if(string(argv[5]) == "p" || string(argv[5]) == "P") mode = prepaging;
-    else if(string(argv[5]) == "d" || string(argv[5]) == "D") mode = demandpaging;
+    if(string(argv[5]) == "p" || string(argv[5]) == "P") 
+    {
+        mode = prepaging;
+        strncpy(mode_out, "Pre",3);
+    }
+    else if(string(argv[5]) == "d" || string(argv[5]) == "D")
+    { 
+        mode = demandpaging;
+        strncpy(mode_out , "Demand",6);
+    }
     else perror ("Cannot determine paging mode selection");
-    
-    cout<<"mode:"<<mode<<endl;
     
     
     //get algorithum
-    if(string(argv[4]) == "lru" || string(argv[4]) == "LRU") algo = lru;
-    else if(string(argv[4]) == "fifo" || string(argv[4]) == "FIFO") algo = fifo;
-    else if(string(argv[4]) == "clock" || string(argv[4]) == "CLOCK") algo = clk;
+    if(string(argv[4]) == "lru" || string(argv[4]) == "LRU")
+    {
+        algo = lru;
+        strncpy(algo_out , "LRU",3);
+    }
+    else if(string(argv[4]) == "fifo" || string(argv[4]) == "FIFO")
+    { 
+        algo = fifo;
+        strncpy(algo_out , "FIFO",4);
+    }
+    else if(string(argv[4]) == "clock" || string(argv[4]) == "CLOCK")
+    { 
+        algo = clk;
+        strncpy(algo_out , "Clock",5);
+    }
     else perror ("Cannot determine paging algorithum selection");
-    
-    cout<< "algo:" << algo <<endl;
     
     //read in program list
     unsigned long unq_name = 0;
@@ -88,9 +105,8 @@ int main(int argc, char **argv)
         fscanf(programlist_fp, "%d %d", &name, &size);
         if(feof(programlist_fp)) break;
         
-        //cout<< "adding program "<< name << endl;
         
-        pages = ceil(size/page_size);
+        pages = size/page_size+1;
         
         
         program.name = name;
@@ -98,11 +114,12 @@ int main(int argc, char **argv)
         program.pages = pages;
         
         //create pages
-        for(int i = 0; i < pages ; i++)
+        for(int i = 0; i <= pages ; i++)
         {
             //create page
             Page page;
             page.name = unq_name;
+            unq_name++;
             page.owner = name;
             page.in_memory = false;
             
@@ -116,23 +133,18 @@ int main(int argc, char **argv)
         programs.push_back(program);
     }
     
-    //empty main memory
     
-    //set program clock to empty
+    //clear program clock
     program_clock =0;
-    
-    pages_in_mem = 0;
-    
     //alocate default memory load
     int default_load = MEMORY_SIZE/(page_size * programs.size());
-    //cout<<"default load:" << default_load<<endl;
-    //cout<< "programs:" <<programs.size()<<endl; 
+    
+    //add defalt memory load to memory 
     for(int i=0; i < programs.size(); i++)
     {
         for(int j=0; j < default_load; j++)
         {
             Page *page_p = &programs[i].pagefile[j];
-            
             
             //set tracking bits
             page_p->in_memory = true;
@@ -180,7 +192,6 @@ int main(int argc, char **argv)
         Program *program_p;
         Page *page_p;
         
-        //cout<<"running program trace"<< endl;
         
         //read 
         fscanf(programtrace_fp, "%d %d", &program, &location);
@@ -193,25 +204,16 @@ int main(int argc, char **argv)
         //find program
         program_p = &programs[program];
         
-        if (location == program_p->pagefile.size())
-        {
-            cout<<"aaarg trying to acces wrong page"<<endl;
-        }
         
         //cout<<"seting to program "<<program<< "and page" << location << "/" << program_p->pagefile.size()<< endl;
         //find page
-        page_p = &programs[program].pagefile[location];
+        page_p = &program_p->pagefile[location];
         
         // check to see if page is in memory
         if(page_p->in_memory)
         {
             //cout<<"in memory"<< endl;
             
-            if(main_memory[ page_p->memory_location] != page_p)
-            {
-                cout<<"not really in memory"<<endl;
-                //page_faults++;
-            }
             
             // set clock and other vars for algos
             if(algo == lru)
@@ -227,7 +229,7 @@ int main(int argc, char **argv)
         }
         else
         {
-            cout<<"page fault"<< endl;
+            //cout<<"page fault"<< endl;
             //page fault
             page_faults++;
             
@@ -252,6 +254,7 @@ int main(int argc, char **argv)
                     //cout<<"memory full"<< endl;
                     //look for page to replace
                     Page *replace_p = NULL;
+                    
                     if(algo == lru)
                     {
                         //cout<<"running lru"<< endl;
@@ -305,10 +308,8 @@ int main(int argc, char **argv)
                         replace_p = fifo_queue.front();
                     }
                     
-                    //cout<<"replacing page"<< endl;
-                    printf("replace in memory: %d , page in memory: %d \n" ,replace_p->in_memory,page_p->in_memory);
+                    //replace 
                     pagefault(replace_p, page_p);
-                    printf("replace in memory: %d , page in memory: %d \n" ,replace_p->in_memory,page_p->in_memory);
                     
                 }
                 else
@@ -320,7 +321,7 @@ int main(int argc, char **argv)
                     
                     //set tracking bits
                     page_p->in_memory = true;
-                    page_p->memory_location = main_memory.size();
+                    
                     
                     if(algo == lru)
                     {
@@ -345,10 +346,13 @@ int main(int argc, char **argv)
                     {
                         if(main_memory[k] == NULL )
                         {
+                            
+                            page_p->memory_location = k;
                             main_memory[k] = page_p;
                             break;
                         }
                     }
+                    
                     
                     //check to see if memory is full
                     memory_full = true;
@@ -360,14 +364,32 @@ int main(int argc, char **argv)
                         }
                     }
                 }
+                
+
                 //increment page for prepaging
-                page_p = &program_p->pagefile[location + 1];
+                if (location == program_p->pagefile.size() -1)
+                {
+
+                    page_p = &program_p->pagefile[0];
+                }
+                else
+                {
+
+                    page_p = &program_p->pagefile[location + 1];
+                }
+
             }
+            
+            
         }
     } 
      
-    cout<< "memory size:" << main_memory.size()<<endl;
-    cout<< "page faults:" <<page_faults<<endl; 
+     //generate output
+     //produces warning but still looks good sorry
+    printf("|   Page   | Replacement | Paging | Total Page |\n");
+    printf("|   Size   |  Algorithm  | Policy |   Faults   |\n");
+    printf("|----------|-------------|--------|------------|\n");
+    printf("|%10d|%13s|%8s|%12d|\n",page_size,&algo_out,&mode_out,page_faults);
     
     fclose (programlist_fp);
     fclose (programtrace_fp);

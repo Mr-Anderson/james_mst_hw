@@ -1,0 +1,51 @@
+James Anderson
+CS284
+Assignment_2 Submission
+
+
+To Compile: type make in comand prompt
+
+To Run: Program can be run with    
+
+usage: page_sim <programlist file> <programtrace file> <page size> <page replacement algorithum : lru/fifo/clock >  <prepaging /demandpaging : p/d>  
+
+or
+
+run_page_sim.sh  - will iterate through all possabilitys 
+
+Sample Output:
+
+|   Page   | Replacement | Paging | Total Page |
+|   Size   |  Algorithm  | Policy |   Faults   |
+|----------|-------------|--------|------------|
+|         1|          LRU|  Demand|      116886|
+|         1|          LRU|     Pre|      116886|
+|         1|         FIFO|  Demand|      117879|
+|         1|         FIFO|     Pre|      117879|
+|         1|        Clock|  Demand|      117009|
+|         1|        Clock|     Pre|      117009|
+|         2|          LRU|  Demand|       87572|
+|         2|          LRU|     Pre|       87572|
+|         2|         FIFO|  Demand|       92894|
+|         2|         FIFO|     Pre|       92894|
+|         2|        Clock|  Demand|       87440|
+|         2|        Clock|     Pre|       87440|
+|         4|          LRU|  Demand|       72551|
+|         4|          LRU|     Pre|       72551|
+|         4|         FIFO|  Demand|       80154|
+|         4|         FIFO|     Pre|       80154|
+|         4|        Clock|  Demand|       72540|
+|         4|        Clock|     Pre|       72540|
+|         8|          LRU|  Demand|       65273|
+|         8|          LRU|     Pre|       65273|
+|         8|         FIFO|  Demand|       77382|
+|         8|         FIFO|     Pre|       77382|
+|         8|        Clock|  Demand|       65259|
+|         8|        Clock|     Pre|       65259|
+|        16|          LRU|  Demand|       61705|
+|        16|          LRU|     Pre|       61705|
+|        16|         FIFO|  Demand|       84232|
+|        16|         FIFO|     Pre|       84232|
+|        16|        Clock|  Demand|       61756|
+|        16|        Clock|     Pre|       61756|
+
