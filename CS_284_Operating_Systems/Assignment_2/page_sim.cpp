@@ -235,7 +235,7 @@ int main(int argc, char **argv)
             
             int load_num;
             //check demand or prepaging
-            if (mode = demandpaging)
+            if (mode == demandpaging)
             {
                 load_num = 1;
             }
@@ -246,7 +246,7 @@ int main(int argc, char **argv)
             
             for(int j = 0; j < load_num; j++)
             {
-                //cout<<"adding page"<< endl;
+                //cout<<"adding page"<<j<< endl;
                 
                  // handel page fault
                 if(memory_full)

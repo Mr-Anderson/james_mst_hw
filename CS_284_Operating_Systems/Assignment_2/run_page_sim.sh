@@ -6,7 +6,7 @@
 
 echo 'running page_sim'
 
-./page_sim programlist.txt programtrace.txt 1 lru clock p| awk 'NR < 4'
+./page_sim programlist.txt programtrace.txt 1 lru  p | awk 'NR < 4'
 
 for page_size in 1 2 4 8 16
 do

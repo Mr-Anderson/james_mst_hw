@@ -4,6 +4,10 @@ Assignment_2 Submission
 
 
 To Compile: type make in comand prompt
+Note: compiling the program gives two warnings on the printf command 
+I could not find a good way to remove them but decided to keep the prety output
+as oposed to using a simpler cout command. They have no bearing on the exicution or operation 
+of the code. 
 
 To Run: Program can be run with    
 
@@ -13,39 +17,69 @@ or
 
 run_page_sim.sh  - will iterate through all possabilitys 
 
+
+
 Sample Output:
 
 |   Page   | Replacement | Paging | Total Page |
 |   Size   |  Algorithm  | Policy |   Faults   |
 |----------|-------------|--------|------------|
 |         1|          LRU|  Demand|      116886|
-|         1|          LRU|     Pre|      116886|
+|         1|          LRU|     Pre|        2824|
 |         1|         FIFO|  Demand|      117879|
-|         1|         FIFO|     Pre|      117879|
+|         1|         FIFO|     Pre|       63864|
 |         1|        Clock|  Demand|      117009|
-|         1|        Clock|     Pre|      117009|
+|         1|        Clock|     Pre|        2730|
 |         2|          LRU|  Demand|       87572|
-|         2|          LRU|     Pre|       87572|
+|         2|          LRU|     Pre|        1494|
 |         2|         FIFO|  Demand|       92894|
-|         2|         FIFO|     Pre|       92894|
+|         2|         FIFO|     Pre|       62996|
 |         2|        Clock|  Demand|       87440|
-|         2|        Clock|     Pre|       87440|
+|         2|        Clock|     Pre|        1418|
 |         4|          LRU|  Demand|       72551|
-|         4|          LRU|     Pre|       72551|
+|         4|          LRU|     Pre|         882|
 |         4|         FIFO|  Demand|       80154|
-|         4|         FIFO|     Pre|       80154|
+|         4|         FIFO|     Pre|       68245|
 |         4|        Clock|  Demand|       72540|
-|         4|        Clock|     Pre|       72540|
+|         4|        Clock|     Pre|         793|
 |         8|          LRU|  Demand|       65273|
-|         8|          LRU|     Pre|       65273|
+|         8|          LRU|     Pre|         526|
 |         8|         FIFO|  Demand|       77382|
-|         8|         FIFO|     Pre|       77382|
+|         8|         FIFO|     Pre|       82066|
 |         8|        Clock|  Demand|       65259|
-|         8|        Clock|     Pre|       65259|
+|         8|        Clock|     Pre|         404|
 |        16|          LRU|  Demand|       61705|
-|        16|          LRU|     Pre|       61705|
+|        16|          LRU|     Pre|         253|
 |        16|         FIFO|  Demand|       84232|
-|        16|         FIFO|     Pre|       84232|
+|        16|         FIFO|     Pre|      120426|
 |        16|        Clock|  Demand|       61756|
-|        16|        Clock|     Pre|       61756|
+|        16|        Clock|     Pre|         217|
 
+
+Egg: Sorry I did not have time to implement an easter egg this time. It was going
+to be called by adding a -egg argument to the code and bring up the followig message 
+    	echo "            Can I Get Some              "
+    	echo "            Eggstra Credit :D
+		echo "                  .....                 "
+		echo "              .-/oossso+:.              "
+		echo "            .:/+osssssooo+/-            "
+		echo "           -//++++ooo++++++/:           "
+		echo "          .-:://++++++++++///:.         "
+		echo "         .----::///////////::/:         "
+		echo "         -----::///////////////:        "
+		echo "        -:::::///+++oo+++++//+++.       "
+		echo "        -:::-:/++oooooooooo+++++-       "
+		echo "        -:::../++oosssssoooo++oo:       "
+		echo "        ---:..:/+ooossssoooooooo.       "
+		echo "         -:::--/++oosssssssssso/        "
+		echo "         .://///+ossyyyyyyssso/         "
+		echo "          .://--/ossyyyyyssso/          "
+		echo "            .:::/+oosssssso/.           "
+		echo "               -:/++oooo+:.             "
+		echo "                ..-::::-.               "
+		echo "             ''....-------.'            "
+		echo "           '''''....------...'          "
+		echo "          '''''''.............'         "
+		echo "         '''''''''''''''''''''''        "
+		echo "                ''''''''''''''''        "
+ oh well mabey next time. Stupid segfaults!
