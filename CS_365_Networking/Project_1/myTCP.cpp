@@ -69,11 +69,11 @@ pthread_mutex_t recv_lock;
 pthread_mutex_t timeout_lock;
 
 
-pthread_t sender;
-pthread_t receiver;
-pthread_t timeout;
-pthread_t server;
-pthread_t client;
+pthread_t sender_pthread;
+pthread_t receiver_pthread;
+pthread_t timeout_pthread;
+pthread_t server_pthread;
+pthread_t client_pthread;
 
 sockaddr_in addr;
 socklen_t len;
@@ -90,17 +90,22 @@ void tcp_server_init(int port_number)
     net.init(port_number);
 	
     //Start threads
-	if(pthread_create(&sender, NULL, send_thread, NULL))
+	if(pthread_create(&server_pthread, NULL, srv_thread, NULL))
 	{
 		cout << "ERROR" << endl;
 	}
-	if(pthread_create(&receiver, NULL, recv_thread, NULL))
+    if(pthread_create(&timeout_pthread, NULL, timeout_thread, NULL))
+    {
+        cout << "ERROR" << endl;
+    }
+	if(pthread_create(&receiver_pthread, NULL, recv_thread, NULL))
 	{
 		cout << "ERROR" << endl;
 	}
     
-    pthread_join(sender,NULL);
-    pthread_join(receiver,NULL);
+    pthread_join(server_pthread, NULL);
+    pthread_join(timeout_pthread, NULL);    
+    pthread_join(receiver_pthread, NULL);
     
     
 }
@@ -115,25 +120,22 @@ void tcp_client_init(char * ip_address, int port_number)
     
     
     //Start threads
-    if(pthread_create(&server, NULL, srv_thread, NULL))
+    if(pthread_create(&client_pthread, NULL, cli_thread, NULL))
 	{
 		cout << "ERROR" << endl;
 	}
-    if(pthread_create(&timeout, NULL, timeout_thread, NULL))
+    if(pthread_create(&timeout_pthread, NULL, timeout_thread, NULL))
 	{
 		cout << "ERROR" << endl;
 	}
-	if(pthread_create(&sender, NULL, send_thread, NULL))
-	{
-		cout << "ERROR" << endl;
-	}
-	if(pthread_create(&receiver, NULL, recv_thread, NULL))
+	if(pthread_create(&receiver_pthread, NULL, recv_thread, NULL))
 	{
 		cout << "ERROR" << endl;
 	}
     
-    pthread_join(sender,NULL);
-    pthread_join(receiver,NULL);
+    pthread_join(client_pthread, NULL);
+    pthread_join(timeout_pthread, NULL);
+    pthread_join(receiver_pthread, NULL);
       
 }
 
@@ -182,7 +184,7 @@ void * cli_thread(void *arg)
             cli_seq = CLIENT_ISN;
 		    header.tcp_hdr.seq = cli_seq;
 		    header.tcp_hdr.syn = 1;
-            net.mysendto(header, sizeof(header), 0, (sockaddr*)&addr, len);
+            net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, len);
             client_state = CLI_SYN_SENT;
             recv_buff.clear();
 	    }
@@ -191,13 +193,13 @@ void * cli_thread(void *arg)
             if(!recv_buff.empty())
             {
                 tcp_buff recv_msg;
-                pthread_mutex_lock(recv_lock);
+                pthread_mutex_lock(&recv_lock);
                 recv_msg = recv_buff.front();
                 recv_buff.pop_front();
-                pthread_mutex_unlock(recv_lock);
-                if((recv_buff.header.tcp_hdr.syn == 1) && (recv_buff.header.tcp_hdr.ack == 1) && (recv_buff.header.tcp_hdr.ack_seq == (cli_seq + 1)))
+                pthread_mutex_unlock(&recv_lock);
+                if((recv_msg.header.tcp_hdr.syn == 1) && (recv_msg.header.tcp_hdr.ack == 1) && (recv_msg.header.tcp_hdr.ack_seq == (cli_seq + 1)))
                 {
-                    srv_seq = recv_buff.header.tcp_hdr.seq //server sequence number
+                    srv_seq = recv_msg.header.tcp_hdr.seq; //server sequence number
                     client_state = CLI_ESTABLISHED;
                 }
             }
@@ -235,13 +237,13 @@ void * srv_thread(void *arg)
             if(!recv_buff.empty())
             {
                 tcp_buff recv_msg;
-                pthread_mutex_lock(recv_lock);
+                pthread_mutex_lock(&recv_lock);
                 recv_msg = recv_buff.front();
                 recv_buff.pop_front();
-                pthread_mutex_unlock(recv_lock);
-                if((recv_buff.header.tcp_hdr.syn == 1) && (recv_buff.header.tcp_hdr.ack == 0))
+                pthread_mutex_unlock(&recv_lock);
+                if((recv_msg.header.tcp_hdr.syn == 1) && (recv_msg.header.tcp_hdr.ack == 0))
                 {
-                    cli_seq = recv_buff.header.tcp_hdr.seq //server sequence number
+                    cli_seq = recv_msg.header.tcp_hdr.seq; //server sequence number
                     server_state = SRV_SYN_RCVD;
                 }
             }
@@ -283,11 +285,11 @@ void * recv_thread(void *arg)
     while(1)
     {
         tcp_buff recv_msg;
-        net.myrecvfrom(recv_msg, sizeof(recv_msg), 0, (sockaddr*)&addr, &len);
+        net.myrecvfrom(&recv_msg, sizeof(recv_msg), 0, (sockaddr*)&addr, &len);
 
-        pthread_mutex_lock(recv_lock);
+        pthread_mutex_lock(&recv_lock);
         recv_buff.push_back(recv_msg);
-        pthread_mutex_unlock(recv_lock);        
+        pthread_mutex_unlock(&recv_lock);        
     }
 }
 
