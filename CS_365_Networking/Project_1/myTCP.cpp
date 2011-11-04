@@ -15,8 +15,8 @@ myNetwork net;
 int server_port_number;
 int client_port_number;
 
-char server_ip_address[4];
-char client_ip_address[4];
+unsigned long server_ip_address;
+unsigned long client_ip_address;
 
 bool server;
 
@@ -62,10 +62,12 @@ server_state_t server_state;
 
 deque <tcp_buff> send_buff;
 deque <tcp_buff> recv_buff;
+deque <tcp_buff> data_buff;
 deque <timeout> timeout_buff;
 
 pthread_mutex_t send_lock;
 pthread_mutex_t recv_lock;
+pthread_mutex_t data_lock;
 pthread_mutex_t timeout_lock;
 
 
@@ -79,7 +81,12 @@ sockaddr_in addr;
 socklen_t len;
 
 int cli_seq;
+int next_cli_seq;
 int srv_seq;
+int next_srv_seq;
+
+int msgs_out;
+
 
 
 void tcp_server_init(int port_number)
@@ -88,6 +95,7 @@ void tcp_server_init(int port_number)
     server = true;
     server_state = SRV_CLOSED;
     net.init(port_number);
+    msgs_out = 0;
 	
     //Start threads
 	if(pthread_create(&server_pthread, NULL, srv_thread, NULL))
@@ -117,6 +125,7 @@ void tcp_client_init(char * ip_address, int port_number)
     client_state = CLI_CLOSED;
     memcpy(server_ip_address, ip_address, 4);
     net.init(port_number, server_ip_address);
+    msgs_out = 0;
     
     
     //Start threads
@@ -142,12 +151,16 @@ void tcp_client_init(char * ip_address, int port_number)
 void tcp_send(const void *buffer, size_t bufferLength)
 {
     tcp_buff send_msg;
-    
+      
+    //copys application data into temp buffer
     memcpy(send_msg.data, buffer, bufferLength); 
     
-    send_buff.push_back(send_msg);
+    //setup header with data size
+    reset_head(send_msg.header);
+    send_msg.header.data_len = bufferLength;
     
-    //net.mysendto(sendline, buff_len, 0, (sockaddr*)&addr, len);
+    //push temp buffer onto send buffer
+    send_buff.push_back(send_msg);
     
 }
 
@@ -155,19 +168,24 @@ int tcp_recv(void *buffer , size_t bufferLength)
 {
     tcp_buff recv_msg;
     
-    while(recv_buff.empty())
+    //wait for data
+    while(data_buff.empty())
     {
         continue;
     }
     
-    recv_msg = recv_buff.front();
+    //pull in data
+    pthread_mutex_lock(&data_lock);
+    recv_msg = data_buff.front();
+    pthread_mutex_unlock(&data_lock);
     
-    recv_buff.pop_front();
+    //remove from queue
+    data_buff.pop_front();
     
+    //copy data into buffer
     memcpy(buffer , recv_msg.data , bufferLength);
     
-    //net.myrecvfrom(recvline, buff_len, 0, (sockaddr*)&addr, &len);
-    
+    //return data size
     return recv_msg.header.data_len;
 }
 
@@ -182,30 +200,140 @@ void * cli_thread(void *arg)
             _MYTCP_Header header;		
             reset_head(&header);
             cli_seq = CLIENT_ISN;
+            next_cli_seq = CLIENT_ISN +1;
+            
+            //setup header
 		    header.tcp_hdr.seq = cli_seq;
 		    header.tcp_hdr.syn = 1;
+		    
+		    //send msg
             net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, len);
+            
+            //increment state
             client_state = CLI_SYN_SENT;
+            
+            //make sure receive buffer is clear
             recv_buff.clear();
 	    }
 		else if(client_state == CLI_SYN_SENT)
 		{
+		    //see if their is a new message
             if(!recv_buff.empty())
             {
+                //get message
                 tcp_buff recv_msg;
                 pthread_mutex_lock(&recv_lock);
                 recv_msg = recv_buff.front();
                 recv_buff.pop_front();
                 pthread_mutex_unlock(&recv_lock);
-                if((recv_msg.header.tcp_hdr.syn == 1) && (recv_msg.header.tcp_hdr.ack == 1) && (recv_msg.header.tcp_hdr.ack_seq == (cli_seq + 1)))
+                
+                //see if contains our ack
+                if((recv_msg.header.tcp_hdr.syn == 1) 
+                    && (recv_msg.header.tcp_hdr.ack == 1) 
+                    && (recv_msg.header.tcp_hdr.ack_seq == (next_cli_seq)))
                 {
-                    srv_seq = recv_msg.header.tcp_hdr.seq; //server sequence number
+                    //make header
+                    _MYTCP_Header header;		
+                    reset_head(&header);
+                
+                    //set server sequence
+                    srv_seq = recv_msg.header.tcp_hdr.seq; 
+                    
+                    //increment sequnece numbers
+                    cli_seq = next_cli_seq;
+                    next_cli_seq += 1;
+                    
+                    //setup header
+                    header.tcp_hdr.ack = 1;
+                    header.tcp_hdr.ack_seq = srv_seq + 1;
+                    header.tcp_hdr.seq = cli_seq;
+                    
+                    //send msg
+                    net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, len);
+                    
+                    //icrement state
                     client_state = CLI_ESTABLISHED;
                 }
             }
 		}
 		else if(client_state == CLI_ESTABLISHED)
 		{
+		    //make our message
+		    tcp_buff send_msg;
+		    reset_head(&send_msg.header);
+		   
+		    //setup acks 
+		    if(!recv_buff.empty())
+		    {
+		        //get message
+                tcp_buff recv_msg;
+                pthread_mutex_lock(&recv_lock);
+                recv_msg = recv_buff.front();
+                recv_buff.pop_front();
+                pthread_mutex_unlock(&recv_lock);
+                
+                //see if contains is a message
+                if(recv_msg.header.tcp_hdr.syn == 0)
+                {
+                    //see if its our ack 
+                    //@TODO if we want to implement var window need to check more acks
+                    if(recv_msg.header.tcp_hdr.ack_seq == (next_cli_seq))
+                    {
+                        
+                        //set server sequence
+                        srv_seq = recv_msg.header.tcp_hdr.seq;
+                        
+                        //setup header 
+                        send_msg.header.tcp_hdr.ack = 1
+                        
+                        //get data
+                        if(recv_msg.header.data_len > 0)
+                        {
+                            //push message onto data queue
+                            pthread_mutex_lock(&data_lock);
+                            data_buff.push_back(recv_msg);
+                            pthread_mutex_unlock(&data_lock); 
+                            
+                            //set sequence number
+                            send_msg.header.tcp_hdr.ack_seq = 
+                                srv_seq + recv_msg.header.data_len;   
+                            
+                                
+                        }
+                        else
+                        {
+                            //set sequence number fo no data
+                            send_msg.header.tcp_hdr.ack_seq = srv_seq +1;
+                        }
+                         //@TODO this is where we are at
+                        //caluclate next exspected sequence number
+                        next_srv_seq = send_msg.header.tcp_hdr.ack_seq +1
+                        
+                               
+                    }
+                    else
+                    
+ 
+                    
+                }
+
+		        
+		    }
+		    
+		    //setup send data
+		    if(!send_buff.empty() && (msgs_out < W))
+		    {
+		        //get data to send
+		        tcp_buff send_msg;
+                pthread_mutex_lock(&send_lock);
+                send_msg = send_buff.front();
+                send_buff.pop_front();
+                pthread_mutex_unlock(&send_lock);
+		    
+		        //setup header 
+		        send_msg.header.tcp_hdr.seq 
+		    }
+
 
 		}
 		else if(client_state == CLI_FIN_WAIT_1)
@@ -236,6 +364,7 @@ void * srv_thread(void *arg)
 		{
             if(!recv_buff.empty())
             {
+               
                 tcp_buff recv_msg;
                 pthread_mutex_lock(&recv_lock);
                 recv_msg = recv_buff.front();
@@ -243,7 +372,21 @@ void * srv_thread(void *arg)
                 pthread_mutex_unlock(&recv_lock);
                 if((recv_msg.header.tcp_hdr.syn == 1) && (recv_msg.header.tcp_hdr.ack == 0))
                 {
-                    cli_seq = recv_msg.header.tcp_hdr.seq; //server sequence number
+                     _MYTCP_Header header;
+                     
+                    //clients sequence number 
+                    cli_seq = recv_msg.header.tcp_hdr.seq; 
+                    
+                    //setup ack message header
+                    header = recv_mst.header;
+                    header.tcp_hdr.ack = 1;
+                    header.tcp_hdr.seq = SERVER_ISN;
+                    header.tcp_hdr.ack_seq = cli_seq + 1;
+                    
+                    //send ack message
+                    net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, len);
+                    
+                    //increment stat
                     server_state = SRV_SYN_RCVD;
                 }
             }
@@ -282,14 +425,35 @@ void * timeout_thread(void *arg)
 //constantly calls network recive and writes to deque <tcp_buff> rcv_buff
 void * recv_thread(void *arg)
 {
+    bool initial_conect = true;
     while(1)
     {
         tcp_buff recv_msg;
+        
         net.myrecvfrom(&recv_msg, sizeof(recv_msg), 0, (sockaddr*)&addr, &len);
-
-        pthread_mutex_lock(&recv_lock);
-        recv_buff.push_back(recv_msg);
-        pthread_mutex_unlock(&recv_lock);        
+        
+        
+        if(server && server_state == SRV_LISTEN)
+        {
+            //first message
+            client_ip_address = addr.sin_addr;
+               
+            pthread_mutex_lock(&recv_lock);
+            recv_buff.push_back(recv_msg);
+            pthread_mutex_unlock(&recv_lock);  
+        }
+        else
+        {
+            //check if from correct sender 
+            if((server && client_ip_address == addr.sin_addr) 
+                || (!server && server_ip_address == addr.sin_addr))
+            {
+                //store message
+                pthread_mutex_lock(&recv_lock);
+                recv_buff.push_back(recv_msg);
+                pthread_mutex_unlock(&recv_lock);
+            }
+        }
     }
 }
 

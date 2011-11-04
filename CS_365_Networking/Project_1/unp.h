@@ -30,7 +30,7 @@
 //tcp parameter defines
 #define WINDOW_SIZE         1024 //sender receiver buffer sizeof
 #define MSS             256  //the maximum number of bytes in the data field of a TCP segment
-#define W               4    // max windows
+#define W               1    // max windows
 
 #define CLIENT_ISN      0     //client inital sequence number
 #define SERVER_ISN      1000  //server intial sequence number
