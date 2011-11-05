@@ -100,7 +100,10 @@ void tcp_server_init(int port_number)
     server_state = SRV_CLOSED;
     net.init(port_number);
     msgs_out = 0;
-	
+
+	net.getServAddr(&addr);
+    printf("IP stuff: %x %u \n",addr.sin_addr.s_addr, ntohs(addr.sin_port));
+
     //Start threads
 	if(pthread_create(&server_pthread, NULL, srv_thread, NULL))
 	{
@@ -134,11 +137,8 @@ void tcp_client_init(long unsigned int ip_address, int port_number)
     net.init(port_number, server_ip_address);
     msgs_out = 0;
     
-
-	char my_ip[INET_ADDRSTRLEN];
-
-	net.getMyIP(my_ip);
-	printf("IP: %s\n", my_ip);
+	net.getServAddr(&addr);
+    printf("IP stuff: %x %u \n",addr.sin_addr.s_addr, ntohs(addr.sin_port));
     //Start threads
     if(pthread_create(&client_pthread, NULL, cli_thread, NULL))
 	{
@@ -197,7 +197,7 @@ void tcp_send(const void *buffer, size_t bufferLength)
     pthread_mutex_lock(&send_lock);
     send_buff.push_back(send_msg);
     if(DEBUG) printf("TCP Send Called - buffer size:%d, data size:%d\n",send_buff.size() ,bufferLength);
-    pthread_mutex_ulock(&send_lock);
+    pthread_mutex_unlock(&send_lock);
     
     
 }

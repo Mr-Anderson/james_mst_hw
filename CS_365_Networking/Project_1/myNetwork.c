@@ -66,5 +66,5 @@ void myNetwork::getMyIP(char * IP)
 
 void myNetwork::getServAddr(struct sockaddr_in *addr)
 {
-    addr = servaddr;
+    *addr = servaddr;
 }
