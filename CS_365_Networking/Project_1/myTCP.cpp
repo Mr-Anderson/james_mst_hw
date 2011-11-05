@@ -93,6 +93,7 @@ bool init_close;
 
 void tcp_server_init(int port_number)
 {
+    if(DEBUG) printf("Server Init Called\n");
 	//Server
     server = true;
     init_close =false;
@@ -113,16 +114,18 @@ void tcp_server_init(int port_number)
 	{
 		cout << "ERROR" << endl;
 	}
+    if(DEBUG) printf("Started Server Threads\n");
     
     pthread_join(server_pthread, NULL);
     pthread_join(timeout_pthread, NULL);    
     pthread_join(receiver_pthread, NULL);
-    
+    if(DEBUG) printf("Joined Server Threads\n");
     
 }
 
 void tcp_client_init(long unsigned int ip_address, int port_number)
 {
+    if(DEBUG) printf("Client Init Called\n");
 	//Client
     server = false;
     init_close = false;
@@ -149,20 +152,24 @@ void tcp_client_init(long unsigned int ip_address, int port_number)
 	{
 		cout << "ERROR" << endl;
 	}
+    if(DEBUG) printf("Started Client Threads\n");
     
     pthread_join(client_pthread, NULL);
     pthread_join(timeout_pthread, NULL);
     pthread_join(receiver_pthread, NULL);
+    if(DEBUG) printf("Joined Client Threads\n");
       
 }
 
 void tcp_client_close()
 {
+    if(DEBUG) printf("Client Close Called\n");
     init_close = true;
 }
 
 void tcp_client_restart()
 {
+    if(DEBUG) printf("Client Reset Called\n");
     if (init_close == true)
     {
         init_close = false;
@@ -170,11 +177,13 @@ void tcp_client_restart()
     else
     {
         printf("no your stupid you need to call tcp_client_close first \n");
+        if(DEBUG) printf("yup still stupid\n");
     }
 }
 
 void tcp_send(const void *buffer, size_t bufferLength)
 {
+    
     tcp_buff send_msg;
       
     //copys application data into temp buffer
@@ -185,12 +194,17 @@ void tcp_send(const void *buffer, size_t bufferLength)
     send_msg.header.data_len = bufferLength;
     
     //push temp buffer onto send buffer
+    pthread_mutex_lock(&send_lock);
     send_buff.push_back(send_msg);
+    if(DEBUG) printf("TCP Send Called - buffer size:%d, data size:%d\n",send_buff.size() ,bufferLength);
+    pthread_mutex_ulock(&send_lock);
+    
     
 }
 
 int tcp_recv(void *buffer , size_t bufferLength)
 {
+    
     tcp_buff recv_msg;
     
     //wait for data
@@ -202,6 +216,7 @@ int tcp_recv(void *buffer , size_t bufferLength)
     //pull in data
     pthread_mutex_lock(&data_lock);
     recv_msg = data_buff.front();
+    if(DEBUG) printf(" TCP Receive Called - buffer size:%d, data size:%d\n",data_buff.size() ,recv_msg.header.data_len);
     pthread_mutex_unlock(&data_lock);
     
     //remove from queue
@@ -209,6 +224,8 @@ int tcp_recv(void *buffer , size_t bufferLength)
     
     //copy data into buffer
     memcpy(buffer , recv_msg.data , bufferLength);
+    
+
     
     //return data size
     return recv_msg.header.data_len;
