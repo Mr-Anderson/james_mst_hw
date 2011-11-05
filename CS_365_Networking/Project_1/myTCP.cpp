@@ -157,7 +157,7 @@ void tcp_client_close()
     init_close = true;
 }
 
-void tcp_client_restart();
+void tcp_client_restart()
 {
     if (init_close == true)
     {
@@ -165,7 +165,7 @@ void tcp_client_restart();
     }
     else
     {
-        fprint("no your stupid you need to call tcp_client_close first \n");
+        printf("no your stupid you need to call tcp_client_close first \n");
     }
 }
 
@@ -177,7 +177,7 @@ void tcp_send(const void *buffer, size_t bufferLength)
     memcpy(send_msg.data, buffer, bufferLength); 
     
     //setup header with data size
-    reset_head(send_msg.header);
+    reset_head(&send_msg.header);
     send_msg.header.data_len = bufferLength;
     
     //push temp buffer onto send buffer
@@ -283,7 +283,7 @@ void * cli_thread(void *arg)
 		else if(client_state == CLI_ESTABLISHED)
 		{
             //run established
-            established(cli_seq, next_cli_seq, srv_seq, next_srv_seq ); 
+            established(&cli_seq, &next_cli_seq, &srv_seq, &next_srv_seq); 
             
             //check for close
             if (init_close)
@@ -408,7 +408,7 @@ void * srv_thread(void *arg)
                 {
                     //create header
                     _MYTCP_Header header;
-                    reset_head(header); 
+                    reset_head(&header); 
                      
                     //clients sequence number 
                     cli_seq = recv_msg.header.tcp_hdr.seq; 
@@ -453,7 +453,7 @@ void * srv_thread(void *arg)
 		}
 		else if(server_state == SRV_ESTABLISHED)
 		{
-            if(!established(srv_seq, next_srv_seq, cli_seq, next_cli_seq))
+            if(!established(&srv_seq, &next_srv_seq, &cli_seq, &next_cli_seq))
             {
                 server_state = SRV_CLOSE_WAIT; 
             }
@@ -528,7 +528,7 @@ void * recv_thread(void *arg)
         if(server && server_state == SRV_LISTEN)
         {
             //first message
-            client_ip_address = addr.sin_addr;
+            client_ip_address = addr.sin_addr.s_addr;
                
             pthread_mutex_lock(&recv_lock);
             recv_buff.push_back(recv_msg);
@@ -537,8 +537,8 @@ void * recv_thread(void *arg)
         else
         {
             //check if from correct sender 
-            if((server && client_ip_address == addr.sin_addr) 
-                || (!server && server_ip_address == addr.sin_addr))
+            if((server && (client_ip_address == addr.sin_addr.s_addr)) 
+                || (!server && (server_ip_address == addr.sin_addr.s_addr)))
             {
                 //store message
                 pthread_mutex_lock(&recv_lock);
@@ -570,7 +570,7 @@ void reset_head(struct _MYTCP_Header *header)
     header->data_len = 0;
 }
 
-bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_their_seq )
+bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_their_seq)
 {
     //make our message
     tcp_buff send_msg;
@@ -610,7 +610,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
             their_seq = recv_msg.header.tcp_hdr.seq;
             
             //setup header 
-            send_msg.header.tcp_hdr.ack = 1
+            send_msg.header.tcp_hdr.ack = 1;
             
             //get data
             if(recv_msg.header.data_len > 0)
@@ -659,7 +659,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
         //get data to send
         tcp_buff temp_msg;
         pthread_mutex_lock(&send_lock);
-        temp_msg.data = send_buff.front();
+        temp_msg = send_buff.front();
         send_buff.pop_front();
         pthread_mutex_unlock(&send_lock);
         
@@ -670,7 +670,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
         send_msg.header.tcp_hdr.seq = our_seq;
         
         //add data
-        strcpy(send_msg.data, temp_msg.data, temp_msg.header.data_len);
+        memcpy(send_msg.data, temp_msg.data, temp_msg.header.data_len);
         send_msg.header.data_len = temp_msg.header.data_len;
         
         //increment messages out
@@ -683,7 +683,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
     if(send_msg.header.tcp_hdr.ack == 0 && sending_data)
     {
         //send msg
-        net.mysendto(send_msg, sizeof(send_msg), 0, (sockaddr*)&addr, len);
+        net.mysendto(&send_msg, sizeof(send_msg), 0, (sockaddr*)&addr, len);
     }
     
     return no_fin;

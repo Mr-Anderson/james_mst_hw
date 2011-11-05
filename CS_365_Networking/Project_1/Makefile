@@ -11,10 +11,10 @@ CXX = g++
 all: client server
 
 client: client.c myTCP.cpp myNetwork.c
-	$(CXX) $^ -lpthread -o $@ 
+	$(CXX) $^ -lpthread -fpermissive -w -o $@ 
 
 server: server.c myTCP.cpp myNetwork.c
-	$(CXX) $^ -lpthread -o $@ 
+	$(CXX) $^ -lpthread -fpermissive -w -o $@ 
 
 clean:
 	rm -f client server

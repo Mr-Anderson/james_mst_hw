@@ -39,7 +39,7 @@ void myNetwork::init(int port, long unsigned int ip)
 	bzero(&servaddr, sizeof(servaddr));
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_port = htons(port);
-    servaddr.sin_addr = ip;
+    servaddr.sin_addr.s_addr = ip;
 	
 	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 }

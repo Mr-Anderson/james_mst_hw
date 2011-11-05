@@ -29,7 +29,7 @@ typedef struct _MYTCP_Header
 void tcp_server_init(int port_number);
 
 //server
-void tcp_client_init(char * ip_address, int port_number);
+void tcp_client_init(long unsigned int ip_address, int port_number);
 
 //function to send data
 void tcp_send(const void *msg, size_t len);
@@ -53,6 +53,6 @@ void * recv_thread(void *arg);
 void reset_head(struct _MYTCP_Header *header);
 
 //established loop
-void established(int* our_seq, int* next_our_seq, int* their_seq, int* next_their_seq );
+bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_their_seq );
 
 #endif
