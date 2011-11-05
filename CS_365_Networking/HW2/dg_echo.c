@@ -1,4 +1,6 @@
-/*				*/
+/*James Anderson*/
+/*CS365			*/
+/*HW2			*/
 /*	dg­_echo.c 	*/
 /*				*/
 

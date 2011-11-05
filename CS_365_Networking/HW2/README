@@ -1,0 +1,8 @@
+James Anderson 
+CS365 
+HW2
+To compile the code run the make command within the directory
+Login to the server machine and run ./udpserv01
+Find the server IP address with ifconfig
+Login to the client machine and run ./udpcli01 <IPaddress> <InputFile> <OutputFile>
+The file with the tag you ran for OutputFile should match that of InputFile

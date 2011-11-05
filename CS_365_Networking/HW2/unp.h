@@ -1,10 +1,13 @@
-/*							*/
-/* 	relevant part in unp.h 	*/
+/*James Anderson			*/
+/*CS365						*/
+/*HW2						*/
+/*unp.h 					*/
 /*							*/
 
 #include "stdlib.h"
 #include "stdio.h"
 #include "string.h"
+#include "math.h"
 #include "fstream"
 #include "iostream"
 #include <netinet/in.h>
@@ -20,5 +23,5 @@
 #define	SERV_PORT		 9877	
 #define	SA	struct sockaddr
 	 
-void	 dg_cli(FILE *, int, const SA *, socklen_t);
+void	 dg_cli(FILE *, FILE *, int, const SA *, socklen_t);
 void	 dg_echo(int, SA *, socklen_t);
