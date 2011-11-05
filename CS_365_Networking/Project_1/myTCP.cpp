@@ -95,7 +95,7 @@ void tcp_server_init(int port_number)
 {
 	//Server
     server = true;
-    init_cose =false
+    init_close =false;
     server_state = SRV_CLOSED;
     net.init(port_number);
     msgs_out = 0;
@@ -121,13 +121,13 @@ void tcp_server_init(int port_number)
     
 }
 
-void tcp_client_init(char * ip_address, int port_number)
+void tcp_client_init(long unsigned int ip_address, int port_number)
 {
 	//Client
     server = false;
-    init_cose = false;
+    init_close = false;
     client_state = CLI_CLOSED;
-    memcpy(server_ip_address, ip_address, 4);
+    server_ip_address = ip_address;
     net.init(port_number, server_ip_address);
     msgs_out = 0;
     

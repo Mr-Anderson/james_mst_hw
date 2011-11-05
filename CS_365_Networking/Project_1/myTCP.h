@@ -53,6 +53,6 @@ void * recv_thread(void *arg);
 void reset_head(struct _MYTCP_Header *header);
 
 //established loop
-void established(int* our_seq, int* next_our_seq, int* their_seq, int* next_their_seq )
+void established(int* our_seq, int* next_our_seq, int* their_seq, int* next_their_seq );
 
 #endif
