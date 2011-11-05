@@ -32,6 +32,8 @@
 #define MSS             256  //the maximum number of bytes in the data field of a TCP segment
 #define W               1    // max windows
 
+#define CLI_TIME_WAIT_TIME  30 //time to wait on final ack
+
 #define CLIENT_ISN      0     //client inital sequence number
 #define SERVER_ISN      1000  //server intial sequence number
      
