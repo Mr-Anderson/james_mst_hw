@@ -18,7 +18,7 @@ myNetwork::myNetwork(int port)
 	init(port);
 }
 
-myNetwork::myNetwork(int port, char * ip)
+myNetwork::myNetwork(int port, long unsigned int ip)
 {
 	init(port, ip);
 }
@@ -34,12 +34,12 @@ void myNetwork::init(int port)
 	bind(sockfd, (SA *) &servaddr, sizeof(servaddr));
 }
 
-void myNetwork::init(int port, char * ip)
+void myNetwork::init(int port, long unsigned int ip)
 {
 	bzero(&servaddr, sizeof(servaddr));
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_port = htons(port);
-	inet_pton(AF_INET, ip, &servaddr.sin_addr);
+    servaddr.sin_addr = ip;
 	
 	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 }

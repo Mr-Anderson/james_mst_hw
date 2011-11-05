@@ -15,10 +15,10 @@ class myNetwork
 	public:
 		myNetwork();
 		myNetwork(int port);
-		myNetwork(int port, char * ip);
+		myNetwork(int port, long unsigned int ip);
 
 		void init(int port);
-		void init(int port, char * ip);
+		void init(int port, long unsigned int ip);
 
 		void mysendto(void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t addrLength);
                     
