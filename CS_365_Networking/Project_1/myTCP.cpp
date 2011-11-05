@@ -131,7 +131,11 @@ void tcp_client_init(long unsigned int ip_address, int port_number)
     net.init(port_number, server_ip_address);
     msgs_out = 0;
     
-    
+
+	char my_ip[INET_ADDRSTRLEN];
+
+	net.getMyIP(my_ip);
+	printf("IP: %s\n", my_ip);
     //Start threads
     if(pthread_create(&client_pthread, NULL, cli_thread, NULL))
 	{
@@ -523,7 +527,7 @@ void * recv_thread(void *arg)
         tcp_buff recv_msg;
         
         net.myrecvfrom(&recv_msg, sizeof(recv_msg), 0, (sockaddr*)&addr, &len);
-        
+        if(DEBUG) printf("Received something!\n");
         
         if(server && server_state == SRV_LISTEN)
         {

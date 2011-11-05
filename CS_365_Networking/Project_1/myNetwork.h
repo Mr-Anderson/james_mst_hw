@@ -25,6 +25,8 @@ class myNetwork
 		int myrecvfrom(void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t * addrLength);
         
 		void getMyIP(char * IP);
+
+        void getServAddr(struct sockaddr_in *addr);
 	private:
 		int sockfd;
 		struct sockaddr_in servaddr;

@@ -40,8 +40,9 @@ int main(int argc, char **argv)
         struct in_addr ip;
         inet_pton(AF_INET, argv[1], &ip); 
         //Create new TCP pipe
+
+        printf("IP in hex: %x Port: %u\n",ip.s_addr, port);
         tcp_client_init(ip.s_addr, port);
-        printf("IP in hex: %x\n",ip.s_addr);
         while (!feof(in_fp)) 
         {
             //read in file line
