@@ -19,7 +19,7 @@
 #include <arpa/inet.h>
 #include <netinet/tcp.h> 
 
-
+#define DEBUG true
 
 #define MAXLINE          4096
 /* max text line length */

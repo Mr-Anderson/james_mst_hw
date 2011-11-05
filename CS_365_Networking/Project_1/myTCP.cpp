@@ -213,10 +213,12 @@ int tcp_recv(void *buffer , size_t bufferLength)
 // keeps track of the client state and iterates through tcp protocal
 void * cli_thread(void *arg)
 {
+    if(DEBUG) printf("Client Thread Started\n");
 	while(true) //put some condition here
 	{
     	if(client_state == CLI_CLOSED)
 		{
+            if(DEBUG) printf("CLI_CLOSED\n");
             if(!init_close)
             {
                 //setup header for intial syn
@@ -231,7 +233,7 @@ void * cli_thread(void *arg)
                 
                 //send msg
                 net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, len);
-                
+                if(DEBUG) printf("SYN Sent\n");
                 //increment state
                 client_state = CLI_SYN_SENT;
                 
@@ -384,6 +386,7 @@ void * cli_thread(void *arg)
 // keeps track of the server state and iterates through tcp protocal
 void * srv_thread(void *arg)
 {
+    if (DEBUG) printf("Server thread started.\n");
 	while(true) //put some condition here
 	{
 		if(server_state == SRV_CLOSED)
@@ -391,12 +394,14 @@ void * srv_thread(void *arg)
             //@TODO setup listen socket
             
             //increment stat
+            if(DEBUG) printf("SRV_CLOSED\n");
             server_state = SRV_SYN_RCVD;
 		}
 		else if(server_state == SRV_LISTEN)
 		{
             if(!recv_buff.empty())
             {
+                if(DEBUG) printf("Received Message in SRV_LISTEN\n");
                 //get message
                 tcp_buff recv_msg;
                 pthread_mutex_lock(&recv_lock);
@@ -500,23 +505,18 @@ void * srv_thread(void *arg)
             }
 		}
 	}    
-}  
-
-//constantly calls network send sending data in deque <tcp_buff> send_buff
-void * send_thread(void *arg)
-{
-  
-}   
+} 
 
 //constantly checks the timeout queue for timeouts 
 void * timeout_thread(void *arg)
 {
-  
+    if(DEBUG) printf("Timeout thread started.\n");
 }  
 
 //constantly calls network recive and writes to deque <tcp_buff> rcv_buff
 void * recv_thread(void *arg)
 {
+    if(DEBUG) printf("Receive thread started.\n");
     bool initial_conect = true;
     while(1)
     {
@@ -551,6 +551,7 @@ void * recv_thread(void *arg)
 
 void reset_head(struct _MYTCP_Header *header)
 {
+    if(DEBUG) printf("Reset header called.\n");
     header->tcp_hdr.source = 0;
     header->tcp_hdr.dest = 0;
     header->tcp_hdr.seq = 0;
@@ -572,6 +573,7 @@ void reset_head(struct _MYTCP_Header *header)
 
 bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_their_seq)
 {
+    if(DEBUG) printf("Established called.\n");
     //make our message
     tcp_buff send_msg;
     reset_head(&send_msg.header);
