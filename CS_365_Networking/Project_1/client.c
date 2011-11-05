@@ -37,8 +37,10 @@ int main(int argc, char **argv)
         
         int port = atoi(argv[2]);
         
+        struct in_addr ip;
+        inet_pton(AF_INET, argv[1], &ip); 
         //Create new TCP pipe
-        tcp_client_init(argv[1], port);
+        tcp_client_init(ip.s_addr, port);
         
         while (!feof(in_fp)) 
         {
