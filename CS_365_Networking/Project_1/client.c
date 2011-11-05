@@ -41,7 +41,7 @@ int main(int argc, char **argv)
         inet_pton(AF_INET, argv[1], &ip); 
         //Create new TCP pipe
         tcp_client_init(ip.s_addr, port);
-        
+        printf("IP in hex: %x\n",ip.s_addr);
         while (!feof(in_fp)) 
         {
             //read in file line
