@@ -416,7 +416,7 @@ void * srv_thread(void *arg)
             
             //increment stat
             if(DEBUG) printf("SRV_CLOSED\n");
-            server_state = SRV_SYN_RCVD;
+            server_state = SRV_LISTEN;
 		}
 		else if(server_state == SRV_LISTEN)
 		{

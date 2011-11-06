@@ -56,8 +56,10 @@ int myNetwork::myrecvfrom(void *buffer, size_t bufferLength, int flag, sockaddr 
 {
     if(DEBUG) printf("NET: Receiver started\n");
     if(DEBUG) printf("NET: Receiving from %x on port %u\n", ((sockaddr_in *) addr)->sin_addr.s_addr, ntohs(((sockaddr_in *) addr)->sin_port));
-	recvfrom(sockfd, buffer, bufferLength, flag, addr, addrLength);
-    if(DEBUG) printf("NET: Receiving %u bytes\n", bufferLength);
+	int n = recvfrom(sockfd, buffer, bufferLength, flag, addr, addrLength);
+    if(DEBUG) printf("NET: Receiving %u bytes\n", n);
+    
+    return n;
 }
 
 void myNetwork::getMyIP(char * IP)
