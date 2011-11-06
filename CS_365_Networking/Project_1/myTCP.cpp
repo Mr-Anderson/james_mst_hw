@@ -435,6 +435,8 @@ void * srv_thread(void *arg)
                     //create header
                     _MYTCP_Header header;
                     reset_head(&header); 
+                    
+                    
                      
                     //clients sequence number 
                     cli_seq = recv_msg.header.tcp_hdr.seq; 
@@ -447,6 +449,7 @@ void * srv_thread(void *arg)
                     header.tcp_hdr.ack_seq = cli_seq + 1;
                     
                     //send ack message
+                    if(DEBUG) printf("Sending ACK to first SYN \n");
                     net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
                     
                     //increment stat
@@ -546,11 +549,12 @@ void * recv_thread(void *arg)
         net.myrecvfrom(&recv_msg, sizeof(recv_msg), 0, (sockaddr*)&addr, &len);
         if(DEBUG) printf("Received something!\n");
         
-        if(server && server_state == SRV_LISTEN)
+        if(server && (server_state == SRV_LISTEN))
         {
             //first message
             client_ip_address = addr.sin_addr.s_addr;
-               
+            //if(DEBUG) printf("Locking Client to %x \n",((sockaddr_in *) addr)->sin_addr.s_addr);
+            
             pthread_mutex_lock(&recv_lock);
             recv_buff.push_back(recv_msg);
             pthread_mutex_unlock(&recv_lock);  
