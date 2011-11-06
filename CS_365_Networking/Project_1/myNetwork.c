@@ -49,12 +49,13 @@ void myNetwork::init(int port, long unsigned int ip)
 void myNetwork::mysendto(void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t addrLength)
 {
 	sendto(sockfd, buffer, bufferLength, flag, addr, addrLength);
-    if(DEBUG) printf("NET: Sending %u bytes\n", bufferLength);
+    if(DEBUG) printf("NET: Sending %u bytes to %x on port %u\n", bufferLength, ((sockaddr_in *) addr)->sin_addr.s_addr, ntohs(((sockaddr_in *) addr)->sin_port));
 }
 
 int myNetwork::myrecvfrom(void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t * addrLength)
 {
     if(DEBUG) printf("NET: Receiver started\n");
+    if(DEBUG) printf("NET: Receiving from %x on port %u\n", ((sockaddr_in *) addr)->sin_addr.s_addr, ntohs(((sockaddr_in *) addr)->sin_port));
 	recvfrom(sockfd, buffer, bufferLength, flag, addr, addrLength);
     if(DEBUG) printf("NET: Receiving %u bytes\n", bufferLength);
 }

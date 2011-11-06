@@ -253,7 +253,7 @@ void * cli_thread(void *arg)
                 header.tcp_hdr.syn = 1;
                 
                 //send msg
-                net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, len);
+                net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
                 if(DEBUG) printf("SYN Sent\n");
                 //increment state
                 client_state = CLI_SYN_SENT;
@@ -296,7 +296,7 @@ void * cli_thread(void *arg)
                     header.tcp_hdr.seq = cli_seq;
                     
                     //send msg
-                    net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, len);
+                    net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
                     
                     //icrement state
                     client_state = CLI_ESTABLISHED;
@@ -325,7 +325,7 @@ void * cli_thread(void *arg)
                 header.tcp_hdr.fin = 1;
                 
                 //send msg
-                net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, len);
+                net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
                 
                 //increment state
                 client_state = CLI_FIN_WAIT_1;
@@ -389,7 +389,7 @@ void * cli_thread(void *arg)
                     header.tcp_hdr.seq = cli_seq;
                     
                     //send msg
-                    net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, len);
+                    net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
                     
                     //icrement state
                     client_state = CLI_TIME_WAIT;
@@ -447,7 +447,7 @@ void * srv_thread(void *arg)
                     header.tcp_hdr.ack_seq = cli_seq + 1;
                     
                     //send ack message
-                    net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, len);
+                    net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
                     
                     //increment stat
                     server_state = SRV_SYN_RCVD;
@@ -502,7 +502,7 @@ void * srv_thread(void *arg)
             header.tcp_hdr.fin = 1;
             
             //send msg
-            net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, len);
+            net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
             
             //increment state
             server_state = SRV_LAST_ACK;
@@ -706,7 +706,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
     if(send_msg.header.tcp_hdr.ack == 0 && sending_data)
     {
         //send msg
-        net.mysendto(&send_msg, sizeof(send_msg), 0, (sockaddr*)&addr, len);
+        net.mysendto(&send_msg, sizeof(send_msg), 0, (sockaddr*)&addr, sizeof(addr));
     }
     
     return no_fin;
