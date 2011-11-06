@@ -99,8 +99,10 @@ void tcp_server_init(int port_number)
     init_close =false;
     server_state = SRV_CLOSED;
     net.init(port_number);
-    net.getServAddr(&addr);
     msgs_out = 0;
+
+	net.getServAddr(&addr);
+    printf("IP stuff: %x %u \n",addr.sin_addr.s_addr, ntohs(addr.sin_port));
 
     //Start threads
 	if(pthread_create(&server_pthread, NULL, srv_thread, NULL))

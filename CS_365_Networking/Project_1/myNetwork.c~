@@ -57,9 +57,7 @@ void myNetwork::mysendto(void *buffer, size_t bufferLength, int flag, sockaddr *
 int myNetwork::myrecvfrom(void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t * addrLength)
 {
     if(DEBUG) printf("NET: Receiver started\n");
-    char char_ip[INET_ADDRSTRLEN];
-    inet_ntop(AF_INET, &((sockaddr_in *) addr)->sin_addr.s_addr, char_ip, INET_ADDRSTRLEN);
-    if(DEBUG) printf("NET: Receiving from %s on port %u\n", char_ip, ntohs(((sockaddr_in *) addr)->sin_port));
+    if(DEBUG) printf("NET: Receiving from %x on port %u\n", ((sockaddr_in *) addr)->sin_addr.s_addr, ntohs(((sockaddr_in *) addr)->sin_port));
 	int n = recvfrom(sockfd, buffer, bufferLength, flag, addr, addrLength);
     if(DEBUG) printf("NET: Receiving %u bytes\n", n);
     
