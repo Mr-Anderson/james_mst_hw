@@ -54,11 +54,11 @@ void myNetwork::mysendto(void *buffer, size_t bufferLength, int flag, sockaddr *
     if( NET_SEND_RATE >= (rand() % 100 + 1) )
     {
         sendto(sockfd, buffer, bufferLength, flag, addr, addrLength);
-        //if(DEBUG) printf("NET: Sending %u bytes to %s on port %u\n", bufferLength, char_ip, ntohs(((sockaddr_in *) addr)->sin_port));
+        if(DEBUG) printf("NET: Sending %u bytes to %s on port %u\n", bufferLength, char_ip, ntohs(((sockaddr_in *) addr)->sin_port));
     }
     else
     {
-        //if(DEBUG) printf("NET: Send of %u bytes to %s on port %u blocked\n", bufferLength, char_ip, ntohs(((sockaddr_in *) addr)->sin_port));
+        if(DEBUG) printf("NET: Send of %u bytes to %s on port %u blocked\n", bufferLength, char_ip, ntohs(((sockaddr_in *) addr)->sin_port));
     }
 }
 

@@ -601,7 +601,7 @@ void * recv_thread(void *arg)
         
         net.myrecvfrom(&recv_msg, sizeof(recv_msg), 0, (sockaddr*)&addr, &len);
         
-        if(DEBUG) printf("Received syn:%u fin:%u ack:%u ack_seq:%u seq:%u data_len:%u \n",
+        if(DEBUG) printf("Sending syn:%u fin:%u ack:%u ack_seq:%u seq:%u data_len:%u \n",
         recv_msg.header.tcp_hdr.syn,
         recv_msg.header.tcp_hdr.fin,
         recv_msg.header.tcp_hdr.ack, 
