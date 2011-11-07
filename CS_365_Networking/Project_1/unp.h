@@ -29,18 +29,18 @@
 #define SA  struct sockaddr
 
 //tcp parameter defines
-#define WINDOW_SIZE         1024  //sender receiver buffer sizeof
-#define MSS                  256  //the maximum number of bytes in the data field of a TCP segment
-#define W                      1  // max windows
-#define TIMEOUT              500  // timout time in miliseconds
+#define WINDOW_SIZE         1024    //sender receiver buffer sizeof
+#define MSS                 256     //the maximum number of bytes in the data field of a TCP segment
+#define W                   1       //max windows
+#define TIMEOUT             500     //timeout time in miliseconds
+#define NET_SEND_RATE       75      //rate of successful transmission on network
+#define CLI_TIME_WAIT_TIME  30      //time to wait on final ack
 
-#define CLI_TIME_WAIT_TIME  30 //time to wait on final ack
-
-#define CLIENT_ISN      100     //client inital sequence number
-#define SERVER_ISN      10000  //server intial sequence number
+#define CLIENT_ISN          100         //client inital sequence number
+#define SERVER_ISN          10000       //server intial sequence number
      
      
 void     dg_cli(FILE *, FILE *, int, const SA *, socklen_t);
 void     dg_echo(int, SA *, socklen_t);
 
-#endi
+#endif

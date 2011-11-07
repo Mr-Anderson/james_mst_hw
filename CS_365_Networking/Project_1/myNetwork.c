@@ -29,7 +29,7 @@ void myNetwork::init(int port)
 	servaddr.sin_family      = AF_INET;
 	servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
 	servaddr.sin_port        = htons(port);
-	
+	srand(time(NULL));
 	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 	bind(sockfd, (SA *) &servaddr, sizeof(servaddr));
     //if(DEBUG) printf("NET: Server started on port %u \n", port);
@@ -41,18 +41,25 @@ void myNetwork::init(int port, long unsigned int ip)
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_port = htons(port);
     servaddr.sin_addr.s_addr = ip;
-	
+	srand(time(NULL));
 	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
     //if(DEBUG) printf("NET: Client started\n");
 }
 
 void myNetwork::mysendto(void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t addrLength)
 {
-    //sleep(5);
-    sendto(sockfd, buffer, bufferLength, flag, addr, addrLength);
     char char_ip[INET_ADDRSTRLEN];
     inet_ntop(AF_INET, &((sockaddr_in *) addr)->sin_addr.s_addr, char_ip, INET_ADDRSTRLEN);
-    if(DEBUG) printf("NET: Sending %u bytes to %s on port %u\n", bufferLength, char_ip, ntohs(((sockaddr_in *) addr)->sin_port));
+
+    if( NET_SEND_RATE >= (rand() % 100 + 1) )
+    {
+        sendto(sockfd, buffer, bufferLength, flag, addr, addrLength);
+        if(DEBUG) printf("NET: Sending %u bytes to %s on port %u\n", bufferLength, char_ip, ntohs(((sockaddr_in *) addr)->sin_port));
+    }
+    else
+    {
+        if(DEBUG) printf("NET: Send of %u bytes to %s on port %u blocked\n", bufferLength, char_ip, ntohs(((sockaddr_in *) addr)->sin_port));
+    }
 }
 
 int myNetwork::myrecvfrom(void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t * addrLength)
