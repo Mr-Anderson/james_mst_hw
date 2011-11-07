@@ -416,7 +416,7 @@ void * srv_thread(void *arg)
 		{
             if(!recv_buff.empty())
             {
-                if(DEBUG) printf("Received Message in SRV_LISTEN\n");
+                //if(DEBUG) printf("Received Message in SRV_LISTEN\n");
                 //get message
                 tcp_buff recv_msg;
                 pthread_mutex_lock(&recv_lock);
@@ -447,7 +447,7 @@ void * srv_thread(void *arg)
                     
                     
                     //send ack message
-                    if(DEBUG) printf("Sending ACK to first SYN \n");
+                    //if(DEBUG) printf("Sending ACK to first SYN \n");
                     timeout_send(&header, sizeof(header));
                     
                     //increment stat
@@ -567,7 +567,7 @@ void * timeout_thread(void *arg)
             //remove message from timeout queue
             if(timeout_buff[i].endtime <= clock())
             {
-                if(DEBUG) printf("Seq %u timed out. Number of timeouts being tracked is %u \n",timeout_buff[i].msg.header.tcp_hdr.seq,timeout_buff.size());
+                //if(DEBUG) printf("Seq %u timed out. Number of timeouts being tracked is %u \n",timeout_buff[i].msg.header.tcp_hdr.seq,timeout_buff.size());
                 tcp_buff temp;
                 
                 
@@ -601,7 +601,7 @@ void * recv_thread(void *arg)
         
         net.myrecvfrom(&recv_msg, sizeof(recv_msg), 0, (sockaddr*)&addr, &len);
         
-        if(DEBUG) printf("Received syn:%u fin:%u ack:%u ack_seq:%u seq:%u data_len:%u \n",
+        if(DEBUG) printf("Received syn:%u	fin:%u	ack:%u	ack_seq:%u	seq:%u		data_len:%u \n",
         recv_msg.header.tcp_hdr.syn,
         recv_msg.header.tcp_hdr.fin,
         recv_msg.header.tcp_hdr.ack, 
@@ -616,7 +616,7 @@ void * recv_thread(void *arg)
             
             char char_ip[INET_ADDRSTRLEN];
             inet_ntop(AF_INET, &addr.sin_addr.s_addr, char_ip, INET_ADDRSTRLEN);
-            if(DEBUG) printf("Locking Client to %s \n",char_ip);
+            //if(DEBUG) printf("Locking Client to %s \n",char_ip);
             
             pthread_mutex_lock(&recv_lock);
             recv_buff.push_back(recv_msg);
@@ -646,7 +646,7 @@ void * recv_thread(void *arg)
                 //remove message from timeout queue
                 if(timeout_buff[i].ack_seq == recv_msg.header.tcp_hdr.ack_seq)
                 {
-                    if(DEBUG) printf("Erased Timout size:%u \n",timeout_buff.size());
+                    //if(DEBUG) printf("Erased Timout size:%u \n",timeout_buff.size());
                     timeout_buff.erase(timeout_buff.begin() +i);
                 }
             }
@@ -700,7 +700,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
         //check to see if its fin
         if (recv_msg.header.tcp_hdr.fin == 1)
         {
-            if(DEBUG) printf("Received Fin.\n");
+            //if(DEBUG) printf("Received Fin.\n");
             no_fin = false;
         }
         
@@ -711,7 +711,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
             //@TODO if we want to implement var window need to check more acks
             if(recv_msg.header.tcp_hdr.ack_seq == (*next_our_seq))
             {
-                if(DEBUG) printf("Marking message as ack.\n");
+                //if(DEBUG) printf("Marking message as ack.\n");
                 //mark our message as acknowlaged
                 //@TODO take out of timeout queue
                 
@@ -729,11 +729,11 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
                 //setup header 
                 send_msg.header.tcp_hdr.ack = 1;
             
-                if(DEBUG) printf("Message has data with it.\n");
+                //if(DEBUG) printf("Message has data with it.\n");
                 //if this is the next packet in order
                 if(*their_seq == *next_their_seq )
                 {
-                    if(DEBUG) printf("Is exspected message.\n");
+                    //if(DEBUG) printf("Is exspected message.\n");
                     //push message onto data queue
                     pthread_mutex_lock(&data_lock);
                     data_buff.push_back(recv_msg);
@@ -748,14 +748,14 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
                 {
                     //TODO for non pipelined add to queue of 
                     //packets we are not ready for 
-                    printf("if we are not pipelined you should not be here \n");
+                    //printf("if we are not pipelined you should not be here \n");
                     send_msg.header.tcp_hdr.ack_seq = *next_their_seq;
                 }
                 
             }
             else
             {
-                if(DEBUG) printf("Message had no data.\n");
+                //if(DEBUG) printf("Message had no data.\n");
                 //set sequence number fo no data
                 send_msg.header.tcp_hdr.ack_seq = *their_seq +1;
             }
@@ -839,7 +839,7 @@ void timeout_send(void* send_msg, size_t bufferLength)
         pthread_mutex_unlock(&timeout_lock);
     }
     
-    if(DEBUG) printf("Sending syn:%u fin:%u ack:%u ack_seq:%u seq:%u data_len:%u \n",
+    if(DEBUG) printf("Sending  syn:%u	fin:%u	ack:%u	ack_seq:%u	seq:%u		data_len:%u \n",
     ((tcp_buff*)send_msg)->header.tcp_hdr.syn,
     ((tcp_buff*)send_msg)->header.tcp_hdr.fin,
     ((tcp_buff*)send_msg)->header.tcp_hdr.ack, 
