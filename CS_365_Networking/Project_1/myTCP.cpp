@@ -117,9 +117,9 @@ void tcp_server_init(int port_number)
 	}
     if(DEBUG) printf("Started Server Threads\n");
     
-    pthread_join(server_pthread, NULL);
-    pthread_join(timeout_pthread, NULL);    
-    pthread_join(receiver_pthread, NULL);
+    //pthread_join(server_pthread, NULL);
+    //pthread_join(timeout_pthread, NULL);    
+    //pthread_join(receiver_pthread, NULL);
     if(DEBUG) printf("Joined Server Threads\n");
     
 }
@@ -152,9 +152,9 @@ void tcp_client_init(long unsigned int ip_address, int port_number)
 	}
     if(DEBUG) printf("Started Client Threads\n");
     
-    pthread_join(client_pthread, NULL);
-    pthread_join(timeout_pthread, NULL);
-    pthread_join(receiver_pthread, NULL);
+    //pthread_join(client_pthread, NULL);
+    //pthread_join(timeout_pthread, NULL);
+    //pthread_join(receiver_pthread, NULL);
     if(DEBUG) printf("Joined Client Threads\n");
       
 }
@@ -196,6 +196,7 @@ void tcp_send(const void *buffer, size_t bufferLength)
     send_buff.push_back(send_msg);
     if(DEBUG) printf("TCP Send Called - buffer size:%d, data size:%d\n",send_buff.size() ,bufferLength);
     pthread_mutex_unlock(&send_lock);
+    
     
     
 }
@@ -544,6 +545,8 @@ void * recv_thread(void *arg)
     {
         tcp_buff recv_msg;
         
+        len = sizeof(addr);
+        
         net.myrecvfrom(&recv_msg, sizeof(recv_msg), 0, (sockaddr*)&addr, &len);
         if(DEBUG) printf("Received something!\n");
         
@@ -551,7 +554,10 @@ void * recv_thread(void *arg)
         {
             //first message
             client_ip_address = addr.sin_addr.s_addr;
-            //if(DEBUG) printf("Locking Client to %x \n",((sockaddr_in *) addr)->sin_addr.s_addr);
+            
+            char char_ip[INET_ADDRSTRLEN];
+            inet_ntop(AF_INET, &addr.sin_addr.s_addr, char_ip, INET_ADDRSTRLEN);
+            if(DEBUG) printf("Locking Client to %s \n",char_ip);
             
             pthread_mutex_lock(&recv_lock);
             recv_buff.push_back(recv_msg);
@@ -574,7 +580,7 @@ void * recv_thread(void *arg)
 
 void reset_head(struct _MYTCP_Header *header)
 {
-    if(DEBUG) printf("Reset header called.\n");
+    //if(DEBUG) printf("Reset header called.\n");
     header->tcp_hdr.source = 0;
     header->tcp_hdr.dest = 0;
     header->tcp_hdr.seq = 0;
@@ -596,7 +602,7 @@ void reset_head(struct _MYTCP_Header *header)
 
 bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_their_seq)
 {
-    if(DEBUG) printf("Established called.\n");
+    
     //make our message
     tcp_buff send_msg;
     reset_head(&send_msg.header);
@@ -606,6 +612,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
     //setup acks 
     if(!recv_buff.empty())
     {
+
         //get message
         tcp_buff recv_msg;
         pthread_mutex_lock(&recv_lock);
@@ -613,9 +620,15 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
         recv_buff.pop_front();
         pthread_mutex_unlock(&recv_lock);
         
+        if(DEBUG) printf("Recived ack:%u ack_seq:%u seq:%u data_len:%u \n",
+        recv_msg.header.tcp_hdr.ack, 
+        recv_msg.header.tcp_hdr.ack_seq, 
+        recv_msg.header.tcp_hdr.seq, recv_msg.header.data_len);
+        
         //check to see if its fin
         if (recv_msg.header.tcp_hdr.fin == 1)
         {
+            if(DEBUG) printf("Received Fin.\n");
             no_fin == false;
         }
         
@@ -626,6 +639,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
             //@TODO if we want to implement var window need to check more acks
             if(recv_msg.header.tcp_hdr.ack_seq == (next_our_seq))
             {
+                if(DEBUG) printf("Marking message as ack.\n");
                 //mark our message as acknowlaged
                 //@TODO take out of timeout queue
                 msgs_out--;
@@ -640,9 +654,11 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
             //get data
             if(recv_msg.header.data_len > 0)
             {
+                if(DEBUG) printf("Message has data with it.\n");
                 //if this is the next packet in order
                 if(their_seq == next_their_seq )
                 {
+                    if(DEBUG) printf("Is exspected message.\n");
                     //push message onto data queue
                     pthread_mutex_lock(&data_lock);
                     data_buff.push_back(recv_msg);
@@ -665,6 +681,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
             }
             else
             {
+                if(DEBUG) printf("Message had no data.\n");
                 //set sequence number fo no data
                 send_msg.header.tcp_hdr.ack_seq = their_seq +1;
             }
@@ -680,7 +697,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
     //send only if we dont have messages out
     if(!send_buff.empty() && (msgs_out < W))
     {
-    
+        
         //get data to send
         tcp_buff temp_msg;
         pthread_mutex_lock(&send_lock);
@@ -703,10 +720,17 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
         
         //send a message
         sending_data = true;
+        
+        if(DEBUG) printf("Sending data of size %u bytes.\n",send_msg.header.data_len);
     }
     
-    if(send_msg.header.tcp_hdr.ack == 0 && sending_data)
+    if(send_msg.header.tcp_hdr.ack == 1 || sending_data)
     {
+        if(DEBUG) printf("Sending ack:%u ack_seq:%u seq:%u data_len:%u \n",
+        send_msg.header.tcp_hdr.ack, 
+        send_msg.header.tcp_hdr.ack_seq, 
+        send_msg.header.tcp_hdr.seq, send_msg.header.data_len);
+        
         //send msg
         net.mysendto(&send_msg, sizeof(send_msg), 0, (sockaddr*)&addr, sizeof(addr));
     }

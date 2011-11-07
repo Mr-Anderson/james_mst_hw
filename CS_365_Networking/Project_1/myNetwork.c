@@ -32,7 +32,7 @@ void myNetwork::init(int port)
 	
 	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 	bind(sockfd, (SA *) &servaddr, sizeof(servaddr));
-    if(DEBUG) printf("NET: Server started on port %u \n", port);
+    //if(DEBUG) printf("NET: Server started on port %u \n", port);
 }
 
 void myNetwork::init(int port, long unsigned int ip)
@@ -43,7 +43,7 @@ void myNetwork::init(int port, long unsigned int ip)
     servaddr.sin_addr.s_addr = ip;
 	
 	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
-    if(DEBUG) printf("NET: Client started\n");
+    //if(DEBUG) printf("NET: Client started\n");
 }
 
 void myNetwork::mysendto(void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t addrLength)
@@ -56,10 +56,10 @@ void myNetwork::mysendto(void *buffer, size_t bufferLength, int flag, sockaddr *
 
 int myNetwork::myrecvfrom(void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t * addrLength)
 {
-    if(DEBUG) printf("NET: Receiver started\n");
+    //if(DEBUG) printf("NET: Receiver started\n");
     char char_ip[INET_ADDRSTRLEN];
     inet_ntop(AF_INET, &((sockaddr_in *) addr)->sin_addr.s_addr, char_ip, INET_ADDRSTRLEN);
-    if(DEBUG) printf("NET: Receiving from %s on port %u\n", char_ip, ntohs(((sockaddr_in *) addr)->sin_port));
+    //if(DEBUG) printf("NET: Receiving from %s on port %u\n", char_ip, ntohs(((sockaddr_in *) addr)->sin_port));
 	
 	int n = recvfrom(sockfd, buffer, bufferLength, flag, addr, addrLength);
     

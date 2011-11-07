@@ -45,9 +45,11 @@ int main(int argc, char **argv)
         tcp_client_init(ip.s_addr, port);
         while (!feof(in_fp)) 
         {
+            if(DEBUG) printf("reading file\n");
             //read in file line
             n = fread(sendline, 1, MAXLINE ,in_fp);
-           
+
+            if(DEBUG) printf("calling tcp send\n");
             tcp_send(sendline, n);
 
             n = tcp_recv(recvline, MAXLINE);
@@ -55,6 +57,7 @@ int main(int argc, char **argv)
             fwrite(recvline ,1, n , out_fp);
         }
 
+        if(DEBUG) printf("closing file\n");
         fclose (in_fp);
         fclose (out_fp);
     }

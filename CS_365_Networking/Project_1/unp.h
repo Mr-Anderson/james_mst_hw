@@ -21,7 +21,7 @@
 
 #define DEBUG true
 
-#define MAXLINE          4096
+#define MAXLINE          1024
 /* max text line length */
 
 #define SERV_PORT        9877   
@@ -34,7 +34,7 @@
 
 #define CLI_TIME_WAIT_TIME  30 //time to wait on final ack
 
-#define CLIENT_ISN      0     //client inital sequence number
+#define CLIENT_ISN      100     //client inital sequence number
 #define SERVER_ISN      1000  //server intial sequence number
      
      
