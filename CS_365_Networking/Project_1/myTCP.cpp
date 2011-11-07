@@ -116,11 +116,6 @@ void tcp_server_init(int port_number)
 	}
     if(DEBUG) printf("Started Server Threads\n");
     
-    //pthread_join(server_pthread, NULL);
-    //pthread_join(timeout_pthread, NULL);    
-    //pthread_join(receiver_pthread, NULL);
-    if(DEBUG) printf("Joined Server Threads\n");
-    
 }
 
 void tcp_client_init(long unsigned int ip_address, int port_number)
@@ -150,11 +145,6 @@ void tcp_client_init(long unsigned int ip_address, int port_number)
 		cout << "ERROR" << endl;
 	}
     if(DEBUG) printf("Started Client Threads\n");
-    
-    //pthread_join(client_pthread, NULL);
-    //pthread_join(timeout_pthread, NULL);
-    //pthread_join(receiver_pthread, NULL);
-    if(DEBUG) printf("Joined Client Threads\n");
       
 }
 
@@ -280,8 +270,7 @@ void * cli_thread(void *arg)
                     srv_seq = recv_msg.header.tcp_hdr.seq; 
                     
                     //increment sequnece numbers
-                    //cli_seq = next_cli_seq;
-                    //next_cli_seq += 1;
+                    cli_seq = next_cli_seq;
                     
                     //setup header
                     header.tcp_hdr.ack = 1;
