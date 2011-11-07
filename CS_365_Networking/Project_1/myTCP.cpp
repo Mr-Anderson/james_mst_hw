@@ -163,20 +163,15 @@ void tcp_client_close()
 {
     if(DEBUG) printf("Client Close Called\n");
     init_close = true;
-}
+    while(client_state != CLI_CLOSED)
+    {
+        continue;
+    }
 
-void tcp_client_restart()
-{
-    if(DEBUG) printf("Client Reset Called\n");
-    if (init_close == true)
-    {
-        init_close = false;
-    }
-    else
-    {
-        printf("no your stupid you need to call tcp_client_close first \n");
-        if(DEBUG) printf("yup still stupid\n");
-    }
+    pthread_kill(client_pthread, SIGKILL);
+    pthread_kill(timeout_pthread, SIGKILL);
+    pthread_kill(receiver_pthread, SIGKILL);
+    
 }
 
 void tcp_send(const void *buffer, size_t bufferLength)
@@ -311,6 +306,7 @@ void * cli_thread(void *arg)
             if (init_close)
             {
             
+                if(DEBUG) printf("Sending FIN \n");
                 //setup header for intial fin
                 _MYTCP_Header header;		
                 reset_head(&header);
@@ -347,6 +343,8 @@ void * cli_thread(void *arg)
                 if( (recv_msg.header.tcp_hdr.ack == 1) 
                     && (recv_msg.header.tcp_hdr.ack_seq == (next_cli_seq)))
                 {     
+                    if(DEBUG) printf("Received ACK for FIN \n");
+                
                     //set server sequence
                     srv_seq = recv_msg.header.tcp_hdr.seq;
                     next_srv_seq = srv_seq + 1;
@@ -397,8 +395,9 @@ void * cli_thread(void *arg)
 		}
 		else if(client_state == CLI_TIME_WAIT)
 		{
+            if(DEBUG) printf("Client Time Wait\n");
             sleep(CLI_TIME_WAIT_TIME);
-            client_state = CLI_TIME_WAIT;
+            client_state = CLI_CLOSED;
 		}
 	}
 }        
@@ -433,7 +432,9 @@ void * srv_thread(void *arg)
                 {
                     //create header
                     _MYTCP_Header header;
-                    reset_head(&header); 
+                    reset_head(&header);
+                    srv_seq = SERVER_ISN;
+                    next_srv_seq = SERVER_ISN +1;                    
                     
                     
                      
@@ -444,8 +445,10 @@ void * srv_thread(void *arg)
                     //setup ack message header
                     header.tcp_hdr.syn = 1;
                     header.tcp_hdr.ack = 1;
-                    header.tcp_hdr.seq = SERVER_ISN;
-                    header.tcp_hdr.ack_seq = cli_seq + 1;
+                    header.tcp_hdr.seq = srv_seq;
+                    header.tcp_hdr.ack_seq = next_cli_seq ;
+                    
+                    
                     
                     //send ack message
                     if(DEBUG) printf("Sending ACK to first SYN \n");
@@ -483,16 +486,40 @@ void * srv_thread(void *arg)
 		{
             if(!established(&srv_seq, &next_srv_seq, &cli_seq, &next_cli_seq))
             {
+                
                 server_state = SRV_CLOSE_WAIT; 
             }
 		}
 		else if(server_state == SRV_CLOSE_WAIT)
 		{
-            //TODO tell aplication that the client is shuting down
-            printf("recived fin bit \n");
+            if(DEBUG) printf("Received FIN sending ACK \n");
+            
             
             //setup header for intial syn
             _MYTCP_Header header;		
+            reset_head(&header);
+            
+            //icrement sequence
+            srv_seq = next_srv_seq;
+            next_srv_seq++;
+            
+            //setup header
+            header.tcp_hdr.seq = srv_seq;
+            header.tcp_hdr.ack = 1;
+            
+            //clients sequence number 
+            cli_seq = next_cli_seq; 
+            next_cli_seq++;
+            
+            header.tcp_hdr.ack_seq = cli_seq;
+            
+            //send msg
+            net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
+            
+            //TODO tell aplication that the client is shuting dow           
+            
+            if(DEBUG) printf("Sending FIN \n");
+            //setup header for intial syn		
             reset_head(&header);
             
             //icrement sequence
@@ -521,7 +548,8 @@ void * srv_thread(void *arg)
                 pthread_mutex_unlock(&recv_lock);
                 
                 if( recv_msg.header.tcp_hdr.ack == 1)
-                {                    
+                {             
+                    if(DEBUG) printf("Received last ACK closing \n");
                     //increment stat
                     server_state = SRV_CLOSED;
                 }
@@ -629,7 +657,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
         if (recv_msg.header.tcp_hdr.fin == 1)
         {
             if(DEBUG) printf("Received Fin.\n");
-            no_fin == false;
+            no_fin = false;
         }
         
         //see if contains is a message
@@ -637,7 +665,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
         {
             //see if its our ack 
             //@TODO if we want to implement var window need to check more acks
-            if(recv_msg.header.tcp_hdr.ack_seq == (next_our_seq))
+            if(recv_msg.header.tcp_hdr.ack_seq == (*next_our_seq))
             {
                 if(DEBUG) printf("Marking message as ack.\n");
                 //mark our message as acknowlaged
@@ -646,17 +674,19 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
             }
 
             //set server sequence
-            their_seq = recv_msg.header.tcp_hdr.seq;
+            *their_seq = recv_msg.header.tcp_hdr.seq;
             
-            //setup header 
-            send_msg.header.tcp_hdr.ack = 1;
+
             
             //get data
             if(recv_msg.header.data_len > 0)
             {
+                //setup header 
+                send_msg.header.tcp_hdr.ack = 1;
+            
                 if(DEBUG) printf("Message has data with it.\n");
                 //if this is the next packet in order
-                if(their_seq == next_their_seq )
+                if(*their_seq == *next_their_seq )
                 {
                     if(DEBUG) printf("Is exspected message.\n");
                     //push message onto data queue
@@ -666,8 +696,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
                     
                     //set sequence number
                     send_msg.header.tcp_hdr.ack_seq = 
-                        their_seq + recv_msg.header.data_len; 
-                        
+                        *their_seq + recv_msg.header.data_len; 
                         
                 }
                 else
@@ -675,7 +704,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
                     //TODO for non pipelined add to queue of 
                     //packets we are not ready for 
                     printf("if we are not pipelined you should not be here \n");
-                    send_msg.header.tcp_hdr.ack_seq = next_their_seq;
+                    send_msg.header.tcp_hdr.ack_seq = *next_their_seq;
                 }
                 
             }
@@ -683,11 +712,11 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
             {
                 if(DEBUG) printf("Message had no data.\n");
                 //set sequence number fo no data
-                send_msg.header.tcp_hdr.ack_seq = their_seq +1;
+                send_msg.header.tcp_hdr.ack_seq = *their_seq +1;
             }
             
             //caluclate next exspected sequence number
-            next_their_seq = send_msg.header.tcp_hdr.ack_seq;
+            *next_their_seq = send_msg.header.tcp_hdr.ack_seq;
 
         }
 
@@ -705,11 +734,6 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
         send_buff.pop_front();
         pthread_mutex_unlock(&send_lock);
         
-        our_seq = next_our_seq;
-        next_our_seq += temp_msg.header.data_len; 
-        
-        //setup header 
-        send_msg.header.tcp_hdr.seq = our_seq;
         
         //add data
         memcpy(send_msg.data, temp_msg.data, temp_msg.header.data_len);
@@ -724,8 +748,23 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
         if(DEBUG) printf("Sending data of size %u bytes.\n",send_msg.header.data_len);
     }
     
-    if(send_msg.header.tcp_hdr.ack == 1 || sending_data)
+    if(!(send_msg.header.tcp_hdr.ack == 0 && send_msg.header.data_len == 0))
     {
+        *our_seq = *next_our_seq;
+        
+        if(send_msg.header.data_len == 0)
+        {
+            *next_our_seq += 1; 
+        }
+        else
+        {
+            *next_our_seq += send_msg.header.data_len; 
+        }
+        
+        //setup header 
+        send_msg.header.tcp_hdr.seq = *our_seq;
+    
+    
         if(DEBUG) printf("Sending ack:%u ack_seq:%u seq:%u data_len:%u \n",
         send_msg.header.tcp_hdr.ack, 
         send_msg.header.tcp_hdr.ack_seq, 

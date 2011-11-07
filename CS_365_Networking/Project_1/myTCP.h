@@ -55,4 +55,7 @@ void reset_head(struct _MYTCP_Header *header);
 //established loop
 bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_their_seq );
 
+//close tcp
+void tcp_client_close();
+
 #endif

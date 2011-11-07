@@ -18,6 +18,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netinet/tcp.h> 
+#include <signal.h> 
 
 #define DEBUG true
 
@@ -35,7 +36,7 @@
 #define CLI_TIME_WAIT_TIME  30 //time to wait on final ack
 
 #define CLIENT_ISN      100     //client inital sequence number
-#define SERVER_ISN      1000  //server intial sequence number
+#define SERVER_ISN      10000  //server intial sequence number
      
      
 void     dg_cli(FILE *, FILE *, int, const SA *, socklen_t);

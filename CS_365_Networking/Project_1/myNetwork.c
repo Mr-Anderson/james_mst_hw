@@ -48,6 +48,7 @@ void myNetwork::init(int port, long unsigned int ip)
 
 void myNetwork::mysendto(void *buffer, size_t bufferLength, int flag, sockaddr *addr, socklen_t addrLength)
 {
+    //sleep(5);
     sendto(sockfd, buffer, bufferLength, flag, addr, addrLength);
     char char_ip[INET_ADDRSTRLEN];
     inet_ntop(AF_INET, &((sockaddr_in *) addr)->sin_addr.s_addr, char_ip, INET_ADDRSTRLEN);
@@ -64,7 +65,7 @@ int myNetwork::myrecvfrom(void *buffer, size_t bufferLength, int flag, sockaddr 
 	int n = recvfrom(sockfd, buffer, bufferLength, flag, addr, addrLength);
     
     inet_ntop(AF_INET, &((sockaddr_in *) addr)->sin_addr.s_addr, char_ip, INET_ADDRSTRLEN);
-    if(DEBUG) printf("NET: Received %u bytes from %s on port %u\n", n, char_ip, ntohs(((sockaddr_in *) addr)->sin_port));
+    //if(DEBUG) printf("NET: Received %u bytes from %s on port %u\n", n, char_ip, ntohs(((sockaddr_in *) addr)->sin_port));
     
     return n;
 }
