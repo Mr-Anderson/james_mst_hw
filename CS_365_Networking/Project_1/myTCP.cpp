@@ -25,9 +25,11 @@ size_t buff_len = WINDOW_SIZE +sizeof(struct _MYTCP_Header);
 
 
 struct timeout
-{   
+{
+    unsigned int ack_seq;
+
     //time of messages timeout
-    clock_t endtime;
+    time_t endtime;
     
     //message that needs to be resent
     tcp_buff msg;
@@ -566,10 +568,11 @@ void * timeout_thread(void *arg)
         for(int i = 0; i < timeout_buff.size(); i++ )
         {
             //remove message from timeout queue
-            if(timeout_buff[i].endtime >= clock())
+            if(timeout_buff[i].endtime <= time(NULL))
             {
-                if(DEBUG) printf("Seq %u timedout.\n",timeout_buff[i].msg.header.tcp_hdr.seq);
+                if(DEBUG) printf("Seq %u timed out. Number of timeouts being tracked is %u \n",timeout_buff[i].msg.header.tcp_hdr.seq,timeout_buff.size());
                 tcp_buff temp;
+                
                 
                 temp = timeout_buff[i].msg;
                 
@@ -584,6 +587,7 @@ void * timeout_thread(void *arg)
             }
         }
         pthread_mutex_unlock(&timeout_lock);
+        usleep(10000);
     }
 }  
 
@@ -599,7 +603,7 @@ void * recv_thread(void *arg)
         len = sizeof(addr);
         
         net.myrecvfrom(&recv_msg, sizeof(recv_msg), 0, (sockaddr*)&addr, &len);
-        if(DEBUG) printf("Received something!\n");
+        //if(DEBUG) printf("Received something!\n");
         
         if(server && (server_state == SRV_LISTEN))
         {
@@ -620,27 +624,29 @@ void * recv_thread(void *arg)
             if((server && (client_ip_address == addr.sin_addr.s_addr)) 
                 || (!server && (server_ip_address == addr.sin_addr.s_addr)))
             {
-                //check if message is an ack
-                if(recv_msg.header.tcp_hdr.ack == 1)
-                {
-                    pthread_mutex_lock(&timeout_lock);
-                    //find message it is an ack to 
-                    for(int i = 0; i < timeout_buff.size(); i++ )
-                    {
-                        //remove message from timeout queue
-                        if(timeout_buff[i].msg.header.tcp_hdr.seq == recv_msg.header.tcp_hdr.ack_seq)
-                        {
-                            timeout_buff.erase(timeout_buff.begin() +i);
-                        }
-                    }
-                    pthread_mutex_unlock(&timeout_lock);
-                }
+
             
                 //store message
                 pthread_mutex_lock(&recv_lock);
                 recv_buff.push_back(recv_msg);
                 pthread_mutex_unlock(&recv_lock);
             }
+        }
+        //check if message is an ack
+        if(recv_msg.header.tcp_hdr.ack == 1)
+        {
+            pthread_mutex_lock(&timeout_lock);
+            //find message it is an ack to 
+            for(int i = 0; i < timeout_buff.size(); i++ )
+            {
+                //remove message from timeout queue
+                if(timeout_buff[i].ack_seq == recv_msg.header.tcp_hdr.ack_seq)
+                {
+                    if(DEBUG) printf("Erased Timout size:%u \n",timeout_buff.size());
+                    timeout_buff.erase(timeout_buff.begin() +i);
+                }
+            }
+            pthread_mutex_unlock(&timeout_lock);
         }
     }
 }
@@ -819,16 +825,28 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
 
 void timeout_send(void* send_msg, size_t bufferLength)
 {
-    timeout tout;
-    
-    //add msg and endtime to timout
-    tout.endtime = clock() + ((TIMEOUT/1000) * CLOCKS_PER_SEC);
-    tout.msg = *(tcp_buff*)send_msg;
-    
-    //push timeout struct onto timout list
-    pthread_mutex_lock(&timeout_lock);
-    timeout_buff.push_back(tout);
-    pthread_mutex_unlock(&timeout_lock);
+    if( ((tcp_buff*)send_msg)->header.data_len > 0 )
+    {
+        timeout tout;
+        
+        //add msg and endtime to timout
+        tout.endtime =( time(NULL) + TIMEOUT );
+        tout.msg = *(tcp_buff*)send_msg;
+        if(((tcp_buff*)send_msg)->header.data_len == 0)
+        {
+            tout.ack_seq = ((tcp_buff*)send_msg)->header.tcp_hdr.seq + 1;
+        }
+        else
+        {
+            tout.ack_seq = ((tcp_buff*)send_msg)->header.tcp_hdr.seq + ((tcp_buff*)send_msg)->header.data_len;
+        }
+        
+        
+        //push timeout struct onto timout list
+        pthread_mutex_lock(&timeout_lock);
+        timeout_buff.push_back(tout);
+        pthread_mutex_unlock(&timeout_lock);
+    }
     
     //send message
     net.mysendto(send_msg, bufferLength, 0, (sockaddr*)&addr, sizeof(addr));
