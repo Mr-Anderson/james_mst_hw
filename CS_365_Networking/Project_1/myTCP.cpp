@@ -398,6 +398,7 @@ void * cli_thread(void *arg)
             sleep(CLI_TIME_WAIT_TIME);
             client_state = CLI_CLOSED;
 		}
+        usleep(10000);
 	}
 }        
 
@@ -554,6 +555,7 @@ void * srv_thread(void *arg)
                 }
             }
 		}
+        usleep(10000);
 	}    
 } 
 
@@ -576,14 +578,14 @@ void * timeout_thread(void *arg)
                 
                 temp = timeout_buff[i].msg;
                 
-                //unlock and resend message
-                pthread_mutex_unlock(&timeout_lock);
-                timeout_send( &temp, sizeof(temp));
-                pthread_mutex_lock(&timeout_lock);
-                
                 //erase old timout
                 timeout_buff.erase(timeout_buff.begin() +i);
                 
+                //unlock and resend message
+                pthread_mutex_unlock(&timeout_lock);
+                //timeout_send( &temp, sizeof(temp));
+                pthread_mutex_lock(&timeout_lock);
+                   
             }
         }
         pthread_mutex_unlock(&timeout_lock);
