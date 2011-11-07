@@ -4,6 +4,6 @@
 # Assignment: 2 run script
 
 make
-./client 127.0.0.1 9877 testfile.jpg recv.jpg
+./client 131.151.89.121  9877 testfile.jpg recv.jpg
 
 #valgrind --leak-check=yes 

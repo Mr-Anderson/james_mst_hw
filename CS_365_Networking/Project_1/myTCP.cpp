@@ -29,7 +29,7 @@ struct timeout
     unsigned int ack_seq;
 
     //time of messages timeout
-    time_t endtime;
+    clock_t endtime;
     
     //message that needs to be resent
     tcp_buff msg;
@@ -568,7 +568,7 @@ void * timeout_thread(void *arg)
         for(int i = 0; i < timeout_buff.size(); i++ )
         {
             //remove message from timeout queue
-            if(timeout_buff[i].endtime <= time(NULL))
+            if(timeout_buff[i].endtime <= clock())
             {
                 if(DEBUG) printf("Seq %u timed out. Number of timeouts being tracked is %u \n",timeout_buff[i].msg.header.tcp_hdr.seq,timeout_buff.size());
                 tcp_buff temp;
@@ -825,12 +825,12 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
 
 void timeout_send(void* send_msg, size_t bufferLength)
 {
-    if( ((tcp_buff*)send_msg)->header.data_len > 0 )
+    if( ((tcp_buff*)send_msg)->header.tcp_hdr.syn == 1 || ((tcp_buff*)send_msg)->header.tcp_hdr.fin == 1 || ((tcp_buff*)send_msg)->header.data_len > 0 )
     {
         timeout tout;
         
         //add msg and endtime to timout
-        tout.endtime =( time(NULL) + TIMEOUT );
+        tout.endtime = clock()  + ((TIMEOUT/1000) * CLOCKS_PER_SEC  );
         tout.msg = *(tcp_buff*)send_msg;
         if(((tcp_buff*)send_msg)->header.data_len == 0)
         {
