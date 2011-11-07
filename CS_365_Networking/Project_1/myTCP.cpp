@@ -757,7 +757,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
             {
                 if(DEBUG) printf("Message had no data.\n");
                 //set sequence number fo no data
-                send_msg.header.tcp_hdr.ack_seq = *their_seq +1;
+                send_msg.header.tcp_hdr.ack_seq = *their_seq ;
             }
             
             //caluclate next exspected sequence number
