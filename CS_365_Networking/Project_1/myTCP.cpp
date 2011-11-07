@@ -267,7 +267,7 @@ void * cli_thread(void *arg)
                 recv_buff.pop_front();
                 pthread_mutex_unlock(&recv_lock);
                 
-                //see if contains our ack
+                //see if contains SYN+ACK
                 if((recv_msg.header.tcp_hdr.syn == 1) 
                     && (recv_msg.header.tcp_hdr.ack == 1) 
                     && (recv_msg.header.tcp_hdr.ack_seq == (next_cli_seq)))
@@ -280,8 +280,8 @@ void * cli_thread(void *arg)
                     srv_seq = recv_msg.header.tcp_hdr.seq; 
                     
                     //increment sequnece numbers
-                    cli_seq = next_cli_seq;
-                    next_cli_seq += 1;
+                    //cli_seq = next_cli_seq;
+                    //next_cli_seq += 1;
                     
                     //setup header
                     header.tcp_hdr.ack = 1;
@@ -376,8 +376,8 @@ void * cli_thread(void *arg)
                     srv_seq = recv_msg.header.tcp_hdr.seq; 
                     
                     //increment sequnece numbers
-                    cli_seq = next_cli_seq;
-                    next_cli_seq += 1;
+                    //cli_seq = next_cli_seq;
+                    //next_cli_seq += 1;
                     
                     //setup header
                     header.tcp_hdr.ack = 1;
@@ -474,8 +474,8 @@ void * srv_thread(void *arg)
                 {
                      
                     //clients sequence number 
-                    cli_seq = recv_msg.header.tcp_hdr.seq; 
-                    next_cli_seq = cli_seq + 1;
+                    //cli_seq = recv_msg.header.tcp_hdr.seq; 
+                    //next_cli_seq = cli_seq + 1;
                     
                     //increment stat
                     server_state = SRV_ESTABLISHED;
@@ -500,8 +500,8 @@ void * srv_thread(void *arg)
             reset_head(&header);
             
             //icrement sequence
-            srv_seq = next_srv_seq;
-            next_srv_seq++;
+            //srv_seq = next_srv_seq;
+            //next_srv_seq++;
             
             //setup header
             header.tcp_hdr.seq = srv_seq;
@@ -583,7 +583,7 @@ void * timeout_thread(void *arg)
                 
                 //unlock and resend message
                 pthread_mutex_unlock(&timeout_lock);
-                //timeout_send( &temp, sizeof(temp));
+                timeout_send( &temp, sizeof(temp));
                 pthread_mutex_lock(&timeout_lock);
                    
             }
@@ -802,7 +802,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
         
         if(send_msg.header.data_len == 0)
         {
-            *next_our_seq += 1; 
+            //*next_our_seq += 1; 
         }
         else
         {
