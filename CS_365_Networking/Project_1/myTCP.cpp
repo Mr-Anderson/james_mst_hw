@@ -22,18 +22,15 @@ bool server;
 
 size_t buff_len = WINDOW_SIZE +sizeof(struct _MYTCP_Header);
 
-struct tcp_buff
-{
-    struct _MYTCP_Header header;
-    char data[WINDOW_SIZE];
-};
+
 
 struct timeout
-{
-    //sequence number of packet sent
-    int seq_num;
-    //time it was sent on
-    int sent;
+{   
+    //time of messages timeout
+    clock_t endtime;
+    
+    //message that needs to be resent
+    tcp_buff msg;
 };
 
 enum client_state_t
@@ -63,7 +60,7 @@ server_state_t server_state;
 deque <tcp_buff> send_buff;
 deque <tcp_buff> recv_buff;
 deque <tcp_buff> data_buff;
-deque <timeout> timeout_buff;
+vector <timeout> timeout_buff;
 
 pthread_mutex_t send_lock;
 pthread_mutex_t recv_lock;
@@ -247,7 +244,7 @@ void * cli_thread(void *arg)
                 header.tcp_hdr.syn = 1;
                 
                 //send msg
-                net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
+                timeout_send(&header, sizeof(header));
                 if(DEBUG) printf("SYN Sent\n");
                 //increment state
                 client_state = CLI_SYN_SENT;
@@ -290,7 +287,7 @@ void * cli_thread(void *arg)
                     header.tcp_hdr.seq = cli_seq;
                     
                     //send msg
-                    net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
+                    timeout_send(&header, sizeof(header));
                     
                     //icrement state
                     client_state = CLI_ESTABLISHED;
@@ -320,7 +317,7 @@ void * cli_thread(void *arg)
                 header.tcp_hdr.fin = 1;
                 
                 //send msg
-                net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
+                timeout_send(&header, sizeof(header));
                 
                 //increment state
                 client_state = CLI_FIN_WAIT_1;
@@ -386,7 +383,7 @@ void * cli_thread(void *arg)
                     header.tcp_hdr.seq = cli_seq;
                     
                     //send msg
-                    net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
+                    timeout_send(&header, sizeof(header));
                     
                     //icrement state
                     client_state = CLI_TIME_WAIT;
@@ -452,7 +449,7 @@ void * srv_thread(void *arg)
                     
                     //send ack message
                     if(DEBUG) printf("Sending ACK to first SYN \n");
-                    net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
+                    timeout_send(&header, sizeof(header));
                     
                     //increment stat
                     server_state = SRV_SYN_RCVD;
@@ -514,7 +511,7 @@ void * srv_thread(void *arg)
             header.tcp_hdr.ack_seq = cli_seq;
             
             //send msg
-            net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
+            timeout_send(&header, sizeof(header));
             
             //TODO tell aplication that the client is shuting dow           
             
@@ -531,7 +528,7 @@ void * srv_thread(void *arg)
             header.tcp_hdr.fin = 1;
             
             //send msg
-            net.mysendto(&header, sizeof(header), 0, (sockaddr*)&addr, sizeof(addr));
+            timeout_send(&header, sizeof(header));
             
             //increment state
             server_state = SRV_LAST_ACK;
@@ -562,6 +559,32 @@ void * srv_thread(void *arg)
 void * timeout_thread(void *arg)
 {
     if(DEBUG) printf("Timeout thread started.\n");
+    for(;;)
+    {
+        pthread_mutex_lock(&timeout_lock);
+        //iterate trough timeouts
+        for(int i = 0; i < timeout_buff.size(); i++ )
+        {
+            //remove message from timeout queue
+            if(timeout_buff[i].endtime >= clock())
+            {
+                if(DEBUG) printf("Seq %u timedout.\n",timeout_buff[i].msg.header.tcp_hdr.seq);
+                tcp_buff temp;
+                
+                temp = timeout_buff[i].msg;
+                
+                //unlock and resend message
+                pthread_mutex_unlock(&timeout_lock);
+                timeout_send( &temp, sizeof(temp));
+                pthread_mutex_lock(&timeout_lock);
+                
+                //erase old timout
+                timeout_buff.erase(timeout_buff.begin() +i);
+                
+            }
+        }
+        pthread_mutex_unlock(&timeout_lock);
+    }
 }  
 
 //constantly calls network recive and writes to deque <tcp_buff> rcv_buff
@@ -569,7 +592,7 @@ void * recv_thread(void *arg)
 {
     if(DEBUG) printf("Receive thread started.\n");
     bool initial_conect = true;
-    while(1)
+    for(;;)
     {
         tcp_buff recv_msg;
         
@@ -597,6 +620,22 @@ void * recv_thread(void *arg)
             if((server && (client_ip_address == addr.sin_addr.s_addr)) 
                 || (!server && (server_ip_address == addr.sin_addr.s_addr)))
             {
+                //check if message is an ack
+                if(recv_msg.header.tcp_hdr.ack == 1)
+                {
+                    pthread_mutex_lock(&timeout_lock);
+                    //find message it is an ack to 
+                    for(int i = 0; i < timeout_buff.size(); i++ )
+                    {
+                        //remove message from timeout queue
+                        if(timeout_buff[i].msg.header.tcp_hdr.seq == recv_msg.header.tcp_hdr.ack_seq)
+                        {
+                            timeout_buff.erase(timeout_buff.begin() +i);
+                        }
+                    }
+                    pthread_mutex_unlock(&timeout_lock);
+                }
+            
                 //store message
                 pthread_mutex_lock(&recv_lock);
                 recv_buff.push_back(recv_msg);
@@ -670,6 +709,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
                 if(DEBUG) printf("Marking message as ack.\n");
                 //mark our message as acknowlaged
                 //@TODO take out of timeout queue
+                
                 msgs_out--;
             }
 
@@ -771,10 +811,27 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
         send_msg.header.tcp_hdr.seq, send_msg.header.data_len);
         
         //send msg
-        net.mysendto(&send_msg, sizeof(send_msg), 0, (sockaddr*)&addr, sizeof(addr));
+       timeout_send(&send_msg, sizeof(send_msg));
     }
     
     return no_fin;
+}
+
+void timeout_send(void* send_msg, size_t bufferLength)
+{
+    timeout tout;
+    
+    //add msg and endtime to timout
+    tout.endtime = clock() + ((TIMEOUT/1000) * CLOCKS_PER_SEC);
+    tout.msg = *(tcp_buff*)send_msg;
+    
+    //push timeout struct onto timout list
+    pthread_mutex_lock(&timeout_lock);
+    timeout_buff.push_back(tout);
+    pthread_mutex_unlock(&timeout_lock);
+    
+    //send message
+    net.mysendto(send_msg, bufferLength, 0, (sockaddr*)&addr, sizeof(addr));
 }
 
 

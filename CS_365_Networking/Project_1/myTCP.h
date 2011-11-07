@@ -12,6 +12,7 @@
 #include	"myNetwork.h"
 #include    <pthread.h>
 #include    <deque>
+#include    <vector>
 
 using namespace std;
 
@@ -23,7 +24,11 @@ typedef struct _MYTCP_Header
     u_short data_len; //  the actual number of bytes in the data field. 
 } __attribute__ ((packed)) MYTCPHeader;
 
-
+struct tcp_buff
+{
+    struct _MYTCP_Header header;
+    char data[WINDOW_SIZE];
+};
 
 //client
 void tcp_server_init(int port_number);
@@ -57,5 +62,8 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
 
 //close tcp
 void tcp_client_close();
+
+//sender function
+void timeout_send(void* send_msg, size_t bufferLength);
 
 #endif
