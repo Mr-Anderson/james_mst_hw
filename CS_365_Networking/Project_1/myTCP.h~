@@ -64,6 +64,6 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
 void tcp_client_close();
 
 //sender function
-void timeout_send(void* send_msg, size_t bufferLength, bool retransmission = false);
+void timeout_send(void* send_msg, size_t bufferLength);
 
 #endif

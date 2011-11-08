@@ -58,7 +58,7 @@ void myNetwork::mysendto(void *buffer, size_t bufferLength, int flag, sockaddr *
     }
     else
     {
-        //if(DEBUG) printf("NET: Send of %u bytes to %s on port %u blocked\n", bufferLength, char_ip, ntohs(((sockaddr_in *) addr)->sin_port));
+        if(DEBUG) printf("NET: Send of %u bytes to %s on port %u blocked\n", bufferLength, char_ip, ntohs(((sockaddr_in *) addr)->sin_port));
     }
 }
 

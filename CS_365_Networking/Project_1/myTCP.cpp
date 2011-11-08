@@ -282,6 +282,7 @@ void * cli_thread(void *arg)
                     
                     //icrement state
                     client_state = CLI_ESTABLISHED;
+                    
                 }
             }
 		}
@@ -496,7 +497,7 @@ void * srv_thread(void *arg)
             cli_seq = next_cli_seq; 
             next_cli_seq++;
             
-            header.tcp_hdr.ack_seq = cli_seq;
+            header.tcp_hdr.ack_seq = next_cli_seq;
             
             //send msg
             timeout_send(&header, sizeof(header));
@@ -556,7 +557,7 @@ void * timeout_thread(void *arg)
             //remove message from timeout queue
             if(timeout_buff[i].endtime <= clock())
             {
-                //if(DEBUG) printf("Seq %u timed out. Number of timeouts being tracked is %u \n",timeout_buff[i].msg.header.tcp_hdr.seq,timeout_buff.size());
+                if(DEBUG) printf("Seq %u timed out. Number of timeouts being tracked is %u \n",timeout_buff[i].msg.header.tcp_hdr.seq,timeout_buff.size());
                 tcp_buff temp;
                 
                 
@@ -567,7 +568,7 @@ void * timeout_thread(void *arg)
                 
                 //unlock and resend message
                 pthread_mutex_unlock(&timeout_lock);
-                //timeout_send( &temp, sizeof(temp));
+                timeout_send( &temp, sizeof(temp), true);
                 pthread_mutex_lock(&timeout_lock);
                    
             }
@@ -625,6 +626,7 @@ void * recv_thread(void *arg)
                 pthread_mutex_unlock(&recv_lock);
             }
         }
+        if(timeout_buff.size() > 2) 
         //check if message is an ack
         if(recv_msg.header.tcp_hdr.ack == 1)
         {
@@ -704,7 +706,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
                 //mark our message as acknowlaged
                 //@TODO take out of timeout queue
                 
-                msgs_out--;
+                //msgs_out--;
             }
 
             //set server sequence
@@ -737,8 +739,10 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
                 {
                     //TODO for non pipelined add to queue of 
                     //packets we are not ready for 
-                    //printf("if we are not pipelined you should not be here \n");
-                    send_msg.header.tcp_hdr.ack_seq = *next_their_seq;
+                    printf("if we are not pipelined you should not be here \n");
+                    //send_msg.header.tcp_hdr.ack_seq = *next_their_seq;
+
+                    send_msg.header.tcp_hdr.ack_seq = *their_seq + recv_msg.header.data_len;
                 }
                 
             }
@@ -758,7 +762,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
     
     //setup send data
     //send only if we dont have messages out
-    if(!send_buff.empty() && (msgs_out < W))
+    if(!send_buff.empty() && (timeout_buff.size() < W))
     {
         
         //get data to send
@@ -774,7 +778,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
         send_msg.header.data_len = temp_msg.header.data_len;
         
         //increment messages out
-        msgs_out++;
+        //msgs_out++;
         
         //send a message
         sending_data = true;
@@ -803,7 +807,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
     return no_fin;
 }
 
-void timeout_send(void* send_msg, size_t bufferLength)
+void timeout_send(void* send_msg, size_t bufferLength, bool retransmission = false)
 {
     if( ((tcp_buff*)send_msg)->header.tcp_hdr.syn == 1 || ((tcp_buff*)send_msg)->header.tcp_hdr.fin == 1 || ((tcp_buff*)send_msg)->header.data_len > 0 )
     {
@@ -812,15 +816,17 @@ void timeout_send(void* send_msg, size_t bufferLength)
         //add msg and endtime to timout
         tout.endtime = clock()  + ((TIMEOUT/1000) * CLOCKS_PER_SEC  );
         tout.msg = *(tcp_buff*)send_msg;
-        if(((tcp_buff*)send_msg)->header.data_len == 0)
+        if(!retransmission)
         {
-            tout.ack_seq = ((tcp_buff*)send_msg)->header.tcp_hdr.seq + 1;
+            if(((tcp_buff*)send_msg)->header.data_len == 0)
+            {
+                tout.ack_seq = ((tcp_buff*)send_msg)->header.tcp_hdr.seq + 1;
+            }
+            else
+            {
+                tout.ack_seq = ((tcp_buff*)send_msg)->header.tcp_hdr.seq + ((tcp_buff*)send_msg)->header.data_len;
+            }
         }
-        else
-        {
-            tout.ack_seq = ((tcp_buff*)send_msg)->header.tcp_hdr.seq + ((tcp_buff*)send_msg)->header.data_len;
-        }
-        
         
         //push timeout struct onto timout list
         pthread_mutex_lock(&timeout_lock);
