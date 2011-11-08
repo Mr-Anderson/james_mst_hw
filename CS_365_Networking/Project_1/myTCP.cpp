@@ -218,175 +218,189 @@ int tcp_recv(void *buffer , size_t bufferLength)
 // keeps track of the client state and iterates through tcp protocal
 void * cli_thread(void *arg)
 {
+    //set isns
+    srv_seq = CLIENT_ISN;
+    next_srv_seq = CLIENT_ISN +1;     
+    
     if(DEBUG) printf("Client Thread Started\n");
-	while(true) //put some condition here
+	for(;;) //put some condition here
 	{
-    	if(client_state == CLI_CLOSED)
-		{
-            if(DEBUG) printf("CLI_CLOSED\n");
-            if(!init_close)
-            {
-                //setup header for intial syn
-                _MYTCP_Header header;		
-                reset_head(&header);
-                cli_seq = CLIENT_ISN;
-                next_cli_seq = CLIENT_ISN +1;
+	    //set bit for incementing seq once on first syn and fin 
+	    bool init = false;
+	    
+	    //reset msg
+	    tcp_buff send_msg;
+	    reset_head(&send_msg.header);
+	     
+	    
+		if(client_state == CLI_CLOSED)
+	    {             
                 
-                //setup header
-                header.tcp_hdr.seq = cli_seq;
-                header.tcp_hdr.syn = 1;
+                if(DEBUG) printf("Sending Initial SYN\n");
                 
-                //send msg
-                timeout_send(&header, sizeof(header));
-
+                //setup initial syn 
+                send_msg.header.tcp_hdr.syn = 1;                
+                
+                //increment seq
+                init = true;
+                
                 //increment state
                 client_state = CLI_SYN_SENT;
-                
-                //make sure receive buffer is clear
-                recv_buff.clear();
-            }
 	    }
-		else if(client_state == CLI_SYN_SENT)
-		{
-		    //see if their is a new message
-            if(!recv_buff.empty())
+	    else if(!recv_buff.empty())
+        {
+            //get message
+            tcp_buff recv_msg;
+            pthread_mutex_lock(&recv_lock);
+            recv_msg = recv_buff.front();
+            recv_buff.pop_front();
+            pthread_mutex_unlock(&recv_lock);
+	        
+	        //see if we need to ack 
+	        if(recv_msg.header.data_len > 0 
+	           || recv_msg.header.tcp_hdr.fin == 1
+	           || recv_msg.header.tcp_hdr.syn == 1)
+	        {
+	            //ack data
+	            send_msg.header.tcp_hdr.ack = 1;
+	            
+	            //see if their is data 
+	            if(recv_msg.header.data_len > 0)
+	            {
+	                //see if its the next data in our seq
+	                if(recv_msg.header.tcp_hdr.seq == next_srv_seq)
+	                {
+	                    //add to data
+	                    pthread_mutex_lock(&data_lock);
+                        data_buff.push_back(recv_msg);
+                        pthread_mutex_unlock(&data_lock);
+                        
+                        //increment expected seq
+                        srv_seq = recv_msg.header.tcp_hdr.seq;
+                        next_srv_seq = srv_seq + recv_msg.header.data_len;
+	                }
+	                
+	                //set ack seq
+	                send_msg.header.tcp_hdr.ack_seq =
+	                    recv_msg.header.tcp_hdr.seq + recv_msg.header.data_len;
+	            } 
+	            else if(recv_msg.header.tcp_hdr.fin == 1)
+	            {
+	                if(client_state == CLI_FIN_WAIT_2)
+	                {
+                        //increment expected seq
+	                    srv_seq = recv_msg.header.tcp_hdr.seq;
+                        next_srv_seq = srv_seq + 1;
+                        
+	                    
+	                    //move to close wait
+	                    client_state = CLI_TIME_WAIT;
+	                }
+	                
+	                //set ack seq
+	                send_msg.header.tcp_hdr.ack_seq = 
+	                    recv_msg.header.tcp_hdr.seq + 1;
+  
+	            }
+	            else if (recv_msg.header.tcp_hdr.syn == 1 
+	                  && recv_msg.header.tcp_hdr.ack == 1)
+	            {  
+	                //got syn ack
+                    if(client_state == CLI_SYN_SENT)
+                    {            
+                        //get servers sequence number 
+                        srv_seq = recv_msg.header.tcp_hdr.seq; 
+                        next_srv_seq = srv_seq + 1;
+                        
+                        client_state = CLI_ESTABLISHED;
+                    }
+	               
+                    //set ack seq
+                    send_msg.header.tcp_hdr.ack_seq = 
+                       recv_msg.header.tcp_hdr.seq + 1; 
+	            }
+	            else if (recv_msg.header.tcp_hdr.ack == 1)
+	            {  
+	                //got fin ack
+                    if(client_state == CLI_FIN_WAIT_1
+                    && recv_msg.header.tcp_hdr.ack_seq == next_cli_seq)
+                    {            
+                        //get servers sequence number 
+                        srv_seq = recv_msg.header.tcp_hdr.seq; 
+                        next_srv_seq = srv_seq + 1;
+                        
+                        client_state = CLI_FIN_WAIT_2;
+                        
+                        //set ack seq
+                        send_msg.header.tcp_hdr.ack_seq = 
+                        recv_msg.header.tcp_hdr.seq + 1; 
+                    }
+	               
+	            }
+	            
+	                    
+	            
+	        }
+        }
+        
+        ////below here is incompleat need to fix ack in server
+        if(client_state == SRV_ESTABLISHED)
+	    {
+            if(init_close)
             {
-                //get message
-                tcp_buff recv_msg;
-                pthread_mutex_lock(&recv_lock);
-                recv_msg = recv_buff.front();
-                recv_buff.pop_front();
-                pthread_mutex_unlock(&recv_lock);
+                //send fin bit 
+                send_msg.header.tcp_hdr.fin = 1;
                 
-                //see if contains SYN+ACK
-                if((recv_msg.header.tcp_hdr.syn == 1) 
-                    && (recv_msg.header.tcp_hdr.ack == 1) 
-                    && (recv_msg.header.tcp_hdr.ack_seq == (next_cli_seq)))
-                {
-                    //make header
-                    _MYTCP_Header header;		
-                    reset_head(&header);
+                init = true;
                 
-                    //set server sequence
-                    srv_seq = recv_msg.header.tcp_hdr.seq; 
-                    
-                    //increment sequnece numbers
-                    cli_seq = next_cli_seq;
-                    
-                    //setup header
-                    header.tcp_hdr.ack = 1;
-                    header.tcp_hdr.ack_seq = srv_seq + 1;
-                    header.tcp_hdr.seq = cli_seq;
-                    
-                    //send msg
-                    timeout_send(&header, sizeof(header));
-                    
-                    //icrement state
-                    client_state = CLI_ESTABLISHED;
-                    
-                }
+                client_state ==  CLI_FIN_WAIT_1;
+                
             }
-		}
-		else if(client_state == CLI_ESTABLISHED)
-		{
-            //run established
-            established(&cli_seq, &next_cli_seq, &srv_seq, &next_srv_seq); 
+	        else if(!send_buff.empty() && (timeout_buff.size() < W)
+	        {
+	            //send data
+                //get data to send
+                tcp_buff temp_msg;
+                pthread_mutex_lock(&send_lock);
+                temp_msg = send_buff.front();
+                send_buff.pop_front();
+                pthread_mutex_unlock(&send_lock);
+
+                //add data
+                memcpy(send_msg.data, temp_msg.data, temp_msg.header.data_len);
+                send_msg.header.data_len = temp_msg.header.data_len;
+	        }  
+
+	    }
+
+
+	    
+	    //send message and increment seq num
+	    if(!(send_msg.header.tcp_hdr.ack == 1 
+	        && send_msg.header.data_len == 0 )
+	        && init)
+        {
+            cli_seq = next_cli_seq;
             
-            //check for close
-            if (init_close)
+            if(send_msg.header.data_len == 0 )
             {
-                //setup header for intial fin
-                _MYTCP_Header header;		
-                reset_head(&header);
-                
-                //icrement sequence
-                cli_seq = next_cli_seq;
                 next_cli_seq++;
-                
-                //setup header
-                header.tcp_hdr.seq = cli_seq;
-                header.tcp_hdr.fin = 1;
-                
-                //send msg
-                timeout_send(&header, sizeof(header));
-                
-                //increment state
-                client_state = CLI_FIN_WAIT_1;
-                
             }
-		}
-		else if(client_state == CLI_FIN_WAIT_1)
-		{
-            //see if their is a new message
-            if(!recv_buff.empty())
+            else
             {
-                //get message
-                tcp_buff recv_msg;
-                pthread_mutex_lock(&recv_lock);
-                recv_msg = recv_buff.front();
-                recv_buff.pop_front();
-                pthread_mutex_unlock(&recv_lock);
-                
-                //see if contains our ack
-                if( (recv_msg.header.tcp_hdr.ack == 1) 
-                    && (recv_msg.header.tcp_hdr.ack_seq == (next_cli_seq)))
-                {     
-                    if(DEBUG) printf("Received ACK for FIN \n");
-                
-                    //set server sequence
-                    srv_seq = recv_msg.header.tcp_hdr.seq;
-                    next_srv_seq = srv_seq + 1;
-                
-                    //icrement state
-                    client_state = CLI_FIN_WAIT_2;
-                }
+                next_cli_seq += send_msg.header.data_len;
             }
-		}
-		else if(client_state == CLI_FIN_WAIT_2)
-		{
-        	//see if their is a new message
-            if(!recv_buff.empty())
-            {
-                //get message
-                tcp_buff recv_msg;
-                pthread_mutex_lock(&recv_lock);
-                recv_msg = recv_buff.front();
-                recv_buff.pop_front();
-                pthread_mutex_unlock(&recv_lock);
-                
-                //see if contains our fin
-                if(recv_msg.header.tcp_hdr.fin == 1)
-                {
-                    //make header
-                    _MYTCP_Header header;		
-                    reset_head(&header);
-                
-                    //set server sequence
-                    srv_seq = recv_msg.header.tcp_hdr.seq; 
-                    
-                    //increment sequnece numbers
-                    //cli_seq = next_cli_seq;
-                    //next_cli_seq += 1;
-                    
-                    //setup header
-                    header.tcp_hdr.ack = 1;
-                    header.tcp_hdr.ack_seq = srv_seq + 1;
-                    header.tcp_hdr.seq = cli_seq;
-                    
-                    //send msg
-                    timeout_send(&header, sizeof(header));
-                    
-                    //icrement state
-                    client_state = CLI_TIME_WAIT;
-                }
-            }    
-		}
-		else if(client_state == CLI_TIME_WAIT)
-		{
-            if(DEBUG) printf("Client Time Wait\n");
-            sleep(CLI_TIME_WAIT_TIME);
-            client_state = CLI_CLOSED;
-		}
+            
+            
+        }
+        
+        //setup header
+        send_msg.header.tcp_hdr.seq = cli_seq;
+        
+        //send msg
+        timeout_send(&send_msg, sizeof(send_msg));
+
+
         usleep(10000);
 	}
 }        
@@ -401,6 +415,10 @@ void * srv_thread(void *arg)
     if (DEBUG) printf("Server thread started.\n");
 	for(;;) //put some condition here
 	{
+	
+		//set bit for incementing seq once on first syn and fin 
+	    bool init = false;
+	    
 	    //reset msg
 	    tcp_buff send_msg;
 	    reset_head(&send_msg.header);
@@ -457,6 +475,7 @@ void * srv_thread(void *arg)
 	                    cli_seq = recv_msg.header.tcp_hdr.seq;
                         next_cli_seq = cli_seq + 1;
 	                    
+	                    //move to close wait
 	                    server state = SRV_CLOSE_WAIT;
 	                }
 	                
@@ -467,25 +486,59 @@ void * srv_thread(void *arg)
 	            }
 	            else if (recv_msg.header.tcp_hdr.syn == 1 )
 	            {  
-	                if(server_state == SRV_LISTEN)
-	                {            
+                    if(server_state == SRV_LISTEN)
+                    {            
                         //get clients sequence number 
                         cli_seq = recv_msg.header.tcp_hdr.seq; 
                         next_cli_seq = cli_seq + 1;
                         
                         server_state = SRV_SYN_RCVD;
-	               }
+                    }
+                    
+                    //set syn bit 
+                    send_msg.header.tcp_hdr.syn = 1;
 	               
-	               //set ack seq
-	               send_msg.header.tcp_hdr.ack_seq = 
-	                   recv_msg.header.tcp_hdr.seq + 1; 
+	                init = true;
+	               
+                    //set ack seq
+                    send_msg.header.tcp_hdr.ack_seq = 
+                       recv_msg.header.tcp_hdr.seq + 1; 
 	            }
+	            
+	            if (server_state == SRV_SYN_RCVD)
+	            {
+	                //get ack to our syn
+	                if(recv_msg.header.tcp_hdr.ack == 1 
+	                    && recv_msg.header.tcp_hdr.ack_seq == srv_seq)
+	                {
+	                    
+	                    //move to established
+	                    server_state = SRV_ESTABLISHED;
+	                }
+	            }
+	            else if (server_state == SRV_SYN_RCVD)
+	            {
+	                //get ack to our syn
+	                if(recv_msg.header.tcp_hdr.ack == 1 
+	                    && recv_msg.header.tcp_hdr.ack_seq == srv_seq)
+	                {
+	                    
+	                    //move to established
+	                    server_state = SRV_ESTABLISHED;
+	                }
+	            }
+	                    
+	            
 	        }
         }
+        
+        
         if(server_state == SRV_ESTABLISHED)
 	    {
+
 	        if(!send_buff.empty() && (timeout_buff.size() < W)
 	        {
+	            //send data
                 //get data to send
                 tcp_buff temp_msg;
                 pthread_mutex_lock(&send_lock);
@@ -496,29 +549,48 @@ void * srv_thread(void *arg)
                 //add data
                 memcpy(send_msg.data, temp_msg.data, temp_msg.header.data_len);
                 send_msg.header.data_len = temp_msg.header.data_len;
-	        }
-	        
+	        }  
+
 	    }
+	    else if (server_state == SRV_CLOSE_WAIT)
+	    {
+	        if(DEBUG) printf("Server Shutting Down \n");
+	        //send fin after ack
+	        if(send_msg.header.tcp_hdr.ack == 1 )
+	        {
+	            send_msg.header.tcp_hdr.fin = 1;
+	            init = true;
+	           
+	           	//move to last ack
+	            server_state = SRV_ESTABLISHED;
+	        }
+	    }
+
 	    
-	    if(!(send_msg.header.tcp_hdr.ack == 0 && send_msg.header.data_len == 0))
+	    //send message and increment seq num
+	    if(!(send_msg.header.tcp_hdr.ack == 1 
+	        && send_msg.header.data_len == 0 )
+	        && init)
         {
-            *our_seq = *next_our_seq;
+            srv_seq = next_srv_seq;
             
-            if(send_msg.header.data_len == 0)
+            if(send_msg.header.data_len == 0 )
             {
-                //*next_our_seq += 1;
+                next_srv_seq++;
             }
             else
             {
-                *next_our_seq += send_msg.header.data_len;
+                next_srv_seq += send_msg.header.data_len;
             }
             
-            //setup header
-            send_msg.header.tcp_hdr.seq = *our_seq;
-            
-            //send msg
-           timeout_send(&send_msg, sizeof(send_msg));
         }
+        
+        //setup header
+        send_msg.header.tcp_hdr.seq = srv_seq;
+        
+        //send msg
+        timeout_send(&send_msg, sizeof(send_msg));
+
 
         usleep(10000);
 	}    
