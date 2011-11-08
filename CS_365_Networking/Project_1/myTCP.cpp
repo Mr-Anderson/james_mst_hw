@@ -626,7 +626,7 @@ void * recv_thread(void *arg)
                 pthread_mutex_unlock(&recv_lock);
             }
         }
-        if(timeout_buff.size() > 2) 
+
         //check if message is an ack
         if(recv_msg.header.tcp_hdr.ack == 1)
         {
@@ -635,9 +635,9 @@ void * recv_thread(void *arg)
             for(int i = 0; i < timeout_buff.size(); i++ )
             {
                 //remove message from timeout queue
-                if(timeout_buff[i].ack_seq == recv_msg.header.tcp_hdr.ack_seq)
+                if((timeout_buff[i].ack_seq == recv_msg.header.tcp_hdr.ack_seq) || (timeout_buff[i].msg.header.tcp_hdr.syn == 1))
                 {
-                    //if(DEBUG) printf("Erased Timout size:%u \n",timeout_buff.size());
+                    if(DEBUG) printf("Erased Timeout Message Seq:%u \n",timeout_buff[i].msg.header.tcp_hdr.seq);
                     timeout_buff.erase(timeout_buff.begin() +i);
                 }
             }
