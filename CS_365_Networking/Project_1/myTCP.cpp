@@ -25,14 +25,15 @@ size_t buff_len = WINDOW_SIZE +sizeof(struct _MYTCP_Header);
 
 
 struct timeout
-{
+{  
+    //message that needs to be resent
+    tcp_buff msg;
+    
+    //Ack sequence to remove timout
     unsigned int ack_seq;
 
     //time of messages timeout
     clock_t endtime;
-    
-    //message that needs to be resent
-    tcp_buff msg;
 };
 
 enum client_state_t
@@ -193,7 +194,6 @@ int tcp_recv(void *buffer , size_t bufferLength)
     //wait for data
     while(data_buff.empty())
     {
-        continue;
     }
     
     //pull in data
@@ -386,7 +386,6 @@ void * cli_thread(void *arg)
             sleep(CLI_TIME_WAIT_TIME);
             client_state = CLI_CLOSED;
 		}
-        usleep(10000);
 	}
 }        
 
@@ -540,7 +539,6 @@ void * srv_thread(void *arg)
                 }
             }
 		}
-        usleep(10000);
 	}    
 } 
 
@@ -548,11 +546,11 @@ void * srv_thread(void *arg)
 void * timeout_thread(void *arg)
 {
     if(DEBUG) printf("Timeout thread started.\n");
-    for(;;)
+    while(1)
     {
         pthread_mutex_lock(&timeout_lock);
         //iterate trough timeouts
-        for(int i = 0; i < timeout_buff.size(); i++ )
+        for(int i = 0; i < timeout_buff.size(); i++)
         {
             //remove message from timeout queue
             if(timeout_buff[i].endtime <= clock())
@@ -574,7 +572,6 @@ void * timeout_thread(void *arg)
             }
         }
         pthread_mutex_unlock(&timeout_lock);
-        usleep(10000);
     }
 }  
 
@@ -695,6 +692,28 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
             no_fin = false;
         }
         
+        //check if SYN+ACK retransmission, if so, retransmit ACK
+        if (recv_msg.header.tcp_hdr.syn == 1 && recv_msg.header.tcp_hdr.ack == 1)
+        {
+            //make header
+            _MYTCP_Header header;		
+            reset_head(&header);
+                
+            //set server sequence
+            srv_seq = recv_msg.header.tcp_hdr.seq; 
+                    
+            //increment sequnece numbers
+            cli_seq = next_cli_seq;
+                    
+            //setup header
+            header.tcp_hdr.ack = 1;
+            header.tcp_hdr.ack_seq = recv_msg.header.tcp_hdr.seq + 1;
+            header.tcp_hdr.seq = cli_seq;
+                    
+            //send msg
+            timeout_send(&header, sizeof(header));
+        }
+        
         //see if contains is a message
         if(recv_msg.header.tcp_hdr.syn == 0)
         {
@@ -739,7 +758,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
                 {
                     //TODO for non pipelined add to queue of 
                     //packets we are not ready for 
-                    printf("if we are not pipelined you should not be here \n");
+                    printf("if we are not pipelined you should not be here, expected seq=%u got seq=%u \n", *next_their_seq, recv_msg.header.tcp_hdr.seq);
                     //send_msg.header.tcp_hdr.ack_seq = *next_their_seq;
 
                     send_msg.header.tcp_hdr.ack_seq = *their_seq + recv_msg.header.data_len;
@@ -762,6 +781,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
     
     //setup send data
     //send only if we dont have messages out
+    pthread_mutex_lock(&timeout_lock);
     if(!send_buff.empty() && (timeout_buff.size() < W))
     {
         
@@ -783,7 +803,7 @@ bool established(int* our_seq, int* next_our_seq, int* their_seq, int* next_thei
         //send a message
         sending_data = true;
     }
-    
+    pthread_mutex_unlock(&timeout_lock);
     if(!(send_msg.header.tcp_hdr.ack == 0 && send_msg.header.data_len == 0))
     {
         *our_seq = *next_our_seq;
@@ -827,11 +847,17 @@ void timeout_send(void* send_msg, size_t bufferLength, bool retransmission = fal
                 tout.ack_seq = ((tcp_buff*)send_msg)->header.tcp_hdr.seq + ((tcp_buff*)send_msg)->header.data_len;
             }
         }
-        
+        else
+        {
+            tout.ack_seq = ((timeout*)send_msg)->ack_seq;
+        }
+
         //push timeout struct onto timout list
         pthread_mutex_lock(&timeout_lock);
+        if(DEBUG) printf("Added timeout seq=%u\n", tout.msg.header.tcp_hdr.seq);
         timeout_buff.push_back(tout);
         pthread_mutex_unlock(&timeout_lock);
+    
     }
     
     if(DEBUG) printf("Sending  syn:%u	fin:%u	ack:%u	ack_seq:%u	seq:%u		data_len:%u \n",
