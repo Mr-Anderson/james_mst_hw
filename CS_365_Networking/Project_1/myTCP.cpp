@@ -220,7 +220,9 @@ void * cli_thread(void *arg)
 {
     //set isns
     cli_seq = CLIENT_ISN ;
-    next_cli_seq = CLIENT_ISN;     
+    next_cli_seq = CLIENT_ISN; 
+    bool wait_init = true;
+    time_t time_wait;    
     
     if(DEBUG) printf("Client Thread Started\n");
 	for(;;) //put some condition here
@@ -237,6 +239,7 @@ void * cli_thread(void *arg)
 
         if(client_state == CLI_ESTABLISHED )
 	    {
+	        pthread_mutex_lock(&timeout_lock);
             if(init_close)
             {
                 //send fin bit 
@@ -248,9 +251,9 @@ void * cli_thread(void *arg)
                 send = true;
                 
                 client_state = CLI_FIN_WAIT_1;
-                
+                if(DEBUG) printf("CLI_FIN_WAIT_1\n");
             }
-	        else if(!send_buff.empty() && (timeout_buff.size() < W))
+	        else if(!send_buff.empty() &&  (timeout_buff.size() < W))
 	        {
 	            //send data
                 //get data to send
@@ -266,14 +269,25 @@ void * cli_thread(void *arg)
                 //add data
                 memcpy(send_msg.data, temp_msg.data, temp_msg.header.data_len);
                 send_msg.header.data_len = temp_msg.header.data_len;
-	        }  
+	        }
+	        pthread_mutex_unlock(&timeout_lock);  
 
 	    }
 	    else if(client_state == CLI_TIME_WAIT)
         {
-            if(DEBUG) printf("Client Time Wait\n");
-            sleep(CLI_TIME_WAIT_TIME);
-            client_state = CLI_CLOSED;
+            if(wait_init)
+            {
+                if(DEBUG) printf("Client Time Wait\n");
+                time_wait = time(NULL) + CLI_TIME_WAIT_TIME;
+                
+                wait_init = false;
+            }
+            else if(time_wait <= time(NULL) )
+            {
+                timeout_buff.clear();
+                client_state = CLI_CLOSED;
+                if(DEBUG) printf("CLI_CLOSED\n");
+            }
         }
 	    
 	    
@@ -283,7 +297,7 @@ void * cli_thread(void *arg)
 	    
 		if(client_state == CLI_CLOSED)
 	    {             
-                
+                usleep(100000);  
                 if(DEBUG) printf("Sending Initial SYN\n");
                 
                 //setup initial syn 
@@ -296,6 +310,7 @@ void * cli_thread(void *arg)
                 
                 //increment state
                 client_state = CLI_SYN_SENT;
+                if(DEBUG) printf("CLI_SYN_SENT\n");
 	    }
 	    else if(!recv_buff.empty())
         {
@@ -349,6 +364,7 @@ void * cli_thread(void *arg)
 	                    
 	                    //move to close wait
 	                    client_state = CLI_TIME_WAIT;
+	                    if(DEBUG) printf("CLI_TIME_WAIT_1\n");
 	                }
 	                
 	                //set ack seq
@@ -367,6 +383,7 @@ void * cli_thread(void *arg)
                         next_srv_seq = srv_seq + 1;
                         
                         client_state = CLI_ESTABLISHED;
+                        if(DEBUG) printf("CLI_ESTABLISHED_1\n");
                     }
 	               
                     //set ack seq
@@ -388,6 +405,7 @@ void * cli_thread(void *arg)
                 next_srv_seq = srv_seq + 1;
                 
                 client_state = CLI_FIN_WAIT_2;
+                if(DEBUG) printf("CLI_FIN_WAIT_2\n");
                 
                 
             }    
@@ -659,10 +677,10 @@ void * timeout_thread(void *arg)
             if(timeout_buff[i].endtime <= clock())
             {
                 if(DEBUG) printf("Seq %u timed out. Number of timeouts being tracked is %u \n",timeout_buff[i].msg.header.tcp_hdr.seq,timeout_buff.size());
-                tcp_buff temp;
+                timeout temp;
                 
                 
-                temp = timeout_buff[i].msg;
+                temp = timeout_buff[i];
                 
                 //erase old timout
                 timeout_buff.erase(timeout_buff.begin() +i);
@@ -740,7 +758,7 @@ void * recv_thread(void *arg)
                 //remove message from timeout queue
                 if((timeout_buff[i].ack_seq == recv_msg.header.tcp_hdr.ack_seq) || (timeout_buff[i].msg.header.tcp_hdr.syn == 1))
                 {
-                    //if(DEBUG) printf("Erased Timout size:%u \n",timeout_buff.size());
+                    if(DEBUG) printf("Erased Timeout %u size %u \n",timeout_buff[i].msg.header.tcp_hdr.seq, timeout_buff.size());
                     timeout_buff.erase(timeout_buff.begin() +i);
                 }
             }
@@ -781,7 +799,7 @@ void timeout_send(void* send_msg, size_t bufferLength, bool retransmission = fal
         timeout tout;
         
         //add msg and endtime to timout
-        tout.endtime = clock()  + ((TIMEOUT/1000) * CLOCKS_PER_SEC  );
+        tout.endtime = clock()  + ((TIMEOUT/1000.0) * CLOCKS_PER_SEC  );
         tout.msg = *(tcp_buff*)send_msg;
         if(!retransmission)
         {
@@ -804,18 +822,28 @@ void timeout_send(void* send_msg, size_t bufferLength, bool retransmission = fal
         if(DEBUG) printf("Added timeout seq=%u\n", tout.msg.header.tcp_hdr.seq);
         timeout_buff.push_back(tout);
         pthread_mutex_unlock(&timeout_lock);
-    
+        
+        if(DEBUG) printf("Sending  syn:%u	fin:%u	ack:%u	ack_seq:%u	seq:%u		data_len:%u our ack seq:%u \n",
+        ((tcp_buff*)send_msg)->header.tcp_hdr.syn,
+        ((tcp_buff*)send_msg)->header.tcp_hdr.fin,
+        ((tcp_buff*)send_msg)->header.tcp_hdr.ack, 
+        ((tcp_buff*)send_msg)->header.tcp_hdr.ack_seq, 
+        ((tcp_buff*)send_msg)->header.tcp_hdr.seq, 
+        ((tcp_buff*)send_msg)->header.data_len,
+        tout.ack_seq);
+    }
+    else
+    {
+        if(DEBUG) printf("Sending  syn:%u	fin:%u	ack:%u	ack_seq:%u	seq:%u		data_len:%u our ack seq:%u \n",
+        ((tcp_buff*)send_msg)->header.tcp_hdr.syn,
+        ((tcp_buff*)send_msg)->header.tcp_hdr.fin,
+        ((tcp_buff*)send_msg)->header.tcp_hdr.ack, 
+        ((tcp_buff*)send_msg)->header.tcp_hdr.ack_seq, 
+        ((tcp_buff*)send_msg)->header.tcp_hdr.seq, 
+        ((tcp_buff*)send_msg)->header.data_len);
     }
     
 
-    
-    if(DEBUG) printf("Sending  syn:%u	fin:%u	ack:%u	ack_seq:%u	seq:%u		data_len:%u \n",
-    ((tcp_buff*)send_msg)->header.tcp_hdr.syn,
-    ((tcp_buff*)send_msg)->header.tcp_hdr.fin,
-    ((tcp_buff*)send_msg)->header.tcp_hdr.ack, 
-    ((tcp_buff*)send_msg)->header.tcp_hdr.ack_seq, 
-    ((tcp_buff*)send_msg)->header.tcp_hdr.seq, 
-    ((tcp_buff*)send_msg)->header.data_len);
         
     //send message
     net.mysendto(send_msg, bufferLength, 0, (sockaddr*)&addr, sizeof(addr));

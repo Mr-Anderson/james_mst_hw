@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 
         printf("IP in hex: %x Port: %u\n",ip.s_addr, port);
         tcp_client_init(ip.s_addr, port);
-        while (!feof(in_fp)) 
+        do  
         {
             if(DEBUG) printf("Reading file\n");
             //read in file line
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
             
             if(DEBUG) printf("Writing to file\n");
             fwrite(recvline ,1, n , out_fp);
-        }
+        }while (!feof(in_fp));
         
         //closing file
         if(DEBUG) printf("closing file\n");
