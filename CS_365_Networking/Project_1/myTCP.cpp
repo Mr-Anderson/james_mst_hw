@@ -738,7 +738,7 @@ void * recv_thread(void *arg)
             for(int i = 0; i < timeout_buff.size(); i++ )
             {
                 //remove message from timeout queue
-                if(timeout_buff[i].ack_seq == recv_msg.header.tcp_hdr.ack_seq)
+                if((timeout_buff[i].ack_seq == recv_msg.header.tcp_hdr.ack_seq) || (timeout_buff[i].msg.header.tcp_hdr.syn == 1))
                 {
                     //if(DEBUG) printf("Erased Timout size:%u \n",timeout_buff.size());
                     timeout_buff.erase(timeout_buff.begin() +i);

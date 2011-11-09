@@ -34,7 +34,7 @@
 #define W                   1       //max windows
 #define TIMEOUT             1000     //timeout time in milliseconds
 
-#define NET_SEND_RATE       100     //rate of successful transmission on network
+#define NET_SEND_RATE       85     //rate of successful transmission on network
 
 #define CLI_TIME_WAIT_TIME  30      //time to wait on final ack
 
