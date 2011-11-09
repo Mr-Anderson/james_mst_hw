@@ -1,12 +1,12 @@
-James Anderson 
+James Anderson <jra798>, Adam Honse <amhb59>
 CS365 
 HW2
 To compile the code run the make command within the directory
 
-Login to the server machine and run ./udpserv01
+Login to the server machine and run ./server <Port #> or ./test_srv.sh
 
 Find the server IP address with ifconfig
 
-Login to the client machine and run ./udpcli01 <IPaddress> <InputFile> <OutputFile>
+Login to the client machine and run ./client <IPaddress> <Port #> <InputFile> <OutputFile> or ./test_cli.sh changing the ip in the script
 
-The file with the tag you ran for OutputFile should match that of InputFile
+The file with the tag you ran for OutputFile should match that of InputFile 

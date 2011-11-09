@@ -1,5 +1,5 @@
 #!/bin/sh
-# Author: James Anderson 
+# Author: James Anderson , Adam Honse <amhb59>
 # Class: CS284
 # Assignment: 2 run script
 

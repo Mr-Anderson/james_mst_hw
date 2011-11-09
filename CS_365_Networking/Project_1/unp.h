@@ -2,7 +2,7 @@
 #define UNP_H
 /*******************************************************************************
  * @file unp.h
- * @author James Anderson <jra798>
+ * @author James Anderson <jra798>, Adam Honse <amhb59>
  * @date 10/11/2011
  * @version 1.0
  * @brief specifies general includes and parameter information
