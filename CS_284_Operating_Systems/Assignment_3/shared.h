@@ -5,3 +5,11 @@
  * @version 1.0
  * @brief contains shared defines and includes for Assignment 3 Project
  ******************************************************************************/
+ 
+#incude <signal.h>
+#incude <sys/socket.h>
+
+#define PORT              9877 //defines operating port
+#define CLIENT_SUPPORT    10 //defines number of clients that can connect
+
+

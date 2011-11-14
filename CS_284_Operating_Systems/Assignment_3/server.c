@@ -10,5 +10,15 @@
  
  int main(int argc, char **argv)
 {
+    sockaddr_in host ={ AF_INET, htons(PORT)}
     
+    
+    //main loop
+    for(;;)
+    {
+        //ask for host name
+        
+        //ask for alias
+        
+    }
 }
