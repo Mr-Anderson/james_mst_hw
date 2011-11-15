@@ -10,10 +10,10 @@ CXX = g++
 
 all: client server
 
-client: client.c client.h settings.h
+client: client.c client.h shared.h
 	$(CXX) $< -lpthread -D_REENTRANT -o $@ 
     
-server: server.c server.h settings.h
+server: server.c server.h shared.h
 	$(CXX) $< -lpthread -D_REENTRANT -o $@ 
 
 clean:

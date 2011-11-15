@@ -12,8 +12,9 @@
 #include <vector>
 #include <stdio>
 #include <stdlib.h>
+#include <pthread.h>
 
 #define SERVER_PORT              9877 //defines operating port
-#define CLIENT_SUPPORT    10 //defines number of clients that can connect
-
+#define CLIENT_SUPPORT           10 //defines number of clients that can connect
+#define MAX_BUFFER_SIZE          512 //
 

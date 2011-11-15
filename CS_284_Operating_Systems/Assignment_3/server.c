@@ -11,17 +11,14 @@
 
 pthread_t client_pthread;
 
-pthread_mutex_t netSocks_lock;
+pthread_mutex_t write_buff_lock;
 
-vector <int> netSocks;
+vector <char [MAX_BUFFER_SIZE]> netSocks;
 int clients;
  
 int main(int argc, char **argv)
 {
     int soc;
-    char buf[512], *host;
-
-    
     
     //create the socket addresses
     sockaddr_in server ={ AF_INET, htons(SERVER_PORT)}
@@ -54,7 +51,7 @@ int main(int argc, char **argv)
     {
         int netSock;
         
-        printf("server: listening for new clients");
+        printf("server: listening for new clients\n");
         
         //accept new connections
         if(netSock = accept(soc, (sockaddr*)&peer, (socklen_t*)&peerlen) == -1)
@@ -64,19 +61,23 @@ int main(int argc, char **argv)
         }
         else
         {
-            pthread_mutex_lock(&netSocks_lock)
-            netSocks.push_back(netSock);
-            pthread_mutex_lock(&data_lock);
             
             //create new thread for client
-            pthread_create(&client_pthread, NULL, ClientHandler, &var);
+            pthread_create(&client_pthread, NULL, ClientHandler, &netSock);
         }
     }
 }
 
 
-void * ClientHandler(void arg *)
+void * ClientHandler(void netSock *)
 {
-    pthread_mutex_lock(&data_lock);
-    int client_id = 
+    char msg[MAX_BUFFER_SIZE]
+    
+    while( (k = read(netSock, msg, sizeof(msg))) != 0)
+    {
+        printf("SERVER(Parent) RECEIVED: %s\n", msg);
+        pthread_mutex_lock()
+    }
+    
+    close(netSock);
 }
