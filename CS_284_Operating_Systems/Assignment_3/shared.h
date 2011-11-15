@@ -8,8 +8,12 @@
  
 #incude <signal.h>
 #incude <sys/socket.h>
+#include <unistd.h>
+#include <vector>
+#include <stdio>
+#include <stdlib.h>
 
-#define PORT              9877 //defines operating port
+#define SERVER_PORT              9877 //defines operating port
 #define CLIENT_SUPPORT    10 //defines number of clients that can connect
 
 
