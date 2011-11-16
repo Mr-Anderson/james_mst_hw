@@ -8,6 +8,14 @@
  
 #include "shared.h"
  
+using namespace std; 
+ 
+void signalHandler(int sig);
+
+void * clientHandler(void * netSock );
+
+void writeOut(int caller, string writeBuff);
+
 
 pthread_t client_pthread;
 
@@ -16,14 +24,18 @@ pthread_mutex_t write_lock;
 
 vector <int> netSocks;
 
-int clients;
+bool shutdown_server;
+
+
+
  
 int main(int argc, char **argv)
 {
     int soc;
+    shutdown_server = false;
     
     //create the socket addresses
-    sockaddr_in server ={ AF_INET, htons(SERVER_PORT)}
+    sockaddr_in server_addr ={ AF_INET, htons(SERVER_PORT)};
     sockaddr_in client_addr = { AF_INET };
     
     
@@ -48,6 +60,9 @@ int main(int argc, char **argv)
         exit( 1 );  
     }
     
+    //start singal handler
+    signal(SIGINT, signalHandler);
+    
     //main loop
     for(;;)
     {
@@ -56,7 +71,7 @@ int main(int argc, char **argv)
         printf("server: listening for new clients\n");
         
         //accept new connections
-        if(netSock = accept(soc, (sockaddr*)&peer, (socklen_t*)&peerlen) == -1)
+        if(netSock = accept(soc, (sockaddr*)&client_addr, (socklen_t*)&client_addr) == -1)
         {
             perror( "server: accept failed" );
             exit( 1 );
@@ -64,45 +79,102 @@ int main(int argc, char **argv)
         else
         {
             //add new client to socket address vector
-            pthread_mutex_lock(netSocks_lock);
+            pthread_mutex_lock(&netSocks_lock);
             netSocks.push_back(netSock);
-            pthread_mutex_unlock(netSocks_lock);
+            pthread_mutex_unlock(&netSocks_lock);
             
             //create new thread for client
-            pthread_create(&client_pthread, NULL, ClientHandler, &netSock);
+            pthread_create(&client_pthread, NULL, clientHandler, &netSock);
+        }
+        
+        
+        if(shutdown_server)
+        {
+            for(int i = 0; i < netSocks.size(); i++)
+            {
+                //close all client
+                close(netSocks[i]);
+            }
+            
+            //close socket
+            close(soc);
         }
     }
 }
 
-void writeOut(int caller, char * )
+void writeOut(int caller, char * writeBuff)
 {
-    for(int i = 0)
+    for(int i = 0; i < netSocks.size(); i++)
+    {
+        //write to all clients but caller
+        if(netSocks[i] != caller)
+        {        
+            write (netSocks[i], writeBuff, sizeof(writeBuff));
+        }
+    }
 }
 
 
-void * ClientHandler(void netSock *)
+void * clientHandler(void * netSock )
 {
     char readBuff[MAX_BUFFER_SIZE];
+    bool exit = false;
+    char username[30];
+    int k;
     bool initial = true;
-    string username;
     
-    while( (k = read(netSock, msg, sizeof(readBuff))) > 0)
+    while( (k = read(netSock, readBuff, sizeof(readBuff))) > 0)
     {
-        char frontBuff[MAX_BUFFER_SIZE];
-        char endBuff[MAX_BUFFER_SIZE];
+        char writeBuff[MAX_BUFFER_SIZE];
         
         if (initial)
         {
-            strcpy(frontBuff, "User ");
-            strcpy(endBuff, "has entered the room./n");
+            strncpy(username, readBuff, k);
+        
+            strcpy(writeBuff, username);
+            strcat(writeBuff, " has entered the room.");
             
             initial = false;
         }
+        else if(strcmp(readBuff,"/exit") == 0 ||
+                strcmp(readBuff,"/quit") == 0 ||
+                strcmp(readBuff,"/part") == 0 )
+        {
+            strcpy(writeBuff, username);;
+            strcat(writeBuff, " has left the room.");
+            
+            exit = true; 
+        }
         
-        printf("%s%s%s\n",frontBuff,readBuff,endBuff);
+        //print to server and clients
+        pthread_mutex_lock(&write_lock);
+        printf("%s\n",writeBuff);
+        writeOut(netSock, writeBuff);
+        pthread_mutex_unlock(&write_lock);
         
+        if(exit)
+        {
+                close(netSock);
+                break;
+        }
         
     }
+
+}
+
+void signalHandler(int sig)
+{
+     char writeBuff[MAX_BUFFER_SIZE];
     
-    close(netSock);
+    writeBuff = "Server will shut down in 10 seconds"; 
+    
+    //print to server and clients
+    pthread_mutex_lock(&write_lock);
+    printf("%s\n",writeBuff);
+    writeOut(netSock, writeBuff);
+    pthread_mutex_unlock(&write_lock);
+    
+    sleep(10);
+    
+    shutdown = true;
 }

@@ -6,13 +6,19 @@
  * @brief contains shared defines and includes for Assignment 3 Project
  ******************************************************************************/
  
-#incude <signal.h>
-#incude <sys/socket.h>
+#include <signal.h>
 #include <unistd.h>
+#include <iostream>
+#include <string.h>
 #include <vector>
-#include <stdio>
+#include <string>
+#include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <sys/types.h> 
+#include <sys/socket.h>  /* define socket */ 
+#include <netinet/in.h>  /* define internet socket */ 
+#include <netdb.h>
 
 #define SERVER_PORT              9877 //defines operating port
 #define CLIENT_SUPPORT           10 //defines number of clients that can connect
