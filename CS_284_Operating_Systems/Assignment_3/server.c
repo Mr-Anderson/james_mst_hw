@@ -12,7 +12,7 @@ using namespace std;
  
 void signalHandler(int sig);
 
-void * clientHandler(void * netSock );
+void * clientHandler(void * socket );
 
 void writeOut(int caller, string writeBuff);
 
@@ -25,13 +25,13 @@ pthread_mutex_t write_lock;
 vector <int> netSocks;
 
 bool shutdown_server;
-
+int soc;
 
 
  
 int main(int argc, char **argv)
 {
-    int soc;
+    
     shutdown_server = false;
     
     //create the socket addresses
@@ -68,7 +68,7 @@ int main(int argc, char **argv)
     {
         int netSock;
         
-        printf("server: listening for new clients\n");
+        printf("Listening for new clients\n");
         
         //accept new connections
         if(netSock = accept(soc, (sockaddr*)&client_addr, (socklen_t*)&client_addr) == -1)
@@ -83,22 +83,11 @@ int main(int argc, char **argv)
             netSocks.push_back(netSock);
             pthread_mutex_unlock(&netSocks_lock);
             
+            printf("netsoc: %u\n", netSock);
             //create new thread for client
             pthread_create(&client_pthread, NULL, clientHandler, &netSock);
         }
         
-        
-        if(shutdown_server)
-        {
-            for(int i = 0; i < netSocks.size(); i++)
-            {
-                //close all client
-                close(netSocks[i]);
-            }
-            
-            //close socket
-            close(soc);
-        }
     }
 }
 
@@ -107,7 +96,7 @@ void writeOut(int caller, char * writeBuff)
     for(int i = 0; i < netSocks.size(); i++)
     {
         //write to all clients but caller
-        if(netSocks[i] != caller)
+        if(netSocks[i] != caller || caller == -1)
         {        
             write (netSocks[i], writeBuff, sizeof(writeBuff));
         }
@@ -115,16 +104,20 @@ void writeOut(int caller, char * writeBuff)
 }
 
 
-void * clientHandler(void * netSock )
+void * clientHandler(void * socket )
 {
     char readBuff[MAX_BUFFER_SIZE];
     bool exit = false;
     char username[30];
     int k;
     bool initial = true;
+    int netSock = *(int*)socket;
     
-    while( (k = read(netSock, readBuff, sizeof(readBuff))) > 0)
+    printf("client handler started %u \n",netSock);
+    
+    while( (k = read(netSock, readBuff, sizeof(readBuff))) != 0 )
     {
+        printf("got somthing %u \n",netSock);
         char writeBuff[MAX_BUFFER_SIZE];
         
         if (initial)
@@ -155,6 +148,18 @@ void * clientHandler(void * netSock )
         if(exit)
         {
                 close(netSock);
+                
+                //remove from client list
+                pthread_mutex_lock(&netSocks_lock);
+                for(int i = 0; i < netSocks.size(); i++)
+                {
+                    if(netSocks[i] == netSock)
+                    {
+                        netSocks.erase( netSocks.begin() + i);
+                    }
+                }
+                pthread_mutex_unlock(&netSocks_lock);
+                
                 break;
         }
         
@@ -164,17 +169,28 @@ void * clientHandler(void * netSock )
 
 void signalHandler(int sig)
 {
-     char writeBuff[MAX_BUFFER_SIZE];
+    char writeBuff[MAX_BUFFER_SIZE];
     
-    writeBuff = "Server will shut down in 10 seconds"; 
+    strcpy(writeBuff, "\rServer will shut down in 10 seconds\n"); 
     
     //print to server and clients
     pthread_mutex_lock(&write_lock);
     printf("%s\n",writeBuff);
-    writeOut(netSock, writeBuff);
+    writeOut(-1, writeBuff);
     pthread_mutex_unlock(&write_lock);
     
     sleep(10);
     
-    shutdown = true;
+    for(int i = 0; i < netSocks.size(); i++)
+    {
+        //close all client
+        close(netSocks[i]);
+    }
+    
+    //close socket
+    close(soc);
+    
+    printf("Have a nice day\n");
+    
+    exit(1);
 }
