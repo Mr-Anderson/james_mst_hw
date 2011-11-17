@@ -10,8 +10,14 @@
 
 #include "shared.h"
  
-void * listen(void * socket );
 
+using namespace std; 
+ 
+void signalHandler(int sig);
+
+void * clientListener(void * socket );
+
+pthread_t client_pthread;
 
 int main( int argc, char** argv ) 
 { 
@@ -43,23 +49,60 @@ int main( int argc, char** argv )
 
     //connect to the socket
     if( connect( soc, (struct sockaddr*)&server_addr, 
-	     sizeof(server_addr) ) == -1 ) 
+         sizeof(server_addr) ) == -1 ) 
     { 
         perror( "client: connect FAILED:" ); 
         exit( 1 ); 
     } 
-
+    
+    //start singal handler
+    signal(SIGINT, signalHandler);
+    
+    //print welcome message
     printf("Welcome to the chatroom\n"); 
     printf("Please type your username:" ); 
-
-    while( scanf( "%s", buf) != EOF) 
-    { 
+    
+    //start listen thread
+    pthread_create(&client_pthread, NULL, clientListener, &soc);
+    
+    //read in messages
+    while( gets( buf) ) 
+    {
+        printf("\033[1A\r                                                 \r");
         write(soc, buf, sizeof(buf)); 
-        read(soc, buf, sizeof(buf)); 
-        printf("SERVER ECHOED: %s\n", buf); 
+        
+        if( strcmp(buf,"/exit") == 0 ||
+            strcmp(buf,"/quit") == 0 ||
+            strcmp(buf,"/part") == 0 )
+            {
+                break;
+            }
     } 
 
+    pthread_exit(&client_pthread);
+    
     close(soc); 
+    
     return(0); 
 }
 
+
+void * clientListener(void * socket )
+{
+    int netSock = *(int*)socket;
+    int k;
+    char readBuff[MAX_BUFFER_SIZE];
+    
+    while( (k = read(netSock, readBuff, sizeof(readBuff))) != 0 )
+    {
+        printf("%s",readBuff);
+    }
+}
+
+
+void signalHandler(int sig)
+{
+
+    printf("\b\bPlease type /exit, /quit, or /part to leave room.\n");
+
+}

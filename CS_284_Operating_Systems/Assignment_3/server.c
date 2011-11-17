@@ -35,8 +35,8 @@ int main(int argc, char **argv)
     shutdown_server = false;
     
     //create the socket addresses
-    sockaddr_in server_addr ={ AF_INET, htons(SERVER_PORT)};
-    sockaddr_in client_addr = { AF_INET };
+    struct sockaddr_in server_addr ={ AF_INET, htons(SERVER_PORT)};
+    struct sockaddr_in client_addr = { AF_INET };
     
     
     //open the socket
@@ -64,14 +64,14 @@ int main(int argc, char **argv)
     signal(SIGINT, signalHandler);
     
     //main loop
-    for(;;)
+    for(int i = 0;; i++)
     {
         int netSock;
         
         printf("Listening for new clients\n");
         
         //accept new connections
-        if(netSock = accept(soc, (sockaddr*)&client_addr, (socklen_t*)&client_addr) == -1)
+        if((netSock = accept(soc, (struct sockaddr*)&client_addr, (socklen_t*)&client_addr)) == -1)
         {
             perror( "server: accept failed" );
             exit( 1 );
@@ -95,11 +95,10 @@ void writeOut(int caller, char * writeBuff)
 {
     for(int i = 0; i < netSocks.size(); i++)
     {
-        //write to all clients but caller
-        if(netSocks[i] != caller || caller == -1)
-        {        
-            write (netSocks[i], writeBuff, sizeof(writeBuff));
-        }
+        //write to all clients
+        //printf("printing %s to %u",writeBuff, netSocks[i]);
+        write (netSocks[i], writeBuff, MAX_BUFFER_SIZE);
+
     }
 }
 
@@ -113,19 +112,18 @@ void * clientHandler(void * socket )
     bool initial = true;
     int netSock = *(int*)socket;
     
-    printf("client handler started %u \n",netSock);
     
-    while( (k = read(netSock, readBuff, sizeof(readBuff))) != 0 )
+    while( (k = read(netSock, readBuff, sizeof(readBuff))) != 0 && !exit)
     {
-        printf("got somthing %u \n",netSock);
         char writeBuff[MAX_BUFFER_SIZE];
+        printf("message received :%s\n",readBuff);
         
         if (initial)
         {
             strncpy(username, readBuff, k);
         
             strcpy(writeBuff, username);
-            strcat(writeBuff, " has entered the room.");
+            strcat(writeBuff, " has entered the room.\n");
             
             initial = false;
         }
@@ -134,14 +132,24 @@ void * clientHandler(void * socket )
                 strcmp(readBuff,"/part") == 0 )
         {
             strcpy(writeBuff, username);;
-            strcat(writeBuff, " has left the room.");
+            strcat(writeBuff, " has left the room.\n");
             
             exit = true; 
+        }
+        else 
+        {
+            
+            
+            strcpy(writeBuff, "\033[33m");
+            strcpy(writeBuff, username);
+            strcat(writeBuff, ":\033[0m ");
+            strcat(writeBuff, readBuff);
+            strcat(writeBuff, "\n");
         }
         
         //print to server and clients
         pthread_mutex_lock(&write_lock);
-        printf("%s\n",writeBuff);
+        printf("%s",writeBuff);
         writeOut(netSock, writeBuff);
         pthread_mutex_unlock(&write_lock);
         
@@ -160,6 +168,7 @@ void * clientHandler(void * socket )
                 }
                 pthread_mutex_unlock(&netSocks_lock);
                 
+                
                 break;
         }
         
@@ -171,13 +180,14 @@ void signalHandler(int sig)
 {
     char writeBuff[MAX_BUFFER_SIZE];
     
-    strcpy(writeBuff, "\rServer will shut down in 10 seconds\n"); 
+    strcpy(writeBuff, "\b\bServer will shut down in 10 seconds\n"); 
     
     //print to server and clients
     pthread_mutex_lock(&write_lock);
     printf("%s\n",writeBuff);
     writeOut(-1, writeBuff);
     pthread_mutex_unlock(&write_lock);
+    
     
     sleep(10);
     
@@ -186,6 +196,9 @@ void signalHandler(int sig)
         //close all client
         close(netSocks[i]);
     }
+    
+    //close threads
+    pthread_exit(NULL);
     
     //close socket
     close(soc);
