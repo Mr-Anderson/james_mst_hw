@@ -54,9 +54,10 @@ int main( int argc, char** argv )
 
     while( scanf( "%s", buf) != EOF) 
     { 
+        printf("herro\n");
         write(soc, buf, sizeof(buf)); 
-        read(soc, buf, sizeof(buf)); 
-        printf("SERVER ECHOED: %s\n", buf); 
+        //read(soc, buf, sizeof(buf)); 
+        //printf("SERVER ECHOED: %s\n", buf); 
     } 
 
     close(soc); 

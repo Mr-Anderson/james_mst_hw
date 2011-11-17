@@ -115,9 +115,10 @@ void * clientHandler(void * socket )
     
     printf("client handler started %u \n",netSock);
     
+    //read new data on netSock
     while( (k = read(netSock, readBuff, sizeof(readBuff))) != 0 )
     {
-        printf("got somthing %u \n",netSock);
+        printf("got somthing %s \n",readBuff);
         char writeBuff[MAX_BUFFER_SIZE];
         
         if (initial)
@@ -164,6 +165,7 @@ void * clientHandler(void * socket )
         }
         
     }
+    printf("client handler started %u \n",netSock);
 
 }
 
@@ -171,7 +173,7 @@ void signalHandler(int sig)
 {
     char writeBuff[MAX_BUFFER_SIZE];
     
-    strcpy(writeBuff, "\rServer will shut down in 10 seconds\n"); 
+    strcpy(writeBuff, "\b\bServer will shut down in 10 seconds\n"); 
     
     //print to server and clients
     pthread_mutex_lock(&write_lock);
