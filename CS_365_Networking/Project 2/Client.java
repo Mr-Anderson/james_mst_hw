@@ -388,19 +388,21 @@ public class Client{
       RTSPBufferedWriter.write(request_type);
 
       //write the CSeq line: 
-      RTSPBufferedWriter.write("");
+      RTSPBufferedWriter.write("CSeq: ");
+	  RTSPBufferedWriter.write(RTSPSeqNb);
 
       //check if request_type is equal to "SETUP" and in this case write the Transport: line advertising to the server the port used to receive the RTP packets RTP_RCV_PORT
       if(request_type == "SETUP")
       {
-      
+      	RTSPBufferedWriter.write("Transport: ");
+		RTSPBufferedWriter.write(RTP_RCV_PORT);
       }
       else
       {
-      
+	    //otherwise, write the Session line from the RTSPid field
+      	RTSPBufferedWriter.write("Session: ");
+		RTSPBufferedWriter.write(RTSPid);
       }
-      //otherwise, write the Session line from the RTSPid field
-      //else ....
 
       RTSPBufferedWriter.flush();
     }
