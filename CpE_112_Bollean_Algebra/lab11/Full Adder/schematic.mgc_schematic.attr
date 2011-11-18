@@ -1,0 +1,10 @@
+A 5 u mgc_schematic 4af9eaf1ceda.03.7f.00.01.01.00.2d.08 2 2 1 0
+V v 1 1 4af9eaf1ceda.03.7f.00.01.01.01.2d.08
+F o 0 ""
+V v 2 1 4af9ec50ae36.03.7f.00.01.01.00.2d.08
+F o 0 ""
+O 2
+R cspuv 0 "$USERLIB/Full Adder/schematic/sheet1" 1 mgc_sheet 4af9eaf2405d.03.7f.00.01.01.01.2d.08 4af9eaf2405d.03.7f.00.01.01.00.2d.08
+O 1
+R cspuv 0 "$USERLIB/Full Adder/schematic/sheet1" 1 mgc_sheet 4af9eaf2405d.03.7f.00.01.01.01.2d.08 4af9eaf2405d.03.7f.00.01.01.00.2d.08
+P "eddm__refer_state" "eddm__refer_floating"

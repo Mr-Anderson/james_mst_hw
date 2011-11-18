@@ -1,0 +1,13 @@
+A 5 u mgc_schematic 4af9ea674c1d.03.7f.00.01.01.00.2c.96 12 2 1 0
+V v 10 1 4b030ab4477e.03.7f.00.01.01.00.31.7f
+F o 0 ""
+V v 11 1 4b030adeb3d6.03.7f.00.01.01.00.31.7f
+F o 0 ""
+V v 12 1 4b15788d200f.03.7f.00.01.01.00.10.09
+F o 0 ""
+O 12
+R cspuv 0 "$USERLIB/Alu/schematic/sheet1" 12 mgc_sheet 4b15788ce273.03.7f.00.01.01.00.10.09 4af9ea67b5a3.03.7f.00.01.01.00.2c.96
+O 11
+R cspuv 0 "$USERLIB/Alu/schematic/sheet1" 11 mgc_sheet 4b030adeb200.03.7f.00.01.01.00.31.7f 4af9ea67b5a3.03.7f.00.01.01.00.2c.96
+O 10
+R cspuv 0 "$USERLIB/Alu/schematic/sheet1" 10 mgc_sheet 4b030ab41552.03.7f.00.01.01.00.31.7f 4af9ea67b5a3.03.7f.00.01.01.00.2c.96

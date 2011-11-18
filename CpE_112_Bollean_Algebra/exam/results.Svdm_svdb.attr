@@ -1,0 +1,12 @@
+A 5 u Svdm_svdb 4b1ecedf0000.03.7f.00.01.01.00.18.b7 1 1 0 0
+V v 1 8 4b1ecedf0000.03.7f.00.01.01.01.18.b7
+F f 1 "results.wdb_1"
+F f 1 "results.dat_1"
+F o 0 ""
+F o 0 ""
+F o 0 ""
+F o 0 ""
+F o 0 ""
+F o 0 ""
+O 1
+P "WDB_VERSION" "1"

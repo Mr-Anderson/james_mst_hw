@@ -1,0 +1,57 @@
+Procedure 1
+
+1. I would go to the mst.edu webpage then type unix basics in the google
+searh bar.
+
+2.To login I would type my username in when the prompt comes up on
+startup and my password when the password prompt comes up  to logout I
+would type either logout or exit in the terminal
+
+3. To change my password I would go to
+http://helpdesk.mst.edu/generalinfo/passwordchange.html read the
+guidelines then enter my old password then my new one.
+ 
+4.The full name to my home directory is /nethome/users/jra798 .
+
+5. To find my home directory I entered the comand cd then the comand pwd
+
+6. In unix their are absolute paths which begin with a / and containt
+the full adress, relative paths wich are relitive to your current
+location and do not begin with a /, and user relivive paths wich begin
+with a ~ then a user name to change user directories.
+
+7.Type pwd then press enter.
+
+8.Type mkdir then the name of the directory you want to create then
+press enter.
+
+9.Type rmdir then the name of the directory you want to delete then
+press enter.
+
+10.Type cd then the name of the directory you want to change to then
+press enter.
+
+11.Type ls then the name of the directory you want to list the contents
+of then press enter.
+ 
+12.Type cp then the name of the file you want to copy then a space and
+the name of the file or directory you want to copy to then press enter.
+
+13.Type mv then the filename  you want to change then the new filename
+then press enter.
+
+14.Type rm then the name of the file  you want to delete then press
+enter.
+
+Procedure 2
+ 
+1.To print from a unix workstation to the default printer type lp then
+the filename.
+
+2. To list the default printer type lpstat -d
+
+3. To list all printer type lpstat -a
+
+4. To print to a specific printer type lp -d then the printer name then
+the filename.
+

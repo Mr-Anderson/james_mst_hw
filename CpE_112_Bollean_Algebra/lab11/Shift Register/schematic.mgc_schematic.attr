@@ -1,0 +1,13 @@
+A 5 u mgc_schematic 4af9e396a489.03.7f.00.01.01.00.2b.d2 5 2 1 0
+V v 3 1 4b030e164303.03.7f.00.01.01.00.31.7f
+F o 0 ""
+V v 4 1 4b030ea1b39c.03.7f.00.01.01.00.31.7f
+F o 0 ""
+V v 5 1 4b030f643b3b.03.7f.00.01.01.00.31.7f
+F o 0 ""
+O 5
+R cspuv 0 "$USERLIB/Shift Register/schematic/sheet1" 4 mgc_sheet 4b030f6407c3.03.7f.00.01.01.00.31.7f 4af9e397193a.03.7f.00.01.01.00.2b.d2
+O 4
+R cspuv 0 "$USERLIB/Shift Register/schematic/sheet1" 3 mgc_sheet 4b030ea17ffe.03.7f.00.01.01.00.31.7f 4af9e397193a.03.7f.00.01.01.00.2b.d2
+O 3
+R cspuv 0 "$USERLIB/Shift Register/schematic/sheet1" 2 mgc_sheet 4b030e160faa.03.7f.00.01.01.00.31.7f 4af9e397193a.03.7f.00.01.01.00.2b.d2

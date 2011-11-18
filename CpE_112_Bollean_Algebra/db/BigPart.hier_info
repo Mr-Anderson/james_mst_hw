@@ -1,0 +1,19 @@
+|BigPart
+A <= YourPart:I_36_6.A
+B <= YourPart:I_36_6.B
+D0 => YourPart:I_36_6.D0
+D1 => YourPart:I_36_6.D1
+D2 => YourPart:I_36_6.D2
+
+
+|BigPart|YourPart:I_36_6
+A <= I_36_12.DB_MAX_OUTPUT_PORT_TYPE
+B <= I_36_10.DB_MAX_OUTPUT_PORT_TYPE
+D0 => I_36_6.IN0
+D0 => I_36_5.IN0
+D1 => I_36_7.IN0
+D1 => I_36_5.IN1
+D2 => I_36_12.IN0
+D2 => I_36_8.IN0
+
+

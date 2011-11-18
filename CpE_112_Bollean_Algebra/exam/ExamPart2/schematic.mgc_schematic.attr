@@ -1,0 +1,10 @@
+A 5 u mgc_schematic 4b1ecb614e57.03.7f.00.01.01.00.17.ba 2 2 1 0
+V v 1 1 4b1ecb614e57.03.7f.00.01.01.01.17.ba
+F o 0 ""
+V v 2 1 4b1ecd8eb9e0.03.7f.00.01.01.00.17.ba
+F o 0 ""
+O 2
+R cspuv 0 "$USERLIB/ExamPart2/schematic/sheet1" 1 mgc_sheet 4b1ecb6154f1.03.7f.00.01.01.01.17.ba 4b1ecb6154f1.03.7f.00.01.01.00.17.ba
+O 1
+R cspuv 0 "$USERLIB/ExamPart2/schematic/sheet1" 1 mgc_sheet 4b1ecb6154f1.03.7f.00.01.01.01.17.ba 4b1ecb6154f1.03.7f.00.01.01.00.17.ba
+P "eddm__refer_state" "eddm__refer_floating"

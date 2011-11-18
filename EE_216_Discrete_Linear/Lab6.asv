@@ -1,0 +1,219 @@
+%***********************
+%James Anderson
+%Lab 6 Section E
+%***********************
+%---------------------------------------------------------------
+%Lab 6 Procedure Part 1
+%---------------------------------------------------------------
+
+T=0.01;
+t=-1:T:4;
+x_t = 2*sinc(3.2 .* (t - 1.5));
+dfm =0.01;
+dtm =10;
+dt = 0.01;
+[f1, X1, N1, no1] = CTFT(t, x_t, dfm);
+
+figure(1)
+subplot(2, 1, 1)
+plot(f1, abs(X1));
+title('CTFT');
+xlabel('Frequency');
+ylabel('Amplitude');
+xlim([-5 5]);
+subplot(2, 1, 2)
+plot(f1, angle(X1));
+xlabel('Angel');
+ylabel('Amplitude');
+xlim([-5 5]);
+
+%comparing the analitical fourier transform with CTFT amplitude
+[ti, xi_t, Ni] = CTIFT(f1, X1, dtm);
+
+figure(2)
+hold on;
+plot(ti, xi_t, 'g', t, x_t, 'r')
+title('CTFT');
+xlabel('Frequency');
+ylabel('Amplitude');
+xlim([-1 4]);
+hold off;
+
+
+%---------------------------------------------------------------
+%Lab 6 Procedure Part 2
+%---------------------------------------------------------------
+T= 0.01;
+t = -15:T:15;
+x_t = 0.6 * sinc(0.3 .* t) .^ 2;
+
+dfm =0.01;
+dtm =0.01;
+dt = 0.01;
+
+[f, X, N, no] = CTFT(t, x_t, dfm);
+
+
+figure(3)
+plot(t, x_t)
+title('x(t)');
+xlabel('Time');
+ylabel('Amplitude');
+xlim([-15 15]);
+
+%part b
+
+T= 0.01;
+t = -15:T:15;
+dfm =0.01;
+dtm =0.01;
+dt = 0.01;
+
+x2_t = (0.6 * sinc(0.3 .* t) .^ 2) .* rectpuls(t,20); 
+[f2, X2, N2, no2] = CTFT(t, x2_t, dfm);
+
+figure(4)
+subplot(2, 1, 1)
+plot(t, x2_t);
+title('x(t)');
+xlabel('Time');
+ylabel('Amplitude');
+xlim([-15 15]);
+subplot(2, 1, 2)
+plot(f2, abs(X2));
+xlabel('Frequency');
+ylabel('Amplitude');
+xlim([-15 15]);
+
+%part c 
+clear all;
+
+T= 0.01;
+t = -6:T:6;
+dfm =0.01;
+dtm =0.01;
+dt = 0.01;
+
+x3_t = (0.6 * sinc(0.3 .* t) .^ 2) .* rectpuls(t,12); 
+[f3, X3, N3, no3] = CTFT(t, x3_t, dfm);
+
+figure(5)
+subplot(2, 1, 1)
+plot(t, x3_t);
+title('x(t)');
+xlabel('Time');
+ylabel('Amplitude');
+xlim([-15 15]);
+subplot(2, 1, 2)
+plot(f3, abs(X3));
+xlabel('Frequency');
+ylabel('Amplitude');
+xlim([-15 15]);
+
+%part d
+T= 0.01;
+t = -4:T:4;
+dfm =0.01;
+dtm =0.01;
+dt = 0.01;
+
+x4_t = (0.6 * sinc(0.3 .* t) .^ 2) .* rectpuls(t,8); 
+[f4, X4, N4, no4] = CTFT(t, x4_t, dfm);
+
+figure(6)
+subplot(2, 1, 1)
+plot(t, x4_t);
+title('x(t)');
+xlabel('Time');
+ylabel('Amplitude');
+xlim([-15 15]);
+subplot(2, 1, 2)
+plot(f4, abs(X4));
+xlabel('Frequency');
+ylabel('Amplitude');
+xlim([-15 15]);
+
+
+%---------------------------------------------------------------
+%Lab 6 Procedure Part 3
+%---------------------------------------------------------------
+clear all;
+T= 0.01;
+t = -1:T:5;
+dfm =0.02;
+dtm =0.02;
+dt = 0.02;
+
+x_t = 3.6 .* t .* exp(-2.4 .* t) .* (t >= 0); 
+[f, X, N, no] = CTFT(t, x_t, dfm);
+
+figure(7)
+subplot(2, 1, 1)
+plot(f, abs(X));
+title('x(t)');
+xlabel('Frequency');
+ylabel('Amplitude');
+xlim([-2 2]);
+subplot(2, 1, 2)
+plot(f, angle(X));
+xlabel('Frequency');
+ylabel('Angle');
+xlim([-2 2]);
+
+%part b
+
+T= 0.01;
+t = -1:T:5;
+dfm =0.02;
+dtm =0.02;
+dt = 0.02;
+
+x_t = 3.6 .* t .* exp(-2.4 .* t) .* us(t); 
+y_t = 3.6 .* (t-0.1) .* exp(-2.4 .* (t-0.1)) .* us(t-0.1); 
+
+[fx, X, Nx, nxo] = CTFT(t, x_t, dfm);
+[fy, Y, Ny, nyo] = CTFT(t, y_t, dfm);
+
+%X=fftshift(fft(x_t));
+%Y=fftshift(fft(y_t));
+
+figure(8)
+subplot(2, 1, 1)
+plot( fx, abs(X), 'g');
+plot( fy, abs(Y), 'r');
+title('x(t)');
+xlabel('Frequency');
+ylabel('Amplitude');
+xlim([-2 2]);
+subplot(2, 1, 2)
+plot( fx , angle(X), 'g');
+plot( fy , angle(Y), 'r');
+xlabel('Frequency');
+ylabel('Angle');
+xlim([-2 2]);
+
+%---------------------------------------------------------------
+%Lab 6 Procedure Part 4
+%---------------------------------------------------------------
+clear all;
+load tyo.mat
+
+step = 1 / length(tyo);
+t= 0:step:1-step;
+dfm =0.01;
+
+[f, X, N, no] = CTFT(t, tyo, dfm);
+
+figure(9)
+subplot(2, 1, 1)
+plot( t , tyo);
+title('tyo(t)');
+xlabel('Time');
+ylabel('Amplitude');
+xlim([0 1]);
+subplot(2, 1, 2)
+plot( f, abs(X));
+xlabel('Frequency');
+ylabel('Angle');
+xlim([0 4000]);
+

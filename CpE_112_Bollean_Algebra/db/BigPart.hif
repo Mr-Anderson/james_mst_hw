@@ -1,0 +1,57 @@
+Version 8.0 Build 215 05/29/2008 SJ Full Version
+11
+1009
+OFF
+OFF
+OFF
+OFF
+ON
+ON
+ON
+FV_OFF
+Level2
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Partition --
+-- End Partition --
+-- Start Library Paths --
+-- End Library Paths --
+-- Start VHDL Libraries --
+-- End VHDL Libraries --
+# entity
+BigPart
+# storage
+db|BigPart.(0).cnf
+db|BigPart.(0).cnf
+# case_insensitive
+# source_file
+BigPart.edf
+bbbf392e160d8eb8049e53dd6c512a0
+9
+# hierarchies {
+|
+}
+# macro_sequence
+
+# end
+# entity
+YourPart
+# storage
+db|BigPart.(1).cnf
+db|BigPart.(1).cnf
+# case_insensitive
+# source_file
+BigPart.edf
+bbbf392e160d8eb8049e53dd6c512a0
+9
+# hierarchies {
+YourPart:I_36_6
+}
+# macro_sequence
+
+# end
+# complete
+

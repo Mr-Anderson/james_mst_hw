@@ -1,0 +1,12 @@
+A 5 u Svdm_svdb 4ac282910000.03.7f.00.01.01.00.1f.2b 1 1 0 0
+V v 1 8 4ac282910000.03.7f.00.01.01.01.1f.2b
+F f 1 "forces.wdb_1"
+F f 1 "forces.dat_1"
+F o 0 ""
+F o 0 ""
+F o 0 ""
+F o 0 ""
+F o 0 ""
+F o 0 ""
+O 1
+P "WDB_VERSION" "1"

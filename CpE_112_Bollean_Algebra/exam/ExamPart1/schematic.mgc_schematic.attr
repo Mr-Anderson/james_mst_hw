@@ -1,0 +1,13 @@
+A 5 u mgc_schematic 4b1ec709d72b.03.7f.00.01.01.00.17.5f 6 2 1 0
+V v 4 1 4b1ec8f6c651.03.7f.00.01.01.00.17.5f
+F o 0 ""
+V v 5 1 4b1ec9521791.03.7f.00.01.01.00.17.5f
+F o 0 ""
+V v 6 1 4b1eca1e024d.03.7f.00.01.01.00.17.ba
+F o 0 ""
+O 6
+R cspuv 0 "$USERLIB/ExamPart1/schematic/sheet1" 5 mgc_sheet 4b1eca1e0078.03.7f.00.01.01.00.17.ba 4b1ec70a52d8.03.7f.00.01.01.00.17.5f
+O 5
+R cspuv 0 "$USERLIB/ExamPart1/schematic/sheet1" 4 mgc_sheet 4b1ec951d7e8.03.7f.00.01.01.00.17.5f 4b1ec70a52d8.03.7f.00.01.01.00.17.5f
+O 4
+R cspuv 0 "$USERLIB/ExamPart1/schematic/sheet1" 3 mgc_sheet 4b1ec8f69227.03.7f.00.01.01.00.17.5f 4b1ec70a52d8.03.7f.00.01.01.00.17.5f

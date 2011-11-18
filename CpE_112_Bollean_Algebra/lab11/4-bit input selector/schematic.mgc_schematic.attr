@@ -1,0 +1,13 @@
+A 5 u mgc_schematic 4af9e52d43ce.03.7f.00.01.01.00.2b.d2 4 2 1 0
+V v 2 1 4af9e74c4f9a.03.7f.00.01.01.00.2c.96
+F o 0 ""
+V v 3 1 4af9e81a20ff.03.7f.00.01.01.00.2c.96
+F o 0 ""
+V v 4 1 4af9e8ed52c8.03.7f.00.01.01.00.2c.96
+F o 0 ""
+O 4
+R cspuv 0 "$USERLIB/4-bit input selector/schematic/sheet1" 4 mgc_sheet 4af9e8ed21a9.03.7f.00.01.01.00.2c.96 4af9e52daeb4.03.7f.00.01.01.00.2b.d2
+O 3
+R cspuv 0 "$USERLIB/4-bit input selector/schematic/sheet1" 3 mgc_sheet 4af9e819e161.03.7f.00.01.01.00.2c.96 4af9e52daeb4.03.7f.00.01.01.00.2b.d2
+O 2
+R cspuv 0 "$USERLIB/4-bit input selector/schematic/sheet1" 2 mgc_sheet 4af9e74c1c02.03.7f.00.01.01.00.2c.96 4af9e52daeb4.03.7f.00.01.01.00.2b.d2

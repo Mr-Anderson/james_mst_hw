@@ -1,0 +1,6 @@
+A 5 u Eddm_part 4ac26abb9ca4.03.7f.00.01.01.00.1c.a8 1 2 1 0
+V v 1 1 4ac26abb9ca4.03.7f.00.01.01.01.1c.a8
+F f 1 "part.part_1"
+O 1
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/7seg/schematic" 1 mgc_schematic 4ac2681eae44.03.7f.00.01.01.01.1c.68 4ac2681eae44.03.7f.00.01.01.00.1c.68

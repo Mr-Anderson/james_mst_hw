@@ -1,0 +1,183 @@
+%***********************
+%James Anderson
+%Lab 7 Section E
+%***********************
+%---------------------------------------------------------------
+%Lab 7 Procedure Part 1
+%---------------------------------------------------------------
+
+%a
+j=sqrt(1);
+R=2000;
+C=10e-6;
+
+T=0.001;
+t=-1:T:1;
+h_t = ((1/(R*C)) * exp(-t/(R*C))) .* (t>=0);
+
+
+
+fs=1/T;
+N=length(t);
+f=-fs/2:fs/N:((fs/2)-(fs/N));
+
+%fft used instead of ctft function
+H1_f=T*fftshift(fft(h_t));
+H2_f=1./(1+j*2*pi*f*R*C);
+
+figure(1)
+subplot(2,2,1);
+plot(t, abs(h_t));
+title('Problem 1a - h(t)');
+xlabel('Time');
+ylabel('Amplitude');
+
+subplot(2,2,3);
+plot(t, angle(h_t));
+xlabel('Time');
+ylabel('Phase');
+
+subplot(2, 2, 2)
+plot(f, abs(H1_f), f, abs(H2_f));
+title('Problem 1b - analitical plot');
+xlabel('Frequencey');
+ylabel('Amplitude');
+
+subplot(2, 2, 4)
+plot(f, angle(H1_f), f, angle(H2_f));
+xlabel('Angle');
+ylabel('Amplitude');
+
+%b
+ty=-2:T:2;
+
+x1_t=-1.5*cos(8*pi*t);
+x2_t=0.4*cos(40*pi*t);
+
+y1_t=T.*conv(x1_t,h_t);
+y2_t=T.*conv(x2_t,h_t);
+
+ty2=-3:T:3;
+
+
+
+Gain1= max(y1_t)/max(x1_t);
+Gain2= max(y2_t)/max(x2_t);
+
+%calculating time delay
+middle=(length(y2_t)-1)/2;
+peakidx1= find(y1_t == max(y1_t(middle:end)));
+peakidx2= find(y2_t == max(y2_t(middle:end)));
+tdelay1 = (peakidx1-middle)*T;
+tdelay2 = (peakidx2-middle)*T;
+
+
+
+%c 
+fidx1=find(f<=4+(fs/N));
+fidx2=find(f<=20+(fs/N));
+
+fgain1=abs(H1_f(fidx1(end)));
+fgain2=abs(H1_f(fidx2(end)));
+phase1=angle(H1_f(fidx1(end)));
+phase2=angle(H1_f(fidx2(end)));
+ftdelay1=-phase1/(pi*8);
+ftdelay2=-phase1/(pi*40);
+
+clear all;
+clc;
+T=.002;
+t=-1:T:12;
+
+delta=zeros (1,length (t));
+delta(1/T)=1/T;
+h=zeros(1,length(delta));
+h(1)=0;
+h(2)=0;
+
+for n=3 : length (t);
+
+        h(n)=(1/((0.3/T^2)+(0.4/T)+0.8))*(0.9*delta(n)+(0.2/T)*delta(n)-(0.2/T)*delta(n-1)-(0.3/T^2)*h(n-2)+(0.6/T^2)*h(n-1)+((0.4/T)*h(n-1)));
+end
+
+%plot the impulse response
+
+fs=1/T;
+N=length(t);
+f=-fs/2:fs/N:((fs/2)-fs/N);
+
+%find fourier transform
+H_f=T*fftshift(fft(h));
+
+figure(3)
+subplot(2, 1, 1)
+plot(f, abs(H_f));
+title('Problem 1b');
+xlabel('Time');
+ylabel('Amplitude');
+subplot(2, 1, 2)
+plot(f, angle(H_f));
+title('Problem 1b');
+xlabel('Time');
+ylabel('Angle');
+    
+    
+f1 = .1;
+f2 =.25;
+f3=.6;
+
+f_idx1= round(N*f1/fs) + N/2 + 1;
+f_idx2= round(N*f2/fs) + N/2 + 1;
+f_idx3= round(N*f3/fs) + N/2 + 1;
+
+A1 = abs(H_f(ceil(f_idx1)))
+A2 = abs(H_f(ceil(f_idx2)))
+A3 = abs(H_f(ceil(f_idx3)))
+
+Ph1 = -angle( H_f(ceil(f_idx1)))
+Ph2 = -angle( H_f(ceil(f_idx2)))
+Ph3 = -angle( H_f(ceil(f_idx3)))
+
+x1_t =-3.9*cos(2*pi*f1*t -1.5);
+x2_t =3.75*cos(2*pi*f2*t -0.6);
+x3_t =0.5*cos(2*pi*f3*t +0.2);
+
+y1_t = -3.9*A1*cos(2*pi*f1*t -1.5 + Ph1);
+y2_t = 3.75*A1*cos(2*pi*f2*t -0.6 + Ph2);
+y3_t = 0.5*A1*cos(2*pi*f3*t +0.2 + Ph3);
+
+%plot each input output together 
+figure(4)
+subplot(3, 1, 1)
+plot(x1_t, y1_t);
+title('Problem 2c 1');
+xlabel('Time');
+ylabel('Amplitude');
+subplot(3, 1, 2)
+plot(x2_t, y2_t);
+title('Problem 2c 2');
+xlabel('Time');
+ylabel('Amplitude');
+subplot(3, 1, 3)
+plot(x3_t, y3_t);
+title('Problem 2c 3');
+xlabel('Time');
+ylabel('Amplitude');
+
+%d
+x_t = x1_t + x2_t + x3_t;
+y_t = y1_t + y2_t + y3_t;
+
+% calculate y_t by using convolution and compare it with y_t
+Y1_t=T*conv(x1_t,h);
+Y2_t=T*conv(x2_t,h);
+Y3_t=T*conv(x3_t,h);
+Y_t= Y1_t + Y2_t + Y3_t;
+
+%compare Y_t with y_t
+
+figure(5)
+plot(t,x_t,t,y_t)
+legend('x(t)','y(t)')
+xlabel('Time')
+ylabel('Amplitude')

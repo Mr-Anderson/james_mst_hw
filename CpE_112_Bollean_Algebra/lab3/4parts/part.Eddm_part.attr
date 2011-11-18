@@ -1,0 +1,7 @@
+A 5 u Eddm_part 4aaff5b84a6e.03.7f.00.01.01.00.46.f6 1 2 1 0
+V v 1 1 4aaff5b84a6e.03.7f.00.01.01.01.46.f6
+F f 1 "part.part_1"
+O 1
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/4parts/schematic" 1 mgc_schematic 4aafef66d35a.03.7f.00.01.01.00.46.f6 4aafef66d359.03.7f.00.01.01.00.46.f6
+P "eddm__refer_state" "eddm__refer_floating"

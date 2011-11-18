@@ -1,0 +1,13 @@
+A 5 u mgc_schematic 4b1582c9b0b8.03.7f.00.01.01.00.11.51 8 2 1 0
+V v 6 1 4b158cdaa37f.03.7f.00.01.01.00.11.51
+F o 0 ""
+V v 7 1 4b158ed42145.03.7f.00.01.01.00.13.10
+F o 0 ""
+V v 8 1 4b159267c8a1.03.7f.00.01.01.00.13.9b
+F o 0 ""
+O 8
+R cspuv 0 "$USERLIB/lab13/schematic/sheet1" 7 mgc_sheet 4b15926794d6.03.7f.00.01.01.00.13.9b 4b1582ca25cb.03.7f.00.01.01.00.11.51
+O 7
+R cspuv 0 "$USERLIB/lab13/schematic/sheet1" 6 mgc_sheet 4b158ed3e0e2.03.7f.00.01.01.00.13.10 4b1582ca25cb.03.7f.00.01.01.00.11.51
+O 6
+R cspuv 0 "$USERLIB/lab13/schematic/sheet1" 5 mgc_sheet 4b158cda707a.03.7f.00.01.01.00.11.51 4b1582ca25cb.03.7f.00.01.01.00.11.51

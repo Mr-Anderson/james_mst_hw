@@ -1,0 +1,210 @@
+%***********************
+%James Anderson
+%Lab 9 Section E
+%***********************
+%---------------------------------------------------------------
+%Lab 9 Procedure Part 1
+%---------------------------------------------------------------
+
+%a)
+K = 1.5;
+BW = 1.25;
+t0 = 0;
+
+Fs = 50.0;
+T = 1/Fs;
+df = .01;
+
+f = -Fs/2:df:Fs/2;
+t = (-.5/df) : T : (.5/df);
+
+H_lpf = K*( (0 <= f + BW) - ( 0 <= f - BW)) .* exp(1i*2*pi*f*t0);
+
+figure(1)
+subplot(2,1,1);
+plot(t, abs(H_lpf), 'b');
+xlim([-5,5])
+title('Figure 1a: Ideal low-pass filter');
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
+
+subplot(2,1,2);
+plot(t, angle(H_lpf), 'r');
+xlim([-5,5])
+title('Phase Spectrum');
+xlabel('Frequency(Hz)');
+ylabel('Phase(Rad)');
+
+%b)
+
+h_t1 = Fs*fftshift( H_lpf);
+
+h_t2 = 2*BW*K*sinc(2*BW*(t-t0));
+
+figure(2)
+plot(t, h_t1, '-o',t,h_t2,'r');
+title('Figure 1b: Impulse response of ideal low-pass filter');
+xlim([-5,5])
+
+
+%---------------------------------------------------------------
+%Lab 9 Procedure Part 2
+%---------------------------------------------------------------
+
+%a)
+K = 1.5;
+BW = 2.5;
+f0 = 6;
+t0 = 0;
+
+Fs = 50.0;
+T= 1/Fs;
+df = .01;
+
+f = -Fs/2:df:Fs/2;
+t = (-.5/df) : T : (.5/df);
+
+x = exp(-pi*t.^2);
+
+H_bp = K*(rectpuls((f+f0)/BW)+ rectpuls((f-f0)/BW)) ...
+          .*exp(1i*2*pi*f*t0);
+      
+figure(3)
+subplot(2,1,1);
+plot(f, abs(H_bp), 'b');
+xlim([-10,10])
+title('Figure 2a: Ideal band-pass filter');
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
+
+subplot(2,1,2);
+plot(t, angle(H_bp), 'r');
+xlim([-10,10])
+title('Phase Spectrum');
+xlabel('Frequency(Hz)');
+ylabel('Phase(Rad)');
+
+%b)
+
+H_bp = ifftshift( H_bp);
+
+h_t1 = Fs*fftshift( ifft(H_bp));
+
+h_t2 = 2*BW*K*sinc(BW*(t-t0)).*cos(2*pi*f0*(t-t0));
+
+figure(4)
+plot(t, h_t1, '-o',t,h_t2,'r');
+title('Figure 1b: Impulse response of ideal band-pass filter');
+xlim([-10,10])
+
+
+%---------------------------------------------------------------
+%Lab 9 Procedure Part 3
+%---------------------------------------------------------------
+
+%a)
+
+load hum3hb.mat
+
+Fs = 1/T;
+
+t = 0:T:length(hb)*T-T;
+f = -Fs/2:Fs/length(t):Fs/2-Fs/length(t);
+
+Hb = T*fftshift(fft(hb));
+
+figure(5)
+subplot(2,1,1);
+plot(f, abs(Hb), 'b');
+xlim([-10,10])
+title('Figure 3a: Power supply hum');
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
+
+subplot(2,1,2);
+plot(t, angle(Hb), 'r');
+title('Phase Spectrum');
+xlabel('Frequency(Hz)');
+ylabel('Phase(Rad)');
+
+%b)
+
+H_br = 1 - rectpuls((f+60)/10) - rectpuls((f-60)/10);
+
+Y_br = H_br.*Hb;
+
+hb_br = Fs*( ifft( ifftshift(Y_br) ) );
+
+figure(6)
+subplot(3,1,1);
+plot(t, hb_br, 'b');
+title('Figure 3b: Removing the power supply hum');
+xlabel('Time');
+ylabel('Amplitude');
+
+subplot(3,1,2);
+plot(t, hb, 'r');
+title('Filter');
+xlabel('Time');
+ylabel('Amplitude');
+
+subplot(3,1,3);
+plot(f, abs(Y_br), 'r');
+title('Output');
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
+
+%c)
+
+X_hum = Y_br - Hb;
+
+figure(7)
+plot(f, abs(X_hum), 'b');
+title('Figure 3c: Removed signal');
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
+
+
+%d)
+
+H_lpf = (0 <= f+55) - (0 <= f - 55);
+
+%convlove with low pass filter
+Y_lp=H_lpf.*Y_br;
+
+%return to time domain
+hb_lp = Fs*ifft( ifftshift(Y_lp));
+
+figure(8)
+subplot(2,1,1);
+plot(t, hb_lp, 'b');
+title('Figure 3d: Low pass filter');
+xlabel('Time');
+ylabel('Amplitude');
+
+subplot(2,1,2);
+plot(f, abs(Y_lp), 'r');
+title('Output signal');
+xlabel('Time');
+ylabel('Amplitude');
+
+%e)
+
+X_noise = Y_lp - Y_br;
+
+%to the time domain batman
+noise = Fs*ifft( ifftshift(X_noise));
+
+figure(9)
+subplot(2,1,1);
+plot(t, noise, 'b');
+title('Figure 3e: Noise removed');
+xlabel('Time');
+ylabel('Amplitude');
+
+subplot(2,1,2);
+plot(f, X_noise, 'b');
+title('Frequency');
+xlabel('Frequency');
+ylabel('Amplitude');
+

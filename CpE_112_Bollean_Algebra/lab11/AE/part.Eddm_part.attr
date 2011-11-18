@@ -1,0 +1,12 @@
+A 5 u Eddm_part 4af9ee9d45a9.03.7f.00.01.01.00.2d.62 2 2 2 0
+V v 1 1 4af9ee9d45aa.03.7f.00.01.01.00.2d.62
+F f 1 "part.part_1"
+V v 2 1 4af9eedd980e.03.7f.00.01.01.00.2d.62
+F f 2 "part.part_2"
+O 2
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/AE/schematic" 1 mgc_schematic 4af9ed55200b.03.7f.00.01.01.01.2d.08 4af9ed55200b.03.7f.00.01.01.00.2d.08
+R csduv 1 "$USERLIB/AE/AE" 1 mgc_symbol 4af9eeb02448.03.7f.00.01.01.01.2d.62 4af9eeb02448.03.7f.00.01.01.00.2d.62
+O 1
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/AE/schematic" 1 mgc_schematic 4af9ed55200b.03.7f.00.01.01.01.2d.08 4af9ed55200b.03.7f.00.01.01.00.2d.08

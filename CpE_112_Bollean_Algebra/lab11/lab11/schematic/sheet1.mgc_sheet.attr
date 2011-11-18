@@ -1,0 +1,9 @@
+A 5 u mgc_sheet 4b030b5f10a7.03.7f.00.01.01.00.31.7f 1 2 3 0
+V v 1 2 4b030b5f10a7.03.7f.00.01.01.01.31.7f
+F f 1 "sheet1.ssht_1"
+F f 1 "sheet1.sgfx_1"
+O 1
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/lab11/schematic" 1 mgc_schematic 4b030b5e9bda.03.7f.00.01.01.01.31.7f 4b030b5e9bda.03.7f.00.01.01.00.31.7f
+R csduv 1 "$USERLIB/Alu/part" 2 Eddm_part 4b030b0de975.03.7f.00.01.01.00.31.7f 4b0303d296a3.03.7f.00.01.01.00.31.7f
+R csduv 2 "$USERLIB/Alu/Alu" 1 mgc_symbol 4b030ae35305.03.7f.00.01.01.01.31.7f 4b030ae35305.03.7f.00.01.01.00.31.7f

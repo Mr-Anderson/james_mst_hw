@@ -1,0 +1,12 @@
+A 5 u Eddm_part 4b0303d296a3.03.7f.00.01.01.00.31.7f 2 2 2 0
+V v 1 1 4b0303d296a3.03.7f.00.01.01.01.31.7f
+F f 1 "part.part_1"
+V v 2 1 4b030b0de975.03.7f.00.01.01.00.31.7f
+F f 2 "part.part_2"
+O 2
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/Alu/schematic" 1 mgc_schematic 4af9ea674c1e.03.7f.00.01.01.00.2c.96 4af9ea674c1d.03.7f.00.01.01.00.2c.96
+R csduv 1 "$USERLIB/Alu/Alu" 1 mgc_symbol 4b030ae35305.03.7f.00.01.01.01.31.7f 4b030abaa589.03.7f.00.01.01.00.31.7f
+O 1
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/Alu/schematic" 1 mgc_schematic 4af9ea674c1e.03.7f.00.01.01.00.2c.96 4af9ea674c1d.03.7f.00.01.01.00.2c.96

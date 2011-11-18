@@ -1,0 +1,5 @@
+A 5 u mgc_symbol 4ade16887850.03.7f.00.01.01.00.4f.5e 1 2 1 0
+V v 1 1 4ade16887850.03.7f.00.01.01.01.4f.5e
+F f 1 "fulladd.smbl_1"
+O 1
+R csduv 0 "$USERLIB/fulladd/part" 2 Eddm_part 4ade194bddf8.03.7f.00.01.01.00.4f.5e 4ade14957ae8.03.7f.00.01.01.00.4f.5e

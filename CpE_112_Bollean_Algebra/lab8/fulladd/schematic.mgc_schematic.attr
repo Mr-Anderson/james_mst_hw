@@ -1,0 +1,13 @@
+A 5 u mgc_schematic 4ade12dd3ff7.03.7f.00.01.01.00.4f.12 4 2 1 0
+V v 2 1 4ade1495dc12.03.7f.00.01.01.00.4f.5e
+F o 0 ""
+V v 3 1 4ade15f77ee8.03.7f.00.01.01.00.4f.5e
+F o 0 ""
+V v 4 1 4ade19830a87.03.7f.00.01.01.00.4f.5e
+F o 0 ""
+O 4
+R cspuv 0 "$USERLIB/fulladd/schematic/sheet1" 4 mgc_sheet 4ade1982e05e.03.7f.00.01.01.00.4f.5e 4ade12dda33f.03.7f.00.01.01.00.4f.12
+O 3
+R cspuv 0 "$USERLIB/fulladd/schematic/sheet1" 3 mgc_sheet 4ade15f77cb7.03.7f.00.01.01.00.4f.5e 4ade12dda33f.03.7f.00.01.01.00.4f.12
+O 2
+R cspuv 0 "$USERLIB/fulladd/schematic/sheet1" 2 mgc_sheet 4ade1495bd0b.03.7f.00.01.01.00.4f.5e 4ade12dda33f.03.7f.00.01.01.00.4f.12

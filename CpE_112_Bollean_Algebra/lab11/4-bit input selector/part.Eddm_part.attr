@@ -1,0 +1,12 @@
+A 5 u Eddm_part 4af9e74bd4ef.03.7f.00.01.01.00.2c.96 2 2 2 0
+V v 1 1 4af9e74bd4f0.03.7f.00.01.01.00.2c.96
+F f 1 "part.part_1"
+V v 2 1 4af9ea32c3fa.03.7f.00.01.01.00.2c.96
+F f 2 "part.part_2"
+O 2
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/4-bit input selector/schematic" 1 mgc_schematic 4af9e52d43cf.03.7f.00.01.01.00.2b.d2 4af9e52d43ce.03.7f.00.01.01.00.2b.d2
+R csduv 1 "$USERLIB/4-bit input selector/4-bit input selector" 1 mgc_symbol 4af9e8f54604.03.7f.00.01.01.00.2c.96 4af9e8f54603.03.7f.00.01.01.00.2c.96
+O 1
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/4-bit input selector/schematic" 1 mgc_schematic 4af9e52d43cf.03.7f.00.01.01.00.2b.d2 4af9e52d43ce.03.7f.00.01.01.00.2b.d2

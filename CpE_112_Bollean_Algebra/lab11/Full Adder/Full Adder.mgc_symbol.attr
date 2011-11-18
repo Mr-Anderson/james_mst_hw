@@ -1,0 +1,5 @@
+A 5 u mgc_symbol 4af9ec6d822b.03.7f.00.01.01.00.2d.08 1 2 1 0
+V v 1 1 4af9ec6d822b.03.7f.00.01.01.01.2d.08
+F f 1 "Full Adder.smbl_1"
+O 1
+R csduv 0 "$USERLIB/Full Adder/part" 2 Eddm_part 4af9ec9b647c.03.7f.00.01.01.00.2d.08 4af9ec50a10b.03.7f.00.01.01.00.2d.08

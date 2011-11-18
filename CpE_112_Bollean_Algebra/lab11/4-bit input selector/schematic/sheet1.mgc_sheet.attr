@@ -1,0 +1,45 @@
+A 5 u mgc_sheet 4af9e52daeb4.03.7f.00.01.01.00.2b.d2 4 2 11 0
+V v 2 2 4af9e74c1c02.03.7f.00.01.01.00.2c.96
+F f 2 "sheet1.ssht_2"
+F f 2 "sheet1.sgfx_2"
+V v 3 2 4af9e819e161.03.7f.00.01.01.00.2c.96
+F f 3 "sheet1.ssht_3"
+F f 3 "sheet1.sgfx_3"
+V v 4 2 4af9e8ed21a9.03.7f.00.01.01.00.2c.96
+F f 4 "sheet1.ssht_4"
+F f 4 "sheet1.sgfx_4"
+O 4
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/4-bit input selector/schematic" 1 mgc_schematic 4af9e52d43cf.03.7f.00.01.01.00.2b.d2 4af9e52d43ce.03.7f.00.01.01.00.2b.d2
+R csduv 1 "$MGC_GENLIB/portin/part" 1 Eddm_part 35b533a5f2c8.03.89.ca.2b.4d.00.0e.21 35b53c90ba98.03.89.ca.2b.4d.00.4f.9c
+R csduv 2 "$MGC_GENLIB/portin/portin" 1 mgc_symbol 35b533a5f114.03.89.ca.2b.4d.00.0e.21 35b53c90baa4.03.89.ca.2b.4d.00.4f.9c
+R csduv 3 "$MGC_GENLIB/and3/part" 1 Eddm_part 5f94a0e24000.0d.00.02.e4.17.00.00.00 5f9a0e7c0000.0d.00.02.e4.17.00.00.00
+R csduv 4 "$MGC_GENLIB/and3/and3" 1 mgc_symbol 5e8fb239b000.0d.00.02.ed.d4.00.00.00 5f9a0e7c1000.0d.00.02.e4.17.00.00.00
+R csduv 5 "$MGC_GENLIB/inv/part" 1 Eddm_part 5f94b1676000.0d.00.02.e4.17.00.00.00 5f9a0e6a7000.0d.00.02.e4.17.00.00.00
+R csduv 6 "$MGC_GENLIB/inv/inv" 1 mgc_symbol 5e8fb4bcd000.0d.00.02.ed.d4.00.00.00 5f9a0e6a8000.0d.00.02.e4.17.00.00.00
+R csduv 7 "$MGC_GENLIB/or4/part" 1 Eddm_part 5f94c57a4000.0d.00.02.e4.17.00.00.00 5f9a0e564000.0d.00.02.e4.17.00.00.00
+R csduv 8 "$MGC_GENLIB/or4/or4" 1 mgc_symbol 5e8fb89c2000.0d.00.02.ed.d4.00.00.00 5f9a0e565000.0d.00.02.e4.17.00.00.00
+R csduv 9 "$MGC_GENLIB/portout/part" 1 Eddm_part 35b534b3d69a.03.89.ca.2b.4d.00.0e.21 35b53c93a547.03.89.ca.2b.4d.00.4f.9c
+R csduv 10 "$MGC_GENLIB/portout/portout" 1 mgc_symbol 35b534b3d562.03.89.ca.2b.4d.00.0e.21 35b53c93a542.03.89.ca.2b.4d.00.4f.9c
+O 3
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/4-bit input selector/schematic" 1 mgc_schematic 4af9e52d43cf.03.7f.00.01.01.00.2b.d2 4af9e52d43ce.03.7f.00.01.01.00.2b.d2
+R csduv 1 "$MGC_GENLIB/portin/part" 1 Eddm_part 35b533a5f2c8.03.89.ca.2b.4d.00.0e.21 35b53c90ba98.03.89.ca.2b.4d.00.4f.9c
+R csduv 2 "$MGC_GENLIB/portin/portin" 1 mgc_symbol 35b533a5f114.03.89.ca.2b.4d.00.0e.21 35b53c90baa4.03.89.ca.2b.4d.00.4f.9c
+R csduv 3 "$MGC_GENLIB/and3/part" 1 Eddm_part 5f94a0e24000.0d.00.02.e4.17.00.00.00 5f9a0e7c0000.0d.00.02.e4.17.00.00.00
+R csduv 4 "$MGC_GENLIB/and3/and3" 1 mgc_symbol 5e8fb239b000.0d.00.02.ed.d4.00.00.00 5f9a0e7c1000.0d.00.02.e4.17.00.00.00
+R csduv 5 "$MGC_GENLIB/inv/part" 1 Eddm_part 5f94b1676000.0d.00.02.e4.17.00.00.00 5f9a0e6a7000.0d.00.02.e4.17.00.00.00
+R csduv 6 "$MGC_GENLIB/inv/inv" 1 mgc_symbol 5e8fb4bcd000.0d.00.02.ed.d4.00.00.00 5f9a0e6a8000.0d.00.02.e4.17.00.00.00
+R csduv 7 "$MGC_GENLIB/or4/part" 1 Eddm_part 5f94c57a4000.0d.00.02.e4.17.00.00.00 5f9a0e564000.0d.00.02.e4.17.00.00.00
+R csduv 8 "$MGC_GENLIB/or4/or4" 1 mgc_symbol 5e8fb89c2000.0d.00.02.ed.d4.00.00.00 5f9a0e565000.0d.00.02.e4.17.00.00.00
+R csduv 9 "$MGC_GENLIB/portout/part" 1 Eddm_part 35b534b3d69a.03.89.ca.2b.4d.00.0e.21 35b53c93a547.03.89.ca.2b.4d.00.4f.9c
+R csduv 10 "$MGC_GENLIB/portout/portout" 1 mgc_symbol 35b534b3d562.03.89.ca.2b.4d.00.0e.21 35b53c93a542.03.89.ca.2b.4d.00.4f.9c
+O 2
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/4-bit input selector/schematic" 1 mgc_schematic 4af9e52d43cf.03.7f.00.01.01.00.2b.d2 4af9e52d43ce.03.7f.00.01.01.00.2b.d2
+R csduv 1 "$MGC_GENLIB/portin/part" 1 Eddm_part 35b533a5f2c8.03.89.ca.2b.4d.00.0e.21 35b53c90ba98.03.89.ca.2b.4d.00.4f.9c
+R csduv 2 "$MGC_GENLIB/portin/portin" 1 mgc_symbol 35b533a5f114.03.89.ca.2b.4d.00.0e.21 35b53c90baa4.03.89.ca.2b.4d.00.4f.9c
+R csduv 3 "$MGC_GENLIB/and3/part" 1 Eddm_part 5f94a0e24000.0d.00.02.e4.17.00.00.00 5f9a0e7c0000.0d.00.02.e4.17.00.00.00
+R csduv 4 "$MGC_GENLIB/and3/and3" 1 mgc_symbol 5e8fb239b000.0d.00.02.ed.d4.00.00.00 5f9a0e7c1000.0d.00.02.e4.17.00.00.00
+R csduv 5 "$MGC_GENLIB/inv/part" 1 Eddm_part 5f94b1676000.0d.00.02.e4.17.00.00.00 5f9a0e6a7000.0d.00.02.e4.17.00.00.00
+R csduv 6 "$MGC_GENLIB/inv/inv" 1 mgc_symbol 5e8fb4bcd000.0d.00.02.ed.d4.00.00.00 5f9a0e6a8000.0d.00.02.e4.17.00.00.00

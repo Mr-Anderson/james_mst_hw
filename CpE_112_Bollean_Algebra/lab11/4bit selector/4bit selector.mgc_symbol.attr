@@ -1,0 +1,9 @@
+A 5 u mgc_symbol 4af9e174ad56.03.7f.00.01.01.00.2b.d2 2 2 1 0
+V v 1 1 4af9e174ad56.03.7f.00.01.01.01.2b.d2
+F f 1 "4bit selector.smbl_1"
+V v 2 1 4af9e332b318.03.7f.00.01.01.00.2b.d2
+F f 2 "4bit selector.smbl_2"
+O 2
+R csduv 0 "$USERLIB/4bit selector/part" 2 Eddm_part 4af9e24d1057.03.7f.00.01.01.00.2b.d2 4af9dd59eccc.03.7f.00.01.01.00.2b.d2
+O 1
+R csduv 0 "$USERLIB/4bit selector/part" 2 Eddm_part 4af9e24d1057.03.7f.00.01.01.00.2b.d2 4af9dd59eccc.03.7f.00.01.01.00.2b.d2

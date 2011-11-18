@@ -1,0 +1,13 @@
+A 5 u mgc_schematic 4ad4cced1fb0.03.7f.00.01.01.00.23.9f 5 2 1 0
+V v 3 1 4ad4d2065062.03.7f.00.01.01.00.23.9f
+F o 0 ""
+V v 4 1 4ad4d2fa3a28.03.7f.00.01.01.00.25.04
+F o 0 ""
+V v 5 1 4ad4d3568702.03.7f.00.01.01.00.25.04
+F o 0 ""
+O 5
+R cspuv 0 "$USERLIB/Lab7/schematic/sheet1" 4 mgc_sheet 4ad4d3566165.03.7f.00.01.01.00.25.04 4ad4ccede6e9.03.7f.00.01.01.00.23.9f
+O 4
+R cspuv 0 "$USERLIB/Lab7/schematic/sheet1" 3 mgc_sheet 4ad4d2fa17cf.03.7f.00.01.01.00.25.04 4ad4ccede6e9.03.7f.00.01.01.00.23.9f
+O 3
+R cspuv 0 "$USERLIB/Lab7/schematic/sheet1" 2 mgc_sheet 4ad4d2062b8c.03.7f.00.01.01.00.23.9f 4ad4ccede6e9.03.7f.00.01.01.00.23.9f

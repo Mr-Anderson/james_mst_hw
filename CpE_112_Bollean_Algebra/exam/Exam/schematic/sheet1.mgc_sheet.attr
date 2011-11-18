@@ -1,0 +1,7 @@
+A 5 u mgc_sheet 4b1ec6f1a382.03.7f.00.01.01.00.17.5f 1 2 1 0
+V v 1 2 4b1ec6f1a382.03.7f.00.01.01.01.17.5f
+F f 1 "sheet1.ssht_1"
+F f 1 "sheet1.sgfx_1"
+O 1
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/Exam/schematic" 1 mgc_schematic 4b1ec6f19814.03.7f.00.01.01.01.17.5f 4b1ec6f19814.03.7f.00.01.01.00.17.5f

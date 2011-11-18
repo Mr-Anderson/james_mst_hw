@@ -1,0 +1,14 @@
+A 5 u Eddm_part 4af9d546280e.03.7f.00.01.01.00.2b.02 2 2 2 0
+V v 1 1 4af9d546280f.03.7f.00.01.01.00.2b.02
+F f 1 "part.part_1"
+V v 2 1 4af9da0df399.03.7f.00.01.01.00.2b.02
+F f 2 "part.part_2"
+O 2
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/Selector/schematic" 1 mgc_schematic 4af9d537f389.03.7f.00.01.01.00.2b.02 4af9d537f388.03.7f.00.01.01.00.2b.02
+P "eddm__refer_state" "eddm__refer_floating"
+R csduv 1 "$USERLIB/Selector/Selector" 1 mgc_symbol 4af9d9905cfc.03.7f.00.01.01.01.2b.02 4af9d5a10f66.03.7f.00.01.01.00.2b.02
+O 1
+P "eddm__stream_to_use" "eddm__propl_dstream"
+R csduv 0 "$USERLIB/Selector/schematic" 1 mgc_schematic 4af9d537f389.03.7f.00.01.01.00.2b.02 4af9d537f388.03.7f.00.01.01.00.2b.02
+P "eddm__refer_state" "eddm__refer_floating"

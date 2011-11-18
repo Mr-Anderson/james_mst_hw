@@ -1,0 +1,10 @@
+A 5 u mgc_schematic 4af9d247b6ad.03.7f.00.01.01.00.2b.02 2 2 1 0
+V v 1 1 4af9d247b6ae.03.7f.00.01.01.00.2b.02
+F o 0 ""
+V v 2 1 4af9d4c1c876.03.7f.00.01.01.00.2b.02
+F o 0 ""
+O 2
+R cspuv 0 "$USERLIB/schematic/selector" 1 mgc_sheet 4af9d2483267.03.7f.00.01.01.01.2b.02 4af9d2483267.03.7f.00.01.01.00.2b.02
+O 1
+R cspuv 0 "$USERLIB/schematic/selector" 1 mgc_sheet 4af9d2483267.03.7f.00.01.01.01.2b.02 4af9d2483267.03.7f.00.01.01.00.2b.02
+P "eddm__refer_state" "eddm__refer_floating"

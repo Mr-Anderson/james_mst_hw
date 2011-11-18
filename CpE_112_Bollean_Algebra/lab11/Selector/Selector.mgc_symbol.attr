@@ -1,0 +1,5 @@
+A 5 u mgc_symbol 4af9d9905cfc.03.7f.00.01.01.00.2b.02 1 2 1 0
+V v 1 1 4af9d9905cfc.03.7f.00.01.01.01.2b.02
+F f 1 "Selector.smbl_1"
+O 1
+R csduv 0 "$USERLIB/Selector/part" 2 Eddm_part 4af9da0df399.03.7f.00.01.01.00.2b.02 4af9d546280e.03.7f.00.01.01.00.2b.02

@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Tue Dec 08 15:16:52 2009
+Quartus II Version : 8.0 Build 215 05/29/2008 SJ Full Version
+Revision Name : BigPart
+Top-level Entity Name : BigPart
+Family : Cyclone II
+Total logic elements : 2
+    Total combinational functions : 2
+    Dedicated logic registers : 0
+Total registers : 0
+Total pins : 5
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

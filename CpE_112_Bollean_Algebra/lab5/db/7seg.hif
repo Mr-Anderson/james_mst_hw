@@ -1,0 +1,41 @@
+Version 8.0 Build 215 05/29/2008 SJ Full Version
+11
+1009
+OFF
+OFF
+OFF
+OFF
+ON
+ON
+ON
+FV_OFF
+Level2
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Partition --
+-- End Partition --
+-- Start Library Paths --
+-- End Library Paths --
+-- Start VHDL Libraries --
+-- End VHDL Libraries --
+# entity
+7seg
+# storage
+db|7seg.(0).cnf
+db|7seg.(0).cnf
+# case_insensitive
+# source_file
+7seg.edf
+3726d1214a72abb362cd62cec17f5d6e
+9
+# hierarchies {
+|
+}
+# macro_sequence
+
+# end
+# complete
+

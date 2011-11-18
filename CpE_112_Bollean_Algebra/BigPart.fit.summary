@@ -1,0 +1,16 @@
+Fitter Status : Successful - Tue Dec 08 15:17:12 2009
+Quartus II Version : 8.0 Build 215 05/29/2008 SJ Full Version
+Revision Name : BigPart
+Top-level Entity Name : BigPart
+Family : Cyclone II
+Device : EP2C35F672C6
+Timing Models : Final
+Total logic elements : 2 / 33,216 ( < 1 % )
+    Total combinational functions : 2 / 33,216 ( < 1 % )
+    Dedicated logic registers : 0 / 33,216 ( 0 % )
+Total registers : 0
+Total pins : 5 / 475 ( 1 % )
+Total virtual pins : 0
+Total memory bits : 0 / 483,840 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 70 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )

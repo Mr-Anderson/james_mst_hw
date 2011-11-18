@@ -1,0 +1,13 @@
+A 5 u mgc_schematic 4af9eefaaf49.03.7f.00.01.01.00.2d.62 8 2 1 0
+V v 6 1 4b0301025d35.03.7f.00.01.01.00.31.7f
+F o 0 ""
+V v 7 1 4b03013169cd.03.7f.00.01.01.00.31.7f
+F o 0 ""
+V v 8 1 4b03017bc051.03.7f.00.01.01.00.31.7f
+F o 0 ""
+O 8
+R cspuv 0 "$USERLIB/LE/schematic/sheet1" 7 mgc_sheet 4b03017b8c79.03.7f.00.01.01.00.31.7f 4af9eefb2740.03.7f.00.01.01.00.2d.62
+O 7
+R cspuv 0 "$USERLIB/LE/schematic/sheet1" 6 mgc_sheet 4b0301313711.03.7f.00.01.01.00.31.7f 4af9eefb2740.03.7f.00.01.01.00.2d.62
+O 6
+R cspuv 0 "$USERLIB/LE/schematic/sheet1" 5 mgc_sheet 4b0301022a44.03.7f.00.01.01.00.31.7f 4af9eefb2740.03.7f.00.01.01.00.2d.62

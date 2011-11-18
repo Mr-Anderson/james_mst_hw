@@ -1,0 +1,13 @@
+A 5 u mgc_schematic 4ac2681eae44.03.7f.00.01.01.00.1c.68 8 2 1 0
+V v 6 1 4ac2810fc030.03.7f.00.01.01.00.1e.e4
+F o 0 ""
+V v 7 1 4ac28139c043.03.7f.00.01.01.00.1e.e4
+F o 0 ""
+V v 8 1 4ac28176c7f2.03.7f.00.01.01.00.1e.e4
+F o 0 ""
+O 8
+R cspuv 0 "/nethome/users/jra798/cpe112/lab5/7seg/schematic/sheet1" 8 mgc_sheet 4ac281769fbc.03.7f.00.01.01.00.1e.e4 4ac2681eba3f.03.7f.00.01.01.00.1c.68
+O 7
+R cspuv 0 "/nethome/users/jra798/cpe112/lab5/7seg/schematic/sheet1" 7 mgc_sheet 4ac28139b1fa.03.7f.00.01.01.00.1e.e4 4ac2681eba3f.03.7f.00.01.01.00.1c.68
+O 6
+R cspuv 0 "/nethome/users/jra798/cpe112/lab5/7seg/schematic/sheet1" 6 mgc_sheet 4ac2810f9223.03.7f.00.01.01.00.1e.e4 4ac2681eba3f.03.7f.00.01.01.00.1c.68
