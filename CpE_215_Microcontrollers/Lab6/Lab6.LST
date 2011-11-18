@@ -1,0 +1,147 @@
+C51 COMPILER V6.02  LAB6                                                                   11/17/2010 08:44:51 PAGE 1   
+
+
+C51 COMPILER V6.02, COMPILATION OF MODULE LAB6
+OBJECT MODULE PLACED IN .\Lab6.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE .\Lab6.c DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          #include <at89x52.h>
+   2          #include <intrins.h>
+   3          #include <stdio.h>
+   4          
+   5          #define DATA P0
+   6          #define RW P1_0
+   7          #define EN P1_1
+   8          #define RS P1_2
+   9          #define ON P1_3
+  10          #define BLON P1_4
+  11          #define dbg_led P1_7
+  12          
+  13          
+  14          void initialize();
+  15          void clear_display();
+  16          void set_entry();
+  17          void function_set();
+  18          void display_on();
+  19          void next_line();
+  20          void writeInstruction(char dat);
+  21          void writeData(char dat);
+  22          void Delay(long x);
+  23          
+  24          
+  25          void main()
+  26          {
+  27   1      	initialize();
+  28   1      
+  29   1      	writeData(0x4A); //J
+  30   1      	writeData(0x61); //a
+  31   1      	writeData(0x6D); //m
+  32   1      	writeData(0x65); //e
+  33   1      	writeData(0x73); //s
+  34   1      	
+  35   1      	next_line();
+  36   1      	
+  37   1      	writeData(0x41); //A
+  38   1      	writeData(0x6E); //n
+  39   1      	writeData(0x64); //d
+  40   1      	writeData(0x65); //e
+  41   1      	writeData(0x72); //r	
+  42   1      	writeData(0x73); //s
+  43   1      	writeData(0x6F); //o
+  44   1      	writeData(0x6E); //n
+  45   1      
+  46   1      	while(1)
+  47   1      	{
+  48   2      		writeInstruction(0x1C);
+  49   2      		writeInstruction(0x1C);
+  50   2      		writeInstruction(0x1C);
+  51   2      		writeInstruction(0x18);
+  52   2      		writeInstruction(0x18);
+  53   2      		writeInstruction(0x18);
+  54   2      	}
+  55   1      }
+C51 COMPILER V6.02  LAB6                                                                   11/17/2010 08:44:51 PAGE 2   
+
+  56          
+  57          void initialize()
+  58          {
+  59   1      	ON = 1;
+  60   1      	BLON = 0;
+  61   1      	clear_display();
+  62   1      	set_entry();
+  63   1      	function_set();
+  64   1      	display_on();
+  65   1      	
+  66   1      }
+  67          
+  68          void clear_display()
+  69          {
+  70   1      	writeInstruction(0x01);
+  71   1      }
+  72          
+  73          void set_entry()
+  74          {
+  75   1      	writeInstruction(0x06);
+  76   1      }
+  77          
+  78          void function_set()
+  79          {
+  80   1      	writeInstruction(0x38);
+  81   1      }
+  82          
+  83          void display_on()
+  84          {
+  85   1      	writeInstruction(0x0E);
+  86   1      }
+  87          
+  88          void next_line()
+  89          {
+  90   1      	writeInstruction(0xC0);
+  91   1      }
+  92          
+  93          void writeInstruction(char dat)
+  94          {
+  95   1      	RS = 0;
+  96   1      	RW = 0;
+  97   1      	EN = 1;
+  98   1      	Delay(20000);
+  99   1      	DATA = dat;
+ 100   1      	Delay(20000);
+ 101   1      	EN = 0;
+ 102   1      }
+ 103          
+ 104          void writeData(char dat)
+ 105          {
+ 106   1      	RS = 1;
+ 107   1      	RW = 0;
+ 108   1      	EN = 1;
+ 109   1      	Delay(20000);
+ 110   1      	DATA = dat;
+ 111   1      	Delay(20000);
+ 112   1      	EN = 0;
+ 113   1      }
+ 114          
+ 115          
+ 116          void Delay (long x)
+ 117          {
+C51 COMPILER V6.02  LAB6                                                                   11/17/2010 08:44:51 PAGE 3   
+
+ 118   1      	long i;
+ 119   1      	for(i=0;i<x;i++);
+ 120   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    255    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      10
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

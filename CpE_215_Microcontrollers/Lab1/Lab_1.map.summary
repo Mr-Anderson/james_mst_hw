@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Wed Sep 01 12:00:45 2010
+Quartus II Version : 8.0 Build 231 07/10/2008 SP 1 SJ Full Version
+Revision Name : Lab_1
+Top-level Entity Name : TopLevle
+Family : Cyclone II
+Total logic elements : 16
+    Total combinational functions : 16
+    Dedicated logic registers : 0
+Total registers : 0
+Total pins : 12
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

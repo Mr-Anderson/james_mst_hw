@@ -1,0 +1,103 @@
+C51 COMPILER V6.02  QUIZ2                                                                  11/17/2010 10:12:37 PAGE 1   
+
+
+C51 COMPILER V6.02, COMPILATION OF MODULE QUIZ2
+OBJECT MODULE PLACED IN .\quiz2.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\Quiz2\quiz2.c DEBUG OBJECTEXTEND PRINT(.\quiz2.lst) OBJECT(.\quiz2.obj) 
+
+stmt level    source
+
+   1          #include <AT89x52.h>
+   2          
+   3          #define WR_BAR P3_3 
+   4          #define ALE P3_0
+   5          
+   6          
+   7          void SSegDisp(char x); 
+   8          
+   9          void Delay (long x);
+  10          
+  11          void main()
+  12          {
+  13   1      	for(;;)
+  14   1      	{
+  15   2      		WR_BAR = 1 ;
+  16   2      		ALE =0 ;
+  17   2      
+  18   2      		Delay(100000);
+  19   2      
+  20   2      		SSegDisp('8');
+  21   2      		Delay(100000);
+  22   2      
+  23   2      		SSegDisp('5');	
+  24   2      		Delay(100000);
+  25   2      
+  26   2      		SSegDisp('4');
+  27   2      		Delay(100000);
+  28   2      
+  29   2      	}
+  30   1      
+  31   1      }
+  32          
+  33          void Delay (long x)
+  34          {
+  35   1      	long i;
+  36   1      	for(i=0;i<x;i++);
+  37   1      }
+  38          
+  39          void SSegDisp(char x)
+  40          {
+  41   1      	WR_BAR = 1 ;
+  42   1      	ALE =0 ;
+  43   1      
+  44   1      	if(x == '8')
+  45   1      	{
+  46   2      		P2 = 0xAB;
+  47   2      		P0 = 0x23;
+  48   2      		Delay(20000);
+  49   2      		ALE = 1 ;
+  50   2      		Delay(20000);
+  51   2      		ALE = 0 ;
+  52   2      		P0 = 00000000;
+  53   2      	}
+  54   1      	else if(x == '5')
+  55   1      	{
+C51 COMPILER V6.02  QUIZ2                                                                  11/17/2010 10:12:37 PAGE 2   
+
+  56   2      		P2 = 0xAB;
+  57   2      		P0 = 0x24;
+  58   2      		Delay(20000);
+  59   2      		ALE = 1 ;
+  60   2      		Delay(20000);
+  61   2      		ALE = 0 ;
+  62   2      		P0 = 00010010;
+  63   2      	}
+  64   1      	else if(x == '4')
+  65   1      	{
+  66   2      		P2 = 0xAB;
+  67   2      		P0 = 0x25;
+  68   2      		Delay(20000);
+  69   2      		ALE = 1 ;
+  70   2      		Delay(20000);
+  71   2      		ALE = 0 ;
+  72   2      		P0 = 00011001;
+  73   2      	}
+  74   1      	Delay(20000);
+  75   1      	WR_BAR=0;
+  76   1      	Delay(20000);
+  77   1      	WR_BAR=1;
+  78   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    229    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

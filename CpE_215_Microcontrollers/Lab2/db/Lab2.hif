@@ -1,0 +1,157 @@
+Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Full Version
+11
+1009
+OFF
+OFF
+OFF
+OFF
+ON
+ON
+ON
+FV_OFF
+Level2
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Partition --
+-- End Partition --
+-- Start Library Paths --
+-- End Library Paths --
+-- Start VHDL Libraries --
+-- End VHDL Libraries --
+# entity
+TopLevel
+# storage
+db|Lab2.(0).cnf
+db|Lab2.(0).cnf
+# case_insensitive
+# source_file
+TopLevel.bdf
+8aa01729364d9283fed880c351c597
+25
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+|
+}
+# macro_sequence
+
+# end
+# entity
+wimp51
+# storage
+db|Lab2.(1).cnf
+db|Lab2.(1).cnf
+# case_insensitive
+# source_file
+wimp51.edf
+eec4c1489e621812f1f19be973d931
+9
+# hierarchies {
+wimp51:inst3
+}
+# macro_sequence
+
+# end
+# entity
+alu
+# storage
+db|Lab2.(2).cnf
+db|Lab2.(2).cnf
+# case_insensitive
+# source_file
+wimp51.edf
+eec4c1489e621812f1f19be973d931
+9
+# hierarchies {
+wimp51:inst3|alu:ALU
+}
+# macro_sequence
+
+# end
+# entity
+regfile
+# storage
+db|Lab2.(3).cnf
+db|Lab2.(3).cnf
+# case_insensitive
+# source_file
+wimp51.edf
+eec4c1489e621812f1f19be973d931
+9
+# hierarchies {
+wimp51:inst3|regfile:REGS
+}
+# macro_sequence
+
+# end
+# entity
+I8051_ROM
+# storage
+db|Lab2.(4).cnf
+db|Lab2.(4).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+wimp51_rom_ref.vhd
+456ba59f23a73cabcb9a8cec37c095a7
+4
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# include_file {
+i8051_lib.vhd
+28e53999cff02e9cc4e2c9e21fa7e45
+}
+# hierarchies {
+I8051_ROM:inst
+}
+# lmf
+c:|altera|80|quartus|lmf|maxplus2.lmf
+9a59d39b0706640b4b2718e8a1ff1f
+# macro_sequence
+
+# end
+# entity
+Lab2
+# storage
+db|Lab2.(5).cnf
+db|Lab2.(5).cnf
+# case_insensitive
+# source_file
+Lab2.bdf
+c7d466616afa8b983cd436689a767
+25
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+Lab2:inst5
+Lab2:inst4
+Lab2:inst12
+Lab2:inst13
+Lab2:inst9
+Lab2:inst8
+Lab2:inst2
+Lab2:inst1
+}
+# macro_sequence
+
+# end
+# complete
+

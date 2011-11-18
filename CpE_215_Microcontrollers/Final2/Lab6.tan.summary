@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : N/A
+Required Time  : None
+Actual Time    : 19.934 ns
+From           : RST
+To             : i8051:inst|I8051_CTR:U_CTR|alu_src_2_3
+From Clock     : --
+To Clock       : CLK
+Failed Paths   : 0
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 9.590 ns
+From           : i8051:inst|I8051_RAM:U_RAM|p1_out_7
+To             : dbg_led
+From Clock     : CLK
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : -2.481 ns
+From           : RST
+To             : i8051:inst|I8051_CTR:U_CTR|cpu_state_1
+From Clock     : --
+To Clock       : CLK
+Failed Paths   : 0
+
+Type           : Clock Setup: 'CLK'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 36.92 MHz ( period = 27.085 ns )
+From           : i8051:inst|I8051_CTR:U_CTR|alu_src_1_7
+To             : i8051:inst|I8051_CTR:U_CTR|alu_src_3_2
+From Clock     : CLK
+To Clock       : CLK
+Failed Paths   : 0
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 0
+
+--------------------------------------------------------------------------------------
+

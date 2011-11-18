@@ -1,0 +1,715 @@
+Analysis & Synthesis report for Lab5
+Wed Oct 27 11:37:13 2010
+Quartus II Version 8.0 Build 215 05/29/2008 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Analysis & Synthesis Source Files Read
+  5. Analysis & Synthesis Resource Usage Summary
+  6. Analysis & Synthesis Resource Utilization by Entity
+  7. Analysis & Synthesis RAM Summary
+  8. Logic Cells Representing Combinational Loops
+  9. Registers Removed During Synthesis
+ 10. General Register Statistics
+ 11. Registers Packed Into Inferred Megafunctions
+ 12. Source assignments for I8051_ROM:inst1|altsyncram:Mux3_rtl_0|altsyncram_dnu:auto_generated
+ 13. Parameter Settings for Inferred Entity Instance: I8051_ROM:inst1|altsyncram:Mux3_rtl_0
+ 14. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2008 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++------------------------------------+------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed Oct 27 11:37:13 2010    ;
+; Quartus II Version                 ; 8.0 Build 215 05/29/2008 SJ Full Version ;
+; Revision Name                      ; Lab5                                     ;
+; Top-level Entity Name              ; Lab5_Top                                 ;
+; Family                             ; Cyclone II                               ;
+; Total logic elements               ; 4,470                                    ;
+;     Total combinational functions  ; 4,470                                    ;
+;     Dedicated logic registers      ; 1,319                                    ;
+; Total registers                    ; 1319                                     ;
+; Total pins                         ; 16                                       ;
+; Total virtual pins                 ; 0                                        ;
+; Total memory bits                  ; 2,048                                    ;
+; Embedded Multiplier 9-bit elements ; 0                                        ;
+; Total PLLs                         ; 0                                        ;
++------------------------------------+------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                          ;
++--------------------------------------------------------------+--------------------+--------------------+
+; Option                                                       ; Setting            ; Default Value      ;
++--------------------------------------------------------------+--------------------+--------------------+
+; Device                                                       ; EP2C35F672C6       ;                    ;
+; Top-level entity name                                        ; Lab5_Top           ; Lab5               ;
+; Family name                                                  ; Cyclone II         ; Stratix II         ;
+; Use Generated Physical Constraints File                      ; Off                ;                    ;
+; Use smart compilation                                        ; Off                ; Off                ;
+; Maximum processors allowed for parallel compilation          ; 1                  ; 1                  ;
+; Restructure Multiplexers                                     ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                          ; Off                ; Off                ;
+; Preserve fewer node names                                    ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                    ; Off                ; Off                ;
+; Verilog Version                                              ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                 ; VHDL93             ; VHDL93             ;
+; State Machine Processing                                     ; Auto               ; Auto               ;
+; Safe State Machine                                           ; Off                ; Off                ;
+; Extract Verilog State Machines                               ; On                 ; On                 ;
+; Extract VHDL State Machines                                  ; On                 ; On                 ;
+; Ignore Verilog initial constructs                            ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                   ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops               ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                      ; On                 ; On                 ;
+; Parallel Synthesis                                           ; Off                ; Off                ;
+; DSP Block Balancing                                          ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                           ; On                 ; On                 ;
+; Power-Up Don't Care                                          ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                 ; Off                ; Off                ;
+; Remove Duplicate Registers                                   ; On                 ; On                 ;
+; Ignore CARRY Buffers                                         ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                       ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                    ; Off                ; Off                ;
+; Ignore LCELL Buffers                                         ; Off                ; Off                ;
+; Ignore SOFT Buffers                                          ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                               ; Off                ; Off                ;
+; Optimization Technique                                       ; Balanced           ; Balanced           ;
+; Carry Chain Length                                           ; 70                 ; 70                 ;
+; Auto Carry Chains                                            ; On                 ; On                 ;
+; Auto Open-Drain Pins                                         ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                        ; Off                ; Off                ;
+; Perform gate-level register retiming                         ; Off                ; Off                ;
+; Allow register retiming to trade off Tsu/Tco with Fmax       ; On                 ; On                 ;
+; Auto ROM Replacement                                         ; On                 ; On                 ;
+; Auto RAM Replacement                                         ; On                 ; On                 ;
+; Auto Shift Register Replacement                              ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                ; On                 ; On                 ;
+; Strict RAM Replacement                                       ; Off                ; Off                ;
+; Allow Synchronous Control Signals                            ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                       ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                            ; Off                ; Off                ;
+; Auto Resource Sharing                                        ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                           ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                           ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                ; Off                ; Off                ;
+; Ignore translate_off and synthesis_off directives            ; Off                ; Off                ;
+; Show Parameter Settings Tables in Synthesis Report           ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                           ; Off                ; Off                ;
+; Synchronization Register Chain Length                        ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                 ; Normal compilation ; Normal compilation ;
+; HDL message level                                            ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages              ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report     ; 100                ; 100                ;
+; Number of Inverted Registers Reported in Synthesis Report    ; 100                ; 100                ;
+; Clock MUX Protection                                         ; On                 ; On                 ;
+; Block Design Naming                                          ; Auto               ; Auto               ;
+; SDC constraint protection                                    ; Off                ; Off                ;
+; Synthesis Effort                                             ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal ; On                 ; On                 ;
++--------------------------------------------------------------+--------------------+--------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                       ;
++----------------------------------+-----------------+------------------------------------+--------------------------------------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                       ;
++----------------------------------+-----------------+------------------------------------+--------------------------------------------------------------------+
+; ../Lab2/Lab2.bdf                 ; yes             ; User Block Diagram/Schematic File  ; S:/CpE214/Lab2/Lab2.bdf                                            ;
+; ../Lab4/i8051.edf                ; yes             ; User EDIF File                     ; S:/CpE214/Lab4/i8051.edf                                           ;
+; ../Lab4/i8051_lib.vhd            ; yes             ; User VHDL File                     ; S:/CpE214/Lab4/i8051_lib.vhd                                       ;
+; i8051_rom.vhd                    ; yes             ; User VHDL File                     ; S:/CpE214/Lab5/i8051_rom.vhd                                       ;
+; ram_inout.edf                    ; yes             ; User EDIF File                     ; S:/CpE214/Lab5/ram_inout.edf                                       ;
+; Lab5_Top.bdf                     ; yes             ; User Block Diagram/Schematic File  ; S:/CpE214/Lab5/Lab5_Top.bdf                                        ;
+; altsyncram.tdf                   ; yes             ; Megafunction                       ; c:/altera/80/quartus/libraries/megafunctions/altsyncram.tdf        ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                       ; c:/altera/80/quartus/libraries/megafunctions/stratix_ram_block.inc ;
+; lpm_mux.inc                      ; yes             ; Megafunction                       ; c:/altera/80/quartus/libraries/megafunctions/lpm_mux.inc           ;
+; lpm_decode.inc                   ; yes             ; Megafunction                       ; c:/altera/80/quartus/libraries/megafunctions/lpm_decode.inc        ;
+; aglobal80.inc                    ; yes             ; Megafunction                       ; c:/altera/80/quartus/libraries/megafunctions/aglobal80.inc         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                       ; c:/altera/80/quartus/libraries/megafunctions/a_rdenreg.inc         ;
+; altrom.inc                       ; yes             ; Megafunction                       ; c:/altera/80/quartus/libraries/megafunctions/altrom.inc            ;
+; altram.inc                       ; yes             ; Megafunction                       ; c:/altera/80/quartus/libraries/megafunctions/altram.inc            ;
+; altdpram.inc                     ; yes             ; Megafunction                       ; c:/altera/80/quartus/libraries/megafunctions/altdpram.inc          ;
+; altqpram.inc                     ; yes             ; Megafunction                       ; c:/altera/80/quartus/libraries/megafunctions/altqpram.inc          ;
+; db/altsyncram_dnu.tdf            ; yes             ; Auto-Generated Megafunction        ; S:/CpE214/Lab5/db/altsyncram_dnu.tdf                               ;
+; Lab5_Top0.rtl.mif                ; yes             ; Auto-Generated File                ; S:/CpE214/Lab5/db/Lab5_Top0.rtl.mif                                ;
++----------------------------------+-----------------+------------------------------------+--------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Estimated Total logic elements              ; 4,470 ;
+;                                             ;       ;
+; Total combinational functions               ; 4470  ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 3443  ;
+;     -- 3 input functions                    ; 622   ;
+;     -- <=2 input functions                  ; 405   ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 4293  ;
+;     -- arithmetic mode                      ; 177   ;
+;                                             ;       ;
+; Total registers                             ; 1319  ;
+;     -- Dedicated logic registers            ; 1319  ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 16    ;
+; Total memory bits                           ; 2048  ;
+; Maximum fan-out node                        ; rst   ;
+; Maximum fan-out                             ; 1440  ;
+; Total fan-out                               ; 22579 ;
+; Average fan-out                             ; 3.88  ;
++---------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                 ;
++------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node               ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                           ; Library Name ;
++------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------+--------------+
+; |Lab5_Top                                ; 4470 (0)          ; 1319 (0)     ; 2048        ; 0            ; 0       ; 0         ; 16   ; 0            ; |Lab5_Top                                                                     ; work         ;
+;    |I8051_ROM:inst1|                     ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab5_Top|I8051_ROM:inst1                                                     ; work         ;
+;       |altsyncram:Mux3_rtl_0|            ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab5_Top|I8051_ROM:inst1|altsyncram:Mux3_rtl_0                               ; work         ;
+;          |altsyncram_dnu:auto_generated| ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab5_Top|I8051_ROM:inst1|altsyncram:Mux3_rtl_0|altsyncram_dnu:auto_generated ; work         ;
+;    |Lab2:inst4|                          ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab5_Top|Lab2:inst4                                                          ; work         ;
+;    |Lab2:inst5|                          ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab5_Top|Lab2:inst5                                                          ; work         ;
+;    |i8051:inst|                          ; 4194 (0)          ; 1319 (0)     ; 0           ; 0            ; 0       ; 0         ; 1    ; 0            ; |Lab5_Top|i8051:inst                                                          ; work         ;
+;       |I8051_ALU:U_ALU|                  ; 443 (443)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab5_Top|i8051:inst|I8051_ALU:U_ALU                                          ; work         ;
+;       |I8051_CTR:U_CTR|                  ; 1899 (1899)       ; 128 (128)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab5_Top|i8051:inst|I8051_CTR:U_CTR                                          ; work         ;
+;       |I8051_DEC:U_DEC|                  ; 350 (350)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab5_Top|i8051:inst|I8051_DEC:U_DEC                                          ; work         ;
+;       |I8051_RAM:U_RAM|                  ; 1502 (1502)       ; 1191 (1191)  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab5_Top|i8051:inst|I8051_RAM:U_RAM                                          ; work         ;
+;    |ram_inout:inst2|                     ; 262 (262)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Lab5_Top|ram_inout:inst2                                                     ; work         ;
++------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                    ;
++--------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+-------------------+
+; Name                                                                           ; Type ; Mode ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF               ;
++--------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+-------------------+
+; I8051_ROM:inst1|altsyncram:Mux3_rtl_0|altsyncram_dnu:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 256          ; 8            ; --           ; --           ; 2048 ; Lab5_Top0.rtl.mif ;
++--------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+-------------------+
+
+
++--------------------------------------------------------------+
+; Logic Cells Representing Combinational Loops                 ;
++--------------------------------------------------------+-----+
+; Logic Cell Name                                        ;     ;
++--------------------------------------------------------+-----+
+; ram_inout:inst2|ix4392_a_1_dup_125~0                   ;     ;
+; ram_inout:inst2|ix4392_a_14_dup_112~0                  ;     ;
+; ram_inout:inst2|ix4392_a_2_dup_124~0                   ;     ;
+; ram_inout:inst2|ix4392_a_13_dup_113~0                  ;     ;
+; ram_inout:inst2|ix4392_a_6_dup_120~0                   ;     ;
+; ram_inout:inst2|ix4392_a_7_dup_119~0                   ;     ;
+; ram_inout:inst2|ix4392_a_8_dup_118~0                   ;     ;
+; ram_inout:inst2|ix4392_a_10_dup_116~0                  ;     ;
+; ram_inout:inst2|ix4392_a_5_dup_121~0                   ;     ;
+; ram_inout:inst2|ix4392_a_9_dup_117~0                   ;     ;
+; ram_inout:inst2|ix4392_a_11_dup_115~0                  ;     ;
+; ram_inout:inst2|ix4392_a_15_dup_111~0                  ;     ;
+; ram_inout:inst2|ix4392_a_0_dup_126~0                   ;     ;
+; ram_inout:inst2|ix4392_a_4_dup_122~0                   ;     ;
+; ram_inout:inst2|ix4392_a_3_dup_123~0                   ;     ;
+; ram_inout:inst2|ix4392_a_12_dup_114~0                  ;     ;
+; ram_inout:inst2|ix4392_a_1_dup_108~0                   ;     ;
+; ram_inout:inst2|ix4392_a_14_dup_95~0                   ;     ;
+; ram_inout:inst2|ix4392_a_2_dup_107~0                   ;     ;
+; ram_inout:inst2|ix4392_a_13_dup_96~0                   ;     ;
+; ram_inout:inst2|ix4392_a_6_dup_103~0                   ;     ;
+; ram_inout:inst2|ix4392_a_7_dup_102~0                   ;     ;
+; ram_inout:inst2|ix4392_a_8_dup_101~0                   ;     ;
+; ram_inout:inst2|ix4392_a_10_dup_99~0                   ;     ;
+; ram_inout:inst2|ix4392_a_5_dup_104~0                   ;     ;
+; ram_inout:inst2|ix4392_a_9_dup_100~0                   ;     ;
+; ram_inout:inst2|ix4392_a_11_dup_98~0                   ;     ;
+; ram_inout:inst2|ix4392_a_15_dup_94~0                   ;     ;
+; ram_inout:inst2|ix4392_a_0_dup_109~0                   ;     ;
+; ram_inout:inst2|ix4392_a_4_dup_105~0                   ;     ;
+; ram_inout:inst2|ix4392_a_3_dup_106~0                   ;     ;
+; ram_inout:inst2|ix4392_a_12_dup_97~0                   ;     ;
+; ram_inout:inst2|ix4392_a_1_dup_177~0                   ;     ;
+; ram_inout:inst2|ix4392_a_14_dup_164~0                  ;     ;
+; ram_inout:inst2|ix4392_a_2_dup_176~0                   ;     ;
+; ram_inout:inst2|ix4392_a_13_dup_165~0                  ;     ;
+; ram_inout:inst2|ix4392_a_6_dup_172~0                   ;     ;
+; ram_inout:inst2|ix4392_a_7_dup_171~0                   ;     ;
+; ram_inout:inst2|ix4392_a_8_dup_170~0                   ;     ;
+; ram_inout:inst2|ix4392_a_10_dup_168~0                  ;     ;
+; ram_inout:inst2|ix4392_a_5_dup_173~0                   ;     ;
+; ram_inout:inst2|ix4392_a_9_dup_169~0                   ;     ;
+; ram_inout:inst2|ix4392_a_11_dup_167~0                  ;     ;
+; ram_inout:inst2|ix4392_a_15_dup_163~0                  ;     ;
+; ram_inout:inst2|ix4392_a_0_dup_178~0                   ;     ;
+; ram_inout:inst2|ix4392_a_4_dup_174~0                   ;     ;
+; ram_inout:inst2|ix4392_a_3_dup_175~0                   ;     ;
+; ram_inout:inst2|ix4392_a_12_dup_166~0                  ;     ;
+; ram_inout:inst2|ix4392_a_1_dup_143~0                   ;     ;
+; ram_inout:inst2|ix4392_a_14_dup_130~0                  ;     ;
+; ram_inout:inst2|ix4392_a_2_dup_142~0                   ;     ;
+; ram_inout:inst2|ix4392_a_13_dup_131~0                  ;     ;
+; ram_inout:inst2|ix4392_a_6_dup_138~0                   ;     ;
+; ram_inout:inst2|ix4392_a_7_dup_137~0                   ;     ;
+; ram_inout:inst2|ix4392_a_8_dup_136~0                   ;     ;
+; ram_inout:inst2|ix4392_a_10_dup_134~0                  ;     ;
+; ram_inout:inst2|ix4392_a_5_dup_139~0                   ;     ;
+; ram_inout:inst2|ix4392_a_9_dup_135~0                   ;     ;
+; ram_inout:inst2|ix4392_a_11_dup_133~0                  ;     ;
+; ram_inout:inst2|ix4392_a_15_dup_129~0                  ;     ;
+; ram_inout:inst2|ix4392_a_0_dup_144~0                   ;     ;
+; ram_inout:inst2|ix4392_a_4_dup_140~0                   ;     ;
+; ram_inout:inst2|ix4392_a_3_dup_141~0                   ;     ;
+; ram_inout:inst2|ix4392_a_12_dup_132~0                  ;     ;
+; ram_inout:inst2|ix4392_a_1_dup_72~0                    ;     ;
+; ram_inout:inst2|ix4392_a_14~0                          ;     ;
+; ram_inout:inst2|ix4392_a_2_dup_71~0                    ;     ;
+; ram_inout:inst2|ix4392_a_13~0                          ;     ;
+; ram_inout:inst2|ix4392_a_6~0                           ;     ;
+; ram_inout:inst2|ix4392_a_7~0                           ;     ;
+; ram_inout:inst2|ix4392_a_8~0                           ;     ;
+; ram_inout:inst2|ix4392_a_10~0                          ;     ;
+; ram_inout:inst2|ix4392_a_5~0                           ;     ;
+; ram_inout:inst2|ix4392_a_9~0                           ;     ;
+; ram_inout:inst2|ix4392_a_11~0                          ;     ;
+; ram_inout:inst2|ix4392_a_15~0                          ;     ;
+; ram_inout:inst2|ix4392_a_0_dup_73~0                    ;     ;
+; ram_inout:inst2|ix4392_a_4~0                           ;     ;
+; ram_inout:inst2|ix4392_a_3_dup_70~0                    ;     ;
+; ram_inout:inst2|ix4392_a_12~0                          ;     ;
+; ram_inout:inst2|ix4392_a_1_dup_194~0                   ;     ;
+; ram_inout:inst2|ix4392_a_14_dup_181~0                  ;     ;
+; ram_inout:inst2|ix4392_a_2_dup_193~0                   ;     ;
+; ram_inout:inst2|ix4392_a_13_dup_182~0                  ;     ;
+; ram_inout:inst2|ix4392_a_6_dup_189~0                   ;     ;
+; ram_inout:inst2|ix4392_a_7_dup_188~0                   ;     ;
+; ram_inout:inst2|ix4392_a_8_dup_187~0                   ;     ;
+; ram_inout:inst2|ix4392_a_10_dup_185~0                  ;     ;
+; ram_inout:inst2|ix4392_a_5_dup_190~0                   ;     ;
+; ram_inout:inst2|ix4392_a_9_dup_186~0                   ;     ;
+; ram_inout:inst2|ix4392_a_11_dup_184~0                  ;     ;
+; ram_inout:inst2|ix4392_a_15_dup_180~0                  ;     ;
+; ram_inout:inst2|ix4392_a_0_dup_195~0                   ;     ;
+; ram_inout:inst2|ix4392_a_4_dup_191~0                   ;     ;
+; ram_inout:inst2|ix4392_a_3_dup_192~0                   ;     ;
+; ram_inout:inst2|ix4392_a_12_dup_183~0                  ;     ;
+; ram_inout:inst2|ix4392_a_1_dup_160~0                   ;     ;
+; ram_inout:inst2|ix4392_a_14_dup_147~0                  ;     ;
+; ram_inout:inst2|ix4392_a_2_dup_159~0                   ;     ;
+; ram_inout:inst2|ix4392_a_13_dup_148~0                  ;     ;
+; Number of logic cells representing combinational loops ; 128 ;
++--------------------------------------------------------+-----+
+Table restricted to first 100 entries. Note: All cells listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++----------------------------------------------------------------+
+; Registers Removed During Synthesis                             ;
++-------------------------------------------+--------------------+
+; Register name                             ; Reason for Removal ;
++-------------------------------------------+--------------------+
+; i8051:inst|I8051_RAM:U_RAM|p2_out_4       ; Lost fanout        ;
+; i8051:inst|I8051_RAM:U_RAM|p2_out_5       ; Lost fanout        ;
+; i8051:inst|I8051_RAM:U_RAM|p2_out_6       ; Lost fanout        ;
+; i8051:inst|I8051_RAM:U_RAM|p2_out_7       ; Lost fanout        ;
+; i8051:inst|I8051_RAM:U_RAM|p3_out_2       ; Lost fanout        ;
+; i8051:inst|I8051_RAM:U_RAM|p3_out_3       ; Lost fanout        ;
+; i8051:inst|I8051_RAM:U_RAM|p3_out_4       ; Lost fanout        ;
+; i8051:inst|I8051_RAM:U_RAM|p3_out_5       ; Lost fanout        ;
+; i8051:inst|I8051_RAM:U_RAM|p3_out_6       ; Lost fanout        ;
+; i8051:inst|I8051_RAM:U_RAM|p3_out_7       ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|rom_addr_10    ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|rom_addr_11    ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|rom_addr_8     ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|rom_addr_9     ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|rom_rd         ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_0     ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_1     ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_10    ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_11    ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_12    ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_13    ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_14    ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_15    ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_2     ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_3     ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_4     ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_5     ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_6     ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_7     ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_8     ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_addr_9     ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_out_data_0 ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_out_data_1 ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_out_data_2 ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_out_data_3 ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_out_data_4 ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_out_data_5 ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_out_data_6 ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_out_data_7 ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_rd         ; Lost fanout        ;
+; i8051:inst|I8051_CTR:U_CTR|xrm_wr         ; Lost fanout        ;
+; Total Number of Removed Registers = 41    ;                    ;
++-------------------------------------------+--------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 1319  ;
+; Number of registers using Synchronous Clear  ; 11    ;
+; Number of registers using Synchronous Load   ; 395   ;
+; Number of registers using Asynchronous Clear ; 1319  ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 1287  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------+
+; Registers Packed Into Inferred Megafunctions              ;
++-------------------------+--------------------------+------+
+; Register Name           ; Megafunction             ; Type ;
++-------------------------+--------------------------+------+
+; I8051_ROM:inst1|data[4] ; I8051_ROM:inst1|Mux3~263 ; ROM  ;
+; I8051_ROM:inst1|data[3] ; I8051_ROM:inst1|Mux3~263 ; ROM  ;
+; I8051_ROM:inst1|data[2] ; I8051_ROM:inst1|Mux3~263 ; ROM  ;
+; I8051_ROM:inst1|data[1] ; I8051_ROM:inst1|Mux3~263 ; ROM  ;
+; I8051_ROM:inst1|data[0] ; I8051_ROM:inst1|Mux3~263 ; ROM  ;
+; I8051_ROM:inst1|data[5] ; I8051_ROM:inst1|Mux3~263 ; ROM  ;
+; I8051_ROM:inst1|data[6] ; I8051_ROM:inst1|Mux3~263 ; ROM  ;
+; I8051_ROM:inst1|data[7] ; I8051_ROM:inst1|Mux3~263 ; ROM  ;
++-------------------------+--------------------------+------+
+
+
++--------------------------------------------------------------------------------------------+
+; Source assignments for I8051_ROM:inst1|altsyncram:Mux3_rtl_0|altsyncram_dnu:auto_generated ;
++---------------------------------+--------------------+------+------------------------------+
+; Assignment                      ; Value              ; From ; To                           ;
++---------------------------------+--------------------+------+------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                            ;
++---------------------------------+--------------------+------+------------------------------+
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: I8051_ROM:inst1|altsyncram:Mux3_rtl_0 ;
++------------------------------------+----------------------+----------------------------+
+; Parameter Name                     ; Value                ; Type                       ;
++------------------------------------+----------------------+----------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                    ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                 ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY               ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE               ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE             ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                    ;
+; OPERATION_MODE                     ; ROM                  ; Untyped                    ;
+; WIDTH_A                            ; 8                    ; Untyped                    ;
+; WIDTHAD_A                          ; 8                    ; Untyped                    ;
+; NUMWORDS_A                         ; 256                  ; Untyped                    ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                    ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                    ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                    ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                    ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                    ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                    ;
+; WIDTH_B                            ; 1                    ; Untyped                    ;
+; WIDTHAD_B                          ; 1                    ; Untyped                    ;
+; NUMWORDS_B                         ; 1                    ; Untyped                    ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                    ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                    ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                    ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                    ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                    ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                    ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                    ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                    ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                    ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                    ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                    ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                    ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                    ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                    ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                    ;
+; BYTE_SIZE                          ; 8                    ; Untyped                    ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                    ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
+; INIT_FILE                          ; Lab5_Top0.rtl.mif    ; Untyped                    ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                    ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                    ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                    ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                    ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                    ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                    ;
+; CBXI_PARAMETER                     ; altsyncram_dnu       ; Untyped                    ;
++------------------------------------+----------------------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Analysis & Synthesis
+    Info: Version 8.0 Build 215 05/29/2008 SJ Full Version
+    Info: Processing started: Wed Oct 27 11:36:25 2010
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Lab5 -c Lab5
+Info: Found 1 design units, including 1 entities, in source file ../Lab2/Lab2.bdf
+    Info: Found entity 1: Lab2
+Info: Found 5 design units, including 5 entities, in source file ../Lab4/i8051.edf
+    Info: Found entity 1: i8051
+    Info: Found entity 2: I8051_ALU
+    Info: Found entity 3: I8051_CTR
+    Info: Found entity 4: I8051_DEC
+    Info: Found entity 5: I8051_RAM
+Info: Found 1 design units, including 0 entities, in source file ../Lab4/i8051_lib.vhd
+    Info: Found design unit 1: I8051_LIB
+Info: Found 2 design units, including 1 entities, in source file i8051_rom.vhd
+    Info: Found design unit 1: I8051_ROM-BHV
+    Info: Found entity 1: I8051_ROM
+Info: Found 1 design units, including 1 entities, in source file ../Lab4/address_decoder.bdf
+    Info: Found entity 1: address_decoder
+Info: Found 1 design units, including 1 entities, in source file ram_inout.edf
+    Info: Found entity 1: ram_inout
+Info: Found 1 design units, including 1 entities, in source file ../Lab4/Lab4_Top.bdf
+    Info: Found entity 1: Lab4_Top
+Info: Found 1 design units, including 1 entities, in source file Lab5_Top.bdf
+    Info: Found entity 1: Lab5_Top
+Info: Elaborating entity "Lab5_Top" for the top level hierarchy
+Info: Elaborating entity "Lab2" for hierarchy "Lab2:inst4"
+Info: Elaborating entity "i8051" for hierarchy "i8051:inst"
+Warning: EDA design entry or synthesis tool was not specified.  Detecting EDA tool "LeonardoSpectrum" as the tool that generated the EDIF Input File.
+Info: Elaborating entity "I8051_ALU" for hierarchy "i8051:inst|I8051_ALU:U_ALU"
+Warning: EDA design entry or synthesis tool was not specified.  Detecting EDA tool "LeonardoSpectrum" as the tool that generated the EDIF Input File.
+Info: Elaborating entity "I8051_CTR" for hierarchy "i8051:inst|I8051_CTR:U_CTR"
+Warning: EDA design entry or synthesis tool was not specified.  Detecting EDA tool "LeonardoSpectrum" as the tool that generated the EDIF Input File.
+Info: Elaborating entity "I8051_DEC" for hierarchy "i8051:inst|I8051_DEC:U_DEC"
+Warning: EDA design entry or synthesis tool was not specified.  Detecting EDA tool "LeonardoSpectrum" as the tool that generated the EDIF Input File.
+Info: Elaborating entity "I8051_RAM" for hierarchy "i8051:inst|I8051_RAM:U_RAM"
+Warning: EDA design entry or synthesis tool was not specified.  Detecting EDA tool "LeonardoSpectrum" as the tool that generated the EDIF Input File.
+Info: Elaborating entity "ram_inout" for hierarchy "ram_inout:inst2"
+Warning: EDA design entry or synthesis tool was not specified.  Detecting EDA tool "LeonardoSpectrum" as the tool that generated the EDIF Input File.
+Info: Elaborating entity "I8051_ROM" for hierarchy "I8051_ROM:inst1"
+Info: Inferred 1 megafunctions from design logic
+    Info: Inferred altsyncram megafunction from the following design logic: "I8051_ROM:inst1|Mux3~263"
+        Info: Parameter OPERATION_MODE set to ROM
+        Info: Parameter WIDTH_A set to 8
+        Info: Parameter WIDTHAD_A set to 8
+        Info: Parameter NUMWORDS_A set to 256
+        Info: Parameter OUTDATA_REG_A set to UNREGISTERED
+        Info: Parameter RAM_BLOCK_TYPE set to AUTO
+        Info: Parameter INIT_FILE set to Lab5_Top0.rtl.mif
+Info: Elaborated megafunction instantiation "I8051_ROM:inst1|altsyncram:Mux3_rtl_0"
+Info: Instantiated megafunction "I8051_ROM:inst1|altsyncram:Mux3_rtl_0" with the following parameter:
+    Info: Parameter "OPERATION_MODE" = "ROM"
+    Info: Parameter "WIDTH_A" = "8"
+    Info: Parameter "WIDTHAD_A" = "8"
+    Info: Parameter "NUMWORDS_A" = "256"
+    Info: Parameter "OUTDATA_REG_A" = "UNREGISTERED"
+    Info: Parameter "RAM_BLOCK_TYPE" = "AUTO"
+    Info: Parameter "INIT_FILE" = "Lab5_Top0.rtl.mif"
+Info: Found 1 design units, including 1 entities, in source file db/altsyncram_dnu.tdf
+    Info: Found entity 1: altsyncram_dnu
+Info: WYSIWYG I/O primitives converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_out_4" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_out_5" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_out_6" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_out_7" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_out_0" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_out_1" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_out_2" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_out_3" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|clk_ibuf" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|xrm_in_data_ibuf_4" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_data_ibuf_4" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|xrm_in_data_ibuf_5" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_data_ibuf_5" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|xrm_in_data_ibuf_6" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_data_ibuf_6" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|xrm_in_data_ibuf_7" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_data_ibuf_7" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_data_ibuf_0" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|xrm_in_data_ibuf_0" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_data_ibuf_1" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|xrm_in_data_ibuf_1" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_data_ibuf_2" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|xrm_in_data_ibuf_2" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|xrm_in_data_ibuf_3" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_data_ibuf_3" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_in_ibuf_4" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_in_ibuf_4" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p2_in_ibuf_4" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p3_in_ibuf_4" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p2_in_ibuf_5" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p3_in_ibuf_5" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_in_ibuf_5" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_in_ibuf_5" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_in_ibuf_1" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_in_ibuf_1" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p2_in_ibuf_1" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p3_in_ibuf_1" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_in_ibuf_3" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_in_ibuf_3" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p2_in_ibuf_3" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p3_in_ibuf_3" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_in_ibuf_7" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_in_ibuf_7" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p2_in_ibuf_7" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p3_in_ibuf_7" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_in_ibuf_0" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_in_ibuf_0" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p2_in_ibuf_0" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p3_in_ibuf_0" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_in_ibuf_2" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_in_ibuf_2" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p2_in_ibuf_2" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p3_in_ibuf_2" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_in_ibuf_6" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p1_in_ibuf_6" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p2_in_ibuf_6" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p3_in_ibuf_6" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_addr_0" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_addr_1" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_addr_2" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_addr_3" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_addr_4" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_addr_5" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_addr_6" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|rom_addr_7" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_out_4" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_out_5" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_out_1" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_out_3" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_out_7" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_out_0" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_out_2" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_out_6" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Address_ibuf_3" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Address_ibuf_2" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Address_ibuf_1" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Address_ibuf_0" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|CS_ibuf" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|OE_ibuf" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p2_out_3" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p2_out_2" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p2_out_1" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p2_out_0" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_in_ibuf_4" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|WE_ibuf" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p3_out_0" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_in_ibuf_5" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_in_ibuf_1" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_in_ibuf_3" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_in_ibuf_7" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_in_ibuf_0" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_in_ibuf_2" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "ram_inout:inst2|Data_in_ibuf_6" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_out_4" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p3_out_1" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_out_5" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_out_1" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_out_3" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_out_7" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_out_0" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_out_2" converted to equivalent logic
+    Info: WYSIWYG I/O primitive "i8051:inst|p0_out_6" converted to equivalent logic
+Warning: Tri-state node(s) do not directly drive top-level pin(s)
+    Warning: Converted the fan-out from the tri-state buffer "ram_inout:inst2|Data_out_4" to the node "i8051:inst|I8051_RAM:U_RAM|nx59418" into an OR gate
+    Warning: Converted the fan-out from the tri-state buffer "ram_inout:inst2|Data_out_5" to the node "i8051:inst|I8051_RAM:U_RAM|nx59324" into an OR gate
+    Warning: Converted the fan-out from the tri-state buffer "ram_inout:inst2|Data_out_1" to the node "i8051:inst|I8051_RAM:U_RAM|nx59072" into an OR gate
+    Warning: Converted the fan-out from the tri-state buffer "ram_inout:inst2|Data_out_3" to the node "i8051:inst|I8051_RAM:U_RAM|nx59082" into an OR gate
+    Warning: Converted the fan-out from the tri-state buffer "ram_inout:inst2|Data_out_7" to the node "i8051:inst|I8051_RAM:U_RAM|nx59089" into an OR gate
+    Warning: Converted the fan-out from the tri-state buffer "ram_inout:inst2|Data_out_0" to the node "i8051:inst|I8051_RAM:U_RAM|nx59048" into an OR gate
+    Warning: Converted the fan-out from the tri-state buffer "ram_inout:inst2|Data_out_2" to the node "i8051:inst|I8051_RAM:U_RAM|nx59058" into an OR gate
+    Warning: Converted the fan-out from the tri-state buffer "ram_inout:inst2|Data_out_6" to the node "i8051:inst|I8051_RAM:U_RAM|nx59065" into an OR gate
+Info: 41 registers lost all their fanouts during netlist optimizations. The first 41 are displayed below.
+    Info: Register "i8051:inst|I8051_RAM:U_RAM|p2_out_4" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_RAM:U_RAM|p2_out_5" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_RAM:U_RAM|p2_out_6" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_RAM:U_RAM|p2_out_7" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_RAM:U_RAM|p3_out_2" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_RAM:U_RAM|p3_out_3" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_RAM:U_RAM|p3_out_4" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_RAM:U_RAM|p3_out_5" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_RAM:U_RAM|p3_out_6" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_RAM:U_RAM|p3_out_7" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|rom_addr_10" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|rom_addr_11" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|rom_addr_8" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|rom_addr_9" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|rom_rd" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_0" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_1" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_10" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_11" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_12" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_13" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_14" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_15" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_2" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_3" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_4" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_5" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_6" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_7" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_8" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_addr_9" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_out_data_0" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_out_data_1" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_out_data_2" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_out_data_3" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_out_data_4" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_out_data_5" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_out_data_6" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_out_data_7" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_rd" lost all its fanouts during netlist optimizations.
+    Info: Register "i8051:inst|I8051_CTR:U_CTR|xrm_wr" lost all its fanouts during netlist optimizations.
+Info: Found the following redundant logic cells in design
+    Info (17048): Logic cell "ram_inout:inst2|NOT_nx1090"
+Info: Implemented 5722 device resources after synthesis - the final resource count might be different
+    Info: Implemented 2 input pins
+    Info: Implemented 14 output pins
+    Info: Implemented 5698 logic cells
+    Info: Implemented 8 RAM segments
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 15 warnings
+    Info: Peak virtual memory: 196 megabytes
+    Info: Processing ended: Wed Oct 27 11:37:14 2010
+    Info: Elapsed time: 00:00:49
+    Info: Total CPU time (on all processors): 00:00:37
+
+

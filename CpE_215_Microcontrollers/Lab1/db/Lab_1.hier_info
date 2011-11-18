@@ -1,0 +1,68 @@
+|TopLevle
+O[0] <= 8bitlatch:inst1.O[0]
+O[1] <= 8bitlatch:inst1.O[1]
+O[2] <= 8bitlatch:inst1.O[2]
+O[3] <= 8bitlatch:inst1.O[3]
+O[4] <= 8bitlatch:inst1.O[4]
+O[5] <= 8bitlatch:inst1.O[5]
+O[6] <= 8bitlatch:inst1.O[6]
+O[7] <= 8bitlatch:inst1.O[7]
+Enable => 8bitlatch:inst1.Enable
+Input[0] => 3_8dec:inst.Input[0]
+Input[1] => 3_8dec:inst.Input[1]
+Input[2] => 3_8dec:inst.Input[2]
+
+
+|TopLevle|8bitlatch:inst1
+O[0] <= inst.DB_MAX_OUTPUT_PORT_TYPE
+O[1] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+O[2] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+O[3] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+O[4] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+O[5] <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+O[6] <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+O[7] <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+D[0] => inst.DATAIN
+D[1] => inst2.DATAIN
+D[2] => inst3.DATAIN
+D[3] => inst4.DATAIN
+D[4] => inst5.DATAIN
+D[5] => inst6.DATAIN
+D[6] => inst7.DATAIN
+D[7] => inst8.DATAIN
+Enable => inst.LATCH_ENABLE
+Enable => inst2.LATCH_ENABLE
+Enable => inst3.LATCH_ENABLE
+Enable => inst4.LATCH_ENABLE
+Enable => inst5.LATCH_ENABLE
+Enable => inst6.LATCH_ENABLE
+Enable => inst7.LATCH_ENABLE
+Enable => inst8.LATCH_ENABLE
+
+
+|TopLevle|3_8dec:inst
+Output[0] <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+Output[1] <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+Output[2] <= inst10.DB_MAX_OUTPUT_PORT_TYPE
+Output[3] <= inst11.DB_MAX_OUTPUT_PORT_TYPE
+Output[4] <= inst12.DB_MAX_OUTPUT_PORT_TYPE
+Output[5] <= inst13.DB_MAX_OUTPUT_PORT_TYPE
+Output[6] <= inst14.DB_MAX_OUTPUT_PORT_TYPE
+Output[7] <= inst15.DB_MAX_OUTPUT_PORT_TYPE
+Input[0] => inst.IN0
+Input[0] => inst9.IN0
+Input[0] => inst11.IN0
+Input[0] => inst13.IN0
+Input[0] => inst15.IN0
+Input[1] => inst17.IN0
+Input[1] => inst10.IN1
+Input[1] => inst11.IN1
+Input[1] => inst14.IN1
+Input[1] => inst15.IN1
+Input[2] => inst18.IN0
+Input[2] => inst12.IN2
+Input[2] => inst13.IN2
+Input[2] => inst14.IN2
+Input[2] => inst15.IN2
+
+

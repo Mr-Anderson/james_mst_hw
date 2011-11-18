@@ -1,0 +1,235 @@
+Classic Timing Analyzer report for Lab_1
+Wed Sep 01 12:01:03 2010
+Quartus II Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Timing Analyzer Settings
+  4. Clock Settings Summary
+  5. tsu
+  6. tco
+  7. th
+  8. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2008 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                                                                                                  ;
++------------------------------+-------+---------------+-------------+----------------------+-----------------------+------------+----------+--------------+
+; Type                         ; Slack ; Required Time ; Actual Time ; From                 ; To                    ; From Clock ; To Clock ; Failed Paths ;
++------------------------------+-------+---------------+-------------+----------------------+-----------------------+------------+----------+--------------+
+; Worst-case tsu               ; N/A   ; None          ; 5.812 ns    ; Input[1]             ; 8bitlatch:inst1|inst7 ; --         ; Enable   ; 0            ;
+; Worst-case tco               ; N/A   ; None          ; 8.070 ns    ; 8bitlatch:inst1|inst ; O[0]                  ; Enable     ; --       ; 0            ;
+; Worst-case th                ; N/A   ; None          ; -0.929 ns   ; Input[0]             ; 8bitlatch:inst1|inst7 ; --         ; Enable   ; 0            ;
+; Total number of failed paths ;       ;               ;             ;                      ;                       ;            ;          ; 0            ;
++------------------------------+-------+---------------+-------------+----------------------+-----------------------+------------+----------+--------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Settings                                                                                           ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+; Option                                                              ; Setting            ; From ; To ; Entity Name ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+; Device Name                                                         ; EP2C35F672C6       ;      ;    ;             ;
+; Timing Models                                                       ; Final              ;      ;    ;             ;
+; Default hold multicycle                                             ; Same as Multicycle ;      ;    ;             ;
+; Cut paths between unrelated clock domains                           ; On                 ;      ;    ;             ;
+; Cut off read during write signal paths                              ; On                 ;      ;    ;             ;
+; Cut off feedback from I/O pins                                      ; On                 ;      ;    ;             ;
+; Report Combined Fast/Slow Timing                                    ; Off                ;      ;    ;             ;
+; Ignore Clock Settings                                               ; Off                ;      ;    ;             ;
+; Analyze latches as synchronous elements                             ; On                 ;      ;    ;             ;
+; Enable Recovery/Removal analysis                                    ; Off                ;      ;    ;             ;
+; Enable Clock Latency                                                ; Off                ;      ;    ;             ;
+; Use TimeQuest Timing Analyzer                                       ; Off                ;      ;    ;             ;
+; Number of source nodes to report per destination node               ; 10                 ;      ;    ;             ;
+; Number of destination nodes to report                               ; 10                 ;      ;    ;             ;
+; Number of paths to report                                           ; 200                ;      ;    ;             ;
+; Report Minimum Timing Checks                                        ; Off                ;      ;    ;             ;
+; Use Fast Timing Models                                              ; Off                ;      ;    ;             ;
+; Report IO Paths Separately                                          ; Off                ;      ;    ;             ;
+; Perform Multicorner Analysis                                        ; On                 ;      ;    ;             ;
+; Reports the worst-case path for each clock domain and analysis      ; Off                ;      ;    ;             ;
+; Removes common clock path pessimism (CCPP) during slack computation ; Off                ;      ;    ;             ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Settings Summary                                                                                                                                                             ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; Clock Node Name ; Clock Setting Name ; Type     ; Fmax Requirement ; Early Latency ; Late Latency ; Based on ; Multiply Base Fmax by ; Divide Base Fmax by ; Offset ; Phase offset ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; Enable          ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+
+
++---------------------------------------------------------------------------------+
+; tsu                                                                             ;
++-------+--------------+------------+----------+-----------------------+----------+
+; Slack ; Required tsu ; Actual tsu ; From     ; To                    ; To Clock ;
++-------+--------------+------------+----------+-----------------------+----------+
+; N/A   ; None         ; 5.812 ns   ; Input[1] ; 8bitlatch:inst1|inst7 ; Enable   ;
+; N/A   ; None         ; 5.810 ns   ; Input[1] ; 8bitlatch:inst1|inst3 ; Enable   ;
+; N/A   ; None         ; 5.768 ns   ; Input[1] ; 8bitlatch:inst1|inst5 ; Enable   ;
+; N/A   ; None         ; 5.646 ns   ; Input[1] ; 8bitlatch:inst1|inst8 ; Enable   ;
+; N/A   ; None         ; 5.619 ns   ; Input[1] ; 8bitlatch:inst1|inst2 ; Enable   ;
+; N/A   ; None         ; 5.597 ns   ; Input[1] ; 8bitlatch:inst1|inst4 ; Enable   ;
+; N/A   ; None         ; 5.593 ns   ; Input[1] ; 8bitlatch:inst1|inst  ; Enable   ;
+; N/A   ; None         ; 5.591 ns   ; Input[1] ; 8bitlatch:inst1|inst6 ; Enable   ;
+; N/A   ; None         ; 1.846 ns   ; Input[2] ; 8bitlatch:inst1|inst7 ; Enable   ;
+; N/A   ; None         ; 1.837 ns   ; Input[2] ; 8bitlatch:inst1|inst5 ; Enable   ;
+; N/A   ; None         ; 1.835 ns   ; Input[2] ; 8bitlatch:inst1|inst3 ; Enable   ;
+; N/A   ; None         ; 1.796 ns   ; Input[0] ; 8bitlatch:inst1|inst5 ; Enable   ;
+; N/A   ; None         ; 1.796 ns   ; Input[0] ; 8bitlatch:inst1|inst3 ; Enable   ;
+; N/A   ; None         ; 1.791 ns   ; Input[0] ; 8bitlatch:inst1|inst7 ; Enable   ;
+; N/A   ; None         ; 1.708 ns   ; Input[2] ; 8bitlatch:inst1|inst8 ; Enable   ;
+; N/A   ; None         ; 1.702 ns   ; Input[2] ; 8bitlatch:inst1|inst2 ; Enable   ;
+; N/A   ; None         ; 1.673 ns   ; Input[2] ; 8bitlatch:inst1|inst6 ; Enable   ;
+; N/A   ; None         ; 1.673 ns   ; Input[2] ; 8bitlatch:inst1|inst  ; Enable   ;
+; N/A   ; None         ; 1.657 ns   ; Input[0] ; 8bitlatch:inst1|inst2 ; Enable   ;
+; N/A   ; None         ; 1.655 ns   ; Input[2] ; 8bitlatch:inst1|inst4 ; Enable   ;
+; N/A   ; None         ; 1.650 ns   ; Input[0] ; 8bitlatch:inst1|inst8 ; Enable   ;
+; N/A   ; None         ; 1.620 ns   ; Input[0] ; 8bitlatch:inst1|inst  ; Enable   ;
+; N/A   ; None         ; 1.619 ns   ; Input[0] ; 8bitlatch:inst1|inst6 ; Enable   ;
+; N/A   ; None         ; 1.616 ns   ; Input[0] ; 8bitlatch:inst1|inst4 ; Enable   ;
++-------+--------------+------------+----------+-----------------------+----------+
+
+
++-------------------------------------------------------------------------------+
+; tco                                                                           ;
++-------+--------------+------------+-----------------------+------+------------+
+; Slack ; Required tco ; Actual tco ; From                  ; To   ; From Clock ;
++-------+--------------+------------+-----------------------+------+------------+
+; N/A   ; None         ; 8.070 ns   ; 8bitlatch:inst1|inst  ; O[0] ; Enable     ;
+; N/A   ; None         ; 7.821 ns   ; 8bitlatch:inst1|inst4 ; O[3] ; Enable     ;
+; N/A   ; None         ; 7.628 ns   ; 8bitlatch:inst1|inst5 ; O[4] ; Enable     ;
+; N/A   ; None         ; 7.387 ns   ; 8bitlatch:inst1|inst8 ; O[7] ; Enable     ;
+; N/A   ; None         ; 7.062 ns   ; 8bitlatch:inst1|inst7 ; O[6] ; Enable     ;
+; N/A   ; None         ; 7.048 ns   ; 8bitlatch:inst1|inst2 ; O[1] ; Enable     ;
+; N/A   ; None         ; 7.019 ns   ; 8bitlatch:inst1|inst6 ; O[5] ; Enable     ;
+; N/A   ; None         ; 7.004 ns   ; 8bitlatch:inst1|inst3 ; O[2] ; Enable     ;
++-------+--------------+------------+-----------------------+------+------------+
+
+
++---------------------------------------------------------------------------------------+
+; th                                                                                    ;
++---------------+-------------+-----------+----------+-----------------------+----------+
+; Minimum Slack ; Required th ; Actual th ; From     ; To                    ; To Clock ;
++---------------+-------------+-----------+----------+-----------------------+----------+
+; N/A           ; None        ; -0.929 ns ; Input[0] ; 8bitlatch:inst1|inst7 ; Enable   ;
+; N/A           ; None        ; -0.930 ns ; Input[0] ; 8bitlatch:inst1|inst4 ; Enable   ;
+; N/A           ; None        ; -0.933 ns ; Input[0] ; 8bitlatch:inst1|inst6 ; Enable   ;
+; N/A           ; None        ; -0.934 ns ; Input[0] ; 8bitlatch:inst1|inst  ; Enable   ;
+; N/A           ; None        ; -0.935 ns ; Input[0] ; 8bitlatch:inst1|inst3 ; Enable   ;
+; N/A           ; None        ; -0.963 ns ; Input[0] ; 8bitlatch:inst1|inst8 ; Enable   ;
+; N/A           ; None        ; -0.969 ns ; Input[2] ; 8bitlatch:inst1|inst4 ; Enable   ;
+; N/A           ; None        ; -0.971 ns ; Input[0] ; 8bitlatch:inst1|inst2 ; Enable   ;
+; N/A           ; None        ; -0.972 ns ; Input[0] ; 8bitlatch:inst1|inst5 ; Enable   ;
+; N/A           ; None        ; -0.974 ns ; Input[2] ; 8bitlatch:inst1|inst3 ; Enable   ;
+; N/A           ; None        ; -0.984 ns ; Input[2] ; 8bitlatch:inst1|inst7 ; Enable   ;
+; N/A           ; None        ; -0.987 ns ; Input[2] ; 8bitlatch:inst1|inst6 ; Enable   ;
+; N/A           ; None        ; -0.987 ns ; Input[2] ; 8bitlatch:inst1|inst  ; Enable   ;
+; N/A           ; None        ; -1.013 ns ; Input[2] ; 8bitlatch:inst1|inst5 ; Enable   ;
+; N/A           ; None        ; -1.016 ns ; Input[2] ; 8bitlatch:inst1|inst2 ; Enable   ;
+; N/A           ; None        ; -1.021 ns ; Input[2] ; 8bitlatch:inst1|inst8 ; Enable   ;
+; N/A           ; None        ; -4.905 ns ; Input[1] ; 8bitlatch:inst1|inst6 ; Enable   ;
+; N/A           ; None        ; -4.907 ns ; Input[1] ; 8bitlatch:inst1|inst  ; Enable   ;
+; N/A           ; None        ; -4.911 ns ; Input[1] ; 8bitlatch:inst1|inst4 ; Enable   ;
+; N/A           ; None        ; -4.933 ns ; Input[1] ; 8bitlatch:inst1|inst2 ; Enable   ;
+; N/A           ; None        ; -4.944 ns ; Input[1] ; 8bitlatch:inst1|inst5 ; Enable   ;
+; N/A           ; None        ; -4.949 ns ; Input[1] ; 8bitlatch:inst1|inst3 ; Enable   ;
+; N/A           ; None        ; -4.950 ns ; Input[1] ; 8bitlatch:inst1|inst7 ; Enable   ;
+; N/A           ; None        ; -4.959 ns ; Input[1] ; 8bitlatch:inst1|inst8 ; Enable   ;
++---------------+-------------+-----------+----------+-----------------------+----------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Classic Timing Analyzer
+    Info: Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Full Version
+    Info: Processing started: Wed Sep 01 12:01:02 2010
+Info: Command: quartus_tan --read_settings_files=off --write_settings_files=off Lab_1 -c Lab_1 --timing_analysis_only
+Warning: Timing Analysis is analyzing one or more combinational loops as latches
+    Warning: Node "8bitlatch:inst1|inst8" is a latch
+    Warning: Node "8bitlatch:inst1|inst7" is a latch
+    Warning: Node "8bitlatch:inst1|inst6" is a latch
+    Warning: Node "8bitlatch:inst1|inst5" is a latch
+    Warning: Node "8bitlatch:inst1|inst4" is a latch
+    Warning: Node "8bitlatch:inst1|inst3" is a latch
+    Warning: Node "8bitlatch:inst1|inst2" is a latch
+    Warning: Node "8bitlatch:inst1|inst" is a latch
+Warning: Found pins functioning as undefined clocks and/or memory enables
+    Info: Assuming node "Enable" is a latch enable and/or memory write/read enable. Will not compute fmax for this pin.
+Info: tsu for register "8bitlatch:inst1|inst7" (data pin = "Input[1]", clock pin = "Enable") is 5.812 ns
+    Info: + Longest pin to register delay is 7.647 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.840 ns) = 0.840 ns; Loc. = PIN_C12; Fanout = 8; PIN Node = 'Input[1]'
+        Info: 2: + IC(5.716 ns) + CELL(0.419 ns) = 6.975 ns; Loc. = LCCOMB_X29_Y15_N26; Fanout = 1; COMB Node = '3_8dec:inst|inst8~78'
+        Info: 3: + IC(0.253 ns) + CELL(0.419 ns) = 7.647 ns; Loc. = LCCOMB_X29_Y15_N18; Fanout = 1; REG Node = '8bitlatch:inst1|inst7'
+        Info: Total cell delay = 1.678 ns ( 21.94 % )
+        Info: Total interconnect delay = 5.969 ns ( 78.06 % )
+    Info: + Micro setup delay of destination is 0.862 ns
+    Info: - Shortest clock path from clock "Enable" to destination register is 2.697 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_P2; Fanout = 1; CLK Node = 'Enable'
+        Info: 2: + IC(0.118 ns) + CELL(0.000 ns) = 1.117 ns; Loc. = CLKCTRL_G3; Fanout = 8; COMB Node = 'Enable~clkctrl'
+        Info: 3: + IC(1.430 ns) + CELL(0.150 ns) = 2.697 ns; Loc. = LCCOMB_X29_Y15_N18; Fanout = 1; REG Node = '8bitlatch:inst1|inst7'
+        Info: Total cell delay = 1.149 ns ( 42.60 % )
+        Info: Total interconnect delay = 1.548 ns ( 57.40 % )
+Info: tco from clock "Enable" to destination pin "O[0]" through register "8bitlatch:inst1|inst" is 8.070 ns
+    Info: + Longest clock path from clock "Enable" to source register is 2.695 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_P2; Fanout = 1; CLK Node = 'Enable'
+        Info: 2: + IC(0.118 ns) + CELL(0.000 ns) = 1.117 ns; Loc. = CLKCTRL_G3; Fanout = 8; COMB Node = 'Enable~clkctrl'
+        Info: 3: + IC(1.428 ns) + CELL(0.150 ns) = 2.695 ns; Loc. = LCCOMB_X29_Y15_N14; Fanout = 1; REG Node = '8bitlatch:inst1|inst'
+        Info: Total cell delay = 1.149 ns ( 42.63 % )
+        Info: Total interconnect delay = 1.546 ns ( 57.37 % )
+    Info: + Micro clock to output delay of source is 0.000 ns
+    Info: + Longest register to pin delay is 5.375 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCCOMB_X29_Y15_N14; Fanout = 1; REG Node = '8bitlatch:inst1|inst'
+        Info: 2: + IC(2.763 ns) + CELL(2.612 ns) = 5.375 ns; Loc. = PIN_T21; Fanout = 0; PIN Node = 'O[0]'
+        Info: Total cell delay = 2.612 ns ( 48.60 % )
+        Info: Total interconnect delay = 2.763 ns ( 51.40 % )
+Info: th for register "8bitlatch:inst1|inst7" (data pin = "Input[0]", clock pin = "Enable") is -0.929 ns
+    Info: + Longest clock path from clock "Enable" to destination register is 2.697 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_P2; Fanout = 1; CLK Node = 'Enable'
+        Info: 2: + IC(0.118 ns) + CELL(0.000 ns) = 1.117 ns; Loc. = CLKCTRL_G3; Fanout = 8; COMB Node = 'Enable~clkctrl'
+        Info: 3: + IC(1.430 ns) + CELL(0.150 ns) = 2.697 ns; Loc. = LCCOMB_X29_Y15_N18; Fanout = 1; REG Node = '8bitlatch:inst1|inst7'
+        Info: Total cell delay = 1.149 ns ( 42.60 % )
+        Info: Total interconnect delay = 1.548 ns ( 57.40 % )
+    Info: + Micro hold delay of destination is 0.000 ns
+    Info: - Shortest pin to register delay is 3.626 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.979 ns) = 0.979 ns; Loc. = PIN_C13; Fanout = 8; PIN Node = 'Input[0]'
+        Info: 2: + IC(1.825 ns) + CELL(0.150 ns) = 2.954 ns; Loc. = LCCOMB_X29_Y15_N26; Fanout = 1; COMB Node = '3_8dec:inst|inst8~78'
+        Info: 3: + IC(0.253 ns) + CELL(0.419 ns) = 3.626 ns; Loc. = LCCOMB_X29_Y15_N18; Fanout = 1; REG Node = '8bitlatch:inst1|inst7'
+        Info: Total cell delay = 1.548 ns ( 42.69 % )
+        Info: Total interconnect delay = 2.078 ns ( 57.31 % )
+Info: Quartus II Classic Timing Analyzer was successful. 0 errors, 10 warnings
+    Info: Peak virtual memory: 128 megabytes
+    Info: Processing ended: Wed Sep 01 12:01:03 2010
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:00
+
+

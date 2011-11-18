@@ -1,0 +1,557 @@
+Version 8.0 Build 215 05/29/2008 SJ Full Version
+11
+1009
+OFF
+OFF
+OFF
+OFF
+ON
+ON
+ON
+FV_OFF
+Level2
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Partition --
+-- End Partition --
+-- Start Library Paths --
+-- End Library Paths --
+-- Start VHDL Libraries --
+-- End VHDL Libraries --
+# entity
+Lab5_Top
+# storage
+db|Lab5.(0).cnf
+db|Lab5.(0).cnf
+# case_insensitive
+# source_file
+Lab5_Top.bdf
+bdeeafec5a93ff859e5ea1f90402e
+25
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+|
+}
+# macro_sequence
+
+# end
+# entity
+Lab2
+# storage
+db|Lab5.(1).cnf
+db|Lab5.(1).cnf
+# case_insensitive
+# source_file
+..|Lab2|Lab2.bdf
+c7d466616afa8b983cd436689a767
+25
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+Lab2:inst4
+Lab2:inst5
+}
+# macro_sequence
+
+# end
+# entity
+i8051
+# storage
+db|Lab5.(2).cnf
+db|Lab5.(2).cnf
+# case_insensitive
+# source_file
+..|Lab4|i8051.edf
+21b2f02e6d929640323596f0e42e8936
+9
+# hierarchies {
+i8051:inst
+}
+# macro_sequence
+
+# end
+# entity
+I8051_ALU
+# storage
+db|Lab5.(3).cnf
+db|Lab5.(3).cnf
+# case_insensitive
+# source_file
+..|Lab4|i8051.edf
+21b2f02e6d929640323596f0e42e8936
+9
+# hierarchies {
+i8051:inst|I8051_ALU:U_ALU
+}
+# macro_sequence
+
+# end
+# entity
+I8051_CTR
+# storage
+db|Lab5.(4).cnf
+db|Lab5.(4).cnf
+# case_insensitive
+# source_file
+..|Lab4|i8051.edf
+21b2f02e6d929640323596f0e42e8936
+9
+# hierarchies {
+i8051:inst|I8051_CTR:U_CTR
+}
+# macro_sequence
+
+# end
+# entity
+I8051_DEC
+# storage
+db|Lab5.(5).cnf
+db|Lab5.(5).cnf
+# case_insensitive
+# source_file
+..|Lab4|i8051.edf
+21b2f02e6d929640323596f0e42e8936
+9
+# hierarchies {
+i8051:inst|I8051_DEC:U_DEC
+}
+# macro_sequence
+
+# end
+# entity
+I8051_RAM
+# storage
+db|Lab5.(6).cnf
+db|Lab5.(6).cnf
+# case_insensitive
+# source_file
+..|Lab4|i8051.edf
+21b2f02e6d929640323596f0e42e8936
+9
+# hierarchies {
+i8051:inst|I8051_RAM:U_RAM
+}
+# macro_sequence
+
+# end
+# entity
+ram_inout
+# storage
+db|Lab5.(7).cnf
+db|Lab5.(7).cnf
+# case_insensitive
+# source_file
+ram_inout.edf
+5deafefa2cd83c4a35ed88b4abbade0
+9
+# hierarchies {
+ram_inout:inst2
+}
+# macro_sequence
+
+# end
+# entity
+I8051_ROM
+# storage
+db|Lab5.(8).cnf
+db|Lab5.(8).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+i8051_rom.vhd
+a097c37bdd6a0651815a722769a27a9
+4
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# include_file {
+..|Lab4|i8051_lib.vhd
+28e53999cff02e9cc4e2c9e21fa7e45
+}
+# hierarchies {
+I8051_ROM:inst1
+}
+# lmf
+c:|altera|80|quartus|lmf|maxplus2.lmf
+9a59d39b0706640b4b2718e8a1ff1f
+# macro_sequence
+
+# end
+# entity
+altsyncram
+# storage
+db|Lab5.(9).cnf
+db|Lab5.(9).cnf
+# case_insensitive
+# source_file
+c:|altera|80|quartus|libraries|megafunctions|altsyncram.tdf
+9a16746d1bf063b66fd125dd6a53b6d
+6
+# user_parameter {
+BYTE_SIZE_BLOCK
+8
+PARAMETER_UNKNOWN
+DEF
+AUTO_CARRY_CHAINS
+ON
+AUTO_CARRY
+USR
+IGNORE_CARRY_BUFFERS
+OFF
+IGNORE_CARRY
+USR
+AUTO_CASCADE_CHAINS
+ON
+AUTO_CASCADE
+USR
+IGNORE_CASCADE_BUFFERS
+OFF
+IGNORE_CASCADE
+USR
+WIDTH_BYTEENA
+1
+PARAMETER_UNKNOWN
+DEF
+OPERATION_MODE
+ROM
+PARAMETER_UNKNOWN
+USR
+WIDTH_A
+8
+PARAMETER_UNKNOWN
+USR
+WIDTHAD_A
+8
+PARAMETER_UNKNOWN
+USR
+NUMWORDS_A
+256
+PARAMETER_UNKNOWN
+USR
+OUTDATA_REG_A
+UNREGISTERED
+PARAMETER_UNKNOWN
+USR
+ADDRESS_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+DEF
+OUTDATA_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+DEF
+WRCONTROL_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+DEF
+INDATA_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+DEF
+BYTEENA_ACLR_A
+NONE
+PARAMETER_UNKNOWN
+DEF
+WIDTH_B
+1
+PARAMETER_UNKNOWN
+DEF
+WIDTHAD_B
+1
+PARAMETER_UNKNOWN
+DEF
+NUMWORDS_B
+1
+PARAMETER_UNKNOWN
+DEF
+INDATA_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+DEF
+WRCONTROL_WRADDRESS_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+DEF
+RDCONTROL_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+DEF
+ADDRESS_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+DEF
+OUTDATA_REG_B
+UNREGISTERED
+PARAMETER_UNKNOWN
+DEF
+BYTEENA_REG_B
+CLOCK1
+PARAMETER_UNKNOWN
+DEF
+INDATA_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+DEF
+WRCONTROL_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+DEF
+ADDRESS_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+DEF
+OUTDATA_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+DEF
+RDCONTROL_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+DEF
+BYTEENA_ACLR_B
+NONE
+PARAMETER_UNKNOWN
+DEF
+WIDTH_BYTEENA_A
+1
+PARAMETER_UNKNOWN
+DEF
+WIDTH_BYTEENA_B
+1
+PARAMETER_UNKNOWN
+DEF
+RAM_BLOCK_TYPE
+AUTO
+PARAMETER_UNKNOWN
+USR
+BYTE_SIZE
+8
+PARAMETER_UNKNOWN
+DEF
+READ_DURING_WRITE_MODE_MIXED_PORTS
+DONT_CARE
+PARAMETER_UNKNOWN
+DEF
+READ_DURING_WRITE_MODE_PORT_A
+NEW_DATA_NO_NBE_READ
+PARAMETER_UNKNOWN
+DEF
+READ_DURING_WRITE_MODE_PORT_B
+NEW_DATA_NO_NBE_READ
+PARAMETER_UNKNOWN
+DEF
+INIT_FILE
+Lab5_Top0.rtl.mif
+PARAMETER_UNKNOWN
+USR
+INIT_FILE_LAYOUT
+PORT_A
+PARAMETER_UNKNOWN
+DEF
+MAXIMUM_DEPTH
+0
+PARAMETER_UNKNOWN
+DEF
+CLOCK_ENABLE_INPUT_A
+NORMAL
+PARAMETER_UNKNOWN
+DEF
+CLOCK_ENABLE_INPUT_B
+NORMAL
+PARAMETER_UNKNOWN
+DEF
+CLOCK_ENABLE_OUTPUT_A
+NORMAL
+PARAMETER_UNKNOWN
+DEF
+CLOCK_ENABLE_OUTPUT_B
+NORMAL
+PARAMETER_UNKNOWN
+DEF
+CLOCK_ENABLE_CORE_A
+USE_INPUT_CLKEN
+PARAMETER_UNKNOWN
+DEF
+CLOCK_ENABLE_CORE_B
+USE_INPUT_CLKEN
+PARAMETER_UNKNOWN
+DEF
+ENABLE_ECC
+FALSE
+PARAMETER_UNKNOWN
+DEF
+DEVICE_FAMILY
+Cyclone II
+PARAMETER_UNKNOWN
+USR
+CBXI_PARAMETER
+altsyncram_dnu
+PARAMETER_UNKNOWN
+USR
+}
+# used_port {
+q_a7
+-1
+3
+q_a6
+-1
+3
+q_a5
+-1
+3
+q_a4
+-1
+3
+q_a3
+-1
+3
+q_a2
+-1
+3
+q_a1
+-1
+3
+q_a0
+-1
+3
+clock0
+-1
+3
+address_a7
+-1
+3
+address_a6
+-1
+3
+address_a5
+-1
+3
+address_a4
+-1
+3
+address_a3
+-1
+3
+address_a2
+-1
+3
+address_a1
+-1
+3
+address_a0
+-1
+3
+}
+# include_file {
+c:|altera|80|quartus|libraries|megafunctions|lpm_mux.inc
+c22bfd353214c01495b560fc34e47d79
+c:|altera|80|quartus|libraries|megafunctions|stratix_ram_block.inc
+2263a3bdfffeb150af977ee13902f70
+c:|altera|80|quartus|libraries|megafunctions|lpm_decode.inc
+bd0e2f5e01c1bd360461dceb53d48
+c:|altera|80|quartus|libraries|megafunctions|altdpram.inc
+99d442b5b66c88db4daf94d99c6e4e77
+c:|altera|80|quartus|libraries|megafunctions|aglobal80.inc
+9274497d636e3ed37111b8c54bf938
+c:|altera|80|quartus|libraries|megafunctions|altqpram.inc
+74e08939f96a7ea8e7a4d59a5b01fe7
+c:|altera|80|quartus|libraries|megafunctions|altrom.inc
+d4e3a69a331d3a99d3281790d99a1ebd
+c:|altera|80|quartus|libraries|megafunctions|a_rdenreg.inc
+60d229340bc3c24acb0a137b4849830
+c:|altera|80|quartus|libraries|megafunctions|altram.inc
+e66a83eccf6717bed97c99d891ad085
+}
+# macro_sequence
+
+# end
+# entity
+altsyncram_dnu
+# storage
+db|Lab5.(10).cnf
+db|Lab5.(10).cnf
+# case_insensitive
+# source_file
+db|altsyncram_dnu.tdf
+196392b54920869812ba407e317ce7
+6
+# used_port {
+q_a7
+-1
+3
+q_a6
+-1
+3
+q_a5
+-1
+3
+q_a4
+-1
+3
+q_a3
+-1
+3
+q_a2
+-1
+3
+q_a1
+-1
+3
+q_a0
+-1
+3
+clock0
+-1
+3
+address_a7
+-1
+3
+address_a6
+-1
+3
+address_a5
+-1
+3
+address_a4
+-1
+3
+address_a3
+-1
+3
+address_a2
+-1
+3
+address_a1
+-1
+3
+address_a0
+-1
+3
+}
+# memory_file {
+Lab5_Top0.rtl.mif
+223fbf8ffcd2f15897d6385be475e8e2
+}
+# macro_sequence
+
+# end
+# complete
+

@@ -1,0 +1,3395 @@
+(edif wimp51 
+ (edifVersion 2 0 0)
+ (edifLevel 0)
+ (keywordMap (keywordLevel 0))
+ (status 
+  (written 
+   (timestamp 2007 06 21 14 59 27)
+   (program "LeonardoSpectrum Level 3" (version "2006b.12"))
+   (author "Mentor Graphics")))
+ (external PRIMITIVES 
+  (edifLevel 0)
+  (technology (numberDefinition )))
+ (external cycloneii 
+  (edifLevel 0)
+  (technology (numberDefinition ))
+  (cell cycloneii_lcell_comb (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port dataa (direction INPUT))
+     (port datab (direction INPUT))
+     (port datac (direction INPUT))
+     (port datad (direction INPUT))
+     (port cin (direction INPUT))
+     (port combout (direction OUTPUT))
+     (port cout (direction OUTPUT)))))
+  (cell cycloneii_lcell_ff (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port datain (direction INPUT))
+     (port sdata (direction INPUT))
+     (port clk (direction INPUT))
+     (port ena (direction INPUT))
+     (port aclr (direction INPUT))
+     (port sclr (direction INPUT))
+     (port sload (direction INPUT))
+     (port regout (direction OUTPUT)))))
+  (cell VCC (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port Y (direction OUTPUT)))))
+  (cell GND (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port Y (direction OUTPUT)))))
+  (cell cycloneii_io (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port datain (direction INPUT))
+     (port ddiodatain (direction INPUT))
+     (port oe (direction INPUT))
+     (port outclk (direction INPUT))
+     (port outclkena (direction INPUT))
+     (port inclk (direction INPUT))
+     (port inclkena (direction INPUT))
+     (port areset (direction INPUT))
+     (port sreset (direction INPUT))
+     (port devclrn (direction INPUT))
+     (port devoe (direction INPUT))
+     (port devpor (direction INPUT))
+     (port regout (direction OUTPUT))
+     (port combout (direction OUTPUT))
+     (port ddioregout (direction OUTPUT))
+     (port padio (direction INOUT))))))
+ (library work 
+  (edifLevel 0)
+  (technology (numberDefinition ))
+  (cell alu (cellType GENERIC)
+   (view a1  (viewType NETLIST)
+    (interface 
+     (port (array (rename acc_in "acc_in(7:0)") 8 )(direction INPUT))
+     (port (array (rename aux_in "aux_in(7:0)") 8 )(direction INPUT))
+     (port (array (rename ctl "ctl(2:0)") 3 )(direction INPUT))
+     (port clk (direction INPUT))
+     (port rst (direction INPUT))
+     (port (array (rename acc_out "acc_out(7:0)") 8 )(direction OUTPUT))
+     (port z_out (direction OUTPUT)))
+    (contents 
+     (instance ix263 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "f0f0"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance modgen_add_91_ix30 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance modgen_add_91_ix34 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance modgen_add_91_ix38 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance modgen_add_91_ix42 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance modgen_add_91_ix46 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance modgen_add_91_ix50 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance modgen_add_91_ix54 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance modgen_add_91_ix58 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance ix332 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "2a2a")))
+     (instance ix333 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fff8")))
+     (instance ix334 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fff8")))
+     (instance ix335 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fff8")))
+     (instance ix336 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fff8")))
+     (instance ix337 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fff8")))
+     (instance ix338 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fff8")))
+     (instance ix339 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fff8")))
+     (instance ix340 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fff8")))
+     (instance ix341 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "1000")))
+     (instance ix342 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "7777")))
+     (instance ix343 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "1010")))
+     (instance ix344 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0202")))
+     (instance ix345 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "4444")))
+     (instance ix346 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0101")))
+     (instance ix347 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "8e06")))
+     (instance ix348 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix349 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "8e06")))
+     (instance ix350 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix351 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "8e06")))
+     (instance ix352 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix353 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "8e06")))
+     (instance ix354 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix355 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "8e06")))
+     (instance ix356 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix357 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "8e06")))
+     (instance ix358 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix359 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "8e06")))
+     (instance ix360 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix361 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "8e06")))
+     (instance ix362 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix363 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0001")))
+     (instance ix364 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "1111")))
+     (instance ix331 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "5454")))
+     (instance ix433 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "aaaa")))
+     (instance CARRY_FF_reg_Q_0 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance ix1 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix3 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix5 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix7 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix9 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix11 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix13 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix15 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix17 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (net acc_in_7 
+      (joined 
+       (portRef (member acc_in 0))
+       (portRef dataa (instanceRef modgen_add_91_ix58 ))
+       (portRef dataa (instanceRef ix337 ))
+       (portRef dataa (instanceRef ix347 ))
+       (portRef dataa (instanceRef ix363 ))))
+     (net acc_in_6 
+      (joined 
+       (portRef (member acc_in 1))
+       (portRef dataa (instanceRef modgen_add_91_ix54 ))
+       (portRef dataa (instanceRef ix338 ))
+       (portRef dataa (instanceRef ix349 ))
+       (portRef datab (instanceRef ix363 ))))
+     (net acc_in_5 
+      (joined 
+       (portRef (member acc_in 2))
+       (portRef dataa (instanceRef modgen_add_91_ix50 ))
+       (portRef dataa (instanceRef ix339 ))
+       (portRef dataa (instanceRef ix351 ))
+       (portRef datac (instanceRef ix363 ))))
+     (net acc_in_4 
+      (joined 
+       (portRef (member acc_in 3))
+       (portRef dataa (instanceRef modgen_add_91_ix46 ))
+       (portRef dataa (instanceRef ix340 ))
+       (portRef dataa (instanceRef ix353 ))
+       (portRef datad (instanceRef ix363 ))))
+     (net acc_in_3 
+      (joined 
+       (portRef (member acc_in 4))
+       (portRef dataa (instanceRef modgen_add_91_ix42 ))
+       (portRef dataa (instanceRef ix333 ))
+       (portRef dataa (instanceRef ix355 ))
+       (portRef dataa (instanceRef ix364 ))))
+     (net acc_in_2 
+      (joined 
+       (portRef (member acc_in 5))
+       (portRef dataa (instanceRef modgen_add_91_ix38 ))
+       (portRef dataa (instanceRef ix334 ))
+       (portRef dataa (instanceRef ix357 ))
+       (portRef datab (instanceRef ix364 ))))
+     (net acc_in_1 
+      (joined 
+       (portRef (member acc_in 6))
+       (portRef dataa (instanceRef modgen_add_91_ix34 ))
+       (portRef dataa (instanceRef ix335 ))
+       (portRef dataa (instanceRef ix341 ))
+       (portRef dataa (instanceRef ix359 ))))
+     (net acc_in_0 
+      (joined 
+       (portRef (member acc_in 7))
+       (portRef dataa (instanceRef modgen_add_91_ix30 ))
+       (portRef dataa (instanceRef ix336 ))
+       (portRef datab (instanceRef ix341 ))
+       (portRef dataa (instanceRef ix361 ))))
+     (net aux_in_7 
+      (joined 
+       (portRef (member aux_in 0))
+       (portRef datab (instanceRef modgen_add_91_ix58 ))
+       (portRef datab (instanceRef ix347 ))
+       (portRef dataa (instanceRef ix348 ))))
+     (net aux_in_6 
+      (joined 
+       (portRef (member aux_in 1))
+       (portRef datab (instanceRef modgen_add_91_ix54 ))
+       (portRef datab (instanceRef ix349 ))
+       (portRef dataa (instanceRef ix350 ))))
+     (net aux_in_5 
+      (joined 
+       (portRef (member aux_in 2))
+       (portRef datab (instanceRef modgen_add_91_ix50 ))
+       (portRef datab (instanceRef ix351 ))
+       (portRef dataa (instanceRef ix352 ))))
+     (net aux_in_4 
+      (joined 
+       (portRef (member aux_in 3))
+       (portRef datab (instanceRef modgen_add_91_ix46 ))
+       (portRef datab (instanceRef ix353 ))
+       (portRef dataa (instanceRef ix354 ))))
+     (net aux_in_3 
+      (joined 
+       (portRef (member aux_in 4))
+       (portRef datab (instanceRef modgen_add_91_ix42 ))
+       (portRef datab (instanceRef ix355 ))
+       (portRef dataa (instanceRef ix356 ))))
+     (net aux_in_2 
+      (joined 
+       (portRef (member aux_in 5))
+       (portRef datab (instanceRef modgen_add_91_ix38 ))
+       (portRef datab (instanceRef ix357 ))
+       (portRef dataa (instanceRef ix358 ))))
+     (net aux_in_1 
+      (joined 
+       (portRef (member aux_in 6))
+       (portRef datab (instanceRef modgen_add_91_ix34 ))
+       (portRef datab (instanceRef ix359 ))
+       (portRef dataa (instanceRef ix360 ))))
+     (net aux_in_0 
+      (joined 
+       (portRef (member aux_in 7))
+       (portRef datab (instanceRef modgen_add_91_ix30 ))
+       (portRef datab (instanceRef ix361 ))
+       (portRef dataa (instanceRef ix362 ))))
+     (net ctl_2 
+      (joined 
+       (portRef (member ctl 0))
+       (portRef dataa (instanceRef ix332 ))
+       (portRef dataa (instanceRef ix343 ))
+       (portRef dataa (instanceRef ix344 ))
+       (portRef dataa (instanceRef ix345 ))
+       (portRef dataa (instanceRef ix346 ))))
+     (net ctl_1 
+      (joined 
+       (portRef (member ctl 1))
+       (portRef datab (instanceRef ix332 ))
+       (portRef dataa (instanceRef ix342 ))
+       (portRef datab (instanceRef ix343 ))
+       (portRef datab (instanceRef ix344 ))
+       (portRef datab (instanceRef ix345 ))
+       (portRef datab (instanceRef ix346 ))
+       (portRef dataa (instanceRef ix331 ))))
+     (net ctl_0 
+      (joined 
+       (portRef (member ctl 2))
+       (portRef datac (instanceRef ix332 ))
+       (portRef datab (instanceRef ix342 ))
+       (portRef datac (instanceRef ix343 ))
+       (portRef datac (instanceRef ix344 ))
+       (portRef datac (instanceRef ix346 ))
+       (portRef datab (instanceRef ix331 ))))
+     (net clk 
+      (joined 
+       (portRef clk )
+       (portRef clk (instanceRef CARRY_FF_reg_Q_0 ))))
+     (net rst 
+      (joined 
+       (portRef rst )
+       (portRef aclr (instanceRef CARRY_FF_reg_Q_0 ))))
+     (net a_4 
+      (joined 
+       (portRef combout (instanceRef modgen_add_91_ix58 ))
+       (portRef datab (instanceRef ix348 ))))
+     (net a_4_dup_265 
+      (joined 
+       (portRef combout (instanceRef modgen_add_91_ix54 ))
+       (portRef datab (instanceRef ix350 ))))
+     (net a_4_dup_269 
+      (joined 
+       (portRef combout (instanceRef modgen_add_91_ix50 ))
+       (portRef datab (instanceRef ix352 ))))
+     (net a_4_dup_273 
+      (joined 
+       (portRef combout (instanceRef modgen_add_91_ix46 ))
+       (portRef datab (instanceRef ix354 ))))
+     (net a_4_dup_277 
+      (joined 
+       (portRef combout (instanceRef modgen_add_91_ix42 ))
+       (portRef datab (instanceRef ix356 ))))
+     (net a_4_dup_281 
+      (joined 
+       (portRef combout (instanceRef modgen_add_91_ix38 ))
+       (portRef datab (instanceRef ix358 ))))
+     (net a_4_dup_285 
+      (joined 
+       (portRef combout (instanceRef modgen_add_91_ix34 ))
+       (portRef datab (instanceRef ix360 ))))
+     (net a_4_dup_289 
+      (joined 
+       (portRef combout (instanceRef modgen_add_91_ix30 ))
+       (portRef datab (instanceRef ix362 ))))
+     (net nx251 
+      (joined 
+       (portRef combout (instanceRef ix263 ))
+       (portRef datac (instanceRef ix331 ))))
+     (net modgen_add_91_nx33 
+      (joined 
+       (portRef cout (instanceRef modgen_add_91_ix30 ))
+       (portRef cin (instanceRef modgen_add_91_ix34 ))))
+     (net modgen_add_91_nx37 
+      (joined 
+       (portRef cout (instanceRef modgen_add_91_ix34 ))
+       (portRef cin (instanceRef modgen_add_91_ix38 ))))
+     (net modgen_add_91_nx41 
+      (joined 
+       (portRef cout (instanceRef modgen_add_91_ix38 ))
+       (portRef cin (instanceRef modgen_add_91_ix42 ))))
+     (net modgen_add_91_nx45 
+      (joined 
+       (portRef cout (instanceRef modgen_add_91_ix42 ))
+       (portRef cin (instanceRef modgen_add_91_ix46 ))))
+     (net modgen_add_91_nx49 
+      (joined 
+       (portRef cout (instanceRef modgen_add_91_ix46 ))
+       (portRef cin (instanceRef modgen_add_91_ix50 ))))
+     (net modgen_add_91_nx53 
+      (joined 
+       (portRef cout (instanceRef modgen_add_91_ix50 ))
+       (portRef cin (instanceRef modgen_add_91_ix54 ))))
+     (net modgen_add_91_nx57 
+      (joined 
+       (portRef cout (instanceRef modgen_add_91_ix54 ))
+       (portRef cin (instanceRef modgen_add_91_ix58 ))))
+     (net nx262 
+      (joined 
+       (portRef cout (instanceRef modgen_add_91_ix58 ))
+       (portRef cin (instanceRef ix263 ))))
+     (net Q_C 
+      (joined 
+       (portRef regout (instanceRef CARRY_FF_reg_Q_0 ))
+       (portRef dataa (instanceRef ix433 ))))
+     (net D_C 
+      (joined 
+       (portRef combout (instanceRef ix331 ))
+       (portRef datain (instanceRef CARRY_FF_reg_Q_0 ))))
+     (net we 
+      (joined 
+       (portRef combout (instanceRef ix332 ))
+       (portRef ena (instanceRef CARRY_FF_reg_Q_0 ))))
+     (net acc_out_7 
+      (joined 
+       (portRef (member acc_out 0))
+       (portRef combout (instanceRef ix333 ))))
+     (net acc_out_6 
+      (joined 
+       (portRef (member acc_out 1))
+       (portRef combout (instanceRef ix334 ))))
+     (net acc_out_5 
+      (joined 
+       (portRef (member acc_out 2))
+       (portRef combout (instanceRef ix335 ))))
+     (net acc_out_4 
+      (joined 
+       (portRef (member acc_out 3))
+       (portRef combout (instanceRef ix336 ))))
+     (net acc_out_3 
+      (joined 
+       (portRef (member acc_out 4))
+       (portRef combout (instanceRef ix337 ))))
+     (net acc_out_2 
+      (joined 
+       (portRef (member acc_out 5))
+       (portRef combout (instanceRef ix338 ))))
+     (net acc_out_1 
+      (joined 
+       (portRef (member acc_out 6))
+       (portRef combout (instanceRef ix339 ))))
+     (net acc_out_0 
+      (joined 
+       (portRef (member acc_out 7))
+       (portRef combout (instanceRef ix340 ))))
+     (net z_out 
+      (joined 
+       (portRef z_out )
+       (portRef combout (instanceRef ix341 ))))
+     (net nx365 
+      (joined 
+       (portRef combout (instanceRef ix342 ))
+       (portRef datac (instanceRef ix347 ))
+       (portRef datac (instanceRef ix349 ))
+       (portRef datac (instanceRef ix351 ))
+       (portRef datac (instanceRef ix353 ))
+       (portRef datac (instanceRef ix355 ))
+       (portRef datac (instanceRef ix357 ))
+       (portRef datac (instanceRef ix359 ))
+       (portRef datac (instanceRef ix361 ))))
+     (net nx366 
+      (joined 
+       (portRef combout (instanceRef ix343 ))
+       (portRef datab (instanceRef ix333 ))
+       (portRef datab (instanceRef ix334 ))
+       (portRef datab (instanceRef ix335 ))
+       (portRef datab (instanceRef ix336 ))
+       (portRef datab (instanceRef ix337 ))
+       (portRef datab (instanceRef ix338 ))
+       (portRef datab (instanceRef ix339 ))
+       (portRef datab (instanceRef ix340 ))))
+     (net nx367 
+      (joined 
+       (portRef combout (instanceRef ix344 ))
+       (portRef datac (instanceRef ix348 ))
+       (portRef datac (instanceRef ix350 ))
+       (portRef datac (instanceRef ix352 ))
+       (portRef datac (instanceRef ix354 ))
+       (portRef datac (instanceRef ix356 ))
+       (portRef datac (instanceRef ix358 ))
+       (portRef datac (instanceRef ix360 ))
+       (portRef datac (instanceRef ix362 ))))
+     (net nx368 
+      (joined 
+       (portRef combout (instanceRef ix345 ))
+       (portRef datad (instanceRef ix347 ))
+       (portRef datad (instanceRef ix349 ))
+       (portRef datad (instanceRef ix351 ))
+       (portRef datad (instanceRef ix353 ))
+       (portRef datad (instanceRef ix355 ))
+       (portRef datad (instanceRef ix357 ))
+       (portRef datad (instanceRef ix359 ))
+       (portRef datad (instanceRef ix361 ))))
+     (net nx369 
+      (joined 
+       (portRef combout (instanceRef ix346 ))
+       (portRef datad (instanceRef ix348 ))
+       (portRef datad (instanceRef ix350 ))
+       (portRef datad (instanceRef ix352 ))
+       (portRef datad (instanceRef ix354 ))
+       (portRef datad (instanceRef ix356 ))
+       (portRef datad (instanceRef ix358 ))
+       (portRef datad (instanceRef ix360 ))
+       (portRef datad (instanceRef ix362 ))))
+     (net nx370 
+      (joined 
+       (portRef combout (instanceRef ix347 ))
+       (portRef datac (instanceRef ix333 ))))
+     (net nx371 
+      (joined 
+       (portRef combout (instanceRef ix348 ))
+       (portRef datad (instanceRef ix333 ))))
+     (net nx372 
+      (joined 
+       (portRef combout (instanceRef ix349 ))
+       (portRef datac (instanceRef ix334 ))))
+     (net nx373 
+      (joined 
+       (portRef combout (instanceRef ix350 ))
+       (portRef datad (instanceRef ix334 ))))
+     (net nx374 
+      (joined 
+       (portRef combout (instanceRef ix351 ))
+       (portRef datac (instanceRef ix335 ))))
+     (net nx375 
+      (joined 
+       (portRef combout (instanceRef ix352 ))
+       (portRef datad (instanceRef ix335 ))))
+     (net nx376 
+      (joined 
+       (portRef combout (instanceRef ix353 ))
+       (portRef datac (instanceRef ix336 ))))
+     (net nx377 
+      (joined 
+       (portRef combout (instanceRef ix354 ))
+       (portRef datad (instanceRef ix336 ))))
+     (net nx378 
+      (joined 
+       (portRef combout (instanceRef ix355 ))
+       (portRef datac (instanceRef ix337 ))))
+     (net nx379 
+      (joined 
+       (portRef combout (instanceRef ix356 ))
+       (portRef datad (instanceRef ix337 ))))
+     (net nx380 
+      (joined 
+       (portRef combout (instanceRef ix357 ))
+       (portRef datac (instanceRef ix338 ))))
+     (net nx381 
+      (joined 
+       (portRef combout (instanceRef ix358 ))
+       (portRef datad (instanceRef ix338 ))))
+     (net nx382 
+      (joined 
+       (portRef combout (instanceRef ix359 ))
+       (portRef datac (instanceRef ix339 ))))
+     (net nx383 
+      (joined 
+       (portRef combout (instanceRef ix360 ))
+       (portRef datad (instanceRef ix339 ))))
+     (net nx384 
+      (joined 
+       (portRef combout (instanceRef ix361 ))
+       (portRef datac (instanceRef ix340 ))))
+     (net nx385 
+      (joined 
+       (portRef combout (instanceRef ix362 ))
+       (portRef datad (instanceRef ix340 ))))
+     (net nx386 
+      (joined 
+       (portRef combout (instanceRef ix363 ))
+       (portRef datac (instanceRef ix341 ))))
+     (net nx388 
+      (joined 
+       (portRef combout (instanceRef ix364 ))
+       (portRef datad (instanceRef ix341 ))))
+     (net nx432 
+      (joined 
+       (portRef cout (instanceRef ix433 ))
+       (portRef cin (instanceRef modgen_add_91_ix30 ))))
+     (net nx0 
+      (joined 
+       (portRef Y (instanceRef ix1 ))
+       (portRef datad (instanceRef modgen_add_91_ix30 ))))
+     (net nx2 
+      (joined 
+       (portRef Y (instanceRef ix3 ))
+       (portRef datad (instanceRef modgen_add_91_ix34 ))))
+     (net nx4 
+      (joined 
+       (portRef Y (instanceRef ix5 ))
+       (portRef datad (instanceRef modgen_add_91_ix38 ))))
+     (net nx6 
+      (joined 
+       (portRef Y (instanceRef ix7 ))
+       (portRef datad (instanceRef modgen_add_91_ix42 ))))
+     (net nx8 
+      (joined 
+       (portRef Y (instanceRef ix9 ))
+       (portRef datad (instanceRef modgen_add_91_ix46 ))))
+     (net nx10 
+      (joined 
+       (portRef Y (instanceRef ix11 ))
+       (portRef datad (instanceRef modgen_add_91_ix50 ))))
+     (net nx12 
+      (joined 
+       (portRef Y (instanceRef ix13 ))
+       (portRef datad (instanceRef modgen_add_91_ix54 ))))
+     (net nx14 
+      (joined 
+       (portRef Y (instanceRef ix15 ))
+       (portRef datad (instanceRef modgen_add_91_ix58 ))))
+     (net nx16 
+      (joined 
+       (portRef Y (instanceRef ix17 ))
+       (portRef datad (instanceRef ix433 )))))))
+  (cell regfile (cellType GENERIC)
+   (view a1  (viewType NETLIST)
+    (interface 
+     (port (array (rename reg_num "reg_num(2:0)") 3 )(direction INPUT))
+     (port (array (rename acc_in "acc_in(7:0)") 8 )(direction INPUT))
+     (port clk (direction INPUT))
+     (port rst (direction INPUT))
+     (port we (direction INPUT))
+     (port (array (rename data_out "data_out(7:0)") 8 )(direction OUTPUT))
+     (port (array (rename R0 "R0(7:0)") 8 )(direction OUTPUT))
+     (port (array (rename R2 "R2(7:0)") 8 )(direction OUTPUT)))
+    (contents 
+     (instance ix480 (viewRef NETLIST  (cellRef GND (libraryRef cycloneii ))))
+     (instance ix383 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "8000")))
+     (instance ix384 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0800")))
+     (instance ix385 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "2000")))
+     (instance ix386 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0200")))
+     (instance ix387 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "4000")))
+     (instance ix388 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0400")))
+     (instance ix389 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "1000")))
+     (instance ix390 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0100")))
+     (instance ix391 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fffe")))
+     (instance ix392 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fffe")))
+     (instance ix393 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fffe")))
+     (instance ix394 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fffe")))
+     (instance ix395 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fffe")))
+     (instance ix396 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fffe")))
+     (instance ix397 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fffe")))
+     (instance ix398 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fffe")))
+     (instance ix399 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0808")))
+     (instance ix400 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0101")))
+     (instance ix401 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "8080")))
+     (instance ix402 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "1010")))
+     (instance ix403 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "2020")))
+     (instance ix404 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0202")))
+     (instance ix405 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "4040")))
+     (instance ix406 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0404")))
+     (instance ix407 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix408 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix409 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix410 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix411 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix412 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix413 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix414 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix415 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix416 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix417 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix418 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix419 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix420 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix421 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix422 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix423 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix424 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix425 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix426 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix427 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix428 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix429 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix430 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix431 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix432 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix433 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix434 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix435 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix436 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance ix437 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eac0")))
+     (instance ix438 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eca0")))
+     (instance Reg0_reg_Q_7 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg0_reg_Q_6 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg0_reg_Q_5 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg0_reg_Q_4 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg0_reg_Q_3 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg0_reg_Q_2 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg0_reg_Q_1 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg0_reg_Q_0 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg1_reg_Q_7 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg1_reg_Q_6 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg1_reg_Q_5 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg1_reg_Q_4 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg1_reg_Q_3 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg1_reg_Q_2 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg1_reg_Q_1 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg1_reg_Q_0 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg2_reg_Q_7 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg2_reg_Q_6 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg2_reg_Q_5 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg2_reg_Q_4 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg2_reg_Q_3 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg2_reg_Q_2 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg2_reg_Q_1 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg2_reg_Q_0 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg3_reg_Q_7 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg3_reg_Q_6 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg3_reg_Q_5 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg3_reg_Q_4 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg3_reg_Q_3 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg3_reg_Q_2 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg3_reg_Q_1 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg3_reg_Q_0 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg4_reg_Q_7 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg4_reg_Q_6 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg4_reg_Q_5 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg4_reg_Q_4 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg4_reg_Q_3 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg4_reg_Q_2 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg4_reg_Q_1 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg4_reg_Q_0 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg5_reg_Q_7 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg5_reg_Q_6 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg5_reg_Q_5 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg5_reg_Q_4 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg5_reg_Q_3 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg5_reg_Q_2 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg5_reg_Q_1 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg5_reg_Q_0 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg6_reg_Q_7 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg6_reg_Q_6 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg6_reg_Q_5 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg6_reg_Q_4 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg6_reg_Q_3 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg6_reg_Q_2 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg6_reg_Q_1 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg6_reg_Q_0 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg7_reg_Q_7 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg7_reg_Q_6 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg7_reg_Q_5 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg7_reg_Q_4 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg7_reg_Q_3 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg7_reg_Q_2 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg7_reg_Q_1 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance Reg7_reg_Q_0 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (net reg_num_2 
+      (joined 
+       (portRef (member reg_num 0))
+       (portRef dataa (instanceRef ix383 ))
+       (portRef dataa (instanceRef ix384 ))
+       (portRef dataa (instanceRef ix385 ))
+       (portRef dataa (instanceRef ix386 ))
+       (portRef dataa (instanceRef ix387 ))
+       (portRef dataa (instanceRef ix388 ))
+       (portRef dataa (instanceRef ix389 ))
+       (portRef dataa (instanceRef ix390 ))
+       (portRef dataa (instanceRef ix399 ))
+       (portRef dataa (instanceRef ix400 ))
+       (portRef dataa (instanceRef ix401 ))
+       (portRef dataa (instanceRef ix402 ))
+       (portRef dataa (instanceRef ix403 ))
+       (portRef dataa (instanceRef ix404 ))
+       (portRef dataa (instanceRef ix405 ))
+       (portRef dataa (instanceRef ix406 ))))
+     (net reg_num_1 
+      (joined 
+       (portRef (member reg_num 1))
+       (portRef datab (instanceRef ix383 ))
+       (portRef datab (instanceRef ix384 ))
+       (portRef datab (instanceRef ix385 ))
+       (portRef datab (instanceRef ix386 ))
+       (portRef datab (instanceRef ix387 ))
+       (portRef datab (instanceRef ix388 ))
+       (portRef datab (instanceRef ix389 ))
+       (portRef datab (instanceRef ix390 ))
+       (portRef datab (instanceRef ix399 ))
+       (portRef datab (instanceRef ix400 ))
+       (portRef datab (instanceRef ix401 ))
+       (portRef datab (instanceRef ix402 ))
+       (portRef datab (instanceRef ix403 ))
+       (portRef datab (instanceRef ix404 ))
+       (portRef datab (instanceRef ix405 ))
+       (portRef datab (instanceRef ix406 ))))
+     (net reg_num_0 
+      (joined 
+       (portRef (member reg_num 2))
+       (portRef datac (instanceRef ix383 ))
+       (portRef datac (instanceRef ix384 ))
+       (portRef datac (instanceRef ix385 ))
+       (portRef datac (instanceRef ix386 ))
+       (portRef datac (instanceRef ix387 ))
+       (portRef datac (instanceRef ix388 ))
+       (portRef datac (instanceRef ix389 ))
+       (portRef datac (instanceRef ix390 ))
+       (portRef datac (instanceRef ix399 ))
+       (portRef datac (instanceRef ix400 ))
+       (portRef datac (instanceRef ix401 ))
+       (portRef datac (instanceRef ix402 ))
+       (portRef datac (instanceRef ix403 ))
+       (portRef datac (instanceRef ix404 ))
+       (portRef datac (instanceRef ix405 ))
+       (portRef datac (instanceRef ix406 ))))
+     (net acc_in_7 
+      (joined 
+       (portRef (member acc_in 0))
+       (portRef datain (instanceRef Reg0_reg_Q_7 ))
+       (portRef datain (instanceRef Reg1_reg_Q_7 ))
+       (portRef datain (instanceRef Reg2_reg_Q_7 ))
+       (portRef datain (instanceRef Reg3_reg_Q_7 ))
+       (portRef datain (instanceRef Reg4_reg_Q_7 ))
+       (portRef datain (instanceRef Reg5_reg_Q_7 ))
+       (portRef datain (instanceRef Reg6_reg_Q_7 ))
+       (portRef datain (instanceRef Reg7_reg_Q_7 ))))
+     (net acc_in_6 
+      (joined 
+       (portRef (member acc_in 1))
+       (portRef datain (instanceRef Reg0_reg_Q_6 ))
+       (portRef datain (instanceRef Reg1_reg_Q_6 ))
+       (portRef datain (instanceRef Reg2_reg_Q_6 ))
+       (portRef datain (instanceRef Reg3_reg_Q_6 ))
+       (portRef datain (instanceRef Reg4_reg_Q_6 ))
+       (portRef datain (instanceRef Reg5_reg_Q_6 ))
+       (portRef datain (instanceRef Reg6_reg_Q_6 ))
+       (portRef datain (instanceRef Reg7_reg_Q_6 ))))
+     (net acc_in_5 
+      (joined 
+       (portRef (member acc_in 2))
+       (portRef datain (instanceRef Reg0_reg_Q_5 ))
+       (portRef datain (instanceRef Reg1_reg_Q_5 ))
+       (portRef datain (instanceRef Reg2_reg_Q_5 ))
+       (portRef datain (instanceRef Reg3_reg_Q_5 ))
+       (portRef datain (instanceRef Reg4_reg_Q_5 ))
+       (portRef datain (instanceRef Reg5_reg_Q_5 ))
+       (portRef datain (instanceRef Reg6_reg_Q_5 ))
+       (portRef datain (instanceRef Reg7_reg_Q_5 ))))
+     (net acc_in_4 
+      (joined 
+       (portRef (member acc_in 3))
+       (portRef datain (instanceRef Reg0_reg_Q_4 ))
+       (portRef datain (instanceRef Reg1_reg_Q_4 ))
+       (portRef datain (instanceRef Reg2_reg_Q_4 ))
+       (portRef datain (instanceRef Reg3_reg_Q_4 ))
+       (portRef datain (instanceRef Reg4_reg_Q_4 ))
+       (portRef datain (instanceRef Reg5_reg_Q_4 ))
+       (portRef datain (instanceRef Reg6_reg_Q_4 ))
+       (portRef datain (instanceRef Reg7_reg_Q_4 ))))
+     (net acc_in_3 
+      (joined 
+       (portRef (member acc_in 4))
+       (portRef datain (instanceRef Reg0_reg_Q_3 ))
+       (portRef datain (instanceRef Reg1_reg_Q_3 ))
+       (portRef datain (instanceRef Reg2_reg_Q_3 ))
+       (portRef datain (instanceRef Reg3_reg_Q_3 ))
+       (portRef datain (instanceRef Reg4_reg_Q_3 ))
+       (portRef datain (instanceRef Reg5_reg_Q_3 ))
+       (portRef datain (instanceRef Reg6_reg_Q_3 ))
+       (portRef datain (instanceRef Reg7_reg_Q_3 ))))
+     (net acc_in_2 
+      (joined 
+       (portRef (member acc_in 5))
+       (portRef datain (instanceRef Reg0_reg_Q_2 ))
+       (portRef datain (instanceRef Reg1_reg_Q_2 ))
+       (portRef datain (instanceRef Reg2_reg_Q_2 ))
+       (portRef datain (instanceRef Reg3_reg_Q_2 ))
+       (portRef datain (instanceRef Reg4_reg_Q_2 ))
+       (portRef datain (instanceRef Reg5_reg_Q_2 ))
+       (portRef datain (instanceRef Reg6_reg_Q_2 ))
+       (portRef datain (instanceRef Reg7_reg_Q_2 ))))
+     (net acc_in_1 
+      (joined 
+       (portRef (member acc_in 6))
+       (portRef datain (instanceRef Reg0_reg_Q_1 ))
+       (portRef datain (instanceRef Reg1_reg_Q_1 ))
+       (portRef datain (instanceRef Reg2_reg_Q_1 ))
+       (portRef datain (instanceRef Reg3_reg_Q_1 ))
+       (portRef datain (instanceRef Reg4_reg_Q_1 ))
+       (portRef datain (instanceRef Reg5_reg_Q_1 ))
+       (portRef datain (instanceRef Reg6_reg_Q_1 ))
+       (portRef datain (instanceRef Reg7_reg_Q_1 ))))
+     (net acc_in_0 
+      (joined 
+       (portRef (member acc_in 7))
+       (portRef datain (instanceRef Reg0_reg_Q_0 ))
+       (portRef datain (instanceRef Reg1_reg_Q_0 ))
+       (portRef datain (instanceRef Reg2_reg_Q_0 ))
+       (portRef datain (instanceRef Reg3_reg_Q_0 ))
+       (portRef datain (instanceRef Reg4_reg_Q_0 ))
+       (portRef datain (instanceRef Reg5_reg_Q_0 ))
+       (portRef datain (instanceRef Reg6_reg_Q_0 ))
+       (portRef datain (instanceRef Reg7_reg_Q_0 ))))
+     (net clk 
+      (joined 
+       (portRef clk )
+       (portRef clk (instanceRef Reg0_reg_Q_7 ))
+       (portRef clk (instanceRef Reg0_reg_Q_6 ))
+       (portRef clk (instanceRef Reg0_reg_Q_5 ))
+       (portRef clk (instanceRef Reg0_reg_Q_4 ))
+       (portRef clk (instanceRef Reg0_reg_Q_3 ))
+       (portRef clk (instanceRef Reg0_reg_Q_2 ))
+       (portRef clk (instanceRef Reg0_reg_Q_1 ))
+       (portRef clk (instanceRef Reg0_reg_Q_0 ))
+       (portRef clk (instanceRef Reg1_reg_Q_7 ))
+       (portRef clk (instanceRef Reg1_reg_Q_6 ))
+       (portRef clk (instanceRef Reg1_reg_Q_5 ))
+       (portRef clk (instanceRef Reg1_reg_Q_4 ))
+       (portRef clk (instanceRef Reg1_reg_Q_3 ))
+       (portRef clk (instanceRef Reg1_reg_Q_2 ))
+       (portRef clk (instanceRef Reg1_reg_Q_1 ))
+       (portRef clk (instanceRef Reg1_reg_Q_0 ))
+       (portRef clk (instanceRef Reg2_reg_Q_7 ))
+       (portRef clk (instanceRef Reg2_reg_Q_6 ))
+       (portRef clk (instanceRef Reg2_reg_Q_5 ))
+       (portRef clk (instanceRef Reg2_reg_Q_4 ))
+       (portRef clk (instanceRef Reg2_reg_Q_3 ))
+       (portRef clk (instanceRef Reg2_reg_Q_2 ))
+       (portRef clk (instanceRef Reg2_reg_Q_1 ))
+       (portRef clk (instanceRef Reg2_reg_Q_0 ))
+       (portRef clk (instanceRef Reg3_reg_Q_7 ))
+       (portRef clk (instanceRef Reg3_reg_Q_6 ))
+       (portRef clk (instanceRef Reg3_reg_Q_5 ))
+       (portRef clk (instanceRef Reg3_reg_Q_4 ))
+       (portRef clk (instanceRef Reg3_reg_Q_3 ))
+       (portRef clk (instanceRef Reg3_reg_Q_2 ))
+       (portRef clk (instanceRef Reg3_reg_Q_1 ))
+       (portRef clk (instanceRef Reg3_reg_Q_0 ))
+       (portRef clk (instanceRef Reg4_reg_Q_7 ))
+       (portRef clk (instanceRef Reg4_reg_Q_6 ))
+       (portRef clk (instanceRef Reg4_reg_Q_5 ))
+       (portRef clk (instanceRef Reg4_reg_Q_4 ))
+       (portRef clk (instanceRef Reg4_reg_Q_3 ))
+       (portRef clk (instanceRef Reg4_reg_Q_2 ))
+       (portRef clk (instanceRef Reg4_reg_Q_1 ))
+       (portRef clk (instanceRef Reg4_reg_Q_0 ))
+       (portRef clk (instanceRef Reg5_reg_Q_7 ))
+       (portRef clk (instanceRef Reg5_reg_Q_6 ))
+       (portRef clk (instanceRef Reg5_reg_Q_5 ))
+       (portRef clk (instanceRef Reg5_reg_Q_4 ))
+       (portRef clk (instanceRef Reg5_reg_Q_3 ))
+       (portRef clk (instanceRef Reg5_reg_Q_2 ))
+       (portRef clk (instanceRef Reg5_reg_Q_1 ))
+       (portRef clk (instanceRef Reg5_reg_Q_0 ))
+       (portRef clk (instanceRef Reg6_reg_Q_7 ))
+       (portRef clk (instanceRef Reg6_reg_Q_6 ))
+       (portRef clk (instanceRef Reg6_reg_Q_5 ))
+       (portRef clk (instanceRef Reg6_reg_Q_4 ))
+       (portRef clk (instanceRef Reg6_reg_Q_3 ))
+       (portRef clk (instanceRef Reg6_reg_Q_2 ))
+       (portRef clk (instanceRef Reg6_reg_Q_1 ))
+       (portRef clk (instanceRef Reg6_reg_Q_0 ))
+       (portRef clk (instanceRef Reg7_reg_Q_7 ))
+       (portRef clk (instanceRef Reg7_reg_Q_6 ))
+       (portRef clk (instanceRef Reg7_reg_Q_5 ))
+       (portRef clk (instanceRef Reg7_reg_Q_4 ))
+       (portRef clk (instanceRef Reg7_reg_Q_3 ))
+       (portRef clk (instanceRef Reg7_reg_Q_2 ))
+       (portRef clk (instanceRef Reg7_reg_Q_1 ))
+       (portRef clk (instanceRef Reg7_reg_Q_0 ))))
+     (net rst 
+      (joined 
+       (portRef rst )
+       (portRef aclr (instanceRef Reg0_reg_Q_7 ))
+       (portRef aclr (instanceRef Reg0_reg_Q_6 ))
+       (portRef aclr (instanceRef Reg0_reg_Q_5 ))
+       (portRef aclr (instanceRef Reg0_reg_Q_4 ))
+       (portRef aclr (instanceRef Reg0_reg_Q_3 ))
+       (portRef aclr (instanceRef Reg0_reg_Q_2 ))
+       (portRef aclr (instanceRef Reg0_reg_Q_1 ))
+       (portRef aclr (instanceRef Reg0_reg_Q_0 ))
+       (portRef aclr (instanceRef Reg1_reg_Q_7 ))
+       (portRef aclr (instanceRef Reg1_reg_Q_6 ))
+       (portRef aclr (instanceRef Reg1_reg_Q_5 ))
+       (portRef aclr (instanceRef Reg1_reg_Q_4 ))
+       (portRef aclr (instanceRef Reg1_reg_Q_3 ))
+       (portRef aclr (instanceRef Reg1_reg_Q_2 ))
+       (portRef aclr (instanceRef Reg1_reg_Q_1 ))
+       (portRef aclr (instanceRef Reg1_reg_Q_0 ))
+       (portRef aclr (instanceRef Reg2_reg_Q_7 ))
+       (portRef aclr (instanceRef Reg2_reg_Q_6 ))
+       (portRef aclr (instanceRef Reg2_reg_Q_5 ))
+       (portRef aclr (instanceRef Reg2_reg_Q_4 ))
+       (portRef aclr (instanceRef Reg2_reg_Q_3 ))
+       (portRef aclr (instanceRef Reg2_reg_Q_2 ))
+       (portRef aclr (instanceRef Reg2_reg_Q_1 ))
+       (portRef aclr (instanceRef Reg2_reg_Q_0 ))
+       (portRef aclr (instanceRef Reg3_reg_Q_7 ))
+       (portRef aclr (instanceRef Reg3_reg_Q_6 ))
+       (portRef aclr (instanceRef Reg3_reg_Q_5 ))
+       (portRef aclr (instanceRef Reg3_reg_Q_4 ))
+       (portRef aclr (instanceRef Reg3_reg_Q_3 ))
+       (portRef aclr (instanceRef Reg3_reg_Q_2 ))
+       (portRef aclr (instanceRef Reg3_reg_Q_1 ))
+       (portRef aclr (instanceRef Reg3_reg_Q_0 ))
+       (portRef aclr (instanceRef Reg4_reg_Q_7 ))
+       (portRef aclr (instanceRef Reg4_reg_Q_6 ))
+       (portRef aclr (instanceRef Reg4_reg_Q_5 ))
+       (portRef aclr (instanceRef Reg4_reg_Q_4 ))
+       (portRef aclr (instanceRef Reg4_reg_Q_3 ))
+       (portRef aclr (instanceRef Reg4_reg_Q_2 ))
+       (portRef aclr (instanceRef Reg4_reg_Q_1 ))
+       (portRef aclr (instanceRef Reg4_reg_Q_0 ))
+       (portRef aclr (instanceRef Reg5_reg_Q_7 ))
+       (portRef aclr (instanceRef Reg5_reg_Q_6 ))
+       (portRef aclr (instanceRef Reg5_reg_Q_5 ))
+       (portRef aclr (instanceRef Reg5_reg_Q_4 ))
+       (portRef aclr (instanceRef Reg5_reg_Q_3 ))
+       (portRef aclr (instanceRef Reg5_reg_Q_2 ))
+       (portRef aclr (instanceRef Reg5_reg_Q_1 ))
+       (portRef aclr (instanceRef Reg5_reg_Q_0 ))
+       (portRef aclr (instanceRef Reg6_reg_Q_7 ))
+       (portRef aclr (instanceRef Reg6_reg_Q_6 ))
+       (portRef aclr (instanceRef Reg6_reg_Q_5 ))
+       (portRef aclr (instanceRef Reg6_reg_Q_4 ))
+       (portRef aclr (instanceRef Reg6_reg_Q_3 ))
+       (portRef aclr (instanceRef Reg6_reg_Q_2 ))
+       (portRef aclr (instanceRef Reg6_reg_Q_1 ))
+       (portRef aclr (instanceRef Reg6_reg_Q_0 ))
+       (portRef aclr (instanceRef Reg7_reg_Q_7 ))
+       (portRef aclr (instanceRef Reg7_reg_Q_6 ))
+       (portRef aclr (instanceRef Reg7_reg_Q_5 ))
+       (portRef aclr (instanceRef Reg7_reg_Q_4 ))
+       (portRef aclr (instanceRef Reg7_reg_Q_3 ))
+       (portRef aclr (instanceRef Reg7_reg_Q_2 ))
+       (portRef aclr (instanceRef Reg7_reg_Q_1 ))
+       (portRef aclr (instanceRef Reg7_reg_Q_0 ))))
+     (net we 
+      (joined 
+       (portRef we )
+       (portRef datad (instanceRef ix383 ))
+       (portRef datad (instanceRef ix384 ))
+       (portRef datad (instanceRef ix385 ))
+       (portRef datad (instanceRef ix386 ))
+       (portRef datad (instanceRef ix387 ))
+       (portRef datad (instanceRef ix388 ))
+       (portRef datad (instanceRef ix389 ))
+       (portRef datad (instanceRef ix390 ))))
+     (net R0_7 
+      (joined 
+       (portRef (member R0 0))
+       (portRef regout (instanceRef Reg0_reg_Q_7 ))
+       (portRef datab (instanceRef ix410 ))))
+     (net R0_6 
+      (joined 
+       (portRef (member R0 1))
+       (portRef regout (instanceRef Reg0_reg_Q_6 ))
+       (portRef datab (instanceRef ix414 ))))
+     (net R0_5 
+      (joined 
+       (portRef (member R0 2))
+       (portRef regout (instanceRef Reg0_reg_Q_5 ))
+       (portRef datab (instanceRef ix418 ))))
+     (net R0_4 
+      (joined 
+       (portRef (member R0 3))
+       (portRef regout (instanceRef Reg0_reg_Q_4 ))
+       (portRef datab (instanceRef ix422 ))))
+     (net R0_3 
+      (joined 
+       (portRef (member R0 4))
+       (portRef regout (instanceRef Reg0_reg_Q_3 ))
+       (portRef datab (instanceRef ix426 ))))
+     (net R0_2 
+      (joined 
+       (portRef (member R0 5))
+       (portRef regout (instanceRef Reg0_reg_Q_2 ))
+       (portRef datab (instanceRef ix430 ))))
+     (net R0_1 
+      (joined 
+       (portRef (member R0 6))
+       (portRef regout (instanceRef Reg0_reg_Q_1 ))
+       (portRef datab (instanceRef ix434 ))))
+     (net R0_0 
+      (joined 
+       (portRef (member R0 7))
+       (portRef regout (instanceRef Reg0_reg_Q_0 ))
+       (portRef datab (instanceRef ix438 ))))
+     (net Q1_7 
+      (joined 
+       (portRef regout (instanceRef Reg1_reg_Q_7 ))
+       (portRef dataa (instanceRef ix407 ))))
+     (net Q1_6 
+      (joined 
+       (portRef regout (instanceRef Reg1_reg_Q_6 ))
+       (portRef dataa (instanceRef ix411 ))))
+     (net Q1_5 
+      (joined 
+       (portRef regout (instanceRef Reg1_reg_Q_5 ))
+       (portRef dataa (instanceRef ix415 ))))
+     (net Q1_4 
+      (joined 
+       (portRef regout (instanceRef Reg1_reg_Q_4 ))
+       (portRef dataa (instanceRef ix419 ))))
+     (net Q1_3 
+      (joined 
+       (portRef regout (instanceRef Reg1_reg_Q_3 ))
+       (portRef dataa (instanceRef ix423 ))))
+     (net Q1_2 
+      (joined 
+       (portRef regout (instanceRef Reg1_reg_Q_2 ))
+       (portRef dataa (instanceRef ix427 ))))
+     (net Q1_1 
+      (joined 
+       (portRef regout (instanceRef Reg1_reg_Q_1 ))
+       (portRef dataa (instanceRef ix431 ))))
+     (net Q1_0 
+      (joined 
+       (portRef regout (instanceRef Reg1_reg_Q_0 ))
+       (portRef dataa (instanceRef ix435 ))))
+     (net R2_7 
+      (joined 
+       (portRef (member R2 0))
+       (portRef regout (instanceRef Reg2_reg_Q_7 ))
+       (portRef datab (instanceRef ix408 ))))
+     (net R2_6 
+      (joined 
+       (portRef (member R2 1))
+       (portRef regout (instanceRef Reg2_reg_Q_6 ))
+       (portRef datab (instanceRef ix412 ))))
+     (net R2_5 
+      (joined 
+       (portRef (member R2 2))
+       (portRef regout (instanceRef Reg2_reg_Q_5 ))
+       (portRef datab (instanceRef ix416 ))))
+     (net R2_4 
+      (joined 
+       (portRef (member R2 3))
+       (portRef regout (instanceRef Reg2_reg_Q_4 ))
+       (portRef datab (instanceRef ix420 ))))
+     (net R2_3 
+      (joined 
+       (portRef (member R2 4))
+       (portRef regout (instanceRef Reg2_reg_Q_3 ))
+       (portRef datab (instanceRef ix424 ))))
+     (net R2_2 
+      (joined 
+       (portRef (member R2 5))
+       (portRef regout (instanceRef Reg2_reg_Q_2 ))
+       (portRef datab (instanceRef ix428 ))))
+     (net R2_1 
+      (joined 
+       (portRef (member R2 6))
+       (portRef regout (instanceRef Reg2_reg_Q_1 ))
+       (portRef datab (instanceRef ix432 ))))
+     (net R2_0 
+      (joined 
+       (portRef (member R2 7))
+       (portRef regout (instanceRef Reg2_reg_Q_0 ))
+       (portRef datab (instanceRef ix436 ))))
+     (net Q3_7 
+      (joined 
+       (portRef regout (instanceRef Reg3_reg_Q_7 ))
+       (portRef dataa (instanceRef ix408 ))))
+     (net Q3_6 
+      (joined 
+       (portRef regout (instanceRef Reg3_reg_Q_6 ))
+       (portRef dataa (instanceRef ix412 ))))
+     (net Q3_5 
+      (joined 
+       (portRef regout (instanceRef Reg3_reg_Q_5 ))
+       (portRef dataa (instanceRef ix416 ))))
+     (net Q3_4 
+      (joined 
+       (portRef regout (instanceRef Reg3_reg_Q_4 ))
+       (portRef dataa (instanceRef ix420 ))))
+     (net Q3_3 
+      (joined 
+       (portRef regout (instanceRef Reg3_reg_Q_3 ))
+       (portRef dataa (instanceRef ix424 ))))
+     (net Q3_2 
+      (joined 
+       (portRef regout (instanceRef Reg3_reg_Q_2 ))
+       (portRef dataa (instanceRef ix428 ))))
+     (net Q3_1 
+      (joined 
+       (portRef regout (instanceRef Reg3_reg_Q_1 ))
+       (portRef dataa (instanceRef ix432 ))))
+     (net Q3_0 
+      (joined 
+       (portRef regout (instanceRef Reg3_reg_Q_0 ))
+       (portRef dataa (instanceRef ix436 ))))
+     (net Q4_7 
+      (joined 
+       (portRef regout (instanceRef Reg4_reg_Q_7 ))
+       (portRef dataa (instanceRef ix409 ))))
+     (net Q4_6 
+      (joined 
+       (portRef regout (instanceRef Reg4_reg_Q_6 ))
+       (portRef dataa (instanceRef ix413 ))))
+     (net Q4_5 
+      (joined 
+       (portRef regout (instanceRef Reg4_reg_Q_5 ))
+       (portRef dataa (instanceRef ix417 ))))
+     (net Q4_4 
+      (joined 
+       (portRef regout (instanceRef Reg4_reg_Q_4 ))
+       (portRef dataa (instanceRef ix421 ))))
+     (net Q4_3 
+      (joined 
+       (portRef regout (instanceRef Reg4_reg_Q_3 ))
+       (portRef dataa (instanceRef ix425 ))))
+     (net Q4_2 
+      (joined 
+       (portRef regout (instanceRef Reg4_reg_Q_2 ))
+       (portRef dataa (instanceRef ix429 ))))
+     (net Q4_1 
+      (joined 
+       (portRef regout (instanceRef Reg4_reg_Q_1 ))
+       (portRef dataa (instanceRef ix433 ))))
+     (net Q4_0 
+      (joined 
+       (portRef regout (instanceRef Reg4_reg_Q_0 ))
+       (portRef dataa (instanceRef ix437 ))))
+     (net Q5_7 
+      (joined 
+       (portRef regout (instanceRef Reg5_reg_Q_7 ))
+       (portRef datab (instanceRef ix409 ))))
+     (net Q5_6 
+      (joined 
+       (portRef regout (instanceRef Reg5_reg_Q_6 ))
+       (portRef datab (instanceRef ix413 ))))
+     (net Q5_5 
+      (joined 
+       (portRef regout (instanceRef Reg5_reg_Q_5 ))
+       (portRef datab (instanceRef ix417 ))))
+     (net Q5_4 
+      (joined 
+       (portRef regout (instanceRef Reg5_reg_Q_4 ))
+       (portRef datab (instanceRef ix421 ))))
+     (net Q5_3 
+      (joined 
+       (portRef regout (instanceRef Reg5_reg_Q_3 ))
+       (portRef datab (instanceRef ix425 ))))
+     (net Q5_2 
+      (joined 
+       (portRef regout (instanceRef Reg5_reg_Q_2 ))
+       (portRef datab (instanceRef ix429 ))))
+     (net Q5_1 
+      (joined 
+       (portRef regout (instanceRef Reg5_reg_Q_1 ))
+       (portRef datab (instanceRef ix433 ))))
+     (net Q5_0 
+      (joined 
+       (portRef regout (instanceRef Reg5_reg_Q_0 ))
+       (portRef datab (instanceRef ix437 ))))
+     (net Q6_7 
+      (joined 
+       (portRef regout (instanceRef Reg6_reg_Q_7 ))
+       (portRef dataa (instanceRef ix410 ))))
+     (net Q6_6 
+      (joined 
+       (portRef regout (instanceRef Reg6_reg_Q_6 ))
+       (portRef dataa (instanceRef ix414 ))))
+     (net Q6_5 
+      (joined 
+       (portRef regout (instanceRef Reg6_reg_Q_5 ))
+       (portRef dataa (instanceRef ix418 ))))
+     (net Q6_4 
+      (joined 
+       (portRef regout (instanceRef Reg6_reg_Q_4 ))
+       (portRef dataa (instanceRef ix422 ))))
+     (net Q6_3 
+      (joined 
+       (portRef regout (instanceRef Reg6_reg_Q_3 ))
+       (portRef dataa (instanceRef ix426 ))))
+     (net Q6_2 
+      (joined 
+       (portRef regout (instanceRef Reg6_reg_Q_2 ))
+       (portRef dataa (instanceRef ix430 ))))
+     (net Q6_1 
+      (joined 
+       (portRef regout (instanceRef Reg6_reg_Q_1 ))
+       (portRef dataa (instanceRef ix434 ))))
+     (net Q6_0 
+      (joined 
+       (portRef regout (instanceRef Reg6_reg_Q_0 ))
+       (portRef dataa (instanceRef ix438 ))))
+     (net Q7_7 
+      (joined 
+       (portRef regout (instanceRef Reg7_reg_Q_7 ))
+       (portRef datab (instanceRef ix407 ))))
+     (net Q7_6 
+      (joined 
+       (portRef regout (instanceRef Reg7_reg_Q_6 ))
+       (portRef datab (instanceRef ix411 ))))
+     (net Q7_5 
+      (joined 
+       (portRef regout (instanceRef Reg7_reg_Q_5 ))
+       (portRef datab (instanceRef ix415 ))))
+     (net Q7_4 
+      (joined 
+       (portRef regout (instanceRef Reg7_reg_Q_4 ))
+       (portRef datab (instanceRef ix419 ))))
+     (net Q7_3 
+      (joined 
+       (portRef regout (instanceRef Reg7_reg_Q_3 ))
+       (portRef datab (instanceRef ix423 ))))
+     (net Q7_2 
+      (joined 
+       (portRef regout (instanceRef Reg7_reg_Q_2 ))
+       (portRef datab (instanceRef ix427 ))))
+     (net Q7_1 
+      (joined 
+       (portRef regout (instanceRef Reg7_reg_Q_1 ))
+       (portRef datab (instanceRef ix431 ))))
+     (net Q7_0 
+      (joined 
+       (portRef regout (instanceRef Reg7_reg_Q_0 ))
+       (portRef datab (instanceRef ix435 ))))
+     (net rwe_7 
+      (joined 
+       (portRef combout (instanceRef ix383 ))
+       (portRef ena (instanceRef Reg7_reg_Q_7 ))
+       (portRef ena (instanceRef Reg7_reg_Q_6 ))
+       (portRef ena (instanceRef Reg7_reg_Q_5 ))
+       (portRef ena (instanceRef Reg7_reg_Q_4 ))
+       (portRef ena (instanceRef Reg7_reg_Q_3 ))
+       (portRef ena (instanceRef Reg7_reg_Q_2 ))
+       (portRef ena (instanceRef Reg7_reg_Q_1 ))
+       (portRef ena (instanceRef Reg7_reg_Q_0 ))))
+     (net rwe_6 
+      (joined 
+       (portRef combout (instanceRef ix384 ))
+       (portRef ena (instanceRef Reg6_reg_Q_7 ))
+       (portRef ena (instanceRef Reg6_reg_Q_6 ))
+       (portRef ena (instanceRef Reg6_reg_Q_5 ))
+       (portRef ena (instanceRef Reg6_reg_Q_4 ))
+       (portRef ena (instanceRef Reg6_reg_Q_3 ))
+       (portRef ena (instanceRef Reg6_reg_Q_2 ))
+       (portRef ena (instanceRef Reg6_reg_Q_1 ))
+       (portRef ena (instanceRef Reg6_reg_Q_0 ))))
+     (net rwe_5 
+      (joined 
+       (portRef combout (instanceRef ix385 ))
+       (portRef ena (instanceRef Reg5_reg_Q_7 ))
+       (portRef ena (instanceRef Reg5_reg_Q_6 ))
+       (portRef ena (instanceRef Reg5_reg_Q_5 ))
+       (portRef ena (instanceRef Reg5_reg_Q_4 ))
+       (portRef ena (instanceRef Reg5_reg_Q_3 ))
+       (portRef ena (instanceRef Reg5_reg_Q_2 ))
+       (portRef ena (instanceRef Reg5_reg_Q_1 ))
+       (portRef ena (instanceRef Reg5_reg_Q_0 ))))
+     (net rwe_4 
+      (joined 
+       (portRef combout (instanceRef ix386 ))
+       (portRef ena (instanceRef Reg4_reg_Q_7 ))
+       (portRef ena (instanceRef Reg4_reg_Q_6 ))
+       (portRef ena (instanceRef Reg4_reg_Q_5 ))
+       (portRef ena (instanceRef Reg4_reg_Q_4 ))
+       (portRef ena (instanceRef Reg4_reg_Q_3 ))
+       (portRef ena (instanceRef Reg4_reg_Q_2 ))
+       (portRef ena (instanceRef Reg4_reg_Q_1 ))
+       (portRef ena (instanceRef Reg4_reg_Q_0 ))))
+     (net rwe_3 
+      (joined 
+       (portRef combout (instanceRef ix387 ))
+       (portRef ena (instanceRef Reg3_reg_Q_7 ))
+       (portRef ena (instanceRef Reg3_reg_Q_6 ))
+       (portRef ena (instanceRef Reg3_reg_Q_5 ))
+       (portRef ena (instanceRef Reg3_reg_Q_4 ))
+       (portRef ena (instanceRef Reg3_reg_Q_3 ))
+       (portRef ena (instanceRef Reg3_reg_Q_2 ))
+       (portRef ena (instanceRef Reg3_reg_Q_1 ))
+       (portRef ena (instanceRef Reg3_reg_Q_0 ))))
+     (net rwe_2 
+      (joined 
+       (portRef combout (instanceRef ix388 ))
+       (portRef ena (instanceRef Reg2_reg_Q_7 ))
+       (portRef ena (instanceRef Reg2_reg_Q_6 ))
+       (portRef ena (instanceRef Reg2_reg_Q_5 ))
+       (portRef ena (instanceRef Reg2_reg_Q_4 ))
+       (portRef ena (instanceRef Reg2_reg_Q_3 ))
+       (portRef ena (instanceRef Reg2_reg_Q_2 ))
+       (portRef ena (instanceRef Reg2_reg_Q_1 ))
+       (portRef ena (instanceRef Reg2_reg_Q_0 ))))
+     (net rwe_1 
+      (joined 
+       (portRef combout (instanceRef ix389 ))
+       (portRef ena (instanceRef Reg1_reg_Q_7 ))
+       (portRef ena (instanceRef Reg1_reg_Q_6 ))
+       (portRef ena (instanceRef Reg1_reg_Q_5 ))
+       (portRef ena (instanceRef Reg1_reg_Q_4 ))
+       (portRef ena (instanceRef Reg1_reg_Q_3 ))
+       (portRef ena (instanceRef Reg1_reg_Q_2 ))
+       (portRef ena (instanceRef Reg1_reg_Q_1 ))
+       (portRef ena (instanceRef Reg1_reg_Q_0 ))))
+     (net rwe_0 
+      (joined 
+       (portRef combout (instanceRef ix390 ))
+       (portRef ena (instanceRef Reg0_reg_Q_7 ))
+       (portRef ena (instanceRef Reg0_reg_Q_6 ))
+       (portRef ena (instanceRef Reg0_reg_Q_5 ))
+       (portRef ena (instanceRef Reg0_reg_Q_4 ))
+       (portRef ena (instanceRef Reg0_reg_Q_3 ))
+       (portRef ena (instanceRef Reg0_reg_Q_2 ))
+       (portRef ena (instanceRef Reg0_reg_Q_1 ))
+       (portRef ena (instanceRef Reg0_reg_Q_0 ))))
+     (net data_out_7 
+      (joined 
+       (portRef (member data_out 0))
+       (portRef combout (instanceRef ix391 ))))
+     (net data_out_6 
+      (joined 
+       (portRef (member data_out 1))
+       (portRef combout (instanceRef ix392 ))))
+     (net data_out_5 
+      (joined 
+       (portRef (member data_out 2))
+       (portRef combout (instanceRef ix393 ))))
+     (net data_out_4 
+      (joined 
+       (portRef (member data_out 3))
+       (portRef combout (instanceRef ix394 ))))
+     (net data_out_3 
+      (joined 
+       (portRef (member data_out 4))
+       (portRef combout (instanceRef ix395 ))))
+     (net data_out_2 
+      (joined 
+       (portRef (member data_out 5))
+       (portRef combout (instanceRef ix396 ))))
+     (net data_out_1 
+      (joined 
+       (portRef (member data_out 6))
+       (portRef combout (instanceRef ix397 ))))
+     (net data_out_0 
+      (joined 
+       (portRef (member data_out 7))
+       (portRef combout (instanceRef ix398 ))))
+     (net nx439 
+      (joined 
+       (portRef combout (instanceRef ix399 ))
+       (portRef datac (instanceRef ix410 ))
+       (portRef datac (instanceRef ix414 ))
+       (portRef datac (instanceRef ix418 ))
+       (portRef datac (instanceRef ix422 ))
+       (portRef datac (instanceRef ix426 ))
+       (portRef datac (instanceRef ix430 ))
+       (portRef datac (instanceRef ix434 ))
+       (portRef datac (instanceRef ix438 ))))
+     (net nx440 
+      (joined 
+       (portRef combout (instanceRef ix400 ))
+       (portRef datad (instanceRef ix410 ))
+       (portRef datad (instanceRef ix414 ))
+       (portRef datad (instanceRef ix418 ))
+       (portRef datad (instanceRef ix422 ))
+       (portRef datad (instanceRef ix426 ))
+       (portRef datad (instanceRef ix430 ))
+       (portRef datad (instanceRef ix434 ))
+       (portRef datad (instanceRef ix438 ))))
+     (net nx441 
+      (joined 
+       (portRef combout (instanceRef ix401 ))
+       (portRef datac (instanceRef ix407 ))
+       (portRef datac (instanceRef ix411 ))
+       (portRef datac (instanceRef ix415 ))
+       (portRef datac (instanceRef ix419 ))
+       (portRef datac (instanceRef ix423 ))
+       (portRef datac (instanceRef ix427 ))
+       (portRef datac (instanceRef ix431 ))
+       (portRef datac (instanceRef ix435 ))))
+     (net nx442 
+      (joined 
+       (portRef combout (instanceRef ix402 ))
+       (portRef datad (instanceRef ix407 ))
+       (portRef datad (instanceRef ix411 ))
+       (portRef datad (instanceRef ix415 ))
+       (portRef datad (instanceRef ix419 ))
+       (portRef datad (instanceRef ix423 ))
+       (portRef datad (instanceRef ix427 ))
+       (portRef datad (instanceRef ix431 ))
+       (portRef datad (instanceRef ix435 ))))
+     (net nx443 
+      (joined 
+       (portRef combout (instanceRef ix403 ))
+       (portRef datac (instanceRef ix409 ))
+       (portRef datac (instanceRef ix413 ))
+       (portRef datac (instanceRef ix417 ))
+       (portRef datac (instanceRef ix421 ))
+       (portRef datac (instanceRef ix425 ))
+       (portRef datac (instanceRef ix429 ))
+       (portRef datac (instanceRef ix433 ))
+       (portRef datac (instanceRef ix437 ))))
+     (net nx444 
+      (joined 
+       (portRef combout (instanceRef ix404 ))
+       (portRef datad (instanceRef ix409 ))
+       (portRef datad (instanceRef ix413 ))
+       (portRef datad (instanceRef ix417 ))
+       (portRef datad (instanceRef ix421 ))
+       (portRef datad (instanceRef ix425 ))
+       (portRef datad (instanceRef ix429 ))
+       (portRef datad (instanceRef ix433 ))
+       (portRef datad (instanceRef ix437 ))))
+     (net nx445 
+      (joined 
+       (portRef combout (instanceRef ix405 ))
+       (portRef datac (instanceRef ix408 ))
+       (portRef datac (instanceRef ix412 ))
+       (portRef datac (instanceRef ix416 ))
+       (portRef datac (instanceRef ix420 ))
+       (portRef datac (instanceRef ix424 ))
+       (portRef datac (instanceRef ix428 ))
+       (portRef datac (instanceRef ix432 ))
+       (portRef datac (instanceRef ix436 ))))
+     (net nx446 
+      (joined 
+       (portRef combout (instanceRef ix406 ))
+       (portRef datad (instanceRef ix408 ))
+       (portRef datad (instanceRef ix412 ))
+       (portRef datad (instanceRef ix416 ))
+       (portRef datad (instanceRef ix420 ))
+       (portRef datad (instanceRef ix424 ))
+       (portRef datad (instanceRef ix428 ))
+       (portRef datad (instanceRef ix432 ))
+       (portRef datad (instanceRef ix436 ))))
+     (net nx447 
+      (joined 
+       (portRef combout (instanceRef ix407 ))
+       (portRef dataa (instanceRef ix391 ))))
+     (net nx448 
+      (joined 
+       (portRef combout (instanceRef ix408 ))
+       (portRef datab (instanceRef ix391 ))))
+     (net nx449 
+      (joined 
+       (portRef combout (instanceRef ix409 ))
+       (portRef datac (instanceRef ix391 ))))
+     (net nx450 
+      (joined 
+       (portRef combout (instanceRef ix410 ))
+       (portRef datad (instanceRef ix391 ))))
+     (net nx451 
+      (joined 
+       (portRef combout (instanceRef ix411 ))
+       (portRef dataa (instanceRef ix392 ))))
+     (net nx452 
+      (joined 
+       (portRef combout (instanceRef ix412 ))
+       (portRef datab (instanceRef ix392 ))))
+     (net nx453 
+      (joined 
+       (portRef combout (instanceRef ix413 ))
+       (portRef datac (instanceRef ix392 ))))
+     (net nx454 
+      (joined 
+       (portRef combout (instanceRef ix414 ))
+       (portRef datad (instanceRef ix392 ))))
+     (net nx455 
+      (joined 
+       (portRef combout (instanceRef ix415 ))
+       (portRef dataa (instanceRef ix393 ))))
+     (net nx456 
+      (joined 
+       (portRef combout (instanceRef ix416 ))
+       (portRef datab (instanceRef ix393 ))))
+     (net nx457 
+      (joined 
+       (portRef combout (instanceRef ix417 ))
+       (portRef datac (instanceRef ix393 ))))
+     (net nx458 
+      (joined 
+       (portRef combout (instanceRef ix418 ))
+       (portRef datad (instanceRef ix393 ))))
+     (net nx459 
+      (joined 
+       (portRef combout (instanceRef ix419 ))
+       (portRef dataa (instanceRef ix394 ))))
+     (net nx460 
+      (joined 
+       (portRef combout (instanceRef ix420 ))
+       (portRef datab (instanceRef ix394 ))))
+     (net nx461 
+      (joined 
+       (portRef combout (instanceRef ix421 ))
+       (portRef datac (instanceRef ix394 ))))
+     (net nx462 
+      (joined 
+       (portRef combout (instanceRef ix422 ))
+       (portRef datad (instanceRef ix394 ))))
+     (net nx463 
+      (joined 
+       (portRef combout (instanceRef ix423 ))
+       (portRef dataa (instanceRef ix395 ))))
+     (net nx464 
+      (joined 
+       (portRef combout (instanceRef ix424 ))
+       (portRef datab (instanceRef ix395 ))))
+     (net nx465 
+      (joined 
+       (portRef combout (instanceRef ix425 ))
+       (portRef datac (instanceRef ix395 ))))
+     (net nx466 
+      (joined 
+       (portRef combout (instanceRef ix426 ))
+       (portRef datad (instanceRef ix395 ))))
+     (net nx467 
+      (joined 
+       (portRef combout (instanceRef ix427 ))
+       (portRef dataa (instanceRef ix396 ))))
+     (net nx468 
+      (joined 
+       (portRef combout (instanceRef ix428 ))
+       (portRef datab (instanceRef ix396 ))))
+     (net nx469 
+      (joined 
+       (portRef combout (instanceRef ix429 ))
+       (portRef datac (instanceRef ix396 ))))
+     (net nx470 
+      (joined 
+       (portRef combout (instanceRef ix430 ))
+       (portRef datad (instanceRef ix396 ))))
+     (net nx471 
+      (joined 
+       (portRef combout (instanceRef ix431 ))
+       (portRef dataa (instanceRef ix397 ))))
+     (net nx472 
+      (joined 
+       (portRef combout (instanceRef ix432 ))
+       (portRef datab (instanceRef ix397 ))))
+     (net nx473 
+      (joined 
+       (portRef combout (instanceRef ix433 ))
+       (portRef datac (instanceRef ix397 ))))
+     (net nx474 
+      (joined 
+       (portRef combout (instanceRef ix434 ))
+       (portRef datad (instanceRef ix397 ))))
+     (net nx475 
+      (joined 
+       (portRef combout (instanceRef ix435 ))
+       (portRef dataa (instanceRef ix398 ))))
+     (net nx476 
+      (joined 
+       (portRef combout (instanceRef ix436 ))
+       (portRef datab (instanceRef ix398 ))))
+     (net nx477 
+      (joined 
+       (portRef combout (instanceRef ix437 ))
+       (portRef datac (instanceRef ix398 ))))
+     (net nx478 
+      (joined 
+       (portRef combout (instanceRef ix438 ))
+       (portRef datad (instanceRef ix398 )))))))
+  (cell wimp51 (cellType GENERIC)
+   (view a1  (viewType NETLIST)
+    (interface 
+     (port (array (rename data "data(7:0)") 8 )(direction INPUT))
+     (port clk (direction INPUT))
+     (port rst (direction INPUT))
+     (port (array (rename addr "addr(7:0)") 8 )(direction OUTPUT))
+     (port psen_n (direction OUTPUT))
+     (port (array (rename acc "acc(7:0)") 8 )(direction OUTPUT))
+     (port (array (rename R0 "R0(7:0)") 8 )(direction OUTPUT))
+     (port (array (rename R2 "R2(7:0)") 8 )(direction OUTPUT)))
+    (contents 
+     (instance ALU (viewRef a1  (cellRef alu )))
+     (instance REGS (viewRef a1  (cellRef regfile )))
+     (instance ix426 (viewRef NETLIST  (cellRef GND (libraryRef cycloneii ))))
+     (instance rst_ibuf (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "input"))
+      (property output_register_mode (string "none")))
+     (instance clk_ibuf (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "input"))
+      (property output_register_mode (string "none")))
+     (instance data_ibuf_0 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "input"))
+      (property output_register_mode (string "none")))
+     (instance data_ibuf_1 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "input"))
+      (property output_register_mode (string "none")))
+     (instance data_ibuf_2 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "input"))
+      (property output_register_mode (string "none")))
+     (instance data_ibuf_3 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "input"))
+      (property output_register_mode (string "none")))
+     (instance data_ibuf_4 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "input"))
+      (property output_register_mode (string "none")))
+     (instance data_ibuf_5 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "input"))
+      (property output_register_mode (string "none")))
+     (instance data_ibuf_6 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "input"))
+      (property output_register_mode (string "none")))
+     (instance data_ibuf_7 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "input"))
+      (property output_register_mode (string "none")))
+     (instance addr_obuf_7 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance addr_obuf_6 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance addr_obuf_5 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance addr_obuf_4 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance addr_obuf_3 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance addr_obuf_2 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance addr_obuf_1 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance addr_obuf_0 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance psen_n_obuf (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property barrel_shifter (string "true"))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance acc_obuf_7 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance acc_obuf_6 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance acc_obuf_5 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance acc_obuf_4 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance acc_obuf_3 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance acc_obuf_2 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance acc_obuf_1 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance acc_obuf_0 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R0_obuf_7 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R0_obuf_6 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R0_obuf_5 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R0_obuf_4 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R0_obuf_3 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R0_obuf_2 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R0_obuf_1 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R0_obuf_0 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R2_obuf_7 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R2_obuf_6 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R2_obuf_5 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R2_obuf_4 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R2_obuf_3 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R2_obuf_2 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R2_obuf_1 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance R2_obuf_0 (viewRef NETLIST  (cellRef cycloneii_io (libraryRef cycloneii )))
+      (property ddio_mode (string "none"))
+      (property input_register_mode (string "none"))
+      (property oe_register_mode (string "none"))
+      (property operation_mode (string "output"))
+      (property output_register_mode (string "none")))
+     (instance ix344 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "d800")))
+     (instance ix345 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "4440")))
+     (instance ix346 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0800")))
+     (instance ix347 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "4440")))
+     (instance ix348 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0800")))
+     (instance ix349 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property barrel_shifter (string "true"))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "5151")))
+     (instance ix351 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "f800")))
+     (instance ix352 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property barrel_shifter (string "true"))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "7350")))
+     (instance ix354 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "8888")))
+     (instance ix355 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0100")))
+     (instance ix356 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "88a8")))
+     (instance ix357 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "88a8")))
+     (instance ix358 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "88a8")))
+     (instance ix359 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "88a8")))
+     (instance ix360 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "88a8")))
+     (instance ix361 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "88a8")))
+     (instance ix362 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "2222")))
+     (instance ix363 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "2222")))
+     (instance ix372 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eaee")))
+     (instance ix373 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "1040")))
+     (instance ix374 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "ff80")))
+     (instance ix375 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "4000")))
+     (instance ix376 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0200")))
+     (instance ix377 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0001")))
+     (instance ix378 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "ff10")))
+     (instance ix379 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "2004")))
+     (instance ix380 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "8000")))
+     (instance ix381 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "9810")))
+     (instance ix382 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "14c4")))
+     (instance ix383 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "5008")))
+     (instance ix384 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "4202")))
+     (instance ix385 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "14c4")))
+     (instance ix386 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "1f0f")))
+     (instance ix387 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "bfbf")))
+     (instance ix388 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "4242")))
+     (instance ix389 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0100")))
+     (instance ix390 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "4000")))
+     (instance ix391 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0200")))
+     (instance ix392 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "8888")))
+     (instance ix393 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "8000")))
+     (instance ix394 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "1500")))
+     (instance ix395 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "2222")))
+     (instance ix396 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "4444")))
+     (instance ix397 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0100")))
+     (instance ix398 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "1111")))
+     (instance PC_ALU_adder_out_add_106_ix30 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance PC_ALU_adder_out_add_106_ix34 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance PC_ALU_adder_out_add_106_ix38 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance PC_ALU_adder_out_add_106_ix42 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance PC_ALU_adder_out_add_106_ix46 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance PC_ALU_adder_out_add_106_ix50 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance PC_ALU_adder_out_add_106_ix54 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "96e8"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance PC_ALU_adder_out_add_106_ix58 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "9696"))
+      (property sum_lutc_input (string "cin"))
+      (property cin_used (string "true")))
+     (instance ix350 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "1111")))
+     (instance ix353 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "4444")))
+     (instance ix364 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "caca")))
+     (instance ix365 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "caca")))
+     (instance ix366 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "caca")))
+     (instance ix367 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "caca")))
+     (instance ix368 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "caca")))
+     (instance ix369 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "caca")))
+     (instance ix370 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "caca")))
+     (instance ix371 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "caca")))
+     (instance ix534 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "arithmetic"))
+      (property lut_mask (string "aaaa")))
+     (instance IR_reg_Q_7 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance IR_reg_Q_6 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance IR_reg_Q_5 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance IR_reg_Q_4 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance IR_reg_Q_3 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance IR_reg_Q_2 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance IR_reg_Q_1 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance IR_reg_Q_0 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance ACCUM_reg_Q_7 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance ACCUM_reg_Q_6 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance ACCUM_reg_Q_5 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance ACCUM_reg_Q_4 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance ACCUM_reg_Q_3 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance ACCUM_reg_Q_2 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance ACCUM_reg_Q_1 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance ACCUM_reg_Q_0 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance PC_reg_Q_7 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance PC_reg_Q_6 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance PC_reg_Q_5 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance PC_reg_Q_4 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance PC_reg_Q_3 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance PC_reg_Q_2 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance PC_reg_Q_1 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance PC_reg_Q_0 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance CU_reg_cur_state_1 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance CU_reg_cur_state_0 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance AUX1_AUX_REG_reg_Q_7 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance AUX1_AUX_REG_reg_Q_6 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance AUX1_AUX_REG_reg_Q_5 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance AUX1_AUX_REG_reg_Q_4 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance AUX1_AUX_REG_reg_Q_3 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance AUX1_AUX_REG_reg_Q_2 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance AUX1_AUX_REG_reg_Q_1 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance AUX1_AUX_REG_reg_Q_0 (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance ix1 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix3 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix5 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix7 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix9 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix11 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix13 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (instance ix15 (viewRef NETLIST  (cellRef VCC (libraryRef cycloneii ))))
+     (net data_7 
+      (joined 
+       (portRef (member data 0))
+       (portRef padio (instanceRef data_ibuf_7 ))))
+     (net data_6 
+      (joined 
+       (portRef (member data 1))
+       (portRef padio (instanceRef data_ibuf_6 ))))
+     (net data_5 
+      (joined 
+       (portRef (member data 2))
+       (portRef padio (instanceRef data_ibuf_5 ))))
+     (net data_4 
+      (joined 
+       (portRef (member data 3))
+       (portRef padio (instanceRef data_ibuf_4 ))))
+     (net data_3 
+      (joined 
+       (portRef (member data 4))
+       (portRef padio (instanceRef data_ibuf_3 ))))
+     (net data_2 
+      (joined 
+       (portRef (member data 5))
+       (portRef padio (instanceRef data_ibuf_2 ))))
+     (net data_1 
+      (joined 
+       (portRef (member data 6))
+       (portRef padio (instanceRef data_ibuf_1 ))))
+     (net data_0 
+      (joined 
+       (portRef (member data 7))
+       (portRef padio (instanceRef data_ibuf_0 ))))
+     (net clk 
+      (joined 
+       (portRef clk )
+       (portRef padio (instanceRef clk_ibuf ))))
+     (net rst 
+      (joined 
+       (portRef rst )
+       (portRef padio (instanceRef rst_ibuf ))))
+     (net acc_dup0_7 
+      (joined 
+       (portRef (member acc_out 0)(instanceRef ALU ))
+       (portRef datain (instanceRef acc_obuf_7 ))
+       (portRef datain (instanceRef ACCUM_reg_Q_7 ))))
+     (net acc_dup0_6 
+      (joined 
+       (portRef (member acc_out 1)(instanceRef ALU ))
+       (portRef datain (instanceRef acc_obuf_6 ))
+       (portRef datain (instanceRef ACCUM_reg_Q_6 ))))
+     (net acc_dup0_5 
+      (joined 
+       (portRef (member acc_out 2)(instanceRef ALU ))
+       (portRef datain (instanceRef acc_obuf_5 ))
+       (portRef datain (instanceRef ACCUM_reg_Q_5 ))))
+     (net acc_dup0_4 
+      (joined 
+       (portRef (member acc_out 3)(instanceRef ALU ))
+       (portRef datain (instanceRef acc_obuf_4 ))
+       (portRef datain (instanceRef ACCUM_reg_Q_4 ))))
+     (net acc_dup0_3 
+      (joined 
+       (portRef (member acc_out 4)(instanceRef ALU ))
+       (portRef datain (instanceRef acc_obuf_3 ))
+       (portRef datain (instanceRef ACCUM_reg_Q_3 ))))
+     (net acc_dup0_2 
+      (joined 
+       (portRef (member acc_out 5)(instanceRef ALU ))
+       (portRef datain (instanceRef acc_obuf_2 ))
+       (portRef datain (instanceRef ACCUM_reg_Q_2 ))))
+     (net acc_dup0_1 
+      (joined 
+       (portRef (member acc_out 6)(instanceRef ALU ))
+       (portRef datain (instanceRef acc_obuf_1 ))
+       (portRef datain (instanceRef ACCUM_reg_Q_1 ))))
+     (net acc_dup0_0 
+      (joined 
+       (portRef (member acc_out 7)(instanceRef ALU ))
+       (portRef datain (instanceRef acc_obuf_0 ))
+       (portRef datain (instanceRef ACCUM_reg_Q_0 ))))
+     (net R0_dup0_7 
+      (joined 
+       (portRef (member R0 0)(instanceRef REGS ))
+       (portRef datain (instanceRef R0_obuf_7 ))))
+     (net R0_dup0_6 
+      (joined 
+       (portRef (member R0 1)(instanceRef REGS ))
+       (portRef datain (instanceRef R0_obuf_6 ))))
+     (net R0_dup0_5 
+      (joined 
+       (portRef (member R0 2)(instanceRef REGS ))
+       (portRef datain (instanceRef R0_obuf_5 ))))
+     (net R0_dup0_4 
+      (joined 
+       (portRef (member R0 3)(instanceRef REGS ))
+       (portRef datain (instanceRef R0_obuf_4 ))))
+     (net R0_dup0_3 
+      (joined 
+       (portRef (member R0 4)(instanceRef REGS ))
+       (portRef datain (instanceRef R0_obuf_3 ))))
+     (net R0_dup0_2 
+      (joined 
+       (portRef (member R0 5)(instanceRef REGS ))
+       (portRef datain (instanceRef R0_obuf_2 ))))
+     (net R0_dup0_1 
+      (joined 
+       (portRef (member R0 6)(instanceRef REGS ))
+       (portRef datain (instanceRef R0_obuf_1 ))))
+     (net R0_dup0_0 
+      (joined 
+       (portRef (member R0 7)(instanceRef REGS ))
+       (portRef datain (instanceRef R0_obuf_0 ))))
+     (net R2_dup0_7 
+      (joined 
+       (portRef (member R2 0)(instanceRef REGS ))
+       (portRef datain (instanceRef R2_obuf_7 ))))
+     (net R2_dup0_6 
+      (joined 
+       (portRef (member R2 1)(instanceRef REGS ))
+       (portRef datain (instanceRef R2_obuf_6 ))))
+     (net R2_dup0_5 
+      (joined 
+       (portRef (member R2 2)(instanceRef REGS ))
+       (portRef datain (instanceRef R2_obuf_5 ))))
+     (net R2_dup0_4 
+      (joined 
+       (portRef (member R2 3)(instanceRef REGS ))
+       (portRef datain (instanceRef R2_obuf_4 ))))
+     (net R2_dup0_3 
+      (joined 
+       (portRef (member R2 4)(instanceRef REGS ))
+       (portRef datain (instanceRef R2_obuf_3 ))))
+     (net R2_dup0_2 
+      (joined 
+       (portRef (member R2 5)(instanceRef REGS ))
+       (portRef datain (instanceRef R2_obuf_2 ))))
+     (net R2_dup0_1 
+      (joined 
+       (portRef (member R2 6)(instanceRef REGS ))
+       (portRef datain (instanceRef R2_obuf_1 ))))
+     (net R2_dup0_0 
+      (joined 
+       (portRef (member R2 7)(instanceRef REGS ))
+       (portRef datain (instanceRef R2_obuf_0 ))))
+     (net pcalu_out_7 
+      (joined 
+       (portRef combout (instanceRef PC_ALU_adder_out_add_106_ix58 ))
+       (portRef datain (instanceRef PC_reg_Q_7 ))))
+     (net pcalu_out_6 
+      (joined 
+       (portRef combout (instanceRef PC_ALU_adder_out_add_106_ix54 ))
+       (portRef datain (instanceRef PC_reg_Q_6 ))))
+     (net pcalu_out_5 
+      (joined 
+       (portRef combout (instanceRef PC_ALU_adder_out_add_106_ix50 ))
+       (portRef datain (instanceRef PC_reg_Q_5 ))))
+     (net pcalu_out_4 
+      (joined 
+       (portRef combout (instanceRef PC_ALU_adder_out_add_106_ix46 ))
+       (portRef datain (instanceRef PC_reg_Q_4 ))))
+     (net pcalu_out_3 
+      (joined 
+       (portRef combout (instanceRef PC_ALU_adder_out_add_106_ix42 ))
+       (portRef datain (instanceRef PC_reg_Q_3 ))))
+     (net pcalu_out_2 
+      (joined 
+       (portRef combout (instanceRef PC_ALU_adder_out_add_106_ix38 ))
+       (portRef datain (instanceRef PC_reg_Q_2 ))))
+     (net pcalu_out_1 
+      (joined 
+       (portRef combout (instanceRef PC_ALU_adder_out_add_106_ix34 ))
+       (portRef datain (instanceRef PC_reg_Q_1 ))))
+     (net pcalu_out_0 
+      (joined 
+       (portRef combout (instanceRef PC_ALU_adder_out_add_106_ix30 ))
+       (portRef datain (instanceRef PC_reg_Q_0 ))))
+     (net z_out 
+      (joined 
+       (portRef z_out (instanceRef ALU ))
+       (portRef datad (instanceRef ix384 ))))
+     (net reg_out_7 
+      (joined 
+       (portRef (member data_out 0)(instanceRef REGS ))
+       (portRef dataa (instanceRef ix364 ))))
+     (net reg_out_6 
+      (joined 
+       (portRef (member data_out 1)(instanceRef REGS ))
+       (portRef dataa (instanceRef ix365 ))))
+     (net reg_out_5 
+      (joined 
+       (portRef (member data_out 2)(instanceRef REGS ))
+       (portRef dataa (instanceRef ix366 ))))
+     (net reg_out_4 
+      (joined 
+       (portRef (member data_out 3)(instanceRef REGS ))
+       (portRef dataa (instanceRef ix367 ))))
+     (net reg_out_3 
+      (joined 
+       (portRef (member data_out 4)(instanceRef REGS ))
+       (portRef dataa (instanceRef ix368 ))))
+     (net reg_out_2 
+      (joined 
+       (portRef (member data_out 5)(instanceRef REGS ))
+       (portRef dataa (instanceRef ix369 ))))
+     (net reg_out_1 
+      (joined 
+       (portRef (member data_out 6)(instanceRef REGS ))
+       (portRef dataa (instanceRef ix370 ))))
+     (net reg_out_0 
+      (joined 
+       (portRef (member data_out 7)(instanceRef REGS ))
+       (portRef dataa (instanceRef ix371 ))))
+     (net PC_ALU_adder_out_add_106_nx33 
+      (joined 
+       (portRef cout (instanceRef PC_ALU_adder_out_add_106_ix30 ))
+       (portRef cin (instanceRef PC_ALU_adder_out_add_106_ix34 ))))
+     (net PC_ALU_adder_out_add_106_nx37 
+      (joined 
+       (portRef cout (instanceRef PC_ALU_adder_out_add_106_ix34 ))
+       (portRef cin (instanceRef PC_ALU_adder_out_add_106_ix38 ))))
+     (net PC_ALU_adder_out_add_106_nx41 
+      (joined 
+       (portRef cout (instanceRef PC_ALU_adder_out_add_106_ix38 ))
+       (portRef cin (instanceRef PC_ALU_adder_out_add_106_ix42 ))))
+     (net PC_ALU_adder_out_add_106_nx45 
+      (joined 
+       (portRef cout (instanceRef PC_ALU_adder_out_add_106_ix42 ))
+       (portRef cin (instanceRef PC_ALU_adder_out_add_106_ix46 ))))
+     (net PC_ALU_adder_out_add_106_nx49 
+      (joined 
+       (portRef cout (instanceRef PC_ALU_adder_out_add_106_ix46 ))
+       (portRef cin (instanceRef PC_ALU_adder_out_add_106_ix50 ))))
+     (net PC_ALU_adder_out_add_106_nx53 
+      (joined 
+       (portRef cout (instanceRef PC_ALU_adder_out_add_106_ix50 ))
+       (portRef cin (instanceRef PC_ALU_adder_out_add_106_ix54 ))))
+     (net PC_ALU_adder_out_add_106_nx57 
+      (joined 
+       (portRef cout (instanceRef PC_ALU_adder_out_add_106_ix54 ))
+       (portRef cin (instanceRef PC_ALU_adder_out_add_106_ix58 ))))
+     (net data_int_7 
+      (joined 
+       (portRef combout (instanceRef data_ibuf_7 ))
+       (portRef datab (instanceRef ix364 ))
+       (portRef datain (instanceRef IR_reg_Q_7 ))))
+     (net data_int_6 
+      (joined 
+       (portRef combout (instanceRef data_ibuf_6 ))
+       (portRef datab (instanceRef ix365 ))
+       (portRef datain (instanceRef IR_reg_Q_6 ))))
+     (net data_int_5 
+      (joined 
+       (portRef combout (instanceRef data_ibuf_5 ))
+       (portRef datab (instanceRef ix366 ))
+       (portRef datain (instanceRef IR_reg_Q_5 ))))
+     (net data_int_4 
+      (joined 
+       (portRef combout (instanceRef data_ibuf_4 ))
+       (portRef datab (instanceRef ix367 ))
+       (portRef datain (instanceRef IR_reg_Q_4 ))))
+     (net data_int_3 
+      (joined 
+       (portRef combout (instanceRef data_ibuf_3 ))
+       (portRef datab (instanceRef ix368 ))
+       (portRef datain (instanceRef IR_reg_Q_3 ))))
+     (net data_int_2 
+      (joined 
+       (portRef combout (instanceRef data_ibuf_2 ))
+       (portRef datab (instanceRef ix369 ))
+       (portRef datain (instanceRef IR_reg_Q_2 ))))
+     (net data_int_1 
+      (joined 
+       (portRef combout (instanceRef data_ibuf_1 ))
+       (portRef datab (instanceRef ix370 ))
+       (portRef datain (instanceRef IR_reg_Q_1 ))))
+     (net data_int_0 
+      (joined 
+       (portRef combout (instanceRef data_ibuf_0 ))
+       (portRef datab (instanceRef ix371 ))
+       (portRef datain (instanceRef IR_reg_Q_0 ))))
+     (net clk_int 
+      (joined 
+       (portRef combout (instanceRef clk_ibuf ))
+       (portRef clk (instanceRef ALU ))
+       (portRef clk (instanceRef REGS ))
+       (portRef clk (instanceRef IR_reg_Q_7 ))
+       (portRef clk (instanceRef IR_reg_Q_6 ))
+       (portRef clk (instanceRef IR_reg_Q_5 ))
+       (portRef clk (instanceRef IR_reg_Q_4 ))
+       (portRef clk (instanceRef IR_reg_Q_3 ))
+       (portRef clk (instanceRef IR_reg_Q_2 ))
+       (portRef clk (instanceRef IR_reg_Q_1 ))
+       (portRef clk (instanceRef IR_reg_Q_0 ))
+       (portRef clk (instanceRef ACCUM_reg_Q_7 ))
+       (portRef clk (instanceRef ACCUM_reg_Q_6 ))
+       (portRef clk (instanceRef ACCUM_reg_Q_5 ))
+       (portRef clk (instanceRef ACCUM_reg_Q_4 ))
+       (portRef clk (instanceRef ACCUM_reg_Q_3 ))
+       (portRef clk (instanceRef ACCUM_reg_Q_2 ))
+       (portRef clk (instanceRef ACCUM_reg_Q_1 ))
+       (portRef clk (instanceRef ACCUM_reg_Q_0 ))
+       (portRef clk (instanceRef PC_reg_Q_7 ))
+       (portRef clk (instanceRef PC_reg_Q_6 ))
+       (portRef clk (instanceRef PC_reg_Q_5 ))
+       (portRef clk (instanceRef PC_reg_Q_4 ))
+       (portRef clk (instanceRef PC_reg_Q_3 ))
+       (portRef clk (instanceRef PC_reg_Q_2 ))
+       (portRef clk (instanceRef PC_reg_Q_1 ))
+       (portRef clk (instanceRef PC_reg_Q_0 ))
+       (portRef clk (instanceRef CU_reg_cur_state_1 ))
+       (portRef clk (instanceRef CU_reg_cur_state_0 ))
+       (portRef clk (instanceRef AUX1_AUX_REG_reg_Q_7 ))
+       (portRef clk (instanceRef AUX1_AUX_REG_reg_Q_6 ))
+       (portRef clk (instanceRef AUX1_AUX_REG_reg_Q_5 ))
+       (portRef clk (instanceRef AUX1_AUX_REG_reg_Q_4 ))
+       (portRef clk (instanceRef AUX1_AUX_REG_reg_Q_3 ))
+       (portRef clk (instanceRef AUX1_AUX_REG_reg_Q_2 ))
+       (portRef clk (instanceRef AUX1_AUX_REG_reg_Q_1 ))
+       (portRef clk (instanceRef AUX1_AUX_REG_reg_Q_0 ))))
+     (net rst_int 
+      (joined 
+       (portRef combout (instanceRef rst_ibuf ))
+       (portRef rst (instanceRef ALU ))
+       (portRef rst (instanceRef REGS ))
+       (portRef aclr (instanceRef IR_reg_Q_7 ))
+       (portRef aclr (instanceRef IR_reg_Q_6 ))
+       (portRef aclr (instanceRef IR_reg_Q_5 ))
+       (portRef aclr (instanceRef IR_reg_Q_4 ))
+       (portRef aclr (instanceRef IR_reg_Q_3 ))
+       (portRef aclr (instanceRef IR_reg_Q_2 ))
+       (portRef aclr (instanceRef IR_reg_Q_1 ))
+       (portRef aclr (instanceRef IR_reg_Q_0 ))
+       (portRef aclr (instanceRef ACCUM_reg_Q_7 ))
+       (portRef aclr (instanceRef ACCUM_reg_Q_6 ))
+       (portRef aclr (instanceRef ACCUM_reg_Q_5 ))
+       (portRef aclr (instanceRef ACCUM_reg_Q_4 ))
+       (portRef aclr (instanceRef ACCUM_reg_Q_3 ))
+       (portRef aclr (instanceRef ACCUM_reg_Q_2 ))
+       (portRef aclr (instanceRef ACCUM_reg_Q_1 ))
+       (portRef aclr (instanceRef ACCUM_reg_Q_0 ))
+       (portRef aclr (instanceRef PC_reg_Q_7 ))
+       (portRef aclr (instanceRef PC_reg_Q_6 ))
+       (portRef aclr (instanceRef PC_reg_Q_5 ))
+       (portRef aclr (instanceRef PC_reg_Q_4 ))
+       (portRef aclr (instanceRef PC_reg_Q_3 ))
+       (portRef aclr (instanceRef PC_reg_Q_2 ))
+       (portRef aclr (instanceRef PC_reg_Q_1 ))
+       (portRef aclr (instanceRef PC_reg_Q_0 ))
+       (portRef aclr (instanceRef CU_reg_cur_state_1 ))
+       (portRef aclr (instanceRef CU_reg_cur_state_0 ))
+       (portRef aclr (instanceRef AUX1_AUX_REG_reg_Q_7 ))
+       (portRef aclr (instanceRef AUX1_AUX_REG_reg_Q_6 ))
+       (portRef aclr (instanceRef AUX1_AUX_REG_reg_Q_5 ))
+       (portRef aclr (instanceRef AUX1_AUX_REG_reg_Q_4 ))
+       (portRef aclr (instanceRef AUX1_AUX_REG_reg_Q_3 ))
+       (portRef aclr (instanceRef AUX1_AUX_REG_reg_Q_2 ))
+       (portRef aclr (instanceRef AUX1_AUX_REG_reg_Q_1 ))
+       (portRef aclr (instanceRef AUX1_AUX_REG_reg_Q_0 ))))
+     (net ir_out_7 
+      (joined 
+       (portRef regout (instanceRef IR_reg_Q_7 ))
+       (portRef dataa (instanceRef ix373 ))
+       (portRef dataa (instanceRef ix374 ))
+       (portRef dataa (instanceRef ix378 ))
+       (portRef dataa (instanceRef ix380 ))
+       (portRef dataa (instanceRef ix382 ))
+       (portRef dataa (instanceRef ix383 ))
+       (portRef dataa (instanceRef ix384 ))
+       (portRef dataa (instanceRef ix385 ))
+       (portRef dataa (instanceRef ix388 ))
+       (portRef dataa (instanceRef ix391 ))
+       (portRef dataa (instanceRef ix393 ))
+       (portRef dataa (instanceRef ix394 ))
+       (portRef dataa (instanceRef ix396 ))
+       (portRef dataa (instanceRef ix397 ))))
+     (net ir_out_6 
+      (joined 
+       (portRef regout (instanceRef IR_reg_Q_6 ))
+       (portRef dataa (instanceRef ix346 ))
+       (portRef datab (instanceRef ix373 ))
+       (portRef dataa (instanceRef ix375 ))
+       (portRef dataa (instanceRef ix376 ))
+       (portRef datab (instanceRef ix380 ))
+       (portRef datab (instanceRef ix382 ))
+       (portRef datab (instanceRef ix383 ))
+       (portRef datab (instanceRef ix384 ))
+       (portRef datab (instanceRef ix385 ))
+       (portRef datab (instanceRef ix388 ))
+       (portRef dataa (instanceRef ix392 ))))
+     (net ir_out_5 
+      (joined 
+       (portRef regout (instanceRef IR_reg_Q_5 ))
+       (portRef datac (instanceRef ix373 ))
+       (portRef datab (instanceRef ix375 ))
+       (portRef datab (instanceRef ix376 ))
+       (portRef dataa (instanceRef ix377 ))
+       (portRef datac (instanceRef ix380 ))
+       (portRef datac (instanceRef ix382 ))
+       (portRef datac (instanceRef ix383 ))
+       (portRef datac (instanceRef ix384 ))
+       (portRef datac (instanceRef ix385 ))
+       (portRef datac (instanceRef ix388 ))
+       (portRef datab (instanceRef ix391 ))
+       (portRef datab (instanceRef ix394 ))
+       (portRef datab (instanceRef ix396 ))))
+     (net ir_out_4 
+      (joined 
+       (portRef regout (instanceRef IR_reg_Q_4 ))
+       (portRef datad (instanceRef ix373 ))
+       (portRef datac (instanceRef ix375 ))
+       (portRef datab (instanceRef ix377 ))
+       (portRef datab (instanceRef ix378 ))
+       (portRef dataa (instanceRef ix379 ))
+       (portRef datad (instanceRef ix380 ))
+       (portRef dataa (instanceRef ix381 ))
+       (portRef datad (instanceRef ix382 ))
+       (portRef datad (instanceRef ix383 ))
+       (portRef datad (instanceRef ix385 ))
+       (portRef dataa (instanceRef ix386 ))
+       (portRef datac (instanceRef ix394 ))))
+     (net ir_out_3 
+      (joined 
+       (portRef regout (instanceRef IR_reg_Q_3 ))
+       (portRef dataa (instanceRef ix344 ))
+       (portRef dataa (instanceRef ix348 ))
+       (portRef dataa (instanceRef ix351 ))
+       (portRef datab (instanceRef ix354 ))
+       (portRef dataa (instanceRef ix355 ))
+       (portRef datac (instanceRef ix377 ))
+       (portRef datac (instanceRef ix378 ))
+       (portRef datab (instanceRef ix386 ))
+       (portRef dataa (instanceRef ix390 ))
+       (portRef datac (instanceRef ix391 ))
+       (portRef datad (instanceRef ix394 ))))
+     (net ir_out_2 
+      (joined 
+       (portRef regout (instanceRef IR_reg_Q_2 ))
+       (portRef (member reg_num 0)(instanceRef REGS ))
+       (portRef datad (instanceRef ix375 ))
+       (portRef datac (instanceRef ix376 ))
+       (portRef datad (instanceRef ix377 ))
+       (portRef datab (instanceRef ix379 ))
+       (portRef datab (instanceRef ix381 ))
+       (portRef dataa (instanceRef ix389 ))
+       (portRef datab (instanceRef ix390 ))))
+     (net ir_out_1 
+      (joined 
+       (portRef regout (instanceRef IR_reg_Q_1 ))
+       (portRef (member reg_num 1)(instanceRef REGS ))
+       (portRef datab (instanceRef ix355 ))
+       (portRef datad (instanceRef ix376 ))
+       (portRef datac (instanceRef ix379 ))
+       (portRef datab (instanceRef ix389 ))
+       (portRef datab (instanceRef ix393 ))
+       (portRef datab (instanceRef ix397 ))
+       (portRef dataa (instanceRef ix398 ))))
+     (net ir_out_0 
+      (joined 
+       (portRef regout (instanceRef IR_reg_Q_0 ))
+       (portRef (member reg_num 2)(instanceRef REGS ))
+       (portRef datac (instanceRef ix355 ))
+       (portRef datab (instanceRef ix374 ))
+       (portRef datad (instanceRef ix379 ))
+       (portRef datac (instanceRef ix389 ))
+       (portRef datac (instanceRef ix393 ))
+       (portRef datac (instanceRef ix397 ))
+       (portRef datab (instanceRef ix398 ))))
+     (net acc_out_7 
+      (joined 
+       (portRef regout (instanceRef ACCUM_reg_Q_7 ))
+       (portRef (member acc_in 0)(instanceRef ALU ))
+       (portRef (member acc_in 0)(instanceRef REGS ))))
+     (net acc_out_6 
+      (joined 
+       (portRef regout (instanceRef ACCUM_reg_Q_6 ))
+       (portRef (member acc_in 1)(instanceRef ALU ))
+       (portRef (member acc_in 1)(instanceRef REGS ))))
+     (net acc_out_5 
+      (joined 
+       (portRef regout (instanceRef ACCUM_reg_Q_5 ))
+       (portRef (member acc_in 2)(instanceRef ALU ))
+       (portRef (member acc_in 2)(instanceRef REGS ))))
+     (net acc_out_4 
+      (joined 
+       (portRef regout (instanceRef ACCUM_reg_Q_4 ))
+       (portRef (member acc_in 3)(instanceRef ALU ))
+       (portRef (member acc_in 3)(instanceRef REGS ))))
+     (net acc_out_3 
+      (joined 
+       (portRef regout (instanceRef ACCUM_reg_Q_3 ))
+       (portRef (member acc_in 4)(instanceRef ALU ))
+       (portRef (member acc_in 4)(instanceRef REGS ))))
+     (net acc_out_2 
+      (joined 
+       (portRef regout (instanceRef ACCUM_reg_Q_2 ))
+       (portRef (member acc_in 5)(instanceRef ALU ))
+       (portRef (member acc_in 5)(instanceRef REGS ))))
+     (net acc_out_1 
+      (joined 
+       (portRef regout (instanceRef ACCUM_reg_Q_1 ))
+       (portRef (member acc_in 6)(instanceRef ALU ))
+       (portRef (member acc_in 6)(instanceRef REGS ))))
+     (net acc_out_0 
+      (joined 
+       (portRef regout (instanceRef ACCUM_reg_Q_0 ))
+       (portRef (member acc_in 7)(instanceRef ALU ))
+       (portRef (member acc_in 7)(instanceRef REGS ))))
+     (net addr_dup0_7 
+      (joined 
+       (portRef regout (instanceRef PC_reg_Q_7 ))
+       (portRef datain (instanceRef addr_obuf_7 ))
+       (portRef datab (instanceRef PC_ALU_adder_out_add_106_ix58 ))))
+     (net addr_dup0_6 
+      (joined 
+       (portRef regout (instanceRef PC_reg_Q_6 ))
+       (portRef datain (instanceRef addr_obuf_6 ))
+       (portRef datab (instanceRef PC_ALU_adder_out_add_106_ix54 ))))
+     (net addr_dup0_5 
+      (joined 
+       (portRef regout (instanceRef PC_reg_Q_5 ))
+       (portRef datain (instanceRef addr_obuf_5 ))
+       (portRef datab (instanceRef PC_ALU_adder_out_add_106_ix50 ))))
+     (net addr_dup0_4 
+      (joined 
+       (portRef regout (instanceRef PC_reg_Q_4 ))
+       (portRef datain (instanceRef addr_obuf_4 ))
+       (portRef datab (instanceRef PC_ALU_adder_out_add_106_ix46 ))))
+     (net addr_dup0_3 
+      (joined 
+       (portRef regout (instanceRef PC_reg_Q_3 ))
+       (portRef datain (instanceRef addr_obuf_3 ))
+       (portRef datab (instanceRef PC_ALU_adder_out_add_106_ix42 ))))
+     (net addr_dup0_2 
+      (joined 
+       (portRef regout (instanceRef PC_reg_Q_2 ))
+       (portRef datain (instanceRef addr_obuf_2 ))
+       (portRef datab (instanceRef PC_ALU_adder_out_add_106_ix38 ))))
+     (net addr_dup0_1 
+      (joined 
+       (portRef regout (instanceRef PC_reg_Q_1 ))
+       (portRef datain (instanceRef addr_obuf_1 ))
+       (portRef datab (instanceRef PC_ALU_adder_out_add_106_ix34 ))))
+     (net addr_dup0_0 
+      (joined 
+       (portRef regout (instanceRef PC_reg_Q_0 ))
+       (portRef datain (instanceRef addr_obuf_0 ))
+       (portRef datab (instanceRef PC_ALU_adder_out_add_106_ix30 ))))
+     (net CU_state_1 
+      (joined 
+       (portRef regout (instanceRef CU_reg_cur_state_1 ))
+       (portRef datab (instanceRef ix346 ))
+       (portRef dataa (instanceRef ix347 ))
+       (portRef datab (instanceRef ix348 ))
+       (portRef dataa (instanceRef ix349 ))
+       (portRef dataa (instanceRef ix352 ))
+       (portRef datab (instanceRef ix356 ))
+       (portRef datab (instanceRef ix357 ))
+       (portRef datab (instanceRef ix358 ))
+       (portRef datab (instanceRef ix359 ))
+       (portRef datab (instanceRef ix360 ))
+       (portRef datab (instanceRef ix361 ))
+       (portRef dataa (instanceRef ix372 ))
+       (portRef datac (instanceRef ix386 ))
+       (portRef dataa (instanceRef ix387 ))
+       (portRef datab (instanceRef ix392 ))
+       (portRef dataa (instanceRef ix395 ))
+       (portRef dataa (instanceRef ix350 ))
+       (portRef dataa (instanceRef ix353 ))))
+     (net CU_state_0 
+      (joined 
+       (portRef regout (instanceRef CU_reg_cur_state_0 ))
+       (portRef dataa (instanceRef ix345 ))
+       (portRef datac (instanceRef ix346 ))
+       (portRef datab (instanceRef ix347 ))
+       (portRef datac (instanceRef ix348 ))
+       (portRef datab (instanceRef ix349 ))
+       (portRef datab (instanceRef ix352 ))
+       (portRef datac (instanceRef ix356 ))
+       (portRef datac (instanceRef ix357 ))
+       (portRef datac (instanceRef ix358 ))
+       (portRef datac (instanceRef ix359 ))
+       (portRef datac (instanceRef ix360 ))
+       (portRef datac (instanceRef ix361 ))
+       (portRef datab (instanceRef ix372 ))
+       (portRef datab (instanceRef ix387 ))
+       (portRef datab (instanceRef ix395 ))
+       (portRef datab (instanceRef ix350 ))
+       (portRef datab (instanceRef ix353 ))))
+     (net aux_out_7 
+      (joined 
+       (portRef regout (instanceRef AUX1_AUX_REG_reg_Q_7 ))
+       (portRef (member aux_in 0)(instanceRef ALU ))
+       (portRef dataa (instanceRef ix356 ))))
+     (net aux_out_6 
+      (joined 
+       (portRef regout (instanceRef AUX1_AUX_REG_reg_Q_6 ))
+       (portRef (member aux_in 1)(instanceRef ALU ))
+       (portRef dataa (instanceRef ix357 ))))
+     (net aux_out_5 
+      (joined 
+       (portRef regout (instanceRef AUX1_AUX_REG_reg_Q_5 ))
+       (portRef (member aux_in 2)(instanceRef ALU ))
+       (portRef dataa (instanceRef ix358 ))))
+     (net aux_out_4 
+      (joined 
+       (portRef regout (instanceRef AUX1_AUX_REG_reg_Q_4 ))
+       (portRef (member aux_in 3)(instanceRef ALU ))
+       (portRef dataa (instanceRef ix359 ))))
+     (net aux_out_3 
+      (joined 
+       (portRef regout (instanceRef AUX1_AUX_REG_reg_Q_3 ))
+       (portRef (member aux_in 4)(instanceRef ALU ))
+       (portRef dataa (instanceRef ix360 ))))
+     (net aux_out_2 
+      (joined 
+       (portRef regout (instanceRef AUX1_AUX_REG_reg_Q_2 ))
+       (portRef (member aux_in 5)(instanceRef ALU ))
+       (portRef dataa (instanceRef ix361 ))))
+     (net aux_out_1 
+      (joined 
+       (portRef regout (instanceRef AUX1_AUX_REG_reg_Q_1 ))
+       (portRef (member aux_in 6)(instanceRef ALU ))
+       (portRef dataa (instanceRef ix362 ))))
+     (net aux_out_0 
+      (joined 
+       (portRef regout (instanceRef AUX1_AUX_REG_reg_Q_0 ))
+       (portRef (member aux_in 7)(instanceRef ALU ))
+       (portRef dataa (instanceRef ix363 ))))
+     (net addr_7 
+      (joined 
+       (portRef (member addr 0))
+       (portRef padio (instanceRef addr_obuf_7 ))))
+     (net addr_6 
+      (joined 
+       (portRef (member addr 1))
+       (portRef padio (instanceRef addr_obuf_6 ))))
+     (net addr_5 
+      (joined 
+       (portRef (member addr 2))
+       (portRef padio (instanceRef addr_obuf_5 ))))
+     (net addr_4 
+      (joined 
+       (portRef (member addr 3))
+       (portRef padio (instanceRef addr_obuf_4 ))))
+     (net addr_3 
+      (joined 
+       (portRef (member addr 4))
+       (portRef padio (instanceRef addr_obuf_3 ))))
+     (net addr_2 
+      (joined 
+       (portRef (member addr 5))
+       (portRef padio (instanceRef addr_obuf_2 ))))
+     (net addr_1 
+      (joined 
+       (portRef (member addr 6))
+       (portRef padio (instanceRef addr_obuf_1 ))))
+     (net addr_0 
+      (joined 
+       (portRef (member addr 7))
+       (portRef padio (instanceRef addr_obuf_0 ))))
+     (net psen_n 
+      (joined 
+       (portRef psen_n )
+       (portRef padio (instanceRef psen_n_obuf ))))
+     (net acc_7 
+      (joined 
+       (portRef (member acc 0))
+       (portRef padio (instanceRef acc_obuf_7 ))))
+     (net acc_6 
+      (joined 
+       (portRef (member acc 1))
+       (portRef padio (instanceRef acc_obuf_6 ))))
+     (net acc_5 
+      (joined 
+       (portRef (member acc 2))
+       (portRef padio (instanceRef acc_obuf_5 ))))
+     (net acc_4 
+      (joined 
+       (portRef (member acc 3))
+       (portRef padio (instanceRef acc_obuf_4 ))))
+     (net acc_3 
+      (joined 
+       (portRef (member acc 4))
+       (portRef padio (instanceRef acc_obuf_3 ))))
+     (net acc_2 
+      (joined 
+       (portRef (member acc 5))
+       (portRef padio (instanceRef acc_obuf_2 ))))
+     (net acc_1 
+      (joined 
+       (portRef (member acc 6))
+       (portRef padio (instanceRef acc_obuf_1 ))))
+     (net acc_0 
+      (joined 
+       (portRef (member acc 7))
+       (portRef padio (instanceRef acc_obuf_0 ))))
+     (net R0_7 
+      (joined 
+       (portRef (member R0 0))
+       (portRef padio (instanceRef R0_obuf_7 ))))
+     (net R0_6 
+      (joined 
+       (portRef (member R0 1))
+       (portRef padio (instanceRef R0_obuf_6 ))))
+     (net R0_5 
+      (joined 
+       (portRef (member R0 2))
+       (portRef padio (instanceRef R0_obuf_5 ))))
+     (net R0_4 
+      (joined 
+       (portRef (member R0 3))
+       (portRef padio (instanceRef R0_obuf_4 ))))
+     (net R0_3 
+      (joined 
+       (portRef (member R0 4))
+       (portRef padio (instanceRef R0_obuf_3 ))))
+     (net R0_2 
+      (joined 
+       (portRef (member R0 5))
+       (portRef padio (instanceRef R0_obuf_2 ))))
+     (net R0_1 
+      (joined 
+       (portRef (member R0 6))
+       (portRef padio (instanceRef R0_obuf_1 ))))
+     (net R0_0 
+      (joined 
+       (portRef (member R0 7))
+       (portRef padio (instanceRef R0_obuf_0 ))))
+     (net R2_7 
+      (joined 
+       (portRef (member R2 0))
+       (portRef padio (instanceRef R2_obuf_7 ))))
+     (net R2_6 
+      (joined 
+       (portRef (member R2 1))
+       (portRef padio (instanceRef R2_obuf_6 ))))
+     (net R2_5 
+      (joined 
+       (portRef (member R2 2))
+       (portRef padio (instanceRef R2_obuf_5 ))))
+     (net R2_4 
+      (joined 
+       (portRef (member R2 3))
+       (portRef padio (instanceRef R2_obuf_4 ))))
+     (net R2_3 
+      (joined 
+       (portRef (member R2 4))
+       (portRef padio (instanceRef R2_obuf_3 ))))
+     (net R2_2 
+      (joined 
+       (portRef (member R2 5))
+       (portRef padio (instanceRef R2_obuf_2 ))))
+     (net R2_1 
+      (joined 
+       (portRef (member R2 6))
+       (portRef padio (instanceRef R2_obuf_1 ))))
+     (net R2_0 
+      (joined 
+       (portRef (member R2 7))
+       (portRef padio (instanceRef R2_obuf_0 ))))
+     (net alu_ctl_2 
+      (joined 
+       (portRef combout (instanceRef ix344 ))
+       (portRef (member ctl 0)(instanceRef ALU ))))
+     (net alu_ctl_1 
+      (joined 
+       (portRef combout (instanceRef ix345 ))
+       (portRef (member ctl 1)(instanceRef ALU ))))
+     (net alu_ctl_0 
+      (joined 
+       (portRef combout (instanceRef ix346 ))
+       (portRef (member ctl 2)(instanceRef ALU ))))
+     (net aux_ctl_0 
+      (joined 
+       (portRef combout (instanceRef ix347 ))
+       (portRef ena (instanceRef AUX1_AUX_REG_reg_Q_7 ))
+       (portRef ena (instanceRef AUX1_AUX_REG_reg_Q_6 ))
+       (portRef ena (instanceRef AUX1_AUX_REG_reg_Q_5 ))
+       (portRef ena (instanceRef AUX1_AUX_REG_reg_Q_4 ))
+       (portRef ena (instanceRef AUX1_AUX_REG_reg_Q_3 ))
+       (portRef ena (instanceRef AUX1_AUX_REG_reg_Q_2 ))
+       (portRef ena (instanceRef AUX1_AUX_REG_reg_Q_1 ))
+       (portRef ena (instanceRef AUX1_AUX_REG_reg_Q_0 ))))
+     (net reg_we 
+      (joined 
+       (portRef combout (instanceRef ix348 ))
+       (portRef we (instanceRef REGS ))))
+     (net pcalu_ctl 
+      (joined 
+       (portRef combout (instanceRef ix349 ))
+       (portRef datab (instanceRef ix362 ))
+       (portRef datab (instanceRef ix363 ))
+       (portRef dataa (instanceRef PC_ALU_adder_out_add_106_ix30 ))))
+     (net ir_we 
+      (joined 
+       (portRef combout (instanceRef ix350 ))
+       (portRef ena (instanceRef IR_reg_Q_7 ))
+       (portRef ena (instanceRef IR_reg_Q_6 ))
+       (portRef ena (instanceRef IR_reg_Q_5 ))
+       (portRef ena (instanceRef IR_reg_Q_4 ))
+       (portRef ena (instanceRef IR_reg_Q_3 ))
+       (portRef ena (instanceRef IR_reg_Q_2 ))
+       (portRef ena (instanceRef IR_reg_Q_1 ))
+       (portRef ena (instanceRef IR_reg_Q_0 ))
+       (portRef datain (instanceRef CU_reg_cur_state_0 ))))
+     (net acc_we 
+      (joined 
+       (portRef combout (instanceRef ix351 ))
+       (portRef ena (instanceRef ACCUM_reg_Q_7 ))
+       (portRef ena (instanceRef ACCUM_reg_Q_6 ))
+       (portRef ena (instanceRef ACCUM_reg_Q_5 ))
+       (portRef ena (instanceRef ACCUM_reg_Q_4 ))
+       (portRef ena (instanceRef ACCUM_reg_Q_3 ))
+       (portRef ena (instanceRef ACCUM_reg_Q_2 ))
+       (portRef ena (instanceRef ACCUM_reg_Q_1 ))
+       (portRef ena (instanceRef ACCUM_reg_Q_0 ))))
+     (net pc_we 
+      (joined 
+       (portRef combout (instanceRef ix352 ))
+       (portRef ena (instanceRef PC_reg_Q_7 ))
+       (portRef ena (instanceRef PC_reg_Q_6 ))
+       (portRef ena (instanceRef PC_reg_Q_5 ))
+       (portRef ena (instanceRef PC_reg_Q_4 ))
+       (portRef ena (instanceRef PC_reg_Q_3 ))
+       (portRef ena (instanceRef PC_reg_Q_2 ))
+       (portRef ena (instanceRef PC_reg_Q_1 ))
+       (portRef ena (instanceRef PC_reg_Q_0 ))))
+     (net CU_nxt_state_1 
+      (joined 
+       (portRef combout (instanceRef ix353 ))
+       (portRef datain (instanceRef CU_reg_cur_state_1 ))))
+     (net a_2_dup_268 
+      (joined 
+       (portRef combout (instanceRef ix354 ))
+       (portRef datac (instanceRef ix347 ))
+       (portRef datac (instanceRef ix372 ))
+       (portRef datac (instanceRef ix387 ))))
+     (net a_1_dup_269 
+      (joined 
+       (portRef combout (instanceRef ix355 ))
+       (portRef datad (instanceRef ix347 ))
+       (portRef datac (instanceRef ix349 ))
+       (portRef datac (instanceRef ix352 ))
+       (portRef datad (instanceRef ix356 ))
+       (portRef datad (instanceRef ix357 ))
+       (portRef datad (instanceRef ix358 ))
+       (portRef datad (instanceRef ix359 ))
+       (portRef datad (instanceRef ix360 ))
+       (portRef datad (instanceRef ix361 ))
+       (portRef datad (instanceRef ix372 ))))
+     (net PC_ALU_nx42 
+      (joined 
+       (portRef combout (instanceRef ix356 ))
+       (portRef dataa (instanceRef PC_ALU_adder_out_add_106_ix58 ))))
+     (net PC_ALU_nx44 
+      (joined 
+       (portRef combout (instanceRef ix357 ))
+       (portRef dataa (instanceRef PC_ALU_adder_out_add_106_ix54 ))))
+     (net PC_ALU_nx46 
+      (joined 
+       (portRef combout (instanceRef ix358 ))
+       (portRef dataa (instanceRef PC_ALU_adder_out_add_106_ix50 ))))
+     (net PC_ALU_nx48 
+      (joined 
+       (portRef combout (instanceRef ix359 ))
+       (portRef dataa (instanceRef PC_ALU_adder_out_add_106_ix46 ))))
+     (net PC_ALU_nx50 
+      (joined 
+       (portRef combout (instanceRef ix360 ))
+       (portRef dataa (instanceRef PC_ALU_adder_out_add_106_ix42 ))))
+     (net PC_ALU_nx52 
+      (joined 
+       (portRef combout (instanceRef ix361 ))
+       (portRef dataa (instanceRef PC_ALU_adder_out_add_106_ix38 ))))
+     (net PC_ALU_nx54 
+      (joined 
+       (portRef combout (instanceRef ix362 ))
+       (portRef dataa (instanceRef PC_ALU_adder_out_add_106_ix34 ))))
+     (net PC_ALU_nx56 
+      (joined 
+       (portRef combout (instanceRef ix363 ))
+       (portRef dataa (instanceRef ix534 ))))
+     (net AUX1_D_7 
+      (joined 
+       (portRef combout (instanceRef ix364 ))
+       (portRef datain (instanceRef AUX1_AUX_REG_reg_Q_7 ))))
+     (net AUX1_D_6 
+      (joined 
+       (portRef combout (instanceRef ix365 ))
+       (portRef datain (instanceRef AUX1_AUX_REG_reg_Q_6 ))))
+     (net AUX1_D_5 
+      (joined 
+       (portRef combout (instanceRef ix366 ))
+       (portRef datain (instanceRef AUX1_AUX_REG_reg_Q_5 ))))
+     (net AUX1_D_4 
+      (joined 
+       (portRef combout (instanceRef ix367 ))
+       (portRef datain (instanceRef AUX1_AUX_REG_reg_Q_4 ))))
+     (net AUX1_D_3 
+      (joined 
+       (portRef combout (instanceRef ix368 ))
+       (portRef datain (instanceRef AUX1_AUX_REG_reg_Q_3 ))))
+     (net AUX1_D_2 
+      (joined 
+       (portRef combout (instanceRef ix369 ))
+       (portRef datain (instanceRef AUX1_AUX_REG_reg_Q_2 ))))
+     (net AUX1_D_1 
+      (joined 
+       (portRef combout (instanceRef ix370 ))
+       (portRef datain (instanceRef AUX1_AUX_REG_reg_Q_1 ))))
+     (net AUX1_D_0 
+      (joined 
+       (portRef combout (instanceRef ix371 ))
+       (portRef datain (instanceRef AUX1_AUX_REG_reg_Q_0 ))))
+     (net psen_n_dup0 
+      (joined 
+       (portRef combout (instanceRef ix372 ))
+       (portRef datain (instanceRef psen_n_obuf ))))
+     (net nx399 
+      (joined 
+       (portRef combout (instanceRef ix373 ))
+       (portRef datab (instanceRef ix344 ))))
+     (net nx400 
+      (joined 
+       (portRef combout (instanceRef ix374 ))
+       (portRef datac (instanceRef ix344 ))))
+     (net nx401 
+      (joined 
+       (portRef combout (instanceRef ix375 ))
+       (portRef datad (instanceRef ix397 ))))
+     (net nx402 
+      (joined 
+       (portRef combout (instanceRef ix376 ))
+       (portRef datac (instanceRef ix374 ))))
+     (net nx403 
+      (joined 
+       (portRef combout (instanceRef ix377 ))
+       (portRef datad (instanceRef ix393 ))))
+     (net nx404 
+      (joined 
+       (portRef combout (instanceRef ix378 ))
+       (portRef datad (instanceRef ix346 ))))
+     (net nx405 
+      (joined 
+       (portRef combout (instanceRef ix379 ))
+       (portRef datad (instanceRef ix391 ))))
+     (net nx406 
+      (joined 
+       (portRef combout (instanceRef ix380 ))
+       (portRef datad (instanceRef ix348 ))))
+     (net nx407 
+      (joined 
+       (portRef combout (instanceRef ix381 ))
+       (portRef datad (instanceRef ix355 ))))
+     (net nx408 
+      (joined 
+       (portRef combout (instanceRef ix382 ))
+       (portRef datab (instanceRef ix351 ))))
+     (net nx409 
+      (joined 
+       (portRef combout (instanceRef ix383 ))
+       (portRef datac (instanceRef ix390 ))))
+     (net nx410 
+      (joined 
+       (portRef combout (instanceRef ix384 ))
+       (portRef datad (instanceRef ix389 ))))
+     (net nx411 
+      (joined 
+       (portRef combout (instanceRef ix385 ))
+       (portRef dataa (instanceRef ix354 ))))
+     (net nx413 
+      (joined 
+       (portRef combout (instanceRef ix386 ))
+       (portRef datad (instanceRef ix352 ))))
+     (net nx414 
+      (joined 
+       (portRef combout (instanceRef ix387 ))
+       (portRef datac (instanceRef ix364 ))
+       (portRef datac (instanceRef ix365 ))
+       (portRef datac (instanceRef ix366 ))
+       (portRef datac (instanceRef ix367 ))
+       (portRef datac (instanceRef ix368 ))
+       (portRef datac (instanceRef ix369 ))
+       (portRef datac (instanceRef ix370 ))
+       (portRef datac (instanceRef ix371 ))))
+     (net nx415 
+      (joined 
+       (portRef combout (instanceRef ix388 ))
+       (portRef datac (instanceRef ix381 ))))
+     (net nx416 
+      (joined 
+       (portRef combout (instanceRef ix389 ))
+       (portRef datad (instanceRef ix386 ))))
+     (net nx417 
+      (joined 
+       (portRef combout (instanceRef ix390 ))
+       (portRef datac (instanceRef ix351 ))))
+     (net nx418 
+      (joined 
+       (portRef combout (instanceRef ix391 ))
+       (portRef datad (instanceRef ix378 ))))
+     (net nx419 
+      (joined 
+       (portRef combout (instanceRef ix392 ))
+       (portRef datab (instanceRef ix345 ))))
+     (net nx420 
+      (joined 
+       (portRef combout (instanceRef ix393 ))
+       (portRef datac (instanceRef ix345 ))))
+     (net nx421 
+      (joined 
+       (portRef combout (instanceRef ix394 ))
+       (portRef datad (instanceRef ix345 ))))
+     (net nx422 
+      (joined 
+       (portRef combout (instanceRef ix395 ))
+       (portRef datad (instanceRef ix344 ))
+       (portRef datad (instanceRef ix351 ))))
+     (net nx423 
+      (joined 
+       (portRef combout (instanceRef ix396 ))
+       (portRef datad (instanceRef ix381 ))))
+     (net nx424 
+      (joined 
+       (portRef combout (instanceRef ix397 ))
+       (portRef datad (instanceRef ix374 ))))
+     (net nx425 
+      (joined 
+       (portRef combout (instanceRef ix398 ))
+       (portRef datad (instanceRef ix390 ))))
+     (net nx533 
+      (joined 
+       (portRef cout (instanceRef ix534 ))
+       (portRef cin (instanceRef PC_ALU_adder_out_add_106_ix30 ))))
+     (net nx0 
+      (joined 
+       (portRef Y (instanceRef ix1 ))
+       (portRef datad (instanceRef PC_ALU_adder_out_add_106_ix30 ))))
+     (net nx2 
+      (joined 
+       (portRef Y (instanceRef ix3 ))
+       (portRef datad (instanceRef PC_ALU_adder_out_add_106_ix34 ))))
+     (net nx4 
+      (joined 
+       (portRef Y (instanceRef ix5 ))
+       (portRef datad (instanceRef PC_ALU_adder_out_add_106_ix38 ))))
+     (net nx6 
+      (joined 
+       (portRef Y (instanceRef ix7 ))
+       (portRef datad (instanceRef PC_ALU_adder_out_add_106_ix42 ))))
+     (net nx8 
+      (joined 
+       (portRef Y (instanceRef ix9 ))
+       (portRef datad (instanceRef PC_ALU_adder_out_add_106_ix46 ))))
+     (net nx10 
+      (joined 
+       (portRef Y (instanceRef ix11 ))
+       (portRef datad (instanceRef PC_ALU_adder_out_add_106_ix50 ))))
+     (net nx12 
+      (joined 
+       (portRef Y (instanceRef ix13 ))
+       (portRef datad (instanceRef PC_ALU_adder_out_add_106_ix54 ))))
+     (net nx14 
+      (joined 
+       (portRef Y (instanceRef ix15 ))
+       (portRef datad (instanceRef ix534 ))))))))
+ (design wimp51 (cellRef wimp51 (libraryRef work ))))

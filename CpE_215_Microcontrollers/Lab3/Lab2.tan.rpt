@@ -1,0 +1,670 @@
+Classic Timing Analyzer report for Lab2
+Wed Oct 06 11:34:34 2010
+Quartus II Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Timing Analyzer Settings
+  4. Clock Settings Summary
+  5. Clock Setup: 'clk'
+  6. Clock Hold: 'clk'
+  7. tco
+  8. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2008 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                                                                                                                                                                          ;
++------------------------------+------------------------------------------+---------------+----------------------------------+------------------------------+-------------------------------+------------+----------+--------------+
+; Type                         ; Slack                                    ; Required Time ; Actual Time                      ; From                         ; To                            ; From Clock ; To Clock ; Failed Paths ;
++------------------------------+------------------------------------------+---------------+----------------------------------+------------------------------+-------------------------------+------------+----------+--------------+
+; Worst-case tco               ; N/A                                      ; None          ; 16.382 ns                        ; wimp51_lab3:inst3|ir_out_2   ; acc1[1]                       ; clk        ; --       ; 0            ;
+; Clock Setup: 'clk'           ; N/A                                      ; None          ; 164.20 MHz ( period = 6.090 ns ) ; I8051_ROM:inst|data[3]       ; wimp51_lab3:inst3|ir_out_3    ; clk        ; clk      ; 0            ;
+; Clock Hold: 'clk'            ; Not operational: Clock Skew > Data Delay ; None          ; N/A                              ; wimp51_lab3:inst3|CU_state_0 ; wimp51_lab3:inst3|addr_dup0_7 ; clk        ; clk      ; 48           ;
+; Total number of failed paths ;                                          ;               ;                                  ;                              ;                               ;            ;          ; 48           ;
++------------------------------+------------------------------------------+---------------+----------------------------------+------------------------------+-------------------------------+------------+----------+--------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Settings                                                                                           ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+; Option                                                              ; Setting            ; From ; To ; Entity Name ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+; Device Name                                                         ; EP2C35F672C6       ;      ;    ;             ;
+; Timing Models                                                       ; Final              ;      ;    ;             ;
+; Default hold multicycle                                             ; Same as Multicycle ;      ;    ;             ;
+; Cut paths between unrelated clock domains                           ; On                 ;      ;    ;             ;
+; Cut off read during write signal paths                              ; On                 ;      ;    ;             ;
+; Cut off feedback from I/O pins                                      ; On                 ;      ;    ;             ;
+; Report Combined Fast/Slow Timing                                    ; Off                ;      ;    ;             ;
+; Ignore Clock Settings                                               ; Off                ;      ;    ;             ;
+; Analyze latches as synchronous elements                             ; On                 ;      ;    ;             ;
+; Enable Recovery/Removal analysis                                    ; Off                ;      ;    ;             ;
+; Enable Clock Latency                                                ; Off                ;      ;    ;             ;
+; Use TimeQuest Timing Analyzer                                       ; Off                ;      ;    ;             ;
+; Number of source nodes to report per destination node               ; 10                 ;      ;    ;             ;
+; Number of destination nodes to report                               ; 10                 ;      ;    ;             ;
+; Number of paths to report                                           ; 200                ;      ;    ;             ;
+; Report Minimum Timing Checks                                        ; Off                ;      ;    ;             ;
+; Use Fast Timing Models                                              ; Off                ;      ;    ;             ;
+; Report IO Paths Separately                                          ; Off                ;      ;    ;             ;
+; Perform Multicorner Analysis                                        ; On                 ;      ;    ;             ;
+; Reports the worst-case path for each clock domain and analysis      ; Off                ;      ;    ;             ;
+; Removes common clock path pessimism (CCPP) during slack computation ; Off                ;      ;    ;             ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Settings Summary                                                                                                                                                             ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; Clock Node Name ; Clock Setting Name ; Type     ; Fmax Requirement ; Early Latency ; Late Latency ; Based on ; Multiply Base Fmax by ; Divide Base Fmax by ; Offset ; Phase offset ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; clk             ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Setup: 'clk'                                                                                                                                                                                                                                                                    ;
++-----------------------------------------+-----------------------------------------------------+-------------------------------------+-------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; Slack                                   ; Actual fmax (period)                                ; From                                ; To                                  ; From Clock ; To Clock ; Required Setup Relationship ; Required Longest P2P Time ; Actual Longest P2P Time ;
++-----------------------------------------+-----------------------------------------------------+-------------------------------------+-------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; N/A                                     ; 164.20 MHz ( period = 6.090 ns )                    ; I8051_ROM:inst|data[3]              ; wimp51_lab3:inst3|ir_out_3          ; clk        ; clk      ; None                        ; None                      ; 0.084 ns                ;
+; N/A                                     ; 172.59 MHz ( period = 5.794 ns )                    ; I8051_ROM:inst|data[7]              ; wimp51_lab3:inst3|ir_out_7          ; clk        ; clk      ; None                        ; None                      ; 0.084 ns                ;
+; N/A                                     ; 172.59 MHz ( period = 5.794 ns )                    ; I8051_ROM:inst|data[1]              ; wimp51_lab3:inst3|ir_out_1          ; clk        ; clk      ; None                        ; None                      ; 0.084 ns                ;
+; N/A                                     ; 172.59 MHz ( period = 5.794 ns )                    ; I8051_ROM:inst|data[6]              ; wimp51_lab3:inst3|ir_out_6          ; clk        ; clk      ; None                        ; None                      ; 0.084 ns                ;
+; N/A                                     ; 172.62 MHz ( period = 5.793 ns )                    ; I8051_ROM:inst|data[4]              ; wimp51_lab3:inst3|ir_out_4          ; clk        ; clk      ; None                        ; None                      ; 0.084 ns                ;
+; N/A                                     ; 172.62 MHz ( period = 5.793 ns )                    ; I8051_ROM:inst|data[2]              ; wimp51_lab3:inst3|ir_out_2          ; clk        ; clk      ; None                        ; None                      ; 0.084 ns                ;
+; N/A                                     ; 172.62 MHz ( period = 5.793 ns )                    ; I8051_ROM:inst|data[5]              ; wimp51_lab3:inst3|ir_out_5          ; clk        ; clk      ; None                        ; None                      ; 0.084 ns                ;
+; N/A                                     ; 172.65 MHz ( period = 5.792 ns )                    ; I8051_ROM:inst|data[0]              ; wimp51_lab3:inst3|ir_out_0          ; clk        ; clk      ; None                        ; None                      ; 0.084 ns                ;
+; N/A                                     ; 180.08 MHz ( period = 5.553 ns )                    ; I8051_ROM:inst|data[1]              ; wimp51_lab3:inst3|aux_out_1         ; clk        ; clk      ; None                        ; None                      ; 0.913 ns                ;
+; N/A                                     ; 190.91 MHz ( period = 5.238 ns )                    ; I8051_ROM:inst|data[0]              ; wimp51_lab3:inst3|aux_out_0         ; clk        ; clk      ; None                        ; None                      ; 0.711 ns                ;
+; N/A                                     ; 191.61 MHz ( period = 5.219 ns )                    ; I8051_ROM:inst|data[7]              ; wimp51_lab3:inst3|aux_out_7         ; clk        ; clk      ; None                        ; None                      ; 0.692 ns                ;
+; N/A                                     ; 191.68 MHz ( period = 5.217 ns )                    ; I8051_ROM:inst|data[6]              ; wimp51_lab3:inst3|aux_out_6         ; clk        ; clk      ; None                        ; None                      ; 0.690 ns                ;
+; N/A                                     ; 191.72 MHz ( period = 5.216 ns )                    ; I8051_ROM:inst|data[5]              ; wimp51_lab3:inst3|aux_out_5         ; clk        ; clk      ; None                        ; None                      ; 0.690 ns                ;
+; N/A                                     ; 191.90 MHz ( period = 5.211 ns )                    ; I8051_ROM:inst|data[4]              ; wimp51_lab3:inst3|aux_out_4         ; clk        ; clk      ; None                        ; None                      ; 0.683 ns                ;
+; N/A                                     ; 194.17 MHz ( period = 5.150 ns )                    ; I8051_ROM:inst|data[2]              ; wimp51_lab3:inst3|aux_out_2         ; clk        ; clk      ; None                        ; None                      ; 0.627 ns                ;
+; N/A                                     ; 195.47 MHz ( period = 5.116 ns )                    ; I8051_ROM:inst|data[3]              ; wimp51_lab3:inst3|aux_out_3         ; clk        ; clk      ; None                        ; None                      ; 0.495 ns                ;
+; N/A                                     ; 214.00 MHz ( period = 4.673 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 5.468 ns                ;
+; N/A                                     ; 214.32 MHz ( period = 4.666 ns )                    ; wimp51_lab3:inst3|ir_out_2          ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 5.459 ns                ;
+; N/A                                     ; 214.64 MHz ( period = 4.659 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 5.454 ns                ;
+; N/A                                     ; 216.36 MHz ( period = 4.622 ns )                    ; wimp51_lab3:inst3|ir_out_1          ; wimp51_lab3:inst3|acc_out_2         ; clk        ; clk      ; None                        ; None                      ; 5.417 ns                ;
+; N/A                                     ; 216.92 MHz ( period = 4.610 ns )                    ; wimp51_lab3:inst3|ir_out_2          ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 5.403 ns                ;
+; N/A                                     ; 218.44 MHz ( period = 4.578 ns )                    ; wimp51_lab3:inst3|ir_out_1          ; wimp51_lab3:inst3|acc_out_1         ; clk        ; clk      ; None                        ; None                      ; 5.253 ns                ;
+; N/A                                     ; 220.60 MHz ( period = 4.533 ns )                    ; wimp51_lab3:inst3|ir_out_5          ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 5.328 ns                ;
+; N/A                                     ; 221.29 MHz ( period = 4.519 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|acc_out_2         ; clk        ; clk      ; None                        ; None                      ; 5.314 ns                ;
+; N/A                                     ; 221.53 MHz ( period = 4.514 ns )                    ; wimp51_lab3:inst3|ir_out_2          ; wimp51_lab3:inst3|acc_out_5         ; clk        ; clk      ; None                        ; None                      ; 5.380 ns                ;
+; N/A                                     ; 221.93 MHz ( period = 4.506 ns )                    ; wimp51_lab3:inst3|ir_out_2          ; wimp51_lab3:inst3|acc_out_1         ; clk        ; clk      ; None                        ; None                      ; 5.179 ns                ;
+; N/A                                     ; 222.52 MHz ( period = 4.494 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|acc_out_3         ; clk        ; clk      ; None                        ; None                      ; 5.289 ns                ;
+; N/A                                     ; 222.82 MHz ( period = 4.488 ns )                    ; wimp51_lab3:inst3|ir_out_2          ; wimp51_lab3:inst3|acc_out_2         ; clk        ; clk      ; None                        ; None                      ; 5.281 ns                ;
+; N/A                                     ; 222.87 MHz ( period = 4.487 ns )                    ; wimp51_lab3:inst3|ir_out_2          ; wimp51_lab3:inst3|acc_out_3         ; clk        ; clk      ; None                        ; None                      ; 5.280 ns                ;
+; N/A                                     ; 223.26 MHz ( period = 4.479 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|acc_out_1         ; clk        ; clk      ; None                        ; None                      ; 5.154 ns                ;
+; N/A                                     ; 223.36 MHz ( period = 4.477 ns )                    ; wimp51_lab3:inst3|ir_out_5          ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 5.272 ns                ;
+; N/A                                     ; 224.11 MHz ( period = 4.462 ns )                    ; wimp51_lab3:inst3|aux_out_1         ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 4.187 ns                ;
+; N/A                                     ; 227.17 MHz ( period = 4.402 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|acc_out_5         ; clk        ; clk      ; None                        ; None                      ; 5.270 ns                ;
+; N/A                                     ; 227.38 MHz ( period = 4.398 ns )                    ; wimp51_lab3:inst3|addr_dup0_0       ; I8051_ROM:inst|data[5]              ; clk        ; clk      ; None                        ; None                      ; 3.645 ns                ;
+; N/A                                     ; 227.48 MHz ( period = 4.396 ns )                    ; wimp51_lab3:inst3|ir_out_1          ; wimp51_lab3:inst3|acc_out_0         ; clk        ; clk      ; None                        ; None                      ; 5.071 ns                ;
+; N/A                                     ; 228.05 MHz ( period = 4.385 ns )                    ; wimp51_lab3:inst3|acc_out_3         ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 4.171 ns                ;
+; N/A                                     ; 228.26 MHz ( period = 4.381 ns )                    ; wimp51_lab3:inst3|ir_out_5          ; wimp51_lab3:inst3|acc_out_5         ; clk        ; clk      ; None                        ; None                      ; 5.249 ns                ;
+; N/A                                     ; 228.26 MHz ( period = 4.381 ns )                    ; wimp51_lab3:inst3|addr_dup0_2       ; I8051_ROM:inst|data[5]              ; clk        ; clk      ; None                        ; None                      ; 3.628 ns                ;
+; N/A                                     ; 228.68 MHz ( period = 4.373 ns )                    ; wimp51_lab3:inst3|ir_out_5          ; wimp51_lab3:inst3|acc_out_1         ; clk        ; clk      ; None                        ; None                      ; 5.048 ns                ;
+; N/A                                     ; 228.78 MHz ( period = 4.371 ns )                    ; wimp51_lab3:inst3|ir_out_2          ; wimp51_lab3:inst3|acc_out_0         ; clk        ; clk      ; None                        ; None                      ; 5.044 ns                ;
+; N/A                                     ; 228.99 MHz ( period = 4.367 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|acc_out_0         ; clk        ; clk      ; None                        ; None                      ; 5.042 ns                ;
+; N/A                                     ; 229.25 MHz ( period = 4.362 ns )                    ; wimp51_lab3:inst3|ir_out_2          ; wimp51_lab3:inst3|acc_out_4         ; clk        ; clk      ; None                        ; None                      ; 5.228 ns                ;
+; N/A                                     ; 229.62 MHz ( period = 4.355 ns )                    ; wimp51_lab3:inst3|ir_out_5          ; wimp51_lab3:inst3|acc_out_2         ; clk        ; clk      ; None                        ; None                      ; 5.150 ns                ;
+; N/A                                     ; 229.67 MHz ( period = 4.354 ns )                    ; wimp51_lab3:inst3|ir_out_5          ; wimp51_lab3:inst3|acc_out_3         ; clk        ; clk      ; None                        ; None                      ; 5.149 ns                ;
+; N/A                                     ; 229.94 MHz ( period = 4.349 ns )                    ; wimp51_lab3:inst3|ir_out_1          ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 5.144 ns                ;
+; N/A                                     ; 229.99 MHz ( period = 4.348 ns )                    ; wimp51_lab3:inst3|ir_out_1          ; wimp51_lab3:inst3|acc_out_3         ; clk        ; clk      ; None                        ; None                      ; 5.143 ns                ;
+; N/A                                     ; 230.10 MHz ( period = 4.346 ns )                    ; wimp51_lab3:inst3|ir_out_1          ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 5.141 ns                ;
+; N/A                                     ; 231.16 MHz ( period = 4.326 ns )                    ; wimp51_lab3:inst3|acc_out_5         ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 4.039 ns                ;
+; N/A                                     ; 231.80 MHz ( period = 4.314 ns )                    ; wimp51_lab3:inst3|aux_out_0         ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 3.926 ns                ;
+; N/A                                     ; 231.96 MHz ( period = 4.311 ns )                    ; wimp51_lab3:inst3|alu:ALU|Q_C       ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 4.218 ns                ;
+; N/A                                     ; 232.29 MHz ( period = 4.305 ns )                    ; wimp51_lab3:inst3|aux_out_3         ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 3.910 ns                ;
+; N/A                                     ; 235.07 MHz ( period = 4.254 ns )                    ; wimp51_lab3:inst3|ir_out_7          ; wimp51_lab3:inst3|acc_out_2         ; clk        ; clk      ; None                        ; None                      ; 5.049 ns                ;
+; N/A                                     ; 235.96 MHz ( period = 4.238 ns )                    ; wimp51_lab3:inst3|ir_out_5          ; wimp51_lab3:inst3|acc_out_0         ; clk        ; clk      ; None                        ; None                      ; 4.913 ns                ;
+; N/A                                     ; 236.35 MHz ( period = 4.231 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|acc_out_4         ; clk        ; clk      ; None                        ; None                      ; 5.099 ns                ;
+; N/A                                     ; 236.46 MHz ( period = 4.229 ns )                    ; wimp51_lab3:inst3|ir_out_5          ; wimp51_lab3:inst3|acc_out_4         ; clk        ; clk      ; None                        ; None                      ; 5.097 ns                ;
+; N/A                                     ; 236.97 MHz ( period = 4.220 ns )                    ; wimp51_lab3:inst3|ir_out_1          ; wimp51_lab3:inst3|aux_out_2         ; clk        ; clk      ; None                        ; None                      ; 5.194 ns                ;
+; N/A                                     ; 237.53 MHz ( period = 4.210 ns )                    ; wimp51_lab3:inst3|ir_out_7          ; wimp51_lab3:inst3|acc_out_1         ; clk        ; clk      ; None                        ; None                      ; 4.885 ns                ;
+; N/A                                     ; 238.27 MHz ( period = 4.197 ns )                    ; wimp51_lab3:inst3|addr_dup0_0       ; I8051_ROM:inst|data[7]              ; clk        ; clk      ; None                        ; None                      ; 3.869 ns                ;
+; N/A                                     ; 238.38 MHz ( period = 4.195 ns )                    ; wimp51_lab3:inst3|addr_dup0_2       ; I8051_ROM:inst|data[7]              ; clk        ; clk      ; None                        ; None                      ; 3.867 ns                ;
+; N/A                                     ; 239.41 MHz ( period = 4.177 ns )                    ; wimp51_lab3:inst3|ir_out_1          ; wimp51_lab3:inst3|aux_out_4         ; clk        ; clk      ; None                        ; None                      ; 5.146 ns                ;
+; N/A                                     ; 240.27 MHz ( period = 4.162 ns )                    ; wimp51_lab3:inst3|ir_out_4          ; wimp51_lab3:inst3|acc_out_2         ; clk        ; clk      ; None                        ; None                      ; 4.955 ns                ;
+; N/A                                     ; 240.44 MHz ( period = 4.159 ns )                    ; wimp51_lab3:inst3|ir_out_2          ; wimp51_lab3:inst3|alu:ALU|Q_C       ; clk        ; clk      ; None                        ; None                      ; 4.831 ns                ;
+; N/A                                     ; 240.73 MHz ( period = 4.154 ns )                    ; wimp51_lab3:inst3|ir_out_1          ; wimp51_lab3:inst3|acc_out_5         ; clk        ; clk      ; None                        ; None                      ; 5.022 ns                ;
+; N/A                                     ; 241.60 MHz ( period = 4.139 ns )                    ; wimp51_lab3:inst3|ir_out_1          ; wimp51_lab3:inst3|acc_out_4         ; clk        ; clk      ; None                        ; None                      ; 5.007 ns                ;
+; N/A                                     ; 242.01 MHz ( period = 4.132 ns )                    ; wimp51_lab3:inst3|acc_out_1         ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 4.038 ns                ;
+; N/A                                     ; 242.72 MHz ( period = 4.120 ns )                    ; wimp51_lab3:inst3|ir_out_0          ; wimp51_lab3:inst3|acc_out_2         ; clk        ; clk      ; None                        ; None                      ; 4.913 ns                ;
+; N/A                                     ; 242.84 MHz ( period = 4.118 ns )                    ; wimp51_lab3:inst3|ir_out_4          ; wimp51_lab3:inst3|acc_out_1         ; clk        ; clk      ; None                        ; None                      ; 4.791 ns                ;
+; N/A                                     ; 243.66 MHz ( period = 4.104 ns )                    ; wimp51_lab3:inst3|aux_out_2         ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 3.711 ns                ;
+; N/A                                     ; 244.44 MHz ( period = 4.091 ns )                    ; wimp51_lab3:inst3|ir_out_4          ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 4.884 ns                ;
+; N/A                                     ; 244.86 MHz ( period = 4.084 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|alu:ALU|Q_C       ; clk        ; clk      ; None                        ; None                      ; 4.758 ns                ;
+; N/A                                     ; 245.28 MHz ( period = 4.077 ns )                    ; wimp51_lab3:inst3|ir_out_4          ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 4.870 ns                ;
+; N/A                                     ; 245.28 MHz ( period = 4.077 ns )                    ; wimp51_lab3:inst3|addr_dup0_3       ; I8051_ROM:inst|data[5]              ; clk        ; clk      ; None                        ; None                      ; 3.324 ns                ;
+; N/A                                     ; 245.34 MHz ( period = 4.076 ns )                    ; wimp51_lab3:inst3|ir_out_0          ; wimp51_lab3:inst3|acc_out_1         ; clk        ; clk      ; None                        ; None                      ; 4.749 ns                ;
+; N/A                                     ; 245.70 MHz ( period = 4.070 ns )                    ; wimp51_lab3:inst3|ir_out_1          ; wimp51_lab3:inst3|aux_out_3         ; clk        ; clk      ; None                        ; None                      ; 5.046 ns                ;
+; N/A                                     ; 245.70 MHz ( period = 4.070 ns )                    ; wimp51_lab3:inst3|aux_out_1         ; wimp51_lab3:inst3|acc_out_3         ; clk        ; clk      ; None                        ; None                      ; 3.795 ns                ;
+; N/A                                     ; 245.88 MHz ( period = 4.067 ns )                    ; wimp51_lab3:inst3|aux_out_1         ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 3.792 ns                ;
+; N/A                                     ; 246.73 MHz ( period = 4.053 ns )                    ; wimp51_lab3:inst3|aux_out_1         ; wimp51_lab3:inst3|alu:ALU|Q_C       ; clk        ; clk      ; None                        ; None                      ; 3.657 ns                ;
+; N/A                                     ; 246.85 MHz ( period = 4.051 ns )                    ; wimp51_lab3:inst3|regfile:REGS|R0_0 ; wimp51_lab3:inst3|aux_out_0         ; clk        ; clk      ; None                        ; None                      ; 3.981 ns                ;
+; N/A                                     ; 247.10 MHz ( period = 4.047 ns )                    ; wimp51_lab3:inst3|ir_out_2          ; wimp51_lab3:inst3|aux_out_4         ; clk        ; clk      ; None                        ; None                      ; 5.014 ns                ;
+; N/A                                     ; 247.89 MHz ( period = 4.034 ns )                    ; wimp51_lab3:inst3|aux_out_1         ; wimp51_lab3:inst3|acc_out_2         ; clk        ; clk      ; None                        ; None                      ; 3.759 ns                ;
+; N/A                                     ; 248.26 MHz ( period = 4.028 ns )                    ; wimp51_lab3:inst3|ir_out_7          ; wimp51_lab3:inst3|acc_out_0         ; clk        ; clk      ; None                        ; None                      ; 4.703 ns                ;
+; N/A                                     ; 248.39 MHz ( period = 4.026 ns )                    ; wimp51_lab3:inst3|ir_out_5          ; wimp51_lab3:inst3|alu:ALU|Q_C       ; clk        ; clk      ; None                        ; None                      ; 4.700 ns                ;
+; N/A                                     ; 248.57 MHz ( period = 4.023 ns )                    ; wimp51_lab3:inst3|ir_out_1          ; wimp51_lab3:inst3|aux_out_1         ; clk        ; clk      ; None                        ; None                      ; 4.879 ns                ;
+; N/A                                     ; 249.00 MHz ( period = 4.016 ns )                    ; wimp51_lab3:inst3|ir_out_1          ; wimp51_lab3:inst3|alu:ALU|Q_C       ; clk        ; clk      ; None                        ; None                      ; 4.690 ns                ;
+; N/A                                     ; 249.44 MHz ( period = 4.009 ns )                    ; wimp51_lab3:inst3|acc_out_0         ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 3.915 ns                ;
+; N/A                                     ; 249.50 MHz ( period = 4.008 ns )                    ; wimp51_lab3:inst3|aux_out_4         ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 3.620 ns                ;
+; N/A                                     ; 250.63 MHz ( period = 3.990 ns )                    ; wimp51_lab3:inst3|acc_out_3         ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 3.776 ns                ;
+; N/A                                     ; 251.07 MHz ( period = 3.983 ns )                    ; wimp51_lab3:inst3|ir_out_3          ; wimp51_lab3:inst3|acc_out_2         ; clk        ; clk      ; None                        ; None                      ; 4.973 ns                ;
+; N/A                                     ; 251.19 MHz ( period = 3.981 ns )                    ; wimp51_lab3:inst3|ir_out_7          ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 4.776 ns                ;
+; N/A                                     ; 251.26 MHz ( period = 3.980 ns )                    ; wimp51_lab3:inst3|ir_out_7          ; wimp51_lab3:inst3|acc_out_3         ; clk        ; clk      ; None                        ; None                      ; 4.775 ns                ;
+; N/A                                     ; 251.38 MHz ( period = 3.978 ns )                    ; wimp51_lab3:inst3|ir_out_7          ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 4.773 ns                ;
+; N/A                                     ; 251.51 MHz ( period = 3.976 ns )                    ; wimp51_lab3:inst3|acc_out_3         ; wimp51_lab3:inst3|alu:ALU|Q_C       ; clk        ; clk      ; None                        ; None                      ; 3.641 ns                ;
+; N/A                                     ; 253.87 MHz ( period = 3.939 ns )                    ; wimp51_lab3:inst3|ir_out_3          ; wimp51_lab3:inst3|acc_out_1         ; clk        ; clk      ; None                        ; None                      ; 4.809 ns                ;
+; N/A                                     ; 254.07 MHz ( period = 3.936 ns )                    ; wimp51_lab3:inst3|ir_out_4          ; wimp51_lab3:inst3|acc_out_0         ; clk        ; clk      ; None                        ; None                      ; 4.609 ns                ;
+; N/A                                     ; 254.39 MHz ( period = 3.931 ns )                    ; wimp51_lab3:inst3|acc_out_5         ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 3.644 ns                ;
+; N/A                                     ; 254.65 MHz ( period = 3.927 ns )                    ; wimp51_lab3:inst3|ir_out_2          ; wimp51_lab3:inst3|aux_out_2         ; clk        ; clk      ; None                        ; None                      ; 4.899 ns                ;
+; N/A                                     ; 254.97 MHz ( period = 3.922 ns )                    ; wimp51_lab3:inst3|aux_out_0         ; wimp51_lab3:inst3|acc_out_3         ; clk        ; clk      ; None                        ; None                      ; 3.534 ns                ;
+; N/A                                     ; 255.17 MHz ( period = 3.919 ns )                    ; wimp51_lab3:inst3|aux_out_0         ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 3.531 ns                ;
+; N/A                                     ; 255.17 MHz ( period = 3.919 ns )                    ; wimp51_lab3:inst3|alu:ALU|Q_C       ; wimp51_lab3:inst3|acc_out_3         ; clk        ; clk      ; None                        ; None                      ; 3.826 ns                ;
+; N/A                                     ; 255.30 MHz ( period = 3.917 ns )                    ; wimp51_lab3:inst3|acc_out_5         ; wimp51_lab3:inst3|alu:ALU|Q_C       ; clk        ; clk      ; None                        ; None                      ; 3.509 ns                ;
+; N/A                                     ; 255.36 MHz ( period = 3.916 ns )                    ; wimp51_lab3:inst3|alu:ALU|Q_C       ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 3.823 ns                ;
+; N/A                                     ; 255.36 MHz ( period = 3.916 ns )                    ; wimp51_lab3:inst3|addr_dup0_1       ; I8051_ROM:inst|data[5]              ; clk        ; clk      ; None                        ; None                      ; 3.163 ns                ;
+; N/A                                     ; 255.62 MHz ( period = 3.912 ns )                    ; wimp51_lab3:inst3|ir_out_4          ; wimp51_lab3:inst3|acc_out_3         ; clk        ; clk      ; None                        ; None                      ; 4.705 ns                ;
+; N/A                                     ; 255.75 MHz ( period = 3.910 ns )                    ; wimp51_lab3:inst3|aux_out_3         ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 3.515 ns                ;
+; N/A                                     ; 256.08 MHz ( period = 3.905 ns )                    ; wimp51_lab3:inst3|aux_out_0         ; wimp51_lab3:inst3|alu:ALU|Q_C       ; clk        ; clk      ; None                        ; None                      ; 3.396 ns                ;
+; N/A                                     ; 256.28 MHz ( period = 3.902 ns )                    ; wimp51_lab3:inst3|alu:ALU|Q_C       ; wimp51_lab3:inst3|alu:ALU|Q_C       ; clk        ; clk      ; None                        ; None                      ; 3.688 ns                ;
+; N/A                                     ; 256.67 MHz ( period = 3.896 ns )                    ; wimp51_lab3:inst3|aux_out_3         ; wimp51_lab3:inst3|alu:ALU|Q_C       ; clk        ; clk      ; None                        ; None                      ; 3.380 ns                ;
+; N/A                                     ; 256.81 MHz ( period = 3.894 ns )                    ; wimp51_lab3:inst3|ir_out_0          ; wimp51_lab3:inst3|acc_out_0         ; clk        ; clk      ; None                        ; None                      ; 4.567 ns                ;
+; N/A                                     ; 256.87 MHz ( period = 3.893 ns )                    ; wimp51_lab3:inst3|ir_out_2          ; wimp51_lab3:inst3|aux_out_1         ; clk        ; clk      ; None                        ; None                      ; 4.747 ns                ;
+; N/A                                     ; 257.14 MHz ( period = 3.889 ns )                    ; wimp51_lab3:inst3|addr_dup0_3       ; I8051_ROM:inst|data[7]              ; clk        ; clk      ; None                        ; None                      ; 3.561 ns                ;
+; N/A                                     ; 257.27 MHz ( period = 3.887 ns )                    ; wimp51_lab3:inst3|aux_out_5         ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 3.499 ns                ;
+; N/A                                     ; 257.33 MHz ( period = 3.886 ns )                    ; wimp51_lab3:inst3|aux_out_0         ; wimp51_lab3:inst3|acc_out_2         ; clk        ; clk      ; None                        ; None                      ; 3.498 ns                ;
+; N/A                                     ; 257.53 MHz ( period = 3.883 ns )                    ; wimp51_lab3:inst3|alu:ALU|Q_C       ; wimp51_lab3:inst3|acc_out_2         ; clk        ; clk      ; None                        ; None                      ; 3.790 ns                ;
+; N/A                                     ; 259.00 MHz ( period = 3.861 ns )                    ; wimp51_lab3:inst3|acc_out_2         ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 3.647 ns                ;
+; N/A                                     ; 259.94 MHz ( period = 3.847 ns )                    ; wimp51_lab3:inst3|ir_out_0          ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 4.640 ns                ;
+; N/A                                     ; 260.01 MHz ( period = 3.846 ns )                    ; wimp51_lab3:inst3|ir_out_0          ; wimp51_lab3:inst3|acc_out_3         ; clk        ; clk      ; None                        ; None                      ; 4.639 ns                ;
+; N/A                                     ; 260.15 MHz ( period = 3.844 ns )                    ; wimp51_lab3:inst3|ir_out_0          ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 4.637 ns                ;
+; N/A                                     ; 261.44 MHz ( period = 3.825 ns )                    ; wimp51_lab3:inst3|ir_out_0          ; wimp51_lab3:inst3|aux_out_4         ; clk        ; clk      ; None                        ; None                      ; 4.792 ns                ;
+; N/A                                     ; 261.78 MHz ( period = 3.820 ns )                    ; wimp51_lab3:inst3|ir_out_4          ; wimp51_lab3:inst3|acc_out_5         ; clk        ; clk      ; None                        ; None                      ; 4.686 ns                ;
+; N/A                                     ; 262.74 MHz ( period = 3.806 ns )                    ; wimp51_lab3:inst3|acc_out_4         ; wimp51_lab3:inst3|addr_dup0_4       ; clk        ; clk      ; None                        ; None                      ; 4.672 ns                ;
+; N/A                                     ; 262.74 MHz ( period = 3.806 ns )                    ; wimp51_lab3:inst3|acc_out_4         ; wimp51_lab3:inst3|addr_dup0_0       ; clk        ; clk      ; None                        ; None                      ; 4.672 ns                ;
+; N/A                                     ; 262.74 MHz ( period = 3.806 ns )                    ; wimp51_lab3:inst3|acc_out_4         ; wimp51_lab3:inst3|addr_dup0_2       ; clk        ; clk      ; None                        ; None                      ; 4.672 ns                ;
+; N/A                                     ; 262.74 MHz ( period = 3.806 ns )                    ; wimp51_lab3:inst3|acc_out_4         ; wimp51_lab3:inst3|addr_dup0_1       ; clk        ; clk      ; None                        ; None                      ; 4.672 ns                ;
+; N/A                                     ; 262.74 MHz ( period = 3.806 ns )                    ; wimp51_lab3:inst3|acc_out_4         ; wimp51_lab3:inst3|addr_dup0_3       ; clk        ; clk      ; None                        ; None                      ; 4.672 ns                ;
+; N/A                                     ; 262.74 MHz ( period = 3.806 ns )                    ; wimp51_lab3:inst3|acc_out_4         ; wimp51_lab3:inst3|addr_dup0_6       ; clk        ; clk      ; None                        ; None                      ; 4.672 ns                ;
+; N/A                                     ; 262.74 MHz ( period = 3.806 ns )                    ; wimp51_lab3:inst3|acc_out_4         ; wimp51_lab3:inst3|addr_dup0_5       ; clk        ; clk      ; None                        ; None                      ; 4.672 ns                ;
+; N/A                                     ; 262.74 MHz ( period = 3.806 ns )                    ; wimp51_lab3:inst3|acc_out_4         ; wimp51_lab3:inst3|addr_dup0_7       ; clk        ; clk      ; None                        ; None                      ; 4.672 ns                ;
+; N/A                                     ; 263.44 MHz ( period = 3.796 ns )                    ; wimp51_lab3:inst3|ir_out_1          ; wimp51_lab3:inst3|aux_out_5         ; clk        ; clk      ; None                        ; None                      ; 4.765 ns                ;
+; N/A                                     ; 264.13 MHz ( period = 3.786 ns )                    ; wimp51_lab3:inst3|ir_out_7          ; wimp51_lab3:inst3|acc_out_5         ; clk        ; clk      ; None                        ; None                      ; 4.654 ns                ;
+; N/A                                     ; 264.90 MHz ( period = 3.775 ns )                    ; wimp51_lab3:inst3|ir_out_3          ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 4.765 ns                ;
+; N/A                                     ; 265.04 MHz ( period = 3.773 ns )                    ; wimp51_lab3:inst3|ir_out_0          ; wimp51_lab3:inst3|aux_out_2         ; clk        ; clk      ; None                        ; None                      ; 4.745 ns                ;
+; N/A                                     ; 265.18 MHz ( period = 3.771 ns )                    ; wimp51_lab3:inst3|ir_out_7          ; wimp51_lab3:inst3|acc_out_4         ; clk        ; clk      ; None                        ; None                      ; 4.639 ns                ;
+; N/A                                     ; 265.39 MHz ( period = 3.768 ns )                    ; wimp51_lab3:inst3|acc_out_0         ; wimp51_lab3:inst3|addr_dup0_4       ; clk        ; clk      ; None                        ; None                      ; 4.827 ns                ;
+; N/A                                     ; 265.39 MHz ( period = 3.768 ns )                    ; wimp51_lab3:inst3|acc_out_0         ; wimp51_lab3:inst3|addr_dup0_0       ; clk        ; clk      ; None                        ; None                      ; 4.827 ns                ;
+; N/A                                     ; 265.39 MHz ( period = 3.768 ns )                    ; wimp51_lab3:inst3|acc_out_0         ; wimp51_lab3:inst3|addr_dup0_2       ; clk        ; clk      ; None                        ; None                      ; 4.827 ns                ;
+; N/A                                     ; 265.39 MHz ( period = 3.768 ns )                    ; wimp51_lab3:inst3|acc_out_0         ; wimp51_lab3:inst3|addr_dup0_1       ; clk        ; clk      ; None                        ; None                      ; 4.827 ns                ;
+; N/A                                     ; 265.39 MHz ( period = 3.768 ns )                    ; wimp51_lab3:inst3|acc_out_0         ; wimp51_lab3:inst3|addr_dup0_3       ; clk        ; clk      ; None                        ; None                      ; 4.827 ns                ;
+; N/A                                     ; 265.39 MHz ( period = 3.768 ns )                    ; wimp51_lab3:inst3|acc_out_0         ; wimp51_lab3:inst3|addr_dup0_6       ; clk        ; clk      ; None                        ; None                      ; 4.827 ns                ;
+; N/A                                     ; 265.39 MHz ( period = 3.768 ns )                    ; wimp51_lab3:inst3|acc_out_0         ; wimp51_lab3:inst3|addr_dup0_5       ; clk        ; clk      ; None                        ; None                      ; 4.827 ns                ;
+; N/A                                     ; 265.39 MHz ( period = 3.768 ns )                    ; wimp51_lab3:inst3|acc_out_0         ; wimp51_lab3:inst3|addr_dup0_7       ; clk        ; clk      ; None                        ; None                      ; 4.827 ns                ;
+; N/A                                     ; 265.89 MHz ( period = 3.761 ns )                    ; wimp51_lab3:inst3|ir_out_3          ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 4.751 ns                ;
+; N/A                                     ; 265.96 MHz ( period = 3.760 ns )                    ; wimp51_lab3:inst3|acc_out_6         ; wimp51_lab3:inst3|addr_dup0_4       ; clk        ; clk      ; None                        ; None                      ; 4.699 ns                ;
+; N/A                                     ; 265.96 MHz ( period = 3.760 ns )                    ; wimp51_lab3:inst3|acc_out_6         ; wimp51_lab3:inst3|addr_dup0_0       ; clk        ; clk      ; None                        ; None                      ; 4.699 ns                ;
+; N/A                                     ; 265.96 MHz ( period = 3.760 ns )                    ; wimp51_lab3:inst3|acc_out_6         ; wimp51_lab3:inst3|addr_dup0_2       ; clk        ; clk      ; None                        ; None                      ; 4.699 ns                ;
+; N/A                                     ; 265.96 MHz ( period = 3.760 ns )                    ; wimp51_lab3:inst3|acc_out_6         ; wimp51_lab3:inst3|addr_dup0_1       ; clk        ; clk      ; None                        ; None                      ; 4.699 ns                ;
+; N/A                                     ; 265.96 MHz ( period = 3.760 ns )                    ; wimp51_lab3:inst3|acc_out_6         ; wimp51_lab3:inst3|addr_dup0_3       ; clk        ; clk      ; None                        ; None                      ; 4.699 ns                ;
+; N/A                                     ; 265.96 MHz ( period = 3.760 ns )                    ; wimp51_lab3:inst3|acc_out_6         ; wimp51_lab3:inst3|addr_dup0_6       ; clk        ; clk      ; None                        ; None                      ; 4.699 ns                ;
+; N/A                                     ; 265.96 MHz ( period = 3.760 ns )                    ; wimp51_lab3:inst3|acc_out_6         ; wimp51_lab3:inst3|addr_dup0_5       ; clk        ; clk      ; None                        ; None                      ; 4.699 ns                ;
+; N/A                                     ; 265.96 MHz ( period = 3.760 ns )                    ; wimp51_lab3:inst3|acc_out_6         ; wimp51_lab3:inst3|addr_dup0_7       ; clk        ; clk      ; None                        ; None                      ; 4.699 ns                ;
+; N/A                                     ; 266.17 MHz ( period = 3.757 ns )                    ; wimp51_lab3:inst3|ir_out_3          ; wimp51_lab3:inst3|acc_out_0         ; clk        ; clk      ; None                        ; None                      ; 4.627 ns                ;
+; N/A                                     ; 266.88 MHz ( period = 3.747 ns )                    ; wimp51_lab3:inst3|addr_dup0_0       ; I8051_ROM:inst|data[6]              ; clk        ; clk      ; None                        ; None                      ; 3.465 ns                ;
+; N/A                                     ; 267.09 MHz ( period = 3.744 ns )                    ; wimp51_lab3:inst3|acc_out_5         ; wimp51_lab3:inst3|addr_dup0_4       ; clk        ; clk      ; None                        ; None                      ; 4.610 ns                ;
+; N/A                                     ; 267.09 MHz ( period = 3.744 ns )                    ; wimp51_lab3:inst3|acc_out_5         ; wimp51_lab3:inst3|addr_dup0_0       ; clk        ; clk      ; None                        ; None                      ; 4.610 ns                ;
+; N/A                                     ; 267.09 MHz ( period = 3.744 ns )                    ; wimp51_lab3:inst3|acc_out_5         ; wimp51_lab3:inst3|addr_dup0_2       ; clk        ; clk      ; None                        ; None                      ; 4.610 ns                ;
+; N/A                                     ; 267.09 MHz ( period = 3.744 ns )                    ; wimp51_lab3:inst3|acc_out_5         ; wimp51_lab3:inst3|addr_dup0_1       ; clk        ; clk      ; None                        ; None                      ; 4.610 ns                ;
+; N/A                                     ; 267.09 MHz ( period = 3.744 ns )                    ; wimp51_lab3:inst3|acc_out_5         ; wimp51_lab3:inst3|addr_dup0_3       ; clk        ; clk      ; None                        ; None                      ; 4.610 ns                ;
+; N/A                                     ; 267.09 MHz ( period = 3.744 ns )                    ; wimp51_lab3:inst3|acc_out_5         ; wimp51_lab3:inst3|addr_dup0_6       ; clk        ; clk      ; None                        ; None                      ; 4.610 ns                ;
+; N/A                                     ; 267.09 MHz ( period = 3.744 ns )                    ; wimp51_lab3:inst3|acc_out_5         ; wimp51_lab3:inst3|addr_dup0_5       ; clk        ; clk      ; None                        ; None                      ; 4.610 ns                ;
+; N/A                                     ; 267.09 MHz ( period = 3.744 ns )                    ; wimp51_lab3:inst3|acc_out_5         ; wimp51_lab3:inst3|addr_dup0_7       ; clk        ; clk      ; None                        ; None                      ; 4.610 ns                ;
+; N/A                                     ; 267.38 MHz ( period = 3.740 ns )                    ; wimp51_lab3:inst3|acc_out_1         ; wimp51_lab3:inst3|acc_out_3         ; clk        ; clk      ; None                        ; None                      ; 3.646 ns                ;
+; N/A                                     ; 267.59 MHz ( period = 3.737 ns )                    ; wimp51_lab3:inst3|acc_out_1         ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 3.643 ns                ;
+; N/A                                     ; 268.10 MHz ( period = 3.730 ns )                    ; wimp51_lab3:inst3|ir_out_2          ; wimp51_lab3:inst3|aux_out_3         ; clk        ; clk      ; None                        ; None                      ; 4.704 ns                ;
+; N/A                                     ; 268.17 MHz ( period = 3.729 ns )                    ; wimp51_lab3:inst3|addr_dup0_2       ; I8051_ROM:inst|data[6]              ; clk        ; clk      ; None                        ; None                      ; 3.447 ns                ;
+; N/A                                     ; 268.60 MHz ( period = 3.723 ns )                    ; wimp51_lab3:inst3|acc_out_1         ; wimp51_lab3:inst3|alu:ALU|Q_C       ; clk        ; clk      ; None                        ; None                      ; 3.508 ns                ;
+; N/A                                     ; 269.25 MHz ( period = 3.714 ns )                    ; wimp51_lab3:inst3|addr_dup0_1       ; I8051_ROM:inst|data[7]              ; clk        ; clk      ; None                        ; None                      ; 3.386 ns                ;
+; N/A                                     ; 269.40 MHz ( period = 3.712 ns )                    ; wimp51_lab3:inst3|aux_out_2         ; wimp51_lab3:inst3|acc_out_3         ; clk        ; clk      ; None                        ; None                      ; 3.319 ns                ;
+; N/A                                     ; 269.61 MHz ( period = 3.709 ns )                    ; wimp51_lab3:inst3|aux_out_2         ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 3.316 ns                ;
+; N/A                                     ; 269.61 MHz ( period = 3.709 ns )                    ; wimp51_lab3:inst3|ir_out_3          ; wimp51_lab3:inst3|acc_out_3         ; clk        ; clk      ; None                        ; None                      ; 4.699 ns                ;
+; N/A                                     ; 269.98 MHz ( period = 3.704 ns )                    ; wimp51_lab3:inst3|acc_out_1         ; wimp51_lab3:inst3|acc_out_2         ; clk        ; clk      ; None                        ; None                      ; 3.610 ns                ;
+; N/A                                     ; 270.05 MHz ( period = 3.703 ns )                    ; wimp51_lab3:inst3|addr_dup0_2       ; I8051_ROM:inst|data[1]              ; clk        ; clk      ; None                        ; None                      ; 3.417 ns                ;
+; N/A                                     ; 270.27 MHz ( period = 3.700 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|regfile:REGS|Q5_4 ; clk        ; clk      ; None                        ; None                      ; 4.463 ns                ;
+; N/A                                     ; 270.27 MHz ( period = 3.700 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|regfile:REGS|Q5_2 ; clk        ; clk      ; None                        ; None                      ; 4.463 ns                ;
+; N/A                                     ; 270.27 MHz ( period = 3.700 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|regfile:REGS|Q5_1 ; clk        ; clk      ; None                        ; None                      ; 4.463 ns                ;
+; N/A                                     ; 270.27 MHz ( period = 3.700 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|regfile:REGS|Q5_3 ; clk        ; clk      ; None                        ; None                      ; 4.463 ns                ;
+; N/A                                     ; 270.27 MHz ( period = 3.700 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|regfile:REGS|Q5_0 ; clk        ; clk      ; None                        ; None                      ; 4.463 ns                ;
+; N/A                                     ; 270.27 MHz ( period = 3.700 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|regfile:REGS|Q5_5 ; clk        ; clk      ; None                        ; None                      ; 4.463 ns                ;
+; N/A                                     ; 270.27 MHz ( period = 3.700 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|regfile:REGS|Q5_6 ; clk        ; clk      ; None                        ; None                      ; 4.463 ns                ;
+; N/A                                     ; 270.27 MHz ( period = 3.700 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|regfile:REGS|Q5_7 ; clk        ; clk      ; None                        ; None                      ; 4.463 ns                ;
+; N/A                                     ; 270.64 MHz ( period = 3.695 ns )                    ; wimp51_lab3:inst3|aux_out_2         ; wimp51_lab3:inst3|alu:ALU|Q_C       ; clk        ; clk      ; None                        ; None                      ; 3.181 ns                ;
+; N/A                                     ; 270.78 MHz ( period = 3.693 ns )                    ; wimp51_lab3:inst3|CU_state_1        ; wimp51_lab3:inst3|acc_out_6         ; clk        ; clk      ; None                        ; None                      ; 5.025 ns                ;
+; N/A                                     ; 271.67 MHz ( period = 3.681 ns )                    ; wimp51_lab3:inst3|acc_out_3         ; wimp51_lab3:inst3|acc_out_3         ; clk        ; clk      ; None                        ; None                      ; 3.467 ns                ;
+; N/A                                     ; 271.81 MHz ( period = 3.679 ns )                    ; wimp51_lab3:inst3|ir_out_4          ; wimp51_lab3:inst3|acc_out_4         ; clk        ; clk      ; None                        ; None                      ; 4.545 ns                ;
+; N/A                                     ; 272.26 MHz ( period = 3.673 ns )                    ; wimp51_lab3:inst3|addr_dup0_4       ; I8051_ROM:inst|data[1]              ; clk        ; clk      ; None                        ; None                      ; 3.387 ns                ;
+; N/A                                     ; 272.41 MHz ( period = 3.671 ns )                    ; wimp51_lab3:inst3|ir_out_0          ; wimp51_lab3:inst3|aux_out_1         ; clk        ; clk      ; None                        ; None                      ; 4.525 ns                ;
+; N/A                                     ; 272.78 MHz ( period = 3.666 ns )                    ; wimp51_lab3:inst3|ir_out_2          ; wimp51_lab3:inst3|aux_out_5         ; clk        ; clk      ; None                        ; None                      ; 4.633 ns                ;
+; N/A                                     ; 273.52 MHz ( period = 3.656 ns )                    ; wimp51_lab3:inst3|acc_out_2         ; wimp51_lab3:inst3|addr_dup0_4       ; clk        ; clk      ; None                        ; None                      ; 4.595 ns                ;
+; N/A                                     ; 273.52 MHz ( period = 3.656 ns )                    ; wimp51_lab3:inst3|acc_out_2         ; wimp51_lab3:inst3|addr_dup0_0       ; clk        ; clk      ; None                        ; None                      ; 4.595 ns                ;
+; N/A                                     ; 273.52 MHz ( period = 3.656 ns )                    ; wimp51_lab3:inst3|acc_out_2         ; wimp51_lab3:inst3|addr_dup0_2       ; clk        ; clk      ; None                        ; None                      ; 4.595 ns                ;
+; N/A                                     ; 273.52 MHz ( period = 3.656 ns )                    ; wimp51_lab3:inst3|acc_out_2         ; wimp51_lab3:inst3|addr_dup0_1       ; clk        ; clk      ; None                        ; None                      ; 4.595 ns                ;
+; N/A                                     ; 273.52 MHz ( period = 3.656 ns )                    ; wimp51_lab3:inst3|acc_out_2         ; wimp51_lab3:inst3|addr_dup0_3       ; clk        ; clk      ; None                        ; None                      ; 4.595 ns                ;
+; N/A                                     ; 273.52 MHz ( period = 3.656 ns )                    ; wimp51_lab3:inst3|acc_out_2         ; wimp51_lab3:inst3|addr_dup0_6       ; clk        ; clk      ; None                        ; None                      ; 4.595 ns                ;
+; N/A                                     ; 273.52 MHz ( period = 3.656 ns )                    ; wimp51_lab3:inst3|acc_out_2         ; wimp51_lab3:inst3|addr_dup0_5       ; clk        ; clk      ; None                        ; None                      ; 4.595 ns                ;
+; N/A                                     ; 273.52 MHz ( period = 3.656 ns )                    ; wimp51_lab3:inst3|acc_out_2         ; wimp51_lab3:inst3|addr_dup0_7       ; clk        ; clk      ; None                        ; None                      ; 4.595 ns                ;
+; N/A                                     ; 273.82 MHz ( period = 3.652 ns )                    ; wimp51_lab3:inst3|ir_out_0          ; wimp51_lab3:inst3|acc_out_5         ; clk        ; clk      ; None                        ; None                      ; 4.518 ns                ;
+; N/A                                     ; 274.12 MHz ( period = 3.648 ns )                    ; wimp51_lab3:inst3|ir_out_7          ; wimp51_lab3:inst3|alu:ALU|Q_C       ; clk        ; clk      ; None                        ; None                      ; 4.322 ns                ;
+; N/A                                     ; 274.95 MHz ( period = 3.637 ns )                    ; wimp51_lab3:inst3|ir_out_0          ; wimp51_lab3:inst3|acc_out_4         ; clk        ; clk      ; None                        ; None                      ; 4.503 ns                ;
+; N/A                                     ; 274.95 MHz ( period = 3.637 ns )                    ; wimp51_lab3:inst3|CU_state_1        ; wimp51_lab3:inst3|acc_out_7         ; clk        ; clk      ; None                        ; None                      ; 4.969 ns                ;
+; N/A                                     ; 275.03 MHz ( period = 3.636 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|regfile:REGS|R0_1 ; clk        ; clk      ; None                        ; None                      ; 4.461 ns                ;
+; N/A                                     ; 275.03 MHz ( period = 3.636 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|regfile:REGS|R0_0 ; clk        ; clk      ; None                        ; None                      ; 4.461 ns                ;
+; N/A                                     ; 275.03 MHz ( period = 3.636 ns )                    ; wimp51_lab3:inst3|ir_out_6          ; wimp51_lab3:inst3|regfile:REGS|R0_5 ; clk        ; clk      ; None                        ; None                      ; 4.461 ns                ;
+; Timing analysis restricted to 200 rows. ; To change the limit use Settings (Assignments menu) ;                                     ;                                     ;            ;          ;                             ;                           ;                         ;
++-----------------------------------------+-----------------------------------------------------+-------------------------------------+-------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Hold: 'clk'                                                                                                                                                                                                     ;
++------------------------------------------+-------------------------------+-------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+; Minimum Slack                            ; From                          ; To                            ; From Clock ; To Clock ; Required Hold Relationship ; Required Shortest P2P Time ; Actual Shortest P2P Time ;
++------------------------------------------+-------------------------------+-------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_0  ; wimp51_lab3:inst3|addr_dup0_7 ; clk        ; clk      ; None                       ; None                       ; 1.717 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_1  ; wimp51_lab3:inst3|addr_dup0_6 ; clk        ; clk      ; None                       ; None                       ; 1.848 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_1  ; wimp51_lab3:inst3|addr_dup0_7 ; clk        ; clk      ; None                       ; None                       ; 1.852 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_4 ; I8051_ROM:inst|data[4]        ; clk        ; clk      ; None                       ; None                       ; 2.541 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_1 ; I8051_ROM:inst|data[2]        ; clk        ; clk      ; None                       ; None                       ; 2.593 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_0  ; wimp51_lab3:inst3|addr_dup0_6 ; clk        ; clk      ; None                       ; None                       ; 1.982 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_1 ; I8051_ROM:inst|data[4]        ; clk        ; clk      ; None                       ; None                       ; 2.626 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_4 ; I8051_ROM:inst|data[6]        ; clk        ; clk      ; None                       ; None                       ; 2.628 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_0  ; wimp51_lab3:inst3|addr_dup0_3 ; clk        ; clk      ; None                       ; None                       ; 2.059 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_0  ; wimp51_lab3:inst3|addr_dup0_5 ; clk        ; clk      ; None                       ; None                       ; 2.072 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_1 ; I8051_ROM:inst|data[6]        ; clk        ; clk      ; None                       ; None                       ; 2.706 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_4 ; I8051_ROM:inst|data[2]        ; clk        ; clk      ; None                       ; None                       ; 2.715 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_0  ; wimp51_lab3:inst3|addr_dup0_4 ; clk        ; clk      ; None                       ; None                       ; 2.097 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_4 ; I8051_ROM:inst|data[3]        ; clk        ; clk      ; None                       ; None                       ; 2.893 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_3 ; I8051_ROM:inst|data[4]        ; clk        ; clk      ; None                       ; None                       ; 2.803 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_4 ; I8051_ROM:inst|data[5]        ; clk        ; clk      ; None                       ; None                       ; 2.806 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_4 ; I8051_ROM:inst|data[1]        ; clk        ; clk      ; None                       ; None                       ; 2.826 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_0  ; wimp51_lab3:inst3|addr_dup0_0 ; clk        ; clk      ; None                       ; None                       ; 2.223 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_0  ; wimp51_lab3:inst3|addr_dup0_2 ; clk        ; clk      ; None                       ; None                       ; 2.223 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_0  ; wimp51_lab3:inst3|addr_dup0_1 ; clk        ; clk      ; None                       ; None                       ; 2.223 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_3 ; I8051_ROM:inst|data[2]        ; clk        ; clk      ; None                       ; None                       ; 2.856 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_3 ; I8051_ROM:inst|data[6]        ; clk        ; clk      ; None                       ; None                       ; 2.866 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_1 ; I8051_ROM:inst|data[5]        ; clk        ; clk      ; None                       ; None                       ; 2.889 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_4 ; I8051_ROM:inst|data[0]        ; clk        ; clk      ; None                       ; None                       ; 2.906 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_0 ; I8051_ROM:inst|data[1]        ; clk        ; clk      ; None                       ; None                       ; 3.009 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_0 ; I8051_ROM:inst|data[2]        ; clk        ; clk      ; None                       ; None                       ; 3.010 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_1 ; I8051_ROM:inst|data[1]        ; clk        ; clk      ; None                       ; None                       ; 3.029 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_3 ; I8051_ROM:inst|data[3]        ; clk        ; clk      ; None                       ; None                       ; 3.147 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_3 ; I8051_ROM:inst|data[5]        ; clk        ; clk      ; None                       ; None                       ; 3.049 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_4 ; I8051_ROM:inst|data[7]        ; clk        ; clk      ; None                       ; None                       ; 3.053 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_1  ; wimp51_lab3:inst3|addr_dup0_3 ; clk        ; clk      ; None                       ; None                       ; 2.484 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_2 ; I8051_ROM:inst|data[4]        ; clk        ; clk      ; None                       ; None                       ; 3.104 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_1 ; I8051_ROM:inst|data[7]        ; clk        ; clk      ; None                       ; None                       ; 3.109 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_0 ; I8051_ROM:inst|data[4]        ; clk        ; clk      ; None                       ; None                       ; 3.111 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_1  ; wimp51_lab3:inst3|addr_dup0_5 ; clk        ; clk      ; None                       ; None                       ; 2.497 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_3 ; I8051_ROM:inst|data[1]        ; clk        ; clk      ; None                       ; None                       ; 3.126 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_1 ; I8051_ROM:inst|data[0]        ; clk        ; clk      ; None                       ; None                       ; 3.133 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_1  ; wimp51_lab3:inst3|addr_dup0_4 ; clk        ; clk      ; None                       ; None                       ; 2.522 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_2 ; I8051_ROM:inst|data[2]        ; clk        ; clk      ; None                       ; None                       ; 3.143 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_2 ; I8051_ROM:inst|data[6]        ; clk        ; clk      ; None                       ; None                       ; 3.169 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_0 ; I8051_ROM:inst|data[6]        ; clk        ; clk      ; None                       ; None                       ; 3.188 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_0 ; I8051_ROM:inst|data[3]        ; clk        ; clk      ; None                       ; None                       ; 3.318 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_3 ; I8051_ROM:inst|data[0]        ; clk        ; clk      ; None                       ; None                       ; 3.225 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_1  ; wimp51_lab3:inst3|addr_dup0_0 ; clk        ; clk      ; None                       ; None                       ; 2.616 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_1  ; wimp51_lab3:inst3|addr_dup0_2 ; clk        ; clk      ; None                       ; None                       ; 2.616 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|CU_state_1  ; wimp51_lab3:inst3|addr_dup0_1 ; clk        ; clk      ; None                       ; None                       ; 2.616 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_3 ; I8051_ROM:inst|data[7]        ; clk        ; clk      ; None                       ; None                       ; 3.280 ns                 ;
+; Not operational: Clock Skew > Data Delay ; wimp51_lab3:inst3|addr_dup0_2 ; I8051_ROM:inst|data[3]        ; clk        ; clk      ; None                       ; None                       ; 3.433 ns                 ;
++------------------------------------------+-------------------------------+-------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; tco                                                                                                                                                                  ;
++-----------------------------------------+-----------------------------------------------------+------------+-------------------------------+------------+------------+
+; Slack                                   ; Required tco                                        ; Actual tco ; From                          ; To         ; From Clock ;
++-----------------------------------------+-----------------------------------------------------+------------+-------------------------------+------------+------------+
+; N/A                                     ; None                                                ; 16.382 ns  ; wimp51_lab3:inst3|ir_out_2    ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 16.251 ns  ; wimp51_lab3:inst3|ir_out_6    ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 16.249 ns  ; wimp51_lab3:inst3|ir_out_5    ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 16.249 ns  ; wimp51_lab3:inst3|ir_out_2    ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 16.159 ns  ; wimp51_lab3:inst3|ir_out_1    ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 16.118 ns  ; wimp51_lab3:inst3|ir_out_6    ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 16.116 ns  ; wimp51_lab3:inst3|ir_out_5    ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 16.095 ns  ; wimp51_lab3:inst3|ir_out_2    ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 16.094 ns  ; wimp51_lab3:inst3|ir_out_2    ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 16.073 ns  ; wimp51_lab3:inst3|ir_out_2    ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 16.066 ns  ; wimp51_lab3:inst3|ir_out_2    ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 16.057 ns  ; wimp51_lab3:inst3|ir_out_2    ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 16.026 ns  ; wimp51_lab3:inst3|ir_out_1    ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.964 ns  ; wimp51_lab3:inst3|ir_out_6    ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.963 ns  ; wimp51_lab3:inst3|ir_out_6    ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 15.962 ns  ; wimp51_lab3:inst3|ir_out_5    ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.961 ns  ; wimp51_lab3:inst3|ir_out_5    ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 15.942 ns  ; wimp51_lab3:inst3|ir_out_6    ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.940 ns  ; wimp51_lab3:inst3|ir_out_5    ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.935 ns  ; wimp51_lab3:inst3|ir_out_6    ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.933 ns  ; wimp51_lab3:inst3|ir_out_5    ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.926 ns  ; wimp51_lab3:inst3|ir_out_6    ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 15.924 ns  ; wimp51_lab3:inst3|ir_out_5    ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 15.872 ns  ; wimp51_lab3:inst3|ir_out_1    ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.871 ns  ; wimp51_lab3:inst3|ir_out_1    ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 15.850 ns  ; wimp51_lab3:inst3|ir_out_1    ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.843 ns  ; wimp51_lab3:inst3|ir_out_1    ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.834 ns  ; wimp51_lab3:inst3|ir_out_1    ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 15.791 ns  ; wimp51_lab3:inst3|ir_out_7    ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.699 ns  ; wimp51_lab3:inst3|ir_out_4    ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.667 ns  ; wimp51_lab3:inst3|ir_out_1    ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.658 ns  ; wimp51_lab3:inst3|ir_out_7    ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.657 ns  ; wimp51_lab3:inst3|ir_out_0    ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.629 ns  ; wimp51_lab3:inst3|ir_out_6    ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.626 ns  ; wimp51_lab3:inst3|ir_out_2    ; sim_acc[4] ; clk        ;
+; N/A                                     ; None                                                ; 15.622 ns  ; wimp51_lab3:inst3|ir_out_2    ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.566 ns  ; wimp51_lab3:inst3|ir_out_4    ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.531 ns  ; wimp51_lab3:inst3|aux_out_1   ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.524 ns  ; wimp51_lab3:inst3|ir_out_0    ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.520 ns  ; wimp51_lab3:inst3|ir_out_3    ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.504 ns  ; wimp51_lab3:inst3|ir_out_7    ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.503 ns  ; wimp51_lab3:inst3|ir_out_7    ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 15.495 ns  ; wimp51_lab3:inst3|ir_out_6    ; sim_acc[4] ; clk        ;
+; N/A                                     ; None                                                ; 15.493 ns  ; wimp51_lab3:inst3|ir_out_5    ; sim_acc[4] ; clk        ;
+; N/A                                     ; None                                                ; 15.489 ns  ; wimp51_lab3:inst3|ir_out_5    ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.482 ns  ; wimp51_lab3:inst3|ir_out_7    ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.475 ns  ; wimp51_lab3:inst3|ir_out_7    ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.466 ns  ; wimp51_lab3:inst3|ir_out_7    ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 15.454 ns  ; wimp51_lab3:inst3|acc_out_3   ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.412 ns  ; wimp51_lab3:inst3|ir_out_4    ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.411 ns  ; wimp51_lab3:inst3|ir_out_4    ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 15.409 ns  ; wimp51_lab3:inst3|CU_state_1  ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.403 ns  ; wimp51_lab3:inst3|ir_out_1    ; sim_acc[4] ; clk        ;
+; N/A                                     ; None                                                ; 15.398 ns  ; wimp51_lab3:inst3|aux_out_1   ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.396 ns  ; wimp51_lab3:inst3|ir_out_1    ; acc0[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.390 ns  ; wimp51_lab3:inst3|ir_out_4    ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.387 ns  ; wimp51_lab3:inst3|ir_out_3    ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.383 ns  ; wimp51_lab3:inst3|ir_out_4    ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.383 ns  ; wimp51_lab3:inst3|aux_out_0   ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.380 ns  ; wimp51_lab3:inst3|alu:ALU|Q_C ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.374 ns  ; wimp51_lab3:inst3|ir_out_4    ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 15.374 ns  ; wimp51_lab3:inst3|aux_out_3   ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.370 ns  ; wimp51_lab3:inst3|ir_out_0    ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.369 ns  ; wimp51_lab3:inst3|ir_out_0    ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 15.353 ns  ; wimp51_lab3:inst3|ir_out_6    ; acc0[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.348 ns  ; wimp51_lab3:inst3|ir_out_0    ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.346 ns  ; wimp51_lab3:inst3|ir_out_2    ; acc0[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.341 ns  ; wimp51_lab3:inst3|ir_out_0    ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.332 ns  ; wimp51_lab3:inst3|ir_out_0    ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 15.321 ns  ; wimp51_lab3:inst3|acc_out_3   ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.299 ns  ; wimp51_lab3:inst3|ir_out_7    ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.276 ns  ; wimp51_lab3:inst3|CU_state_1  ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.269 ns  ; wimp51_lab3:inst3|CU_state_0  ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.259 ns  ; wimp51_lab3:inst3|ir_out_1    ; acc0[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.250 ns  ; wimp51_lab3:inst3|aux_out_0   ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.247 ns  ; wimp51_lab3:inst3|alu:ALU|Q_C ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.244 ns  ; wimp51_lab3:inst3|aux_out_1   ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.243 ns  ; wimp51_lab3:inst3|aux_out_1   ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 15.241 ns  ; wimp51_lab3:inst3|aux_out_3   ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.236 ns  ; wimp51_lab3:inst3|ir_out_2    ; sim_acc[5] ; clk        ;
+; N/A                                     ; None                                                ; 15.233 ns  ; wimp51_lab3:inst3|ir_out_3    ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.232 ns  ; wimp51_lab3:inst3|ir_out_3    ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 15.224 ns  ; wimp51_lab3:inst3|ir_out_6    ; acc0[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.222 ns  ; wimp51_lab3:inst3|aux_out_1   ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.217 ns  ; wimp51_lab3:inst3|ir_out_2    ; acc0[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.215 ns  ; wimp51_lab3:inst3|aux_out_1   ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.213 ns  ; wimp51_lab3:inst3|ir_out_5    ; acc0[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.211 ns  ; wimp51_lab3:inst3|ir_out_3    ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.207 ns  ; wimp51_lab3:inst3|acc_out_5   ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.207 ns  ; wimp51_lab3:inst3|ir_out_4    ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.206 ns  ; wimp51_lab3:inst3|aux_out_1   ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 15.205 ns  ; wimp51_lab3:inst3|aux_out_1   ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.204 ns  ; wimp51_lab3:inst3|ir_out_3    ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.201 ns  ; wimp51_lab3:inst3|acc_out_1   ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.196 ns  ; I8051_ROM:inst|data[5]        ; data1[6]   ; clk        ;
+; N/A                                     ; None                                                ; 15.196 ns  ; I8051_ROM:inst|data[5]        ; data1[4]   ; clk        ;
+; N/A                                     ; None                                                ; 15.195 ns  ; wimp51_lab3:inst3|ir_out_3    ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 15.175 ns  ; I8051_ROM:inst|data[5]        ; data1[2]   ; clk        ;
+; N/A                                     ; None                                                ; 15.173 ns  ; wimp51_lab3:inst3|aux_out_2   ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.167 ns  ; wimp51_lab3:inst3|acc_out_3   ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.166 ns  ; wimp51_lab3:inst3|acc_out_3   ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 15.165 ns  ; wimp51_lab3:inst3|ir_out_0    ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.164 ns  ; I8051_ROM:inst|data[5]        ; data1[5]   ; clk        ;
+; N/A                                     ; None                                                ; 15.145 ns  ; wimp51_lab3:inst3|acc_out_3   ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.138 ns  ; wimp51_lab3:inst3|acc_out_3   ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.136 ns  ; wimp51_lab3:inst3|CU_state_0  ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.129 ns  ; wimp51_lab3:inst3|acc_out_3   ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 15.124 ns  ; wimp51_lab3:inst3|ir_out_6    ; sim_acc[5] ; clk        ;
+; N/A                                     ; None                                                ; 15.122 ns  ; wimp51_lab3:inst3|CU_state_1  ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.121 ns  ; wimp51_lab3:inst3|CU_state_1  ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 15.104 ns  ; wimp51_lab3:inst3|acc_out_5   ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.103 ns  ; wimp51_lab3:inst3|ir_out_5    ; sim_acc[5] ; clk        ;
+; N/A                                     ; None                                                ; 15.100 ns  ; wimp51_lab3:inst3|CU_state_1  ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.096 ns  ; wimp51_lab3:inst3|aux_out_0   ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.095 ns  ; wimp51_lab3:inst3|aux_out_0   ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 15.093 ns  ; wimp51_lab3:inst3|alu:ALU|Q_C ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.093 ns  ; wimp51_lab3:inst3|CU_state_1  ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.092 ns  ; wimp51_lab3:inst3|alu:ALU|Q_C ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 15.087 ns  ; wimp51_lab3:inst3|aux_out_3   ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.086 ns  ; wimp51_lab3:inst3|aux_out_3   ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 15.084 ns  ; wimp51_lab3:inst3|CU_state_1  ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 15.084 ns  ; wimp51_lab3:inst3|ir_out_5    ; acc0[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.078 ns  ; wimp51_lab3:inst3|acc_out_0   ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 15.074 ns  ; wimp51_lab3:inst3|aux_out_0   ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.071 ns  ; wimp51_lab3:inst3|alu:ALU|Q_C ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.068 ns  ; wimp51_lab3:inst3|acc_out_1   ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.067 ns  ; wimp51_lab3:inst3|aux_out_0   ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.065 ns  ; wimp51_lab3:inst3|aux_out_3   ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.064 ns  ; wimp51_lab3:inst3|alu:ALU|Q_C ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.058 ns  ; wimp51_lab3:inst3|aux_out_0   ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 15.058 ns  ; wimp51_lab3:inst3|aux_out_3   ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 15.057 ns  ; wimp51_lab3:inst3|aux_out_0   ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.055 ns  ; wimp51_lab3:inst3|alu:ALU|Q_C ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 15.054 ns  ; wimp51_lab3:inst3|alu:ALU|Q_C ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 15.049 ns  ; wimp51_lab3:inst3|aux_out_3   ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 15.040 ns  ; wimp51_lab3:inst3|aux_out_2   ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 15.035 ns  ; wimp51_lab3:inst3|ir_out_7    ; sim_acc[4] ; clk        ;
+; N/A                                     ; None                                                ; 15.028 ns  ; wimp51_lab3:inst3|ir_out_7    ; acc0[5]    ; clk        ;
+; N/A                                     ; None                                                ; 15.028 ns  ; wimp51_lab3:inst3|ir_out_3    ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 14.982 ns  ; wimp51_lab3:inst3|CU_state_0  ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 14.981 ns  ; wimp51_lab3:inst3|CU_state_0  ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 14.965 ns  ; wimp51_lab3:inst3|ir_out_1    ; acc0[6]    ; clk        ;
+; N/A                                     ; None                                                ; 14.960 ns  ; wimp51_lab3:inst3|CU_state_0  ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 14.953 ns  ; wimp51_lab3:inst3|CU_state_0  ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 14.946 ns  ; wimp51_lab3:inst3|acc_out_5   ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 14.945 ns  ; wimp51_lab3:inst3|acc_out_0   ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 14.944 ns  ; wimp51_lab3:inst3|CU_state_0  ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 14.943 ns  ; wimp51_lab3:inst3|ir_out_4    ; sim_acc[4] ; clk        ;
+; N/A                                     ; None                                                ; 14.936 ns  ; wimp51_lab3:inst3|ir_out_4    ; acc0[5]    ; clk        ;
+; N/A                                     ; None                                                ; 14.930 ns  ; wimp51_lab3:inst3|acc_out_2   ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 14.929 ns  ; wimp51_lab3:inst3|aux_out_1   ; acc0[5]    ; clk        ;
+; N/A                                     ; None                                                ; 14.921 ns  ; wimp51_lab3:inst3|acc_out_5   ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 14.921 ns  ; wimp51_lab3:inst3|ir_out_6    ; acc0[6]    ; clk        ;
+; N/A                                     ; None                                                ; 14.920 ns  ; wimp51_lab3:inst3|acc_out_5   ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 14.914 ns  ; wimp51_lab3:inst3|acc_out_1   ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 14.914 ns  ; wimp51_lab3:inst3|ir_out_2    ; acc0[6]    ; clk        ;
+; N/A                                     ; None                                                ; 14.913 ns  ; wimp51_lab3:inst3|acc_out_1   ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 14.907 ns  ; wimp51_lab3:inst3|acc_out_5   ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 14.907 ns  ; wimp51_lab3:inst3|aux_out_4   ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 14.901 ns  ; wimp51_lab3:inst3|ir_out_0    ; sim_acc[4] ; clk        ;
+; N/A                                     ; None                                                ; 14.894 ns  ; wimp51_lab3:inst3|ir_out_0    ; acc0[5]    ; clk        ;
+; N/A                                     ; None                                                ; 14.892 ns  ; wimp51_lab3:inst3|acc_out_1   ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 14.891 ns  ; wimp51_lab3:inst3|ir_out_7    ; acc0[2]    ; clk        ;
+; N/A                                     ; None                                                ; 14.886 ns  ; wimp51_lab3:inst3|aux_out_2   ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 14.886 ns  ; wimp51_lab3:inst3|acc_out_5   ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 14.885 ns  ; wimp51_lab3:inst3|aux_out_2   ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 14.885 ns  ; wimp51_lab3:inst3|acc_out_1   ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 14.876 ns  ; wimp51_lab3:inst3|ir_out_1    ; sim_acc[5] ; clk        ;
+; N/A                                     ; None                                                ; 14.876 ns  ; wimp51_lab3:inst3|acc_out_1   ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 14.875 ns  ; wimp51_lab3:inst3|acc_out_1   ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 14.864 ns  ; I8051_ROM:inst|data[5]        ; data1[0]   ; clk        ;
+; N/A                                     ; None                                                ; 14.864 ns  ; wimp51_lab3:inst3|aux_out_2   ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 14.857 ns  ; wimp51_lab3:inst3|aux_out_2   ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 14.848 ns  ; wimp51_lab3:inst3|aux_out_2   ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 14.847 ns  ; wimp51_lab3:inst3|aux_out_2   ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 14.839 ns  ; wimp51_lab3:inst3|ir_out_6    ; sim_acc[7] ; clk        ;
+; N/A                                     ; None                                                ; 14.816 ns  ; wimp51_lab3:inst3|acc_out_3   ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 14.800 ns  ; wimp51_lab3:inst3|aux_out_1   ; acc0[2]    ; clk        ;
+; N/A                                     ; None                                                ; 14.799 ns  ; wimp51_lab3:inst3|ir_out_4    ; acc0[2]    ; clk        ;
+; N/A                                     ; None                                                ; 14.797 ns  ; wimp51_lab3:inst3|acc_out_2   ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 14.791 ns  ; wimp51_lab3:inst3|acc_out_0   ; acc1[5]    ; clk        ;
+; N/A                                     ; None                                                ; 14.790 ns  ; wimp51_lab3:inst3|ir_out_2    ; sim_acc[7] ; clk        ;
+; N/A                                     ; None                                                ; 14.790 ns  ; wimp51_lab3:inst3|acc_out_0   ; acc1[6]    ; clk        ;
+; N/A                                     ; None                                                ; 14.786 ns  ; wimp51_lab3:inst3|aux_out_4   ; acc1[0]    ; clk        ;
+; N/A                                     ; None                                                ; 14.781 ns  ; wimp51_lab3:inst3|ir_out_5    ; acc0[6]    ; clk        ;
+; N/A                                     ; None                                                ; 14.781 ns  ; wimp51_lab3:inst3|aux_out_0   ; acc0[5]    ; clk        ;
+; N/A                                     ; None                                                ; 14.778 ns  ; wimp51_lab3:inst3|alu:ALU|Q_C ; acc0[5]    ; clk        ;
+; N/A                                     ; None                                                ; 14.775 ns  ; wimp51_lab3:inst3|aux_out_1   ; sim_acc[4] ; clk        ;
+; N/A                                     ; None                                                ; 14.769 ns  ; wimp51_lab3:inst3|acc_out_0   ; acc1[3]    ; clk        ;
+; N/A                                     ; None                                                ; 14.768 ns  ; wimp51_lab3:inst3|aux_out_5   ; acc1[1]    ; clk        ;
+; N/A                                     ; None                                                ; 14.764 ns  ; wimp51_lab3:inst3|ir_out_3    ; sim_acc[4] ; clk        ;
+; N/A                                     ; None                                                ; 14.762 ns  ; wimp51_lab3:inst3|acc_out_0   ; acc1[2]    ; clk        ;
+; N/A                                     ; None                                                ; 14.757 ns  ; wimp51_lab3:inst3|ir_out_3    ; acc0[5]    ; clk        ;
+; N/A                                     ; None                                                ; 14.757 ns  ; wimp51_lab3:inst3|ir_out_0    ; acc0[2]    ; clk        ;
+; N/A                                     ; None                                                ; 14.753 ns  ; wimp51_lab3:inst3|acc_out_0   ; acc1[4]    ; clk        ;
+; N/A                                     ; None                                                ; 14.752 ns  ; wimp51_lab3:inst3|acc_out_0   ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 14.733 ns  ; wimp51_lab3:inst3|aux_out_3   ; acc0[3]    ; clk        ;
+; N/A                                     ; None                                                ; 14.731 ns  ; wimp51_lab3:inst3|ir_out_1    ; acc0[4]    ; clk        ;
+; N/A                                     ; None                                                ; 14.698 ns  ; wimp51_lab3:inst3|acc_out_3   ; sim_acc[4] ; clk        ;
+; N/A                                     ; None                                                ; 14.689 ns  ; wimp51_lab3:inst3|ir_out_6    ; acc0[4]    ; clk        ;
+; Timing analysis restricted to 200 rows. ; To change the limit use Settings (Assignments menu) ;            ;                               ;            ;            ;
++-----------------------------------------+-----------------------------------------------------+------------+-------------------------------+------------+------------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Classic Timing Analyzer
+    Info: Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Full Version
+    Info: Processing started: Wed Oct 06 11:34:33 2010
+Info: Command: quartus_tan --read_settings_files=off --write_settings_files=off Lab2 -c Lab2 --timing_analysis_only
+Warning: Timing Analysis is analyzing one or more combinational loops as latches
+    Warning: Node "I8051_ROM:inst|data[7]" is a latch
+    Warning: Node "I8051_ROM:inst|data[0]" is a latch
+    Warning: Node "I8051_ROM:inst|data[3]" is a latch
+    Warning: Node "I8051_ROM:inst|data[1]" is a latch
+    Warning: Node "I8051_ROM:inst|data[4]" is a latch
+    Warning: Node "I8051_ROM:inst|data[2]" is a latch
+    Warning: Node "I8051_ROM:inst|data[5]" is a latch
+    Warning: Node "I8051_ROM:inst|data[6]" is a latch
+Warning: Found pins functioning as undefined clocks and/or memory enables
+    Info: Assuming node "clk" is an undefined clock
+Warning: Found 17 node(s) in clock paths which may be acting as ripple and/or gated clocks -- node(s) analyzed as buffer(s) resulting in clock skew
+    Info: Detected ripple clock "wimp51_lab3:inst3|ir_out_6" as buffer
+    Info: Detected ripple clock "wimp51_lab3:inst3|ir_out_5" as buffer
+    Info: Detected gated clock "wimp51_lab3:inst3|nx423" as buffer
+    Info: Detected gated clock "wimp51_lab3:inst3|nx415" as buffer
+    Info: Detected ripple clock "wimp51_lab3:inst3|ir_out_2" as buffer
+    Info: Detected ripple clock "wimp51_lab3:inst3|ir_out_4" as buffer
+    Info: Detected gated clock "wimp51_lab3:inst3|nx411" as buffer
+    Info: Detected ripple clock "wimp51_lab3:inst3|ir_out_1" as buffer
+    Info: Detected gated clock "wimp51_lab3:inst3|nx407" as buffer
+    Info: Detected ripple clock "wimp51_lab3:inst3|ir_out_3" as buffer
+    Info: Detected ripple clock "wimp51_lab3:inst3|ir_out_0" as buffer
+    Info: Detected gated clock "wimp51_lab3:inst3|a_2_dup_268" as buffer
+    Info: Detected gated clock "wimp51_lab3:inst3|a_1_dup_269" as buffer
+    Info: Detected gated clock "wimp51_lab3:inst3|psen_n_dup0" as buffer
+    Info: Detected ripple clock "wimp51_lab3:inst3|ir_out_7" as buffer
+    Info: Detected ripple clock "wimp51_lab3:inst3|CU_state_0" as buffer
+    Info: Detected ripple clock "wimp51_lab3:inst3|CU_state_1" as buffer
+Info: Clock "clk" has Internal fmax of 164.2 MHz between source register "I8051_ROM:inst|data[3]" and destination register "wimp51_lab3:inst3|ir_out_3" (period= 6.09 ns)
+    Info: + Longest register to register delay is 0.084 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCCOMB_X64_Y25_N18; Fanout = 10; REG Node = 'I8051_ROM:inst|data[3]'
+        Info: 2: + IC(0.000 ns) + CELL(0.084 ns) = 0.084 ns; Loc. = LCFF_X64_Y25_N19; Fanout = 11; REG Node = 'wimp51_lab3:inst3|ir_out_3'
+        Info: Total cell delay = 0.084 ns ( 100.00 % )
+    Info: - Smallest clock skew is -6.042 ns
+        Info: + Shortest clock path from clock "clk" to destination register is 2.431 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.862 ns) = 0.862 ns; Loc. = PIN_G26; Fanout = 99; CLK Node = 'clk'
+            Info: 2: + IC(1.032 ns) + CELL(0.537 ns) = 2.431 ns; Loc. = LCFF_X64_Y25_N19; Fanout = 11; REG Node = 'wimp51_lab3:inst3|ir_out_3'
+            Info: Total cell delay = 1.399 ns ( 57.55 % )
+            Info: Total interconnect delay = 1.032 ns ( 42.45 % )
+        Info: - Longest clock path from clock "clk" to source register is 8.473 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.862 ns) = 0.862 ns; Loc. = PIN_G26; Fanout = 99; CLK Node = 'clk'
+            Info: 2: + IC(1.227 ns) + CELL(0.787 ns) = 2.876 ns; Loc. = LCFF_X63_Y25_N29; Fanout = 13; REG Node = 'wimp51_lab3:inst3|ir_out_5'
+            Info: 3: + IC(0.330 ns) + CELL(0.388 ns) = 3.594 ns; Loc. = LCCOMB_X63_Y25_N8; Fanout = 1; COMB Node = 'wimp51_lab3:inst3|nx415'
+            Info: 4: + IC(0.252 ns) + CELL(0.416 ns) = 4.262 ns; Loc. = LCCOMB_X63_Y25_N4; Fanout = 1; COMB Node = 'wimp51_lab3:inst3|nx407'
+            Info: 5: + IC(0.256 ns) + CELL(0.275 ns) = 4.793 ns; Loc. = LCCOMB_X63_Y25_N14; Fanout = 10; COMB Node = 'wimp51_lab3:inst3|a_1_dup_269'
+            Info: 6: + IC(0.442 ns) + CELL(0.438 ns) = 5.673 ns; Loc. = LCCOMB_X64_Y25_N14; Fanout = 2; COMB Node = 'wimp51_lab3:inst3|psen_n_dup0'
+            Info: 7: + IC(1.196 ns) + CELL(0.000 ns) = 6.869 ns; Loc. = CLKCTRL_G5; Fanout = 8; COMB Node = 'wimp51_lab3:inst3|psen_n_dup0~clkctrl'
+            Info: 8: + IC(1.329 ns) + CELL(0.275 ns) = 8.473 ns; Loc. = LCCOMB_X64_Y25_N18; Fanout = 10; REG Node = 'I8051_ROM:inst|data[3]'
+            Info: Total cell delay = 3.441 ns ( 40.61 % )
+            Info: Total interconnect delay = 5.032 ns ( 59.39 % )
+    Info: + Micro clock to output delay of source is 0.000 ns
+    Info: + Micro setup delay of destination is -0.036 ns
+Warning: Circuit may not operate. Detected 48 non-operational path(s) clocked by clock "clk" with clock skew larger than data delay. See Compilation Report for details.
+Info: Found hold time violation between source  pin or register "wimp51_lab3:inst3|CU_state_0" and destination pin or register "wimp51_lab3:inst3|addr_dup0_7" for clock "clk" (Hold time is 998 ps)
+    Info: + Largest clock skew is 2.699 ns
+        Info: + Longest clock path from clock "clk" to destination register is 4.788 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.862 ns) = 0.862 ns; Loc. = PIN_G26; Fanout = 99; CLK Node = 'clk'
+            Info: 2: + IC(3.389 ns) + CELL(0.537 ns) = 4.788 ns; Loc. = LCFF_X64_Y24_N29; Fanout = 9; REG Node = 'wimp51_lab3:inst3|addr_dup0_7'
+            Info: Total cell delay = 1.399 ns ( 29.22 % )
+            Info: Total interconnect delay = 3.389 ns ( 70.78 % )
+        Info: - Shortest clock path from clock "clk" to source register is 2.089 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.862 ns) = 0.862 ns; Loc. = PIN_G26; Fanout = 99; CLK Node = 'clk'
+            Info: 2: + IC(0.690 ns) + CELL(0.537 ns) = 2.089 ns; Loc. = LCFF_X64_Y27_N27; Fanout = 17; REG Node = 'wimp51_lab3:inst3|CU_state_0'
+            Info: Total cell delay = 1.399 ns ( 66.97 % )
+            Info: Total interconnect delay = 0.690 ns ( 33.03 % )
+    Info: - Micro clock to output delay of source is 0.250 ns
+    Info: - Shortest register to register delay is 1.717 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X64_Y27_N27; Fanout = 17; REG Node = 'wimp51_lab3:inst3|CU_state_0'
+        Info: 2: + IC(0.325 ns) + CELL(0.415 ns) = 0.740 ns; Loc. = LCCOMB_X64_Y27_N30; Fanout = 1; COMB Node = 'wimp51_lab3:inst3|PC_ALU_nx42'
+        Info: 3: + IC(0.743 ns) + CELL(0.150 ns) = 1.633 ns; Loc. = LCCOMB_X64_Y24_N28; Fanout = 1; COMB Node = 'wimp51_lab3:inst3|pcalu_out_7'
+        Info: 4: + IC(0.000 ns) + CELL(0.084 ns) = 1.717 ns; Loc. = LCFF_X64_Y24_N29; Fanout = 9; REG Node = 'wimp51_lab3:inst3|addr_dup0_7'
+        Info: Total cell delay = 0.649 ns ( 37.80 % )
+        Info: Total interconnect delay = 1.068 ns ( 62.20 % )
+    Info: + Micro hold delay of destination is 0.266 ns
+Info: tco from clock "clk" to destination pin "acc1[1]" through register "wimp51_lab3:inst3|ir_out_2" is 16.382 ns
+    Info: + Longest clock path from clock "clk" to source register is 2.628 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.862 ns) = 0.862 ns; Loc. = PIN_G26; Fanout = 99; CLK Node = 'clk'
+        Info: 2: + IC(1.229 ns) + CELL(0.537 ns) = 2.628 ns; Loc. = LCFF_X61_Y25_N5; Fanout = 23; REG Node = 'wimp51_lab3:inst3|ir_out_2'
+        Info: Total cell delay = 1.399 ns ( 53.23 % )
+        Info: Total interconnect delay = 1.229 ns ( 46.77 % )
+    Info: + Micro clock to output delay of source is 0.250 ns
+    Info: + Longest register to pin delay is 13.504 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X61_Y25_N5; Fanout = 23; REG Node = 'wimp51_lab3:inst3|ir_out_2'
+        Info: 2: + IC(0.769 ns) + CELL(0.398 ns) = 1.167 ns; Loc. = LCCOMB_X63_Y25_N0; Fanout = 1; COMB Node = 'wimp51_lab3:inst3|nx402'
+        Info: 3: + IC(0.696 ns) + CELL(0.437 ns) = 2.300 ns; Loc. = LCCOMB_X61_Y25_N2; Fanout = 1; COMB Node = 'wimp51_lab3:inst3|nx400'
+        Info: 4: + IC(0.248 ns) + CELL(0.150 ns) = 2.698 ns; Loc. = LCCOMB_X61_Y25_N12; Fanout = 5; COMB Node = 'wimp51_lab3:inst3|alu_ctl_2'
+        Info: 5: + IC(0.968 ns) + CELL(0.371 ns) = 4.037 ns; Loc. = LCCOMB_X63_Y23_N26; Fanout = 8; COMB Node = 'wimp51_lab3:inst3|alu:ALU|nx368'
+        Info: 6: + IC(0.687 ns) + CELL(0.420 ns) = 5.144 ns; Loc. = LCCOMB_X61_Y23_N8; Fanout = 9; COMB Node = 'wimp51_lab3:inst3|alu:ALU|acc_out_4'
+        Info: 7: + IC(4.805 ns) + CELL(0.150 ns) = 10.099 ns; Loc. = LCCOMB_X1_Y24_N10; Fanout = 1; COMB Node = 'Lab2:inst4|inst24~72'
+        Info: 8: + IC(0.753 ns) + CELL(2.652 ns) = 13.504 ns; Loc. = PIN_P9; Fanout = 0; PIN Node = 'acc1[1]'
+        Info: Total cell delay = 4.578 ns ( 33.90 % )
+        Info: Total interconnect delay = 8.926 ns ( 66.10 % )
+Info: Quartus II Classic Timing Analyzer was successful. 0 errors, 12 warnings
+    Info: Peak virtual memory: 133 megabytes
+    Info: Processing ended: Wed Oct 06 11:34:35 2010
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:01
+
+

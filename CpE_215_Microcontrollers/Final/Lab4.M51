@@ -1,0 +1,246 @@
+BL51 BANKED LINKER/LOCATER V4.02                                                        10/20/2010  10:49:12  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V4.02, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE lab4.obj TO Lab4 RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  lab4.obj (LAB4)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?SLCMP)
+
+
+LINK MAP OF MODULE:  Lab4 (LAB4)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0009H     UNIT         _DATA_GROUP_
+            IDATA   0011H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0071H     UNIT         ?PR?_SSEGDISP?LAB4
+            CODE    0074H     004BH     UNIT         ?PR?_DELAY?LAB4
+            CODE    00BFH     0036H     UNIT         ?PR?MAIN?LAB4
+            CODE    00F5H     0016H     UNIT         ?C?LIB_CODE
+            CODE    010BH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   Lab4 (LAB4)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?LAB4
+
+?PR?MAIN?LAB4                  -----    -----
+  +--> ?PR?_DELAY?LAB4
+  +--> ?PR?_SSEGDISP?LAB4
+
+?PR?_DELAY?LAB4                0009H    0008H
+
+?PR?_SSEGDISP?LAB4             0008H    0001H
+  +--> ?PR?_DELAY?LAB4
+
+
+
+SYMBOL TABLE OF MODULE:  Lab4 (LAB4)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/20/2010  10:49:12  PAGE 2
+
+
+
+  -------         MODULE        LAB4
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  B:00D0H.6       PUBLIC        AC
+  B:00B0H.4       PUBLIC        T0
+  B:00B0H.5       PUBLIC        T1
+  B:00A8H.7       PUBLIC        EA
+  B:0090H.0       PUBLIC        T2
+  B:0080H.0       PUBLIC        P0_0
+  B:0090H.0       PUBLIC        P1_0
+  B:0080H.1       PUBLIC        P0_1
+  B:00D0H.1       PUBLIC        FL
+  B:00A0H.0       PUBLIC        P2_0
+  B:0090H.1       PUBLIC        P1_1
+  B:0080H.2       PUBLIC        P0_2
+  B:00B0H.0       PUBLIC        P3_0
+  B:00A0H.1       PUBLIC        P2_1
+  B:0090H.2       PUBLIC        P1_2
+  B:0080H.3       PUBLIC        P0_3
+  B:00B0H.1       PUBLIC        P3_1
+  B:00A0H.2       PUBLIC        P2_2
+  B:0090H.3       PUBLIC        P1_3
+  B:0080H.4       PUBLIC        P0_4
+  B:00B0H.2       PUBLIC        P3_2
+  B:00A0H.3       PUBLIC        P2_3
+  B:0090H.4       PUBLIC        P1_4
+  B:0080H.5       PUBLIC        P0_5
+  B:00C8H.6       PUBLIC        EXF2
+  B:00B0H.7       PUBLIC        RD
+  B:00B0H.3       PUBLIC        P3_3
+  B:00A0H.4       PUBLIC        P2_4
+  B:0090H.5       PUBLIC        P1_5
+  B:0080H.6       PUBLIC        P0_6
+  B:00B0H.4       PUBLIC        P3_4
+  B:00A0H.5       PUBLIC        P2_5
+  B:0090H.6       PUBLIC        P1_6
+  B:0080H.7       PUBLIC        P0_7
+  B:00B0H.5       PUBLIC        P3_5
+  B:00A8H.4       PUBLIC        ES
+  B:00A0H.6       PUBLIC        P2_6
+  B:0090H.7       PUBLIC        P1_7
+  B:00B0H.6       PUBLIC        P3_6
+  B:00A0H.7       PUBLIC        P2_7
+  B:00B0H.7       PUBLIC        P3_7
+  B:0098H.0       PUBLIC        RI
+  B:00D0H.7       PUBLIC        CY
+  B:00B0H.2       PUBLIC        INT0
+  B:00B0H.3       PUBLIC        INT1
+  B:0098H.1       PUBLIC        TI
+  B:00B8H.4       PUBLIC        PS
+  B:0090H.1       PUBLIC        T2EX
+  B:00D0H.2       PUBLIC        OV
+  C:00BFH         PUBLIC        main
+  B:00C8H.1       PUBLIC        C_T2
+  B:00B0H.6       PUBLIC        WR
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/20/2010  10:49:12  PAGE 3
+
+
+  B:00C8H.5       PUBLIC        RCLK
+  B:00C8H.4       PUBLIC        TCLK
+  B:0088H.1       PUBLIC        IE0
+  B:0088H.3       PUBLIC        IE1
+  B:00C8H.0       PUBLIC        CP_RL2
+  B:00A8H.1       PUBLIC        ET0
+  B:00A8H.3       PUBLIC        ET1
+  B:0088H.5       PUBLIC        TF0
+  B:00A8H.5       PUBLIC        ET2
+  B:0088H.7       PUBLIC        TF1
+  B:00C8H.7       PUBLIC        TF2
+  B:0098H.2       PUBLIC        RB8
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.0       PUBLIC        IT0
+  B:00A8H.2       PUBLIC        EX1
+  B:0098H.3       PUBLIC        TB8
+  B:0088H.2       PUBLIC        IT1
+  B:00D0H.0       PUBLIC        P
+  B:0098H.7       PUBLIC        SM0
+  C:007CH         PUBLIC        _Delay
+  B:0098H.6       PUBLIC        SM1
+  B:0098H.5       PUBLIC        SM2
+  B:00B8H.1       PUBLIC        PT0
+  B:00D0H.3       PUBLIC        RS0
+  B:00B8H.3       PUBLIC        PT1
+  B:00D0H.4       PUBLIC        RS1
+  B:00B8H.5       PUBLIC        PT2
+  B:0088H.4       PUBLIC        TR0
+  B:0088H.6       PUBLIC        TR1
+  B:00C8H.2       PUBLIC        TR2
+  B:00B8H.0       PUBLIC        PX0
+  B:00B8H.2       PUBLIC        PX1
+  B:00C8H.3       PUBLIC        EXEN2
+  B:0098H.4       PUBLIC        REN
+  C:0003H         PUBLIC        _SSegDisp
+  B:00B0H.0       PUBLIC        RXD
+  B:00B0H.1       PUBLIC        TXD
+  B:00D0H.5       PUBLIC        F0
+  -------         PROC          MAIN
+  C:00BFH         LINE#         11
+  C:00BFH         LINE#         12
+  C:00BFH         LINE#         13
+  C:00BFH         LINE#         14
+  C:00BFH         LINE#         15
+  C:00C1H         LINE#         16
+  C:00C3H         LINE#         18
+  C:00C6H         LINE#         20
+  C:00CBH         LINE#         21
+  C:00CEH         LINE#         23
+  C:00D3H         LINE#         24
+  C:00D6H         LINE#         26
+  C:00DBH         LINE#         27
+  C:00DEH         LINE#         29
+  C:00E3H         LINE#         30
+  C:00E6H         LINE#         32
+  C:00EBH         LINE#         33
+  C:00EEH         LINE#         35
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/20/2010  10:49:12  PAGE 4
+
+
+  C:00F3H         LINE#         37
+  -------         ENDPROC       MAIN
+  -------         PROC          L?0018
+  -------         ENDPROC       L?0018
+  -------         PROC          _DELAY
+  D:0009H         SYMBOL        x
+  -------         DO            x
+  D:000DH         SYMBOL        i
+  -------         ENDDO         i
+  C:007CH         LINE#         41
+  C:0084H         LINE#         42
+  C:0084H         LINE#         44
+  C:00BEH         LINE#         45
+  -------         ENDPROC       _DELAY
+  -------         PROC          _SSEGDISP
+  D:0008H         SYMBOL        x
+  C:0003H         LINE#         47
+  C:0005H         LINE#         48
+  C:0005H         LINE#         49
+  C:0007H         LINE#         50
+  C:0009H         LINE#         51
+  C:000CH         LINE#         52
+  C:000FH         LINE#         53
+  C:001AH         LINE#         54
+  C:001CH         LINE#         55
+  C:0027H         LINE#         56
+  C:0029H         LINE#         57
+  C:002EH         LINE#         58
+  C:002EH         LINE#         59
+  C:0031H         LINE#         60
+  C:0033H         LINE#         61
+  C:0038H         LINE#         62
+  C:0038H         LINE#         63
+  C:003BH         LINE#         64
+  C:003DH         LINE#         65
+  C:0042H         LINE#         66
+  C:0042H         LINE#         67
+  C:0045H         LINE#         68
+  C:0047H         LINE#         69
+  C:004CH         LINE#         70
+  C:004CH         LINE#         71
+  C:004FH         LINE#         72
+  C:0051H         LINE#         73
+  C:0056H         LINE#         74
+  C:0056H         LINE#         75
+  C:0059H         LINE#         76
+  C:0059H         LINE#         77
+  C:0064H         LINE#         78
+  C:0066H         LINE#         79
+  C:0071H         LINE#         80
+  C:0073H         LINE#         81
+  -------         ENDPROC       _SSEGDISP
+  -------         ENDMOD        LAB4
+
+  -------         MODULE        ?C?SLCMP
+  C:00F5H         PUBLIC        ?C?SLCMP
+  -------         ENDMOD        ?C?SLCMP
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/20/2010  10:49:12  PAGE 5
+
+
+
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

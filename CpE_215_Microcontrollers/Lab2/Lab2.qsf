@@ -1,0 +1,108 @@
+# Copyright (C) 1991-2008 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+
+
+# The default values for assignments are stored in the file
+#		Lab2_assignment_defaults.qdf
+# If this file doesn't exist, and for assignments not listed, see file
+#		assignment_defaults.qdf
+
+# Altera recommends that you do not modify this file. This
+# file is updated automatically by the Quartus II software
+# and any changes you make may be lost or overwritten.
+
+
+set_global_assignment -name FAMILY "Cyclone II"
+set_global_assignment -name DEVICE EP2C35F672C6
+set_global_assignment -name TOP_LEVEL_ENTITY TopLevel
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "8.0 SP1"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:16:24  SEPTEMBER 15, 2010"
+set_global_assignment -name LAST_QUARTUS_VERSION "8.0 SP1"
+set_global_assignment -name USE_GENERATED_PHYSICAL_CONSTRAINTS OFF -section_id eda_palace
+set_global_assignment -name SIMULATION_MODE FUNCTIONAL
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_COLOR 14622752 -section_id Top
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE Multiply.vwf
+set_global_assignment -name BDF_FILE TopLevel.bdf
+set_global_assignment -name VHDL_FILE wimp51_rom_ref.vhd
+set_global_assignment -name EDIF_FILE wimp51.edf
+set_global_assignment -name VHDL_FILE i8051_lib.vhd
+set_global_assignment -name BDF_FILE Lab2.bdf
+set_global_assignment -name BDF_FILE 7_seg_dec.bdf
+set_global_assignment -name VECTOR_WAVEFORM_FILE counting.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Multiply.vwf
+set_location_assignment PIN_M4 -to acc0[0]
+set_location_assignment PIN_G26 -to clk
+set_location_assignment PIN_AE23 -to psen_n
+set_location_assignment PIN_N25 -to rst
+set_location_assignment PIN_V20 -to R0_1[6]
+set_location_assignment PIN_V21 -to R0_1[5]
+set_location_assignment PIN_W21 -to R0_1[4]
+set_location_assignment PIN_Y22 -to R0_1[3]
+set_location_assignment PIN_AA24 -to R0_1[2]
+set_location_assignment PIN_AA23 -to R0_1[1]
+set_location_assignment PIN_AB24 -to R0_1[0]
+set_location_assignment PIN_V13 -to R0_0[0]
+set_location_assignment PIN_V14 -to R0_0[1]
+set_location_assignment PIN_AE11 -to R0_0[2]
+set_location_assignment PIN_AD11 -to R0_0[3]
+set_location_assignment PIN_AC12 -to R0_0[4]
+set_location_assignment PIN_AB12 -to R0_0[5]
+set_location_assignment PIN_AF10 -to R0_0[6]
+set_location_assignment PIN_AB23 -to data0[6]
+set_location_assignment PIN_V22 -to data0[5]
+set_location_assignment PIN_AC25 -to data0[4]
+set_location_assignment PIN_AC26 -to data0[3]
+set_location_assignment PIN_AB26 -to data0[2]
+set_location_assignment PIN_AB25 -to data0[1]
+set_location_assignment PIN_Y24 -to data0[0]
+set_location_assignment PIN_Y23 -to data1[6]
+set_location_assignment PIN_AA26 -to data1[4]
+set_location_assignment PIN_AA25 -to data1[5]
+set_location_assignment PIN_Y26 -to data1[3]
+set_location_assignment PIN_Y25 -to data1[2]
+set_location_assignment PIN_U22 -to data1[1]
+set_location_assignment PIN_W24 -to data1[0]
+set_location_assignment PIN_U9 -to addr0[6]
+set_location_assignment PIN_U1 -to addr0[5]
+set_location_assignment PIN_U2 -to addr0[4]
+set_location_assignment PIN_T4 -to addr0[3]
+set_location_assignment PIN_R7 -to addr0[2]
+set_location_assignment PIN_R6 -to addr0[1]
+set_location_assignment PIN_T3 -to addr0[0]
+set_location_assignment PIN_L3 -to acc1[6]
+set_location_assignment PIN_L2 -to acc1[5]
+set_location_assignment PIN_L9 -to acc1[4]
+set_location_assignment PIN_L6 -to acc1[3]
+set_location_assignment PIN_L7 -to acc1[2]
+set_location_assignment PIN_P9 -to acc1[1]
+set_location_assignment PIN_N9 -to acc1[0]
+set_location_assignment PIN_R3 -to addr1[0]
+set_location_assignment PIN_R4 -to addr1[1]
+set_location_assignment PIN_R5 -to addr1[2]
+set_location_assignment PIN_T9 -to addr1[3]
+set_location_assignment PIN_P7 -to addr1[4]
+set_location_assignment PIN_P6 -to addr1[5]
+set_location_assignment PIN_T2 -to addr1[6]
+set_location_assignment PIN_R2 -to acc0[6]
+set_location_assignment PIN_P4 -to acc0[5]
+set_location_assignment PIN_P3 -to acc0[4]
+set_location_assignment PIN_M2 -to acc0[3]
+set_location_assignment PIN_M3 -to acc0[2]
+set_location_assignment PIN_M5 -to acc0[1]
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON

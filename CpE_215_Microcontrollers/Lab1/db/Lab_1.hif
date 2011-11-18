@@ -1,0 +1,85 @@
+Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Full Version
+11
+1009
+OFF
+OFF
+OFF
+OFF
+ON
+ON
+ON
+FV_OFF
+Level2
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Partition --
+-- End Partition --
+-- Start Library Paths --
+-- End Library Paths --
+-- Start VHDL Libraries --
+-- End VHDL Libraries --
+# entity
+3_8dec
+# storage
+db|Lab_1.(0).cnf
+db|Lab_1.(0).cnf
+# case_insensitive
+# source_file
+3_8dec.bdf
+e7597aaac9f52672a381a3d335e73b
+25
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+3_8dec:inst
+}
+# macro_sequence
+
+# end
+# entity
+TopLevle
+# storage
+db|Lab_1.(1).cnf
+db|Lab_1.(1).cnf
+# case_insensitive
+# source_file
+TopLevle.bdf
+bbcadd3e1f2a3e221939315f2976a5
+25
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+|
+}
+# macro_sequence
+
+# end
+# entity
+8bitlatch
+# storage
+db|Lab_1.(2).cnf
+db|Lab_1.(2).cnf
+# case_insensitive
+# source_file
+8bitlatch.bdf
+c50ddeeb480f199c9bf07146874376
+25
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+8bitlatch:inst1
+}
+# macro_sequence
+
+# end
+# complete
+

@@ -1,0 +1,123 @@
+C51 COMPILER V6.02  LAB5                                                                   10/27/2010 10:44:57 PAGE 1   
+
+
+C51 COMPILER V6.02, COMPILATION OF MODULE LAB5
+OBJECT MODULE PLACED IN .\Lab5.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE .\Lab5.c DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          #include <at89x52.h>
+   2          #include <intrins.h>
+   3          #include <stdio.h>
+   4          
+   5          #define OE P3_0
+   6          #define WE P3_1
+   7          
+   8          void writeRAM(char add, char dat);
+   9          char readRAM(char add);
+  10          void Delay (long x);
+  11          
+  12          
+  13          void main()
+  14          {
+  15   1      
+  16   1      	OE = 1;
+  17   1      	WE = 1; 
+  18   1      
+  19   1      	P1 = 0x23;
+  20   1      	writeRAM(0x00,0xFF);
+  21   1      	Delay(20000);
+  22   1      	P1 = 0x25;
+  23   1      
+  24   1      
+  25   1      	writeRAM(0x04,0xAB);
+  26   1      	Delay(20000);
+  27   1      	P1 = 0x25;
+  28   1      
+  29   1      
+  30   1      	writeRAM(0x0A,0x05);
+  31   1      	Delay(20000);
+  32   1      	P1 = 0x27;
+  33   1      
+  34   1      
+  35   1      	writeRAM(0x0C,0x7D);
+  36   1      	Delay(20000);
+  37   1      	P1 = 0x29;
+  38   1      
+  39   1      	Delay(20000);
+  40   1      	P1 = readRAM(0x00);
+  41   1      	Delay(20000);
+  42   1      
+  43   1      
+  44   1      	P1 = readRAM(0x04);
+  45   1      	Delay(20000);
+  46   1      
+  47   1      
+  48   1      	P1 = readRAM(0x0A);
+  49   1      	Delay(20000);
+  50   1      
+  51   1      
+  52   1      	P1 = readRAM(0x0C);
+  53   1      	Delay(20000);
+  54   1      }
+  55          
+C51 COMPILER V6.02  LAB5                                                                   10/27/2010 10:44:57 PAGE 2   
+
+  56          
+  57          void writeRAM(char add, char dat)
+  58          {
+  59   1      	OE = 1;
+  60   1      	WE = 1;
+  61   1      
+  62   1      	P2 = add;
+  63   1      	P0 = dat;
+  64   1      
+  65   1      	Delay(20000);
+  66   1      	WE = 0;
+  67   1      	Delay(20000);
+  68   1      	WE = 1;
+  69   1      
+  70   1      }
+  71          
+  72          char readRAM(char add)
+  73          {
+  74   1      	char temp;	
+  75   1      
+  76   1      	OE = 1;
+  77   1      	WE = 1;
+  78   1      
+  79   1      	P2 = add;
+  80   1      
+  81   1      	Delay(20000);
+  82   1      	OE = 0;
+  83   1      	Delay(20000);
+  84   1      
+  85   1      	temp = P0 ;
+  86   1      		
+  87   1      	OE = 1;
+  88   1      
+  89   1      
+  90   1      	return temp;	
+  91   1      
+  92   1      }
+  93          
+  94          void Delay (long x)
+  95          {
+  96   1      	long i;
+  97   1      	for(i=0;i<x;i++);
+  98   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    209    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

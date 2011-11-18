@@ -1,0 +1,45 @@
+<internal_error>
+	<executable>quartus.exe</executable>
+	<sub_system>FLOW</sub_system>
+	<file>/quartus/sys/flow/flow_smart.cpp</file>
+	<line>347</line>
+	<callstack>
+	0x04deb9aa: sys_flow + 0x2b9aa (flow_execute_tcl + 0xb29a)
+	</callstack>
+	<error>m_new_cap_inst != 0</error>
+	<date>Wed Sep 22 11:22:11 2010</date>
+	<version>Quartus II Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Full Version</version>
+	<full_error>m_new_cap_inst != 0
+Quartus II Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Full Version </full_error>
+</internal_error>
+
+<internal_error>
+	<executable>quartus.exe</executable>
+	<sub_system>FLOW</sub_system>
+	<file>/quartus/sys/flow/flow_smart.cpp</file>
+	<line>347</line>
+	<callstack>
+	0x04deb9aa: sys_flow + 0x2b9aa (flow_execute_tcl + 0xb29a)
+	</callstack>
+	<error>m_new_cap_inst != 0</error>
+	<date>Wed Sep 22 11:25:22 2010</date>
+	<version>Quartus II Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Full Version</version>
+	<full_error>m_new_cap_inst != 0
+Quartus II Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Full Version </full_error>
+</internal_error>
+
+<internal_error>
+	<executable>quartus.exe</executable>
+	<sub_system>FLOW</sub_system>
+	<file>/quartus/sys/flow/flow_smart.cpp</file>
+	<line>347</line>
+	<callstack>
+	0x04deb9aa: sys_flow + 0x2b9aa (flow_execute_tcl + 0xb29a)
+	</callstack>
+	<error>m_new_cap_inst != 0</error>
+	<date>Wed Sep 22 11:28:15 2010</date>
+	<version>Quartus II Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Full Version</version>
+	<full_error>m_new_cap_inst != 0
+Quartus II Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Full Version </full_error>
+</internal_error>
+

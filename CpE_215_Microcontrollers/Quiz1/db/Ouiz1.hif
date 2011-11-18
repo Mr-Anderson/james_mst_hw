@@ -1,0 +1,65 @@
+Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Full Version
+11
+1009
+OFF
+OFF
+OFF
+OFF
+ON
+ON
+ON
+FV_OFF
+Level2
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Partition --
+-- End Partition --
+-- Start Library Paths --
+-- End Library Paths --
+-- Start VHDL Libraries --
+-- End VHDL Libraries --
+# entity
+Top_Level
+# storage
+db|Ouiz1.(0).cnf
+db|Ouiz1.(0).cnf
+# case_insensitive
+# source_file
+Top_Level.bdf
+a89ea3bf3bb5a8a2137d7a3feb8e243
+25
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+|
+}
+# macro_sequence
+
+# end
+# entity
+odd_parity
+# storage
+db|Ouiz1.(1).cnf
+db|Ouiz1.(1).cnf
+# case_insensitive
+# source_file
+odd_parity.bdf
+e143e709cd38f5a3da3afe9e0e6426b
+25
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+odd_parity:inst
+}
+# macro_sequence
+
+# end
+# complete
+

@@ -1,0 +1,139 @@
+C51 COMPILER V6.02  FINAL                                                                  11/17/2010 11:02:44 PAGE 1   
+
+
+C51 COMPILER V6.02, COMPILATION OF MODULE FINAL
+OBJECT MODULE PLACED IN .\Final.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\Final2\Final.c DEBUG OBJECTEXTEND PRINT(.\Final.lst) OBJECT(.\Final.obj)
+                    - 
+
+stmt level    source
+
+   1          #include <at89x52.h>
+   2          #include <intrins.h>
+   3          #include <stdio.h>
+   4          
+   5          #define DATA P0
+   6          #define RW P1_0
+   7          #define EN P1_1
+   8          #define RS P1_2
+   9          #define ON P1_3
+  10          #define BLON P1_4
+  11          #define dbg_led P1_7
+  12          
+  13          
+  14          void initialize();
+  15          void clear_display();
+  16          void set_entry();
+  17          void function_set();
+  18          void display_on();
+  19          void next_line();
+  20          void writeInstruction(char dat);
+  21          void writeData(char dat);
+  22          void Delay(long x);
+  23          
+  24          
+  25          void main()
+  26          {
+  27   1      	initialize();
+  28   1      
+  29   1      	writeInstruction(0xC0); //21
+  30   1      	writeData(0x4A); //J
+  31   1      
+  32   1      	writeInstruction(0x81); //01
+  33   1      	writeData(0x61); //a
+  34   1      
+  35   1      	writeInstruction(0x84); //04
+  36   1      	writeData(0x6D); //m
+  37   1      
+  38   1      	writeInstruction(0xC3); //43
+  39   1      	writeData(0x65); //e
+  40   1      
+  41   1      
+  42   1      		writeInstruction(0x1C);
+  43   1      		writeInstruction(0x1C);
+  44   1      		writeInstruction(0x1C);
+  45   1      
+  46   1      }
+  47          
+  48          void initialize()
+  49          {
+  50   1      	ON = 1;
+  51   1      	BLON = 0;
+  52   1      	clear_display();
+  53   1      	set_entry();
+  54   1      	function_set();
+C51 COMPILER V6.02  FINAL                                                                  11/17/2010 11:02:44 PAGE 2   
+
+  55   1      	display_on();
+  56   1      	
+  57   1      }
+  58          
+  59          void clear_display()
+  60          {
+  61   1      	writeInstruction(0x01);
+  62   1      }
+  63          
+  64          void set_entry()
+  65          {
+  66   1      	writeInstruction(0x06);
+  67   1      }
+  68          
+  69          void function_set()
+  70          {
+  71   1      	writeInstruction(0x38);
+  72   1      }
+  73          
+  74          void display_on()
+  75          {
+  76   1      	writeInstruction(0x0F); //Blinking Cursor
+  77   1      }
+  78          
+  79          void next_line()
+  80          {
+  81   1      	writeInstruction(0xC0);
+  82   1      }
+  83          
+  84          void writeInstruction(char dat)
+  85          {
+  86   1      	RS = 0;
+  87   1      	RW = 0;
+  88   1      	EN = 1;
+  89   1      	Delay(20000);
+  90   1      	DATA = dat;
+  91   1      	Delay(20000);
+  92   1      	EN = 0;
+  93   1      }
+  94          
+  95          void writeData(char dat)
+  96          {
+  97   1      	RS = 1;
+  98   1      	RW = 0;
+  99   1      	EN = 1;
+ 100   1      	Delay(20000);
+ 101   1      	DATA = dat;
+ 102   1      	Delay(20000);
+ 103   1      	EN = 0;
+ 104   1      }
+ 105          
+ 106          
+ 107          void Delay (long x)
+ 108          {
+ 109   1      	long i;
+ 110   1      	for(i=0;i<x;i++);
+ 111   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    210    ----
+   CONSTANT SIZE    =   ----    ----
+C51 COMPILER V6.02  FINAL                                                                  11/17/2010 11:02:44 PAGE 3   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      10
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

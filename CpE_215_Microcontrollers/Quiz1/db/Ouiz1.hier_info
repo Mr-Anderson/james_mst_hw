@@ -1,0 +1,20 @@
+|Top_Level
+Out <= odd_parity:inst.Out
+A[0] => odd_parity:inst.A[0]
+A[1] => odd_parity:inst.A[1]
+A[2] => odd_parity:inst.A[2]
+
+
+|Top_Level|odd_parity:inst
+Out <= inst10.DB_MAX_OUTPUT_PORT_TYPE
+A[0] => inst7.IN0
+A[0] => inst4.IN0
+A[0] => inst1.IN0
+A[1] => inst8.IN0
+A[1] => inst2.IN1
+A[1] => inst4.IN1
+A[2] => inst9.IN0
+A[2] => inst2.IN2
+A[2] => inst1.IN2
+
+

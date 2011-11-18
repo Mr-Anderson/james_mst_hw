@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="Lab6">
+		<CBX_INST_ENTRY INSTANCE_NAME="|Lab6|I8051_ROM:inst2|altsyncram:Mux4_rtl_0" CBX_FILE_NAME="altsyncram_o9u.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

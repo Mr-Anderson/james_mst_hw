@@ -1,0 +1,1048 @@
+Classic Timing Analyzer report for Lab5
+Wed Oct 27 11:39:19 2010
+Quartus II Version 8.0 Build 215 05/29/2008 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Timing Analyzer Settings
+  4. Clock Settings Summary
+  5. Clock Setup: 'clk'
+  6. Clock Hold: 'clk'
+  7. tsu
+  8. tco
+  9. th
+ 10. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2008 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                                                                                                                                                                                                   ;
++------------------------------+------------------------------------------+---------------+----------------------------------+----------------------------------------+----------------------------------------------+------------+----------+--------------+
+; Type                         ; Slack                                    ; Required Time ; Actual Time                      ; From                                   ; To                                           ; From Clock ; To Clock ; Failed Paths ;
++------------------------------+------------------------------------------+---------------+----------------------------------+----------------------------------------+----------------------------------------------+------------+----------+--------------+
+; Worst-case tsu               ; N/A                                      ; None          ; 19.248 ns                        ; rst                                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4       ; --         ; clk      ; 0            ;
+; Worst-case tco               ; N/A                                      ; None          ; 11.775 ns                        ; i8051:inst|I8051_RAM:U_RAM|p1_out_5    ; disp_high[0]                                 ; clk        ; --       ; 0            ;
+; Worst-case th                ; N/A                                      ; None          ; -2.168 ns                        ; rst                                    ; i8051:inst|I8051_CTR:U_CTR|cpu_state_1_repl1 ; --         ; clk      ; 0            ;
+; Clock Setup: 'clk'           ; N/A                                      ; None          ; 37.14 MHz ( period = 26.928 ns ) ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_7       ; clk        ; clk      ; 0            ;
+; Clock Hold: 'clk'            ; Not operational: Clock Skew > Data Delay ; None          ; N/A                              ; i8051:inst|I8051_RAM:U_RAM|p0_out_6    ; ram_inout:inst2|ix4392_a_12_dup_79           ; clk        ; clk      ; 109          ;
+; Total number of failed paths ;                                          ;               ;                                  ;                                        ;                                              ;            ;          ; 109          ;
++------------------------------+------------------------------------------+---------------+----------------------------------+----------------------------------------+----------------------------------------------+------------+----------+--------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Settings                                                                                           ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+; Option                                                              ; Setting            ; From ; To ; Entity Name ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+; Device Name                                                         ; EP2C35F672C6       ;      ;    ;             ;
+; Timing Models                                                       ; Final              ;      ;    ;             ;
+; Default hold multicycle                                             ; Same as Multicycle ;      ;    ;             ;
+; Cut paths between unrelated clock domains                           ; On                 ;      ;    ;             ;
+; Cut off read during write signal paths                              ; On                 ;      ;    ;             ;
+; Cut off feedback from I/O pins                                      ; On                 ;      ;    ;             ;
+; Report Combined Fast/Slow Timing                                    ; Off                ;      ;    ;             ;
+; Ignore Clock Settings                                               ; Off                ;      ;    ;             ;
+; Analyze latches as synchronous elements                             ; On                 ;      ;    ;             ;
+; Enable Recovery/Removal analysis                                    ; Off                ;      ;    ;             ;
+; Enable Clock Latency                                                ; Off                ;      ;    ;             ;
+; Use TimeQuest Timing Analyzer                                       ; Off                ;      ;    ;             ;
+; Number of source nodes to report per destination node               ; 10                 ;      ;    ;             ;
+; Number of destination nodes to report                               ; 10                 ;      ;    ;             ;
+; Number of paths to report                                           ; 200                ;      ;    ;             ;
+; Report Minimum Timing Checks                                        ; Off                ;      ;    ;             ;
+; Use Fast Timing Models                                              ; Off                ;      ;    ;             ;
+; Report IO Paths Separately                                          ; Off                ;      ;    ;             ;
+; Perform Multicorner Analysis                                        ; On                 ;      ;    ;             ;
+; Reports the worst-case path for each clock domain and analysis      ; Off                ;      ;    ;             ;
+; Removes common clock path pessimism (CCPP) during slack computation ; Off                ;      ;    ;             ;
++---------------------------------------------------------------------+--------------------+------+----+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Settings Summary                                                                                                                                                             ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; Clock Node Name ; Clock Setting Name ; Type     ; Fmax Requirement ; Early Latency ; Late Latency ; Based on ; Multiply Base Fmax by ; Divide Base Fmax by ; Offset ; Phase offset ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; clk             ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Setup: 'clk'                                                                                                                                                                                                                                                                             ;
++-----------------------------------------+-----------------------------------------------------+----------------------------------------+-------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; Slack                                   ; Actual fmax (period)                                ; From                                   ; To                                        ; From Clock ; To Clock ; Required Setup Relationship ; Required Longest P2P Time ; Actual Longest P2P Time ;
++-----------------------------------------+-----------------------------------------------------+----------------------------------------+-------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; N/A                                     ; 37.14 MHz ( period = 26.928 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_7    ; clk        ; clk      ; None                        ; None                      ; 26.723 ns               ;
+; N/A                                     ; 37.15 MHz ( period = 26.919 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_2    ; clk        ; clk      ; None                        ; None                      ; 26.712 ns               ;
+; N/A                                     ; 37.19 MHz ( period = 26.890 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_7    ; clk        ; clk      ; None                        ; None                      ; 26.685 ns               ;
+; N/A                                     ; 37.20 MHz ( period = 26.881 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_2    ; clk        ; clk      ; None                        ; None                      ; 26.674 ns               ;
+; N/A                                     ; 37.21 MHz ( period = 26.873 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_1    ; clk        ; clk      ; None                        ; None                      ; 26.668 ns               ;
+; N/A                                     ; 37.26 MHz ( period = 26.839 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_4    ; clk        ; clk      ; None                        ; None                      ; 26.632 ns               ;
+; N/A                                     ; 37.26 MHz ( period = 26.835 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_1    ; clk        ; clk      ; None                        ; None                      ; 26.630 ns               ;
+; N/A                                     ; 37.31 MHz ( period = 26.801 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_4    ; clk        ; clk      ; None                        ; None                      ; 26.594 ns               ;
+; N/A                                     ; 37.32 MHz ( period = 26.794 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_0    ; clk        ; clk      ; None                        ; None                      ; 26.589 ns               ;
+; N/A                                     ; 37.33 MHz ( period = 26.791 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_7    ; clk        ; clk      ; None                        ; None                      ; 26.586 ns               ;
+; N/A                                     ; 37.34 MHz ( period = 26.782 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_2    ; clk        ; clk      ; None                        ; None                      ; 26.575 ns               ;
+; N/A                                     ; 37.37 MHz ( period = 26.756 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_0    ; clk        ; clk      ; None                        ; None                      ; 26.551 ns               ;
+; N/A                                     ; 37.40 MHz ( period = 26.736 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_1    ; clk        ; clk      ; None                        ; None                      ; 26.531 ns               ;
+; N/A                                     ; 37.42 MHz ( period = 26.722 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_3    ; clk        ; clk      ; None                        ; None                      ; 26.515 ns               ;
+; N/A                                     ; 37.45 MHz ( period = 26.702 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_4    ; clk        ; clk      ; None                        ; None                      ; 26.495 ns               ;
+; N/A                                     ; 37.48 MHz ( period = 26.684 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_3    ; clk        ; clk      ; None                        ; None                      ; 26.477 ns               ;
+; N/A                                     ; 37.51 MHz ( period = 26.662 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_5    ; clk        ; clk      ; None                        ; None                      ; 26.451 ns               ;
+; N/A                                     ; 37.51 MHz ( period = 26.660 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_6    ; clk        ; clk      ; None                        ; None                      ; 26.449 ns               ;
+; N/A                                     ; 37.51 MHz ( period = 26.657 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_0    ; clk        ; clk      ; None                        ; None                      ; 26.452 ns               ;
+; N/A                                     ; 37.55 MHz ( period = 26.628 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_7    ; clk        ; clk      ; None                        ; None                      ; 26.423 ns               ;
+; N/A                                     ; 37.56 MHz ( period = 26.624 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_5    ; clk        ; clk      ; None                        ; None                      ; 26.413 ns               ;
+; N/A                                     ; 37.56 MHz ( period = 26.622 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_6    ; clk        ; clk      ; None                        ; None                      ; 26.411 ns               ;
+; N/A                                     ; 37.57 MHz ( period = 26.619 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_2    ; clk        ; clk      ; None                        ; None                      ; 26.412 ns               ;
+; N/A                                     ; 37.60 MHz ( period = 26.594 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_7    ; clk        ; clk      ; None                        ; None                      ; 26.389 ns               ;
+; N/A                                     ; 37.62 MHz ( period = 26.585 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_3    ; clk        ; clk      ; None                        ; None                      ; 26.378 ns               ;
+; N/A                                     ; 37.62 MHz ( period = 26.585 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_2    ; clk        ; clk      ; None                        ; None                      ; 26.378 ns               ;
+; N/A                                     ; 37.63 MHz ( period = 26.577 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_7    ; clk        ; clk      ; None                        ; None                      ; 26.374 ns               ;
+; N/A                                     ; 37.63 MHz ( period = 26.573 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_1    ; clk        ; clk      ; None                        ; None                      ; 26.368 ns               ;
+; N/A                                     ; 37.64 MHz ( period = 26.568 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_2    ; clk        ; clk      ; None                        ; None                      ; 26.363 ns               ;
+; N/A                                     ; 37.68 MHz ( period = 26.539 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_4    ; clk        ; clk      ; None                        ; None                      ; 26.332 ns               ;
+; N/A                                     ; 37.68 MHz ( period = 26.539 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_1    ; clk        ; clk      ; None                        ; None                      ; 26.334 ns               ;
+; N/A                                     ; 37.69 MHz ( period = 26.532 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_7    ; clk        ; clk      ; None                        ; None                      ; 26.327 ns               ;
+; N/A                                     ; 37.70 MHz ( period = 26.525 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_5    ; clk        ; clk      ; None                        ; None                      ; 26.314 ns               ;
+; N/A                                     ; 37.70 MHz ( period = 26.523 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_6    ; clk        ; clk      ; None                        ; None                      ; 26.312 ns               ;
+; N/A                                     ; 37.70 MHz ( period = 26.523 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_2    ; clk        ; clk      ; None                        ; None                      ; 26.316 ns               ;
+; N/A                                     ; 37.70 MHz ( period = 26.522 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_1    ; clk        ; clk      ; None                        ; None                      ; 26.319 ns               ;
+; N/A                                     ; 37.73 MHz ( period = 26.505 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_4    ; clk        ; clk      ; None                        ; None                      ; 26.298 ns               ;
+; N/A                                     ; 37.74 MHz ( period = 26.494 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_0    ; clk        ; clk      ; None                        ; None                      ; 26.289 ns               ;
+; N/A                                     ; 37.75 MHz ( period = 26.488 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_4    ; clk        ; clk      ; None                        ; None                      ; 26.283 ns               ;
+; N/A                                     ; 37.77 MHz ( period = 26.477 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_1    ; clk        ; clk      ; None                        ; None                      ; 26.272 ns               ;
+; N/A                                     ; 37.79 MHz ( period = 26.460 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_0    ; clk        ; clk      ; None                        ; None                      ; 26.255 ns               ;
+; N/A                                     ; 37.82 MHz ( period = 26.443 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_4    ; clk        ; clk      ; None                        ; None                      ; 26.236 ns               ;
+; N/A                                     ; 37.82 MHz ( period = 26.443 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_0    ; clk        ; clk      ; None                        ; None                      ; 26.240 ns               ;
+; N/A                                     ; 37.84 MHz ( period = 26.424 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_7    ; clk        ; clk      ; None                        ; None                      ; 26.219 ns               ;
+; N/A                                     ; 37.85 MHz ( period = 26.422 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_3    ; clk        ; clk      ; None                        ; None                      ; 26.215 ns               ;
+; N/A                                     ; 37.86 MHz ( period = 26.415 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_2    ; clk        ; clk      ; None                        ; None                      ; 26.208 ns               ;
+; N/A                                     ; 37.88 MHz ( period = 26.398 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_0    ; clk        ; clk      ; None                        ; None                      ; 26.193 ns               ;
+; N/A                                     ; 37.90 MHz ( period = 26.388 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_3    ; clk        ; clk      ; None                        ; None                      ; 26.181 ns               ;
+; N/A                                     ; 37.92 MHz ( period = 26.371 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_3    ; clk        ; clk      ; None                        ; None                      ; 26.166 ns               ;
+; N/A                                     ; 37.92 MHz ( period = 26.369 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_1    ; clk        ; clk      ; None                        ; None                      ; 26.164 ns               ;
+; N/A                                     ; 37.93 MHz ( period = 26.362 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_5    ; clk        ; clk      ; None                        ; None                      ; 26.151 ns               ;
+; N/A                                     ; 37.94 MHz ( period = 26.360 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_6    ; clk        ; clk      ; None                        ; None                      ; 26.149 ns               ;
+; N/A                                     ; 37.97 MHz ( period = 26.335 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_4    ; clk        ; clk      ; None                        ; None                      ; 26.128 ns               ;
+; N/A                                     ; 37.98 MHz ( period = 26.328 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_5    ; clk        ; clk      ; None                        ; None                      ; 26.117 ns               ;
+; N/A                                     ; 37.99 MHz ( period = 26.326 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_6    ; clk        ; clk      ; None                        ; None                      ; 26.115 ns               ;
+; N/A                                     ; 37.99 MHz ( period = 26.326 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_3    ; clk        ; clk      ; None                        ; None                      ; 26.119 ns               ;
+; N/A                                     ; 38.01 MHz ( period = 26.311 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_5    ; clk        ; clk      ; None                        ; None                      ; 26.102 ns               ;
+; N/A                                     ; 38.01 MHz ( period = 26.309 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_6    ; clk        ; clk      ; None                        ; None                      ; 26.100 ns               ;
+; N/A                                     ; 38.04 MHz ( period = 26.290 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_0    ; clk        ; clk      ; None                        ; None                      ; 26.085 ns               ;
+; N/A                                     ; 38.07 MHz ( period = 26.266 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_5    ; clk        ; clk      ; None                        ; None                      ; 26.055 ns               ;
+; N/A                                     ; 38.07 MHz ( period = 26.264 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_6    ; clk        ; clk      ; None                        ; None                      ; 26.053 ns               ;
+; N/A                                     ; 38.14 MHz ( period = 26.218 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_3    ; clk        ; clk      ; None                        ; None                      ; 26.011 ns               ;
+; N/A                                     ; 38.23 MHz ( period = 26.158 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_5    ; clk        ; clk      ; None                        ; None                      ; 25.947 ns               ;
+; N/A                                     ; 38.23 MHz ( period = 26.156 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_6    ; clk        ; clk      ; None                        ; None                      ; 25.945 ns               ;
+; N/A                                     ; 38.42 MHz ( period = 26.028 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_0 ; clk        ; clk      ; None                        ; None                      ; 25.801 ns               ;
+; N/A                                     ; 38.48 MHz ( period = 25.990 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_0 ; clk        ; clk      ; None                        ; None                      ; 25.763 ns               ;
+; N/A                                     ; 38.62 MHz ( period = 25.891 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_0 ; clk        ; clk      ; None                        ; None                      ; 25.664 ns               ;
+; N/A                                     ; 38.83 MHz ( period = 25.755 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_2 ; clk        ; clk      ; None                        ; None                      ; 25.544 ns               ;
+; N/A                                     ; 38.84 MHz ( period = 25.748 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_0    ; clk        ; clk      ; None                        ; None                      ; 25.520 ns               ;
+; N/A                                     ; 38.87 MHz ( period = 25.728 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_0 ; clk        ; clk      ; None                        ; None                      ; 25.501 ns               ;
+; N/A                                     ; 38.88 MHz ( period = 25.717 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_2 ; clk        ; clk      ; None                        ; None                      ; 25.506 ns               ;
+; N/A                                     ; 38.90 MHz ( period = 25.710 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_0    ; clk        ; clk      ; None                        ; None                      ; 25.482 ns               ;
+; N/A                                     ; 38.92 MHz ( period = 25.694 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_0 ; clk        ; clk      ; None                        ; None                      ; 25.467 ns               ;
+; N/A                                     ; 38.94 MHz ( period = 25.679 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_7    ; clk        ; clk      ; None                        ; None                      ; 25.445 ns               ;
+; N/A                                     ; 38.95 MHz ( period = 25.677 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_0 ; clk        ; clk      ; None                        ; None                      ; 25.452 ns               ;
+; N/A                                     ; 38.96 MHz ( period = 25.670 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_2    ; clk        ; clk      ; None                        ; None                      ; 25.434 ns               ;
+; N/A                                     ; 39.01 MHz ( period = 25.632 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_0 ; clk        ; clk      ; None                        ; None                      ; 25.405 ns               ;
+; N/A                                     ; 39.03 MHz ( period = 25.624 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_1    ; clk        ; clk      ; None                        ; None                      ; 25.390 ns               ;
+; N/A                                     ; 39.04 MHz ( period = 25.618 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_2 ; clk        ; clk      ; None                        ; None                      ; 25.407 ns               ;
+; N/A                                     ; 39.05 MHz ( period = 25.611 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_0    ; clk        ; clk      ; None                        ; None                      ; 25.383 ns               ;
+; N/A                                     ; 39.08 MHz ( period = 25.590 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_4    ; clk        ; clk      ; None                        ; None                      ; 25.354 ns               ;
+; N/A                                     ; 39.15 MHz ( period = 25.545 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_0    ; clk        ; clk      ; None                        ; None                      ; 25.311 ns               ;
+; N/A                                     ; 39.18 MHz ( period = 25.524 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_0 ; clk        ; clk      ; None                        ; None                      ; 25.297 ns               ;
+; N/A                                     ; 39.26 MHz ( period = 25.473 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_3    ; clk        ; clk      ; None                        ; None                      ; 25.237 ns               ;
+; N/A                                     ; 39.29 MHz ( period = 25.455 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_2 ; clk        ; clk      ; None                        ; None                      ; 25.244 ns               ;
+; N/A                                     ; 39.29 MHz ( period = 25.449 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_7 ; clk        ; clk      ; None                        ; None                      ; 25.257 ns               ;
+; N/A                                     ; 39.30 MHz ( period = 25.448 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_0    ; clk        ; clk      ; None                        ; None                      ; 25.220 ns               ;
+; N/A                                     ; 39.30 MHz ( period = 25.445 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|ram_addr_0     ; clk        ; clk      ; None                        ; None                      ; 25.222 ns               ;
+; N/A                                     ; 39.31 MHz ( period = 25.437 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_5 ; clk        ; clk      ; None                        ; None                      ; 25.223 ns               ;
+; N/A                                     ; 39.32 MHz ( period = 25.433 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_4 ; clk        ; clk      ; None                        ; None                      ; 25.220 ns               ;
+; N/A                                     ; 39.34 MHz ( period = 25.421 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_2 ; clk        ; clk      ; None                        ; None                      ; 25.210 ns               ;
+; N/A                                     ; 39.35 MHz ( period = 25.414 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_0    ; clk        ; clk      ; None                        ; None                      ; 25.186 ns               ;
+; N/A                                     ; 39.35 MHz ( period = 25.413 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_5    ; clk        ; clk      ; None                        ; None                      ; 25.173 ns               ;
+; N/A                                     ; 39.35 MHz ( period = 25.411 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_6    ; clk        ; clk      ; None                        ; None                      ; 25.171 ns               ;
+; N/A                                     ; 39.35 MHz ( period = 25.411 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_7 ; clk        ; clk      ; None                        ; None                      ; 25.219 ns               ;
+; N/A                                     ; 39.36 MHz ( period = 25.407 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|ram_addr_0     ; clk        ; clk      ; None                        ; None                      ; 25.184 ns               ;
+; N/A                                     ; 39.36 MHz ( period = 25.404 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_2 ; clk        ; clk      ; None                        ; None                      ; 25.195 ns               ;
+; N/A                                     ; 39.37 MHz ( period = 25.399 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_5 ; clk        ; clk      ; None                        ; None                      ; 25.185 ns               ;
+; N/A                                     ; 39.37 MHz ( period = 25.397 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_0    ; clk        ; clk      ; None                        ; None                      ; 25.171 ns               ;
+; N/A                                     ; 39.38 MHz ( period = 25.395 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_4 ; clk        ; clk      ; None                        ; None                      ; 25.182 ns               ;
+; N/A                                     ; 39.40 MHz ( period = 25.381 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_6 ; clk        ; clk      ; None                        ; None                      ; 25.172 ns               ;
+; N/A                                     ; 39.41 MHz ( period = 25.374 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0    ; clk        ; clk      ; None                        ; None                      ; 25.160 ns               ;
+; N/A                                     ; 39.43 MHz ( period = 25.359 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_2 ; clk        ; clk      ; None                        ; None                      ; 25.148 ns               ;
+; N/A                                     ; 39.44 MHz ( period = 25.357 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_1 ; clk        ; clk      ; None                        ; None                      ; 25.136 ns               ;
+; N/A                                     ; 39.44 MHz ( period = 25.352 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_0    ; clk        ; clk      ; None                        ; None                      ; 25.124 ns               ;
+; N/A                                     ; 39.46 MHz ( period = 25.343 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_6 ; clk        ; clk      ; None                        ; None                      ; 25.134 ns               ;
+; N/A                                     ; 39.47 MHz ( period = 25.336 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0    ; clk        ; clk      ; None                        ; None                      ; 25.122 ns               ;
+; N/A                                     ; 39.50 MHz ( period = 25.319 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_1 ; clk        ; clk      ; None                        ; None                      ; 25.098 ns               ;
+; N/A                                     ; 39.51 MHz ( period = 25.312 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_7 ; clk        ; clk      ; None                        ; None                      ; 25.120 ns               ;
+; N/A                                     ; 39.51 MHz ( period = 25.308 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|ram_addr_0     ; clk        ; clk      ; None                        ; None                      ; 25.085 ns               ;
+; N/A                                     ; 39.53 MHz ( period = 25.300 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_5 ; clk        ; clk      ; None                        ; None                      ; 25.086 ns               ;
+; N/A                                     ; 39.53 MHz ( period = 25.296 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_4 ; clk        ; clk      ; None                        ; None                      ; 25.083 ns               ;
+; N/A                                     ; 39.60 MHz ( period = 25.251 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_2 ; clk        ; clk      ; None                        ; None                      ; 25.040 ns               ;
+; N/A                                     ; 39.61 MHz ( period = 25.244 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_6 ; clk        ; clk      ; None                        ; None                      ; 25.035 ns               ;
+; N/A                                     ; 39.61 MHz ( period = 25.244 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_0    ; clk        ; clk      ; None                        ; None                      ; 25.016 ns               ;
+; N/A                                     ; 39.62 MHz ( period = 25.237 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0    ; clk        ; clk      ; None                        ; None                      ; 25.023 ns               ;
+; N/A                                     ; 39.65 MHz ( period = 25.220 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_1 ; clk        ; clk      ; None                        ; None                      ; 24.999 ns               ;
+; N/A                                     ; 39.67 MHz ( period = 25.210 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1    ; clk        ; clk      ; None                        ; None                      ; 24.996 ns               ;
+; N/A                                     ; 39.73 MHz ( period = 25.172 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1    ; clk        ; clk      ; None                        ; None                      ; 24.958 ns               ;
+; N/A                                     ; 39.76 MHz ( period = 25.149 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_7 ; clk        ; clk      ; None                        ; None                      ; 24.957 ns               ;
+; N/A                                     ; 39.77 MHz ( period = 25.145 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|ram_addr_0     ; clk        ; clk      ; None                        ; None                      ; 24.922 ns               ;
+; N/A                                     ; 39.78 MHz ( period = 25.137 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_5 ; clk        ; clk      ; None                        ; None                      ; 24.923 ns               ;
+; N/A                                     ; 39.79 MHz ( period = 25.134 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2    ; clk        ; clk      ; None                        ; None                      ; 24.920 ns               ;
+; N/A                                     ; 39.79 MHz ( period = 25.133 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_3 ; clk        ; clk      ; None                        ; None                      ; 24.918 ns               ;
+; N/A                                     ; 39.79 MHz ( period = 25.133 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_4 ; clk        ; clk      ; None                        ; None                      ; 24.920 ns               ;
+; N/A                                     ; 39.82 MHz ( period = 25.115 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_7 ; clk        ; clk      ; None                        ; None                      ; 24.923 ns               ;
+; N/A                                     ; 39.82 MHz ( period = 25.111 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|ram_addr_0     ; clk        ; clk      ; None                        ; None                      ; 24.888 ns               ;
+; N/A                                     ; 39.84 MHz ( period = 25.103 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_5 ; clk        ; clk      ; None                        ; None                      ; 24.889 ns               ;
+; N/A                                     ; 39.84 MHz ( period = 25.099 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3    ; clk        ; clk      ; None                        ; None                      ; 24.885 ns               ;
+; N/A                                     ; 39.84 MHz ( period = 25.099 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_4 ; clk        ; clk      ; None                        ; None                      ; 24.886 ns               ;
+; N/A                                     ; 39.84 MHz ( period = 25.098 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_7 ; clk        ; clk      ; None                        ; None                      ; 24.908 ns               ;
+; N/A                                     ; 39.85 MHz ( period = 25.096 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2    ; clk        ; clk      ; None                        ; None                      ; 24.882 ns               ;
+; N/A                                     ; 39.85 MHz ( period = 25.095 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_3 ; clk        ; clk      ; None                        ; None                      ; 24.880 ns               ;
+; N/A                                     ; 39.85 MHz ( period = 25.094 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|ram_addr_0     ; clk        ; clk      ; None                        ; None                      ; 24.873 ns               ;
+; N/A                                     ; 39.86 MHz ( period = 25.086 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_5 ; clk        ; clk      ; None                        ; None                      ; 24.874 ns               ;
+; N/A                                     ; 39.87 MHz ( period = 25.082 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_4 ; clk        ; clk      ; None                        ; None                      ; 24.871 ns               ;
+; N/A                                     ; 39.87 MHz ( period = 25.081 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_6 ; clk        ; clk      ; None                        ; None                      ; 24.872 ns               ;
+; N/A                                     ; 39.88 MHz ( period = 25.074 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0    ; clk        ; clk      ; None                        ; None                      ; 24.860 ns               ;
+; N/A                                     ; 39.88 MHz ( period = 25.073 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1    ; clk        ; clk      ; None                        ; None                      ; 24.859 ns               ;
+; N/A                                     ; 39.90 MHz ( period = 25.061 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3    ; clk        ; clk      ; None                        ; None                      ; 24.847 ns               ;
+; N/A                                     ; 39.91 MHz ( period = 25.057 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_1 ; clk        ; clk      ; None                        ; None                      ; 24.836 ns               ;
+; N/A                                     ; 39.92 MHz ( period = 25.053 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_7 ; clk        ; clk      ; None                        ; None                      ; 24.861 ns               ;
+; N/A                                     ; 39.92 MHz ( period = 25.049 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|ram_addr_0     ; clk        ; clk      ; None                        ; None                      ; 24.826 ns               ;
+; N/A                                     ; 39.92 MHz ( period = 25.047 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_6 ; clk        ; clk      ; None                        ; None                      ; 24.838 ns               ;
+; N/A                                     ; 39.93 MHz ( period = 25.041 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_5 ; clk        ; clk      ; None                        ; None                      ; 24.827 ns               ;
+; N/A                                     ; 39.94 MHz ( period = 25.040 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0    ; clk        ; clk      ; None                        ; None                      ; 24.826 ns               ;
+; N/A                                     ; 39.94 MHz ( period = 25.037 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_4 ; clk        ; clk      ; None                        ; None                      ; 24.824 ns               ;
+; N/A                                     ; 39.95 MHz ( period = 25.030 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_6 ; clk        ; clk      ; None                        ; None                      ; 24.823 ns               ;
+; N/A                                     ; 39.96 MHz ( period = 25.023 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_1 ; clk        ; clk      ; None                        ; None                      ; 24.802 ns               ;
+; N/A                                     ; 39.96 MHz ( period = 25.023 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0    ; clk        ; clk      ; None                        ; None                      ; 24.811 ns               ;
+; N/A                                     ; 39.99 MHz ( period = 25.006 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_1 ; clk        ; clk      ; None                        ; None                      ; 24.787 ns               ;
+; N/A                                     ; 40.00 MHz ( period = 24.997 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2    ; clk        ; clk      ; None                        ; None                      ; 24.783 ns               ;
+; N/A                                     ; 40.01 MHz ( period = 24.996 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_3 ; clk        ; clk      ; None                        ; None                      ; 24.781 ns               ;
+; N/A                                     ; 40.02 MHz ( period = 24.985 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_6 ; clk        ; clk      ; None                        ; None                      ; 24.776 ns               ;
+; N/A                                     ; 40.04 MHz ( period = 24.978 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0    ; clk        ; clk      ; None                        ; None                      ; 24.764 ns               ;
+; N/A                                     ; 40.06 MHz ( period = 24.962 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3    ; clk        ; clk      ; None                        ; None                      ; 24.748 ns               ;
+; N/A                                     ; 40.06 MHz ( period = 24.961 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_1 ; clk        ; clk      ; None                        ; None                      ; 24.740 ns               ;
+; N/A                                     ; 40.09 MHz ( period = 24.945 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_7 ; clk        ; clk      ; None                        ; None                      ; 24.753 ns               ;
+; N/A                                     ; 40.09 MHz ( period = 24.941 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|ram_addr_0     ; clk        ; clk      ; None                        ; None                      ; 24.718 ns               ;
+; N/A                                     ; 40.11 MHz ( period = 24.933 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_5 ; clk        ; clk      ; None                        ; None                      ; 24.719 ns               ;
+; N/A                                     ; 40.11 MHz ( period = 24.929 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_4 ; clk        ; clk      ; None                        ; None                      ; 24.716 ns               ;
+; N/A                                     ; 40.14 MHz ( period = 24.910 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1    ; clk        ; clk      ; None                        ; None                      ; 24.696 ns               ;
+; N/A                                     ; 40.20 MHz ( period = 24.877 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_6 ; clk        ; clk      ; None                        ; None                      ; 24.668 ns               ;
+; N/A                                     ; 40.20 MHz ( period = 24.876 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1    ; clk        ; clk      ; None                        ; None                      ; 24.662 ns               ;
+; N/A                                     ; 40.21 MHz ( period = 24.870 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0    ; clk        ; clk      ; None                        ; None                      ; 24.656 ns               ;
+; N/A                                     ; 40.23 MHz ( period = 24.859 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1    ; clk        ; clk      ; None                        ; None                      ; 24.647 ns               ;
+; N/A                                     ; 40.24 MHz ( period = 24.853 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_1 ; clk        ; clk      ; None                        ; None                      ; 24.632 ns               ;
+; N/A                                     ; 40.27 MHz ( period = 24.834 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2    ; clk        ; clk      ; None                        ; None                      ; 24.620 ns               ;
+; N/A                                     ; 40.27 MHz ( period = 24.833 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_3 ; clk        ; clk      ; None                        ; None                      ; 24.618 ns               ;
+; N/A                                     ; 40.30 MHz ( period = 24.814 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1    ; clk        ; clk      ; None                        ; None                      ; 24.600 ns               ;
+; N/A                                     ; 40.32 MHz ( period = 24.800 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2    ; clk        ; clk      ; None                        ; None                      ; 24.586 ns               ;
+; N/A                                     ; 40.32 MHz ( period = 24.799 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3    ; clk        ; clk      ; None                        ; None                      ; 24.585 ns               ;
+; N/A                                     ; 40.32 MHz ( period = 24.799 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_3 ; clk        ; clk      ; None                        ; None                      ; 24.584 ns               ;
+; N/A                                     ; 40.35 MHz ( period = 24.783 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2    ; clk        ; clk      ; None                        ; None                      ; 24.571 ns               ;
+; N/A                                     ; 40.35 MHz ( period = 24.782 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_3 ; clk        ; clk      ; None                        ; None                      ; 24.569 ns               ;
+; N/A                                     ; 40.36 MHz ( period = 24.779 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_7 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_0 ; clk        ; clk      ; None                        ; None                      ; 24.523 ns               ;
+; N/A                                     ; 40.38 MHz ( period = 24.765 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3    ; clk        ; clk      ; None                        ; None                      ; 24.551 ns               ;
+; N/A                                     ; 40.41 MHz ( period = 24.748 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3    ; clk        ; clk      ; None                        ; None                      ; 24.536 ns               ;
+; N/A                                     ; 40.42 MHz ( period = 24.738 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2    ; clk        ; clk      ; None                        ; None                      ; 24.524 ns               ;
+; N/A                                     ; 40.43 MHz ( period = 24.737 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_3 ; clk        ; clk      ; None                        ; None                      ; 24.522 ns               ;
+; N/A                                     ; 40.48 MHz ( period = 24.706 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1    ; clk        ; clk      ; None                        ; None                      ; 24.492 ns               ;
+; N/A                                     ; 40.48 MHz ( period = 24.703 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3    ; clk        ; clk      ; None                        ; None                      ; 24.489 ns               ;
+; N/A                                     ; 40.54 MHz ( period = 24.667 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|reg_pc_15_11_2 ; clk        ; clk      ; None                        ; None                      ; 24.480 ns               ;
+; N/A                                     ; 40.60 MHz ( period = 24.632 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|reg_pc_10_8_1  ; clk        ; clk      ; None                        ; None                      ; 24.407 ns               ;
+; N/A                                     ; 40.60 MHz ( period = 24.630 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2    ; clk        ; clk      ; None                        ; None                      ; 24.416 ns               ;
+; N/A                                     ; 40.60 MHz ( period = 24.629 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_3 ; clk        ; clk      ; None                        ; None                      ; 24.414 ns               ;
+; N/A                                     ; 40.60 MHz ( period = 24.629 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|reg_pc_15_11_2 ; clk        ; clk      ; None                        ; None                      ; 24.442 ns               ;
+; N/A                                     ; 40.66 MHz ( period = 24.595 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3    ; clk        ; clk      ; None                        ; None                      ; 24.381 ns               ;
+; N/A                                     ; 40.66 MHz ( period = 24.594 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|reg_pc_10_8_1  ; clk        ; clk      ; None                        ; None                      ; 24.369 ns               ;
+; N/A                                     ; 40.73 MHz ( period = 24.553 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4    ; clk        ; clk      ; None                        ; None                      ; 24.339 ns               ;
+; N/A                                     ; 40.77 MHz ( period = 24.530 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|reg_pc_15_11_2 ; clk        ; clk      ; None                        ; None                      ; 24.343 ns               ;
+; N/A                                     ; 40.79 MHz ( period = 24.515 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4    ; clk        ; clk      ; None                        ; None                      ; 24.301 ns               ;
+; N/A                                     ; 40.81 MHz ( period = 24.506 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_7 ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_2 ; clk        ; clk      ; None                        ; None                      ; 24.266 ns               ;
+; N/A                                     ; 40.82 MHz ( period = 24.499 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_0    ; clk        ; clk      ; None                        ; None                      ; 24.242 ns               ;
+; N/A                                     ; 40.82 MHz ( period = 24.495 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|reg_pc_10_8_1  ; clk        ; clk      ; None                        ; None                      ; 24.270 ns               ;
+; N/A                                     ; 40.91 MHz ( period = 24.444 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5    ; clk        ; clk      ; None                        ; None                      ; 24.230 ns               ;
+; N/A                                     ; 40.95 MHz ( period = 24.422 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_7    ; clk        ; clk      ; None                        ; None                      ; 24.237 ns               ;
+; N/A                                     ; 40.96 MHz ( period = 24.416 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4    ; clk        ; clk      ; None                        ; None                      ; 24.202 ns               ;
+; N/A                                     ; 40.97 MHz ( period = 24.411 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_6 ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_7    ; clk        ; clk      ; None                        ; None                      ; 24.206 ns               ;
+; N/A                                     ; 40.97 MHz ( period = 24.406 ns )                    ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0 ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5    ; clk        ; clk      ; None                        ; None                      ; 24.192 ns               ;
+; Timing analysis restricted to 200 rows. ; To change the limit use Settings (Assignments menu) ;                                        ;                                           ;            ;          ;                             ;                           ;                         ;
++-----------------------------------------+-----------------------------------------------------+----------------------------------------+-------------------------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Hold: 'clk'                                                                                                                                                                                                                 ;
++------------------------------------------+-------------------------------------+-------------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+; Minimum Slack                            ; From                                ; To                                  ; From Clock ; To Clock ; Required Hold Relationship ; Required Shortest P2P Time ; Actual Shortest P2P Time ;
++------------------------------------------+-------------------------------------+-------------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_12_dup_79  ; clk        ; clk      ; None                       ; None                       ; 0.744 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_4 ; ram_inout:inst2|ix4392_a_11_dup_115 ; clk        ; clk      ; None                       ; None                       ; 0.480 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_12_dup_97  ; clk        ; clk      ; None                       ; None                       ; 1.277 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_1_dup_72   ; clk        ; clk      ; None                       ; None                       ; 0.750 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_0 ; ram_inout:inst2|ix4392_a_12_dup_183 ; clk        ; clk      ; None                       ; None                       ; 1.433 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_11_dup_80  ; clk        ; clk      ; None                       ; None                       ; 0.978 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_4 ; ram_inout:inst2|ix4392_a_7_dup_119  ; clk        ; clk      ; None                       ; None                       ; 0.968 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_4          ; clk        ; clk      ; None                       ; None                       ; 0.476 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_0 ; ram_inout:inst2|ix4392_a_7_dup_188  ; clk        ; clk      ; None                       ; None                       ; 0.856 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_0 ; ram_inout:inst2|ix4392_a_11_dup_184 ; clk        ; clk      ; None                       ; None                       ; 1.186 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_2 ; ram_inout:inst2|ix4392_a_12_dup_149 ; clk        ; clk      ; None                       ; None                       ; 1.720 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_3 ; ram_inout:inst2|ix4392_a_13_dup_131 ; clk        ; clk      ; None                       ; None                       ; 0.893 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_4 ; ram_inout:inst2|ix4392_a_1_dup_125  ; clk        ; clk      ; None                       ; None                       ; 1.283 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_2 ; ram_inout:inst2|ix4392_a_11_dup_150 ; clk        ; clk      ; None                       ; None                       ; 1.276 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_1 ; ram_inout:inst2|ix4392_a_7_dup_171  ; clk        ; clk      ; None                       ; None                       ; 1.168 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_2 ; ram_inout:inst2|ix4392_a_13_dup_148 ; clk        ; clk      ; None                       ; None                       ; 0.964 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_0 ; ram_inout:inst2|ix4392_a_13_dup_182 ; clk        ; clk      ; None                       ; None                       ; 1.032 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_2 ; ram_inout:inst2|ix4392_a_7_dup_154  ; clk        ; clk      ; None                       ; None                       ; 1.281 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_3 ; ram_inout:inst2|ix4392_a_11_dup_133 ; clk        ; clk      ; None                       ; None                       ; 1.450 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_4 ; ram_inout:inst2|ix4392_a_15_dup_111 ; clk        ; clk      ; None                       ; None                       ; 0.786 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_5_dup_104  ; clk        ; clk      ; None                       ; None                       ; 1.238 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_14         ; clk        ; clk      ; None                       ; None                       ; 0.751 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_4 ; ram_inout:inst2|ix4392_a_14_dup_112 ; clk        ; clk      ; None                       ; None                       ; 0.784 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_11_dup_98  ; clk        ; clk      ; None                       ; None                       ; 1.560 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_7_dup_102  ; clk        ; clk      ; None                       ; None                       ; 1.485 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_7          ; clk        ; clk      ; None                       ; None                       ; 1.481 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_9_dup_82   ; clk        ; clk      ; None                       ; None                       ; 1.281 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_1_dup_108  ; clk        ; clk      ; None                       ; None                       ; 1.636 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_3 ; ram_inout:inst2|ix4392_a_14_dup_130 ; clk        ; clk      ; None                       ; None                       ; 0.985 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_4 ; ram_inout:inst2|ix4392_a_8_dup_118  ; clk        ; clk      ; None                       ; None                       ; 1.283 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_4 ; ram_inout:inst2|ix4392_a_9_dup_117  ; clk        ; clk      ; None                       ; None                       ; 1.319 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_4 ; ram_inout:inst2|ix4392_a_5_dup_121  ; clk        ; clk      ; None                       ; None                       ; 1.462 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_3 ; ram_inout:inst2|ix4392_a_12_dup_132 ; clk        ; clk      ; None                       ; None                       ; 2.195 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_1 ; ram_inout:inst2|ix4392_a_5_dup_173  ; clk        ; clk      ; None                       ; None                       ; 1.494 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_12         ; clk        ; clk      ; None                       ; None                       ; 2.273 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_2 ; ram_inout:inst2|ix4392_a_15_dup_146 ; clk        ; clk      ; None                       ; None                       ; 1.104 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_5          ; clk        ; clk      ; None                       ; None                       ; 1.528 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_1 ; ram_inout:inst2|ix4392_a_8_dup_170  ; clk        ; clk      ; None                       ; None                       ; 1.489 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_0 ; ram_inout:inst2|ix4392_a_6_dup_189  ; clk        ; clk      ; None                       ; None                       ; 1.031 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_11         ; clk        ; clk      ; None                       ; None                       ; 1.824 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_0 ; ram_inout:inst2|ix4392_a_5_dup_190  ; clk        ; clk      ; None                       ; None                       ; 1.544 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_3_dup_106  ; clk        ; clk      ; None                       ; None                       ; 1.651 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_15_dup_76  ; clk        ; clk      ; None                       ; None                       ; 1.283 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_3_dup_70   ; clk        ; clk      ; None                       ; None                       ; 1.658 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_8          ; clk        ; clk      ; None                       ; None                       ; 1.493 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_4 ; ram_inout:inst2|ix4392_a_12_dup_114 ; clk        ; clk      ; None                       ; None                       ; 2.348 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_13_dup_96  ; clk        ; clk      ; None                       ; None                       ; 1.517 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_3 ; ram_inout:inst2|ix4392_a_8_dup_136  ; clk        ; clk      ; None                       ; None                       ; 1.533 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_4 ; ram_inout:inst2|ix4392_a_13_dup_113 ; clk        ; clk      ; None                       ; None                       ; 1.463 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_3 ; ram_inout:inst2|ix4392_a_5_dup_139  ; clk        ; clk      ; None                       ; None                       ; 1.562 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_7_dup_84   ; clk        ; clk      ; None                       ; None                       ; 1.702 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_1 ; ram_inout:inst2|ix4392_a_9_dup_169  ; clk        ; clk      ; None                       ; None                       ; 1.493 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_9          ; clk        ; clk      ; None                       ; None                       ; 1.525 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_9_dup_100  ; clk        ; clk      ; None                       ; None                       ; 1.549 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_0 ; ram_inout:inst2|ix4392_a_14_dup_181 ; clk        ; clk      ; None                       ; None                       ; 1.199 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_3 ; ram_inout:inst2|ix4392_a_7_dup_137  ; clk        ; clk      ; None                       ; None                       ; 1.789 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_2 ; ram_inout:inst2|ix4392_a_9_dup_152  ; clk        ; clk      ; None                       ; None                       ; 1.522 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_4 ; ram_inout:inst2|ix4392_a_4_dup_122  ; clk        ; clk      ; None                       ; None                       ; 1.237 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_3 ; ram_inout:inst2|ix4392_a_15_dup_129 ; clk        ; clk      ; None                       ; None                       ; 1.315 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_1_dup_90   ; clk        ; clk      ; None                       ; None                       ; 1.987 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_0 ; ram_inout:inst2|ix4392_a_9_dup_186  ; clk        ; clk      ; None                       ; None                       ; 1.596 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_4 ; ram_inout:inst2|ix4392_a_6_dup_120  ; clk        ; clk      ; None                       ; None                       ; 1.238 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_2 ; ram_inout:inst2|ix4392_a_6_dup_155  ; clk        ; clk      ; None                       ; None                       ; 1.279 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_1 ; ram_inout:inst2|ix4392_a_11_dup_167 ; clk        ; clk      ; None                       ; None                       ; 2.008 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_3 ; ram_inout:inst2|ix4392_a_4_dup_140  ; clk        ; clk      ; None                       ; None                       ; 1.391 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_15_dup_94  ; clk        ; clk      ; None                       ; None                       ; 1.381 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_1 ; ram_inout:inst2|ix4392_a_6_dup_172  ; clk        ; clk      ; None                       ; None                       ; 1.313 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_0 ; ram_inout:inst2|ix4392_a_8_dup_187  ; clk        ; clk      ; None                       ; None                       ; 1.771 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_6_dup_103  ; clk        ; clk      ; None                       ; None                       ; 1.345 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_8_dup_101  ; clk        ; clk      ; None                       ; None                       ; 1.796 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_1 ; ram_inout:inst2|ix4392_a_12_dup_166 ; clk        ; clk      ; None                       ; None                       ; 2.527 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_2 ; ram_inout:inst2|ix4392_a_5_dup_156  ; clk        ; clk      ; None                       ; None                       ; 1.845 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_13         ; clk        ; clk      ; None                       ; None                       ; 1.737 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_0 ; ram_inout:inst2|ix4392_a_15_dup_180 ; clk        ; clk      ; None                       ; None                       ; 1.493 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_6          ; clk        ; clk      ; None                       ; None                       ; 1.491 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_3 ; ram_inout:inst2|ix4392_a_9_dup_135  ; clk        ; clk      ; None                       ; None                       ; 1.771 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_2 ; ram_inout:inst2|ix4392_a_8_dup_153  ; clk        ; clk      ; None                       ; None                       ; 1.848 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_4 ; ram_inout:inst2|ix4392_a_10_dup_116 ; clk        ; clk      ; None                       ; None                       ; 1.284 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_15         ; clk        ; clk      ; None                       ; None                       ; 1.649 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_8_dup_83   ; clk        ; clk      ; None                       ; None                       ; 1.983 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_1 ; ram_inout:inst2|ix4392_a_13_dup_165 ; clk        ; clk      ; None                       ; None                       ; 2.002 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_3 ; ram_inout:inst2|ix4392_a_6_dup_138  ; clk        ; clk      ; None                       ; None                       ; 1.562 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_0 ; ram_inout:inst2|ix4392_a_4_dup_191  ; clk        ; clk      ; None                       ; None                       ; 1.544 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_1 ; ram_inout:inst2|ix4392_a_4_dup_174  ; clk        ; clk      ; None                       ; None                       ; 1.763 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_4_dup_87   ; clk        ; clk      ; None                       ; None                       ; 1.815 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_2 ; ram_inout:inst2|ix4392_a_10_dup_151 ; clk        ; clk      ; None                       ; None                       ; 1.415 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_0_dup_73   ; clk        ; clk      ; None                       ; None                       ; 0.323 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_2 ; ram_inout:inst2|ix4392_a_4_dup_157  ; clk        ; clk      ; None                       ; None                       ; 1.670 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_14_dup_95  ; clk        ; clk      ; None                       ; None                       ; 1.812 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_5_dup_86   ; clk        ; clk      ; None                       ; None                       ; 2.257 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_1 ; ram_inout:inst2|ix4392_a_10_dup_168 ; clk        ; clk      ; None                       ; None                       ; 1.485 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_0_dup_109  ; clk        ; clk      ; None                       ; None                       ; 0.323 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_2_dup_107  ; clk        ; clk      ; None                       ; None                       ; 1.648 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_4_dup_105  ; clk        ; clk      ; None                       ; None                       ; 2.023 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_2_dup_71   ; clk        ; clk      ; None                       ; None                       ; 1.836 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_3_dup_88   ; clk        ; clk      ; None                       ; None                       ; 2.508 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_2 ; ram_inout:inst2|ix4392_a_14_dup_147 ; clk        ; clk      ; None                       ; None                       ; 2.015 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_6_dup_85   ; clk        ; clk      ; None                       ; None                       ; 2.009 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_13_dup_78  ; clk        ; clk      ; None                       ; None                       ; 2.258 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_0 ; ram_inout:inst2|ix4392_a_10_dup_185 ; clk        ; clk      ; None                       ; None                       ; 1.773 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_5 ; ram_inout:inst2|ix4392_a_10_dup_99  ; clk        ; clk      ; None                       ; None                       ; 1.795 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_3 ; ram_inout:inst2|ix4392_a_10_dup_134 ; clk        ; clk      ; None                       ; None                       ; 1.804 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_7 ; ram_inout:inst2|ix4392_a_10         ; clk        ; clk      ; None                       ; None                       ; 1.861 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_1 ; ram_inout:inst2|ix4392_a_14_dup_164 ; clk        ; clk      ; None                       ; None                       ; 2.317 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_14_dup_77  ; clk        ; clk      ; None                       ; None                       ; 2.236 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_1 ; ram_inout:inst2|ix4392_a_15_dup_163 ; clk        ; clk      ; None                       ; None                       ; 2.527 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_10_dup_81  ; clk        ; clk      ; None                       ; None                       ; 1.985 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_0_dup_91   ; clk        ; clk      ; None                       ; None                       ; 0.323 ns                 ;
+; Not operational: Clock Skew > Data Delay ; i8051:inst|I8051_RAM:U_RAM|p0_out_6 ; ram_inout:inst2|ix4392_a_2_dup_89   ; clk        ; clk      ; None                       ; None                       ; 2.505 ns                 ;
++------------------------------------------+-------------------------------------+-------------------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; tsu                                                                                                ;
++-------+--------------+------------+------+----------------------------------------------+----------+
+; Slack ; Required tsu ; Actual tsu ; From ; To                                           ; To Clock ;
++-------+--------------+------------+------+----------------------------------------------+----------+
+; N/A   ; None         ; 19.248 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5       ; clk      ;
+; N/A   ; None         ; 19.248 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4       ; clk      ;
+; N/A   ; None         ; 19.235 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6       ; clk      ;
+; N/A   ; None         ; 19.182 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_6       ; clk      ;
+; N/A   ; None         ; 19.170 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_0       ; clk      ;
+; N/A   ; None         ; 19.078 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_1       ; clk      ;
+; N/A   ; None         ; 19.061 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7       ; clk      ;
+; N/A   ; None         ; 19.046 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_op_code_0     ; clk      ;
+; N/A   ; None         ; 19.032 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_op_code_2     ; clk      ;
+; N/A   ; None         ; 19.032 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_op_code_1     ; clk      ;
+; N/A   ; None         ; 19.026 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3       ; clk      ;
+; N/A   ; None         ; 19.026 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1       ; clk      ;
+; N/A   ; None         ; 19.026 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2       ; clk      ;
+; N/A   ; None         ; 19.026 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0       ; clk      ;
+; N/A   ; None         ; 19.025 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_op_code_3     ; clk      ;
+; N/A   ; None         ; 18.988 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_7       ; clk      ;
+; N/A   ; None         ; 18.919 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_3       ; clk      ;
+; N/A   ; None         ; 18.890 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_4       ; clk      ;
+; N/A   ; None         ; 18.880 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_2       ; clk      ;
+; N/A   ; None         ; 18.675 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_5       ; clk      ;
+; N/A   ; None         ; 18.209 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_6       ; clk      ;
+; N/A   ; None         ; 18.209 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_5       ; clk      ;
+; N/A   ; None         ; 18.177 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_4       ; clk      ;
+; N/A   ; None         ; 18.177 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_3       ; clk      ;
+; N/A   ; None         ; 18.177 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_2       ; clk      ;
+; N/A   ; None         ; 18.144 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_0    ; clk      ;
+; N/A   ; None         ; 17.980 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_2    ; clk      ;
+; N/A   ; None         ; 17.950 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_1       ; clk      ;
+; N/A   ; None         ; 17.950 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_7       ; clk      ;
+; N/A   ; None         ; 17.950 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_0       ; clk      ;
+; N/A   ; None         ; 17.338 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_wr            ; clk      ;
+; N/A   ; None         ; 17.298 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_1    ; clk      ;
+; N/A   ; None         ; 17.066 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_15_11_2    ; clk      ;
+; N/A   ; None         ; 16.919 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|nx52626           ; clk      ;
+; N/A   ; None         ; 16.919 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_7       ; clk      ;
+; N/A   ; None         ; 16.919 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_5       ; clk      ;
+; N/A   ; None         ; 16.919 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_4       ; clk      ;
+; N/A   ; None         ; 16.919 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_1       ; clk      ;
+; N/A   ; None         ; 16.919 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_6       ; clk      ;
+; N/A   ; None         ; 16.919 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_3       ; clk      ;
+; N/A   ; None         ; 16.919 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_2_repl1 ; clk      ;
+; N/A   ; None         ; 16.919 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|nx52626_repl1     ; clk      ;
+; N/A   ; None         ; 16.919 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_2       ; clk      ;
+; N/A   ; None         ; 16.799 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_cy        ; clk      ;
+; N/A   ; None         ; 16.618 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_15_11_4    ; clk      ;
+; N/A   ; None         ; 16.604 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_15_11_1    ; clk      ;
+; N/A   ; None         ; 16.574 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_15_11_3    ; clk      ;
+; N/A   ; None         ; 16.543 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_0        ; clk      ;
+; N/A   ; None         ; 16.537 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_5        ; clk      ;
+; N/A   ; None         ; 16.441 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_4        ; clk      ;
+; N/A   ; None         ; 16.412 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_cy            ; clk      ;
+; N/A   ; None         ; 16.351 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_ov            ; clk      ;
+; N/A   ; None         ; 16.298 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_15_11_0    ; clk      ;
+; N/A   ; None         ; 16.152 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_5    ; clk      ;
+; N/A   ; None         ; 16.147 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_3    ; clk      ;
+; N/A   ; None         ; 15.920 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_10_8_1     ; clk      ;
+; N/A   ; None         ; 15.877 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_6        ; clk      ;
+; N/A   ; None         ; 15.719 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_6    ; clk      ;
+; N/A   ; None         ; 15.705 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_10_8_2     ; clk      ;
+; N/A   ; None         ; 15.703 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_10_8_0     ; clk      ;
+; N/A   ; None         ; 15.618 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_4      ; clk      ;
+; N/A   ; None         ; 15.618 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_5      ; clk      ;
+; N/A   ; None         ; 15.547 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_7        ; clk      ;
+; N/A   ; None         ; 15.543 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_1      ; clk      ;
+; N/A   ; None         ; 15.539 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_4    ; clk      ;
+; N/A   ; None         ; 15.533 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_2      ; clk      ;
+; N/A   ; None         ; 15.533 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_3      ; clk      ;
+; N/A   ; None         ; 15.351 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_rd            ; clk      ;
+; N/A   ; None         ; 15.313 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_6      ; clk      ;
+; N/A   ; None         ; 15.313 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_0      ; clk      ;
+; N/A   ; None         ; 15.248 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_2        ; clk      ;
+; N/A   ; None         ; 15.168 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_7    ; clk      ;
+; N/A   ; None         ; 15.039 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_7      ; clk      ;
+; N/A   ; None         ; 14.926 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_3        ; clk      ;
+; N/A   ; None         ; 14.900 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_1        ; clk      ;
+; N/A   ; None         ; 14.596 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_ac        ; clk      ;
+; N/A   ; None         ; 14.191 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_ac            ; clk      ;
+; N/A   ; None         ; 13.138 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_2         ; clk      ;
+; N/A   ; None         ; 13.138 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_3         ; clk      ;
+; N/A   ; None         ; 12.868 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_6         ; clk      ;
+; N/A   ; None         ; 12.868 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_1         ; clk      ;
+; N/A   ; None         ; 12.868 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_0         ; clk      ;
+; N/A   ; None         ; 12.868 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_7         ; clk      ;
+; N/A   ; None         ; 12.868 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_4         ; clk      ;
+; N/A   ; None         ; 12.868 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_5         ; clk      ;
+; N/A   ; None         ; 12.433 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|cpu_state_1       ; clk      ;
+; N/A   ; None         ; 12.314 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_is_bit_addr   ; clk      ;
+; N/A   ; None         ; 11.897 ns  ; rst  ; i8051:inst|I8051_CTR:U_CTR|cpu_state_1_repl1 ; clk      ;
+; N/A   ; None         ; 7.950 ns   ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_bit_data  ; clk      ;
++-------+--------------+------------+------+----------------------------------------------+----------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; tco                                                                                                 ;
++-------+--------------+------------+-------------------------------------+--------------+------------+
+; Slack ; Required tco ; Actual tco ; From                                ; To           ; From Clock ;
++-------+--------------+------------+-------------------------------------+--------------+------------+
+; N/A   ; None         ; 11.775 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_5 ; disp_high[0] ; clk        ;
+; N/A   ; None         ; 11.059 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_7 ; disp_high[0] ; clk        ;
+; N/A   ; None         ; 11.058 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_4 ; disp_high[1] ; clk        ;
+; N/A   ; None         ; 10.941 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_6 ; disp_high[1] ; clk        ;
+; N/A   ; None         ; 10.896 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_2 ; disp_low[5]  ; clk        ;
+; N/A   ; None         ; 10.662 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_5 ; disp_high[6] ; clk        ;
+; N/A   ; None         ; 10.655 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_4 ; disp_high[4] ; clk        ;
+; N/A   ; None         ; 10.594 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_3 ; disp_low[2]  ; clk        ;
+; N/A   ; None         ; 10.591 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_4 ; disp_high[2] ; clk        ;
+; N/A   ; None         ; 10.535 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_6 ; disp_high[4] ; clk        ;
+; N/A   ; None         ; 10.526 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_2 ; disp_low[3]  ; clk        ;
+; N/A   ; None         ; 10.498 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_6 ; disp_high[2] ; clk        ;
+; N/A   ; None         ; 10.357 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_0 ; disp_low[2]  ; clk        ;
+; N/A   ; None         ; 10.336 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_1 ; disp_low[2]  ; clk        ;
+; N/A   ; None         ; 10.334 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_2 ; disp_low[0]  ; clk        ;
+; N/A   ; None         ; 10.175 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_6 ; disp_high[5] ; clk        ;
+; N/A   ; None         ; 10.110 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_7 ; disp_high[1] ; clk        ;
+; N/A   ; None         ; 10.094 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_6 ; disp_high[3] ; clk        ;
+; N/A   ; None         ; 10.052 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_5 ; disp_high[1] ; clk        ;
+; N/A   ; None         ; 10.038 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_4 ; disp_high[3] ; clk        ;
+; N/A   ; None         ; 10.011 ns  ; i8051:inst|I8051_RAM:U_RAM|p1_out_0 ; disp_low[5]  ; clk        ;
+; N/A   ; None         ; 9.955 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_4 ; disp_high[0] ; clk        ;
+; N/A   ; None         ; 9.915 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_7 ; disp_high[6] ; clk        ;
+; N/A   ; None         ; 9.864 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_3 ; disp_low[0]  ; clk        ;
+; N/A   ; None         ; 9.797 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_2 ; disp_low[1]  ; clk        ;
+; N/A   ; None         ; 9.794 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_2 ; disp_low[4]  ; clk        ;
+; N/A   ; None         ; 9.736 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_4 ; disp_high[5] ; clk        ;
+; N/A   ; None         ; 9.699 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_1 ; disp_low[0]  ; clk        ;
+; N/A   ; None         ; 9.699 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_7 ; disp_high[4] ; clk        ;
+; N/A   ; None         ; 9.665 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_7 ; disp_high[2] ; clk        ;
+; N/A   ; None         ; 9.650 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_5 ; disp_high[4] ; clk        ;
+; N/A   ; None         ; 9.642 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_0 ; disp_low[3]  ; clk        ;
+; N/A   ; None         ; 9.623 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_3 ; disp_low[5]  ; clk        ;
+; N/A   ; None         ; 9.614 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_5 ; disp_high[2] ; clk        ;
+; N/A   ; None         ; 9.582 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_1 ; disp_low[4]  ; clk        ;
+; N/A   ; None         ; 9.549 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_6 ; disp_high[0] ; clk        ;
+; N/A   ; None         ; 9.331 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_2 ; disp_low[6]  ; clk        ;
+; N/A   ; None         ; 9.285 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_3 ; disp_low[3]  ; clk        ;
+; N/A   ; None         ; 9.156 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_1 ; disp_low[6]  ; clk        ;
+; N/A   ; None         ; 9.131 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_3 ; disp_low[6]  ; clk        ;
+; N/A   ; None         ; 9.037 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_5 ; disp_high[3] ; clk        ;
+; N/A   ; None         ; 9.004 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_6 ; disp_high[6] ; clk        ;
+; N/A   ; None         ; 9.000 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_0 ; disp_low[4]  ; clk        ;
+; N/A   ; None         ; 8.913 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_0 ; disp_low[1]  ; clk        ;
+; N/A   ; None         ; 8.790 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_1 ; disp_low[5]  ; clk        ;
+; N/A   ; None         ; 8.741 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_2 ; disp_low[2]  ; clk        ;
+; N/A   ; None         ; 8.698 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_1 ; disp_low[3]  ; clk        ;
+; N/A   ; None         ; 8.680 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_7 ; disp_high[5] ; clk        ;
+; N/A   ; None         ; 8.566 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_0 ; disp_low[0]  ; clk        ;
+; N/A   ; None         ; 8.555 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_3 ; disp_low[1]  ; clk        ;
+; N/A   ; None         ; 8.402 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_4 ; disp_high[6] ; clk        ;
+; N/A   ; None         ; 8.217 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_7 ; disp_high[3] ; clk        ;
+; N/A   ; None         ; 8.177 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_3 ; disp_low[4]  ; clk        ;
+; N/A   ; None         ; 7.967 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_1 ; disp_low[1]  ; clk        ;
+; N/A   ; None         ; 7.898 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_5 ; disp_high[5] ; clk        ;
+; N/A   ; None         ; 7.453 ns   ; i8051:inst|I8051_RAM:U_RAM|p1_out_0 ; disp_low[6]  ; clk        ;
++-------+--------------+------------+-------------------------------------+--------------+------------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; th                                                                                                       ;
++---------------+-------------+-----------+------+----------------------------------------------+----------+
+; Minimum Slack ; Required th ; Actual th ; From ; To                                           ; To Clock ;
++---------------+-------------+-----------+------+----------------------------------------------+----------+
+; N/A           ; None        ; -2.168 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|cpu_state_1_repl1 ; clk      ;
+; N/A           ; None        ; -2.537 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_bit_data  ; clk      ;
+; N/A           ; None        ; -2.704 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|cpu_state_1       ; clk      ;
+; N/A           ; None        ; -3.522 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_3        ; clk      ;
+; N/A           ; None        ; -3.585 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_is_bit_addr   ; clk      ;
+; N/A           ; None        ; -3.597 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_2        ; clk      ;
+; N/A           ; None        ; -3.603 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_op_code_3     ; clk      ;
+; N/A           ; None        ; -3.625 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_op_code_1     ; clk      ;
+; N/A           ; None        ; -3.659 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_op_code_2     ; clk      ;
+; N/A           ; None        ; -3.773 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_7        ; clk      ;
+; N/A           ; None        ; -3.816 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_5       ; clk      ;
+; N/A           ; None        ; -4.054 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_rd            ; clk      ;
+; N/A           ; None        ; -4.054 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_cy            ; clk      ;
+; N/A           ; None        ; -4.084 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_op_code_0     ; clk      ;
+; N/A           ; None        ; -4.115 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_wr            ; clk      ;
+; N/A           ; None        ; -4.123 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_3       ; clk      ;
+; N/A           ; None        ; -4.128 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_cy        ; clk      ;
+; N/A           ; None        ; -4.128 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_0       ; clk      ;
+; N/A           ; None        ; -4.139 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_0       ; clk      ;
+; N/A           ; None        ; -4.157 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_7    ; clk      ;
+; N/A           ; None        ; -4.215 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_7       ; clk      ;
+; N/A           ; None        ; -4.219 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_6       ; clk      ;
+; N/A           ; None        ; -4.219 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_2       ; clk      ;
+; N/A           ; None        ; -4.256 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_4        ; clk      ;
+; N/A           ; None        ; -4.266 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_6       ; clk      ;
+; N/A           ; None        ; -4.279 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_1        ; clk      ;
+; N/A           ; None        ; -4.303 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_1       ; clk      ;
+; N/A           ; None        ; -4.352 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_3       ; clk      ;
+; N/A           ; None        ; -4.497 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_5        ; clk      ;
+; N/A           ; None        ; -4.511 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_5    ; clk      ;
+; N/A           ; None        ; -4.554 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_5       ; clk      ;
+; N/A           ; None        ; -4.590 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_15_11_4    ; clk      ;
+; N/A           ; None        ; -4.653 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_15_11_0    ; clk      ;
+; N/A           ; None        ; -4.672 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_4       ; clk      ;
+; N/A           ; None        ; -4.677 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_2       ; clk      ;
+; N/A           ; None        ; -4.700 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_15_11_1    ; clk      ;
+; N/A           ; None        ; -4.719 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_1       ; clk      ;
+; N/A           ; None        ; -4.737 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_ac            ; clk      ;
+; N/A           ; None        ; -4.748 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_3       ; clk      ;
+; N/A           ; None        ; -4.756 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|exe_state_2_repl1 ; clk      ;
+; N/A           ; None        ; -4.819 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_4       ; clk      ;
+; N/A           ; None        ; -4.820 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_3    ; clk      ;
+; N/A           ; None        ; -4.826 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_6        ; clk      ;
+; N/A           ; None        ; -4.854 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_0    ; clk      ;
+; N/A           ; None        ; -4.860 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_7       ; clk      ;
+; N/A           ; None        ; -4.866 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_7      ; clk      ;
+; N/A           ; None        ; -4.878 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_6    ; clk      ;
+; N/A           ; None        ; -4.879 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_5       ; clk      ;
+; N/A           ; None        ; -4.886 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_4       ; clk      ;
+; N/A           ; None        ; -4.921 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|nx52626           ; clk      ;
+; N/A           ; None        ; -4.925 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_15_11_3    ; clk      ;
+; N/A           ; None        ; -4.959 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_4    ; clk      ;
+; N/A           ; None        ; -4.985 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_7       ; clk      ;
+; N/A           ; None        ; -4.988 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_1    ; clk      ;
+; N/A           ; None        ; -4.993 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_1       ; clk      ;
+; N/A           ; None        ; -5.031 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_2       ; clk      ;
+; N/A           ; None        ; -5.037 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_4       ; clk      ;
+; N/A           ; None        ; -5.046 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_3_6       ; clk      ;
+; N/A           ; None        ; -5.084 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_1       ; clk      ;
+; N/A           ; None        ; -5.111 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|nx52626_repl1     ; clk      ;
+; N/A           ; None        ; -5.126 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_6       ; clk      ;
+; N/A           ; None        ; -5.132 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_0       ; clk      ;
+; N/A           ; None        ; -5.229 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_5       ; clk      ;
+; N/A           ; None        ; -5.245 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_1      ; clk      ;
+; N/A           ; None        ; -5.246 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_10_8_1     ; clk      ;
+; N/A           ; None        ; -5.285 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_15_11_2    ; clk      ;
+; N/A           ; None        ; -5.299 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_2       ; clk      ;
+; N/A           ; None        ; -5.331 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_6      ; clk      ;
+; N/A           ; None        ; -5.334 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_0      ; clk      ;
+; N/A           ; None        ; -5.334 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_3      ; clk      ;
+; N/A           ; None        ; -5.338 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_2      ; clk      ;
+; N/A           ; None        ; -5.358 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_10_8_2     ; clk      ;
+; N/A           ; None        ; -5.397 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_addr_0        ; clk      ;
+; N/A           ; None        ; -5.398 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_10_8_0     ; clk      ;
+; N/A           ; None        ; -5.506 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_1_7       ; clk      ;
+; N/A           ; None        ; -5.578 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_ov            ; clk      ;
+; N/A           ; None        ; -5.614 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_5      ; clk      ;
+; N/A           ; None        ; -5.615 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_pc_7_0_4      ; clk      ;
+; N/A           ; None        ; -5.665 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|ram_out_data_2    ; clk      ;
+; N/A           ; None        ; -6.176 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_2_3       ; clk      ;
+; N/A           ; None        ; -6.844 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_6         ; clk      ;
+; N/A           ; None        ; -6.844 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_1         ; clk      ;
+; N/A           ; None        ; -6.844 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_0         ; clk      ;
+; N/A           ; None        ; -6.844 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_7         ; clk      ;
+; N/A           ; None        ; -6.844 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_4         ; clk      ;
+; N/A           ; None        ; -6.844 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_5         ; clk      ;
+; N/A           ; None        ; -6.911 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|alu_src_ac        ; clk      ;
+; N/A           ; None        ; -7.114 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_2         ; clk      ;
+; N/A           ; None        ; -7.114 ns ; rst  ; i8051:inst|I8051_CTR:U_CTR|reg_acc_3         ; clk      ;
++---------------+-------------+-----------+------+----------------------------------------------+----------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Classic Timing Analyzer
+    Info: Version 8.0 Build 215 05/29/2008 SJ Full Version
+    Info: Processing started: Wed Oct 27 11:39:11 2010
+Info: Command: quartus_tan --read_settings_files=off --write_settings_files=off Lab5 -c Lab5 --timing_analysis_only
+Warning: Timing Analysis is analyzing one or more combinational loops as latches
+    Warning: Node "ram_inout:inst2|ix4392_a_11_dup_80" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_15_dup_76" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_5_dup_86" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_9_dup_82" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_3_dup_88" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_5_dup_190" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_9_dup_186" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_15_dup_180" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_11_dup_184" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_9_dup_117" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_5_dup_121" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_15_dup_111" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_11_dup_115" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_5_dup_156" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_9_dup_152" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_15_dup_146" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_11_dup_150" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_5_dup_139" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_9_dup_135" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_11_dup_133" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_15_dup_129" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_15_dup_94" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_11_dup_98" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_3_dup_106" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_5_dup_104" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_9_dup_100" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_15_dup_163" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_11_dup_167" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_9_dup_169" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_5_dup_173" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_15" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_11" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_3_dup_70" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_9" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_5" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_10_dup_81" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_8_dup_83" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_13_dup_78" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_2_dup_89" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_7_dup_84" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_6_dup_85" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_1_dup_90" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_14_dup_77" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_0_dup_91" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_4_dup_87" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_12_dup_79" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_14_dup_181" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_7_dup_188" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_6_dup_189" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_13_dup_182" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_10_dup_185" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_8_dup_187" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_12_dup_183" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_4_dup_191" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_10_dup_116" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_8_dup_118" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_14_dup_112" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_1_dup_125" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_13_dup_113" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_6_dup_120" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_7_dup_119" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_12_dup_114" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_4_dup_122" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_8_dup_153" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_10_dup_151" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_13_dup_148" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_14_dup_147" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_6_dup_155" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_7_dup_154" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_4_dup_157" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_12_dup_149" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_8_dup_136" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_10_dup_134" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_6_dup_138" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_7_dup_137" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_14_dup_130" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_13_dup_131" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_4_dup_140" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_12_dup_132" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_4_dup_105" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_0_dup_109" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_12_dup_97" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_13_dup_96" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_2_dup_107" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_8_dup_101" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_10_dup_99" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_1_dup_108" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_14_dup_95" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_7_dup_102" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_6_dup_103" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_13_dup_165" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_10_dup_168" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_8_dup_170" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_14_dup_164" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_7_dup_171" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_6_dup_172" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_12_dup_166" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_4_dup_174" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_12" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_4" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_0_dup_73" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_14" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_1_dup_72" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_13" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_2_dup_71" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_10" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_8" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_6" is a latch
+    Warning: Node "ram_inout:inst2|ix4392_a_7" is a latch
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_1_dup_194"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_2_dup_193"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_3_dup_192"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_0_dup_195"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_2_dup_124"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_0_dup_126"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_3_dup_123"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_2_dup_159"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_1_dup_160"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_0_dup_161"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_3_dup_158"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_1_dup_143"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_2_dup_142"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_0_dup_144"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_3_dup_141"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_2_dup_176"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_1_dup_177"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_3_dup_175"
+Warning: Found combinational loop of 1 nodes
+    Warning: Node "ram_inout:inst2|ix4392_a_0_dup_178"
+Warning: Found pins functioning as undefined clocks and/or memory enables
+    Info: Assuming node "clk" is an undefined clock
+Warning: Found 28 node(s) in clock paths which may be acting as ripple and/or gated clocks -- node(s) analyzed as buffer(s) resulting in clock skew
+    Info: Detected ripple clock "i8051:inst|I8051_RAM:U_RAM|p3_out_1" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4788" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4796" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4786" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4799" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4794" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4793" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4798" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4787" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4792" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4790" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4384" as buffer
+    Info: Detected gated clock "ram_inout:inst2|ix4392_ix21_ix34_nx8" as buffer
+    Info: Detected gated clock "ram_inout:inst2|ix4392_ix21_ix36_nx8" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4797" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4800" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4791" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4795" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4785" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4789" as buffer
+    Info: Detected gated clock "ram_inout:inst2|ix4392_ix21_ix32_nx8" as buffer
+    Info: Detected gated clock "ram_inout:inst2|nx4720" as buffer
+    Info: Detected gated clock "ram_inout:inst2|ix4392_ix21_ix38_nx8" as buffer
+    Info: Detected ripple clock "i8051:inst|I8051_RAM:U_RAM|p2_out_0" as buffer
+    Info: Detected ripple clock "i8051:inst|I8051_RAM:U_RAM|p2_out_1" as buffer
+    Info: Detected ripple clock "i8051:inst|I8051_RAM:U_RAM|p2_out_3" as buffer
+    Info: Detected ripple clock "i8051:inst|I8051_RAM:U_RAM|p2_out_2" as buffer
+    Info: Detected ripple clock "i8051:inst|I8051_RAM:U_RAM|p3_out_0" as buffer
+Info: Clock "clk" has Internal fmax of 37.14 MHz between source register "i8051:inst|I8051_CTR:U_CTR|alu_src_1_7" and destination register "i8051:inst|I8051_CTR:U_CTR|alu_src_3_7" (period= 26.928 ns)
+    Info: + Longest register to register delay is 26.723 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X33_Y18_N17; Fanout = 34; REG Node = 'i8051:inst|I8051_CTR:U_CTR|alu_src_1_7'
+        Info: 2: + IC(0.353 ns) + CELL(0.414 ns) = 0.767 ns; Loc. = LCCOMB_X33_Y18_N0; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_21_nx25'
+        Info: 3: + IC(0.000 ns) + CELL(0.129 ns) = 0.896 ns; Loc. = LCCOMB_X33_Y18_N2; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_21_nx27'
+        Info: 4: + IC(0.000 ns) + CELL(0.129 ns) = 1.025 ns; Loc. = LCCOMB_X33_Y18_N4; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_21_nx29'
+        Info: 5: + IC(0.000 ns) + CELL(0.129 ns) = 1.154 ns; Loc. = LCCOMB_X33_Y18_N6; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_21_nx31'
+        Info: 6: + IC(0.000 ns) + CELL(0.129 ns) = 1.283 ns; Loc. = LCCOMB_X33_Y18_N8; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_21_nx33'
+        Info: 7: + IC(0.000 ns) + CELL(0.129 ns) = 1.412 ns; Loc. = LCCOMB_X33_Y18_N10; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_21_nx35'
+        Info: 8: + IC(0.000 ns) + CELL(0.129 ns) = 1.541 ns; Loc. = LCCOMB_X33_Y18_N12; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_21_nx37'
+        Info: 9: + IC(0.000 ns) + CELL(0.410 ns) = 1.951 ns; Loc. = LCCOMB_X33_Y18_N14; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx172'
+        Info: 10: + IC(0.255 ns) + CELL(0.271 ns) = 2.477 ns; Loc. = LCCOMB_X33_Y18_N28; Fanout = 3; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx124'
+        Info: 11: + IC(0.479 ns) + CELL(0.393 ns) = 3.349 ns; Loc. = LCCOMB_X34_Y18_N8; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_22_nx30'
+        Info: 12: + IC(0.000 ns) + CELL(0.071 ns) = 3.420 ns; Loc. = LCCOMB_X34_Y18_N10; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_22_nx32'
+        Info: 13: + IC(0.000 ns) + CELL(0.129 ns) = 3.549 ns; Loc. = LCCOMB_X34_Y18_N12; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_22_nx34'
+        Info: 14: + IC(0.000 ns) + CELL(0.230 ns) = 3.779 ns; Loc. = LCCOMB_X34_Y18_N14; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_22_nx36'
+        Info: 15: + IC(0.000 ns) + CELL(0.129 ns) = 3.908 ns; Loc. = LCCOMB_X34_Y18_N16; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_22_nx38'
+        Info: 16: + IC(0.000 ns) + CELL(0.129 ns) = 4.037 ns; Loc. = LCCOMB_X34_Y18_N18; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_22_nx40'
+        Info: 17: + IC(0.000 ns) + CELL(0.410 ns) = 4.447 ns; Loc. = LCCOMB_X34_Y18_N20; Fanout = 3; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx210'
+        Info: 18: + IC(0.278 ns) + CELL(0.271 ns) = 4.996 ns; Loc. = LCCOMB_X34_Y18_N0; Fanout = 3; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx152'
+        Info: 19: + IC(0.762 ns) + CELL(0.414 ns) = 6.172 ns; Loc. = LCCOMB_X34_Y16_N18; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_23_nx31'
+        Info: 20: + IC(0.000 ns) + CELL(0.071 ns) = 6.243 ns; Loc. = LCCOMB_X34_Y16_N20; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_23_nx35'
+        Info: 21: + IC(0.000 ns) + CELL(0.129 ns) = 6.372 ns; Loc. = LCCOMB_X34_Y16_N22; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_23_nx37'
+        Info: 22: + IC(0.000 ns) + CELL(0.129 ns) = 6.501 ns; Loc. = LCCOMB_X34_Y16_N24; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_23_nx39'
+        Info: 23: + IC(0.000 ns) + CELL(0.129 ns) = 6.630 ns; Loc. = LCCOMB_X34_Y16_N26; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_23_nx41'
+        Info: 24: + IC(0.000 ns) + CELL(0.129 ns) = 6.759 ns; Loc. = LCCOMB_X34_Y16_N28; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_23_nx43'
+        Info: 25: + IC(0.000 ns) + CELL(0.410 ns) = 7.169 ns; Loc. = LCCOMB_X34_Y16_N30; Fanout = 4; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx255'
+        Info: 26: + IC(0.781 ns) + CELL(0.150 ns) = 8.100 ns; Loc. = LCCOMB_X34_Y18_N26; Fanout = 3; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx178'
+        Info: 27: + IC(0.448 ns) + CELL(0.393 ns) = 8.941 ns; Loc. = LCCOMB_X35_Y18_N12; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_24_nx36'
+        Info: 28: + IC(0.000 ns) + CELL(0.159 ns) = 9.100 ns; Loc. = LCCOMB_X35_Y18_N14; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_24_nx40'
+        Info: 29: + IC(0.000 ns) + CELL(0.071 ns) = 9.171 ns; Loc. = LCCOMB_X35_Y18_N16; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_24_nx42'
+        Info: 30: + IC(0.000 ns) + CELL(0.129 ns) = 9.300 ns; Loc. = LCCOMB_X35_Y18_N18; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_24_nx44'
+        Info: 31: + IC(0.000 ns) + CELL(0.129 ns) = 9.429 ns; Loc. = LCCOMB_X35_Y18_N20; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_24_nx46'
+        Info: 32: + IC(0.000 ns) + CELL(0.410 ns) = 9.839 ns; Loc. = LCCOMB_X35_Y18_N22; Fanout = 5; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx313'
+        Info: 33: + IC(0.756 ns) + CELL(0.150 ns) = 10.745 ns; Loc. = LCCOMB_X34_Y16_N4; Fanout = 3; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx206'
+        Info: 34: + IC(0.448 ns) + CELL(0.393 ns) = 11.586 ns; Loc. = LCCOMB_X35_Y16_N16; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_25_nx37'
+        Info: 35: + IC(0.000 ns) + CELL(0.071 ns) = 11.657 ns; Loc. = LCCOMB_X35_Y16_N18; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_25_nx41'
+        Info: 36: + IC(0.000 ns) + CELL(0.071 ns) = 11.728 ns; Loc. = LCCOMB_X35_Y16_N20; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_25_nx45'
+        Info: 37: + IC(0.000 ns) + CELL(0.129 ns) = 11.857 ns; Loc. = LCCOMB_X35_Y16_N22; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_25_nx47'
+        Info: 38: + IC(0.000 ns) + CELL(0.129 ns) = 11.986 ns; Loc. = LCCOMB_X35_Y16_N24; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_25_nx49'
+        Info: 39: + IC(0.000 ns) + CELL(0.410 ns) = 12.396 ns; Loc. = LCCOMB_X35_Y16_N26; Fanout = 6; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx342'
+        Info: 40: + IC(0.999 ns) + CELL(0.150 ns) = 13.545 ns; Loc. = LCCOMB_X34_Y18_N22; Fanout = 3; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx230'
+        Info: 41: + IC(0.781 ns) + CELL(0.393 ns) = 14.719 ns; Loc. = LCCOMB_X34_Y15_N20; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_26_nx46'
+        Info: 42: + IC(0.000 ns) + CELL(0.071 ns) = 14.790 ns; Loc. = LCCOMB_X34_Y15_N22; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_26_nx50'
+        Info: 43: + IC(0.000 ns) + CELL(0.071 ns) = 14.861 ns; Loc. = LCCOMB_X34_Y15_N24; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_26_nx52'
+        Info: 44: + IC(0.000 ns) + CELL(0.410 ns) = 15.271 ns; Loc. = LCCOMB_X34_Y15_N26; Fanout = 7; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx368'
+        Info: 45: + IC(0.973 ns) + CELL(0.150 ns) = 16.394 ns; Loc. = LCCOMB_X35_Y16_N8; Fanout = 3; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx262'
+        Info: 46: + IC(0.724 ns) + CELL(0.485 ns) = 17.603 ns; Loc. = LCCOMB_X35_Y15_N14; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_27_nx39'
+        Info: 47: + IC(0.000 ns) + CELL(0.071 ns) = 17.674 ns; Loc. = LCCOMB_X35_Y15_N16; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_27_nx43'
+        Info: 48: + IC(0.000 ns) + CELL(0.071 ns) = 17.745 ns; Loc. = LCCOMB_X35_Y15_N18; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_27_nx47'
+        Info: 49: + IC(0.000 ns) + CELL(0.071 ns) = 17.816 ns; Loc. = LCCOMB_X35_Y15_N20; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_27_nx51'
+        Info: 50: + IC(0.000 ns) + CELL(0.071 ns) = 17.887 ns; Loc. = LCCOMB_X35_Y15_N22; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_27_nx55'
+        Info: 51: + IC(0.000 ns) + CELL(0.410 ns) = 18.297 ns; Loc. = LCCOMB_X35_Y15_N24; Fanout = 8; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx408'
+        Info: 52: + IC(0.752 ns) + CELL(0.275 ns) = 19.324 ns; Loc. = LCCOMB_X35_Y16_N2; Fanout = 3; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx288'
+        Info: 53: + IC(0.738 ns) + CELL(0.393 ns) = 20.455 ns; Loc. = LCCOMB_X36_Y15_N16; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_28_nx44'
+        Info: 54: + IC(0.000 ns) + CELL(0.071 ns) = 20.526 ns; Loc. = LCCOMB_X36_Y15_N18; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_28_nx48'
+        Info: 55: + IC(0.000 ns) + CELL(0.071 ns) = 20.597 ns; Loc. = LCCOMB_X36_Y15_N20; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_28_nx52'
+        Info: 56: + IC(0.000 ns) + CELL(0.071 ns) = 20.668 ns; Loc. = LCCOMB_X36_Y15_N22; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|modgen_sub_28_nx56'
+        Info: 57: + IC(0.000 ns) + CELL(0.071 ns) = 20.739 ns; Loc. = LCCOMB_X36_Y15_N24; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx748'
+        Info: 58: + IC(0.000 ns) + CELL(0.410 ns) = 21.149 ns; Loc. = LCCOMB_X36_Y15_N26; Fanout = 2; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|a_4_dup_910'
+        Info: 59: + IC(0.256 ns) + CELL(0.150 ns) = 21.555 ns; Loc. = LCCOMB_X36_Y15_N0; Fanout = 9; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx1254'
+        Info: 60: + IC(0.273 ns) + CELL(0.150 ns) = 21.978 ns; Loc. = LCCOMB_X36_Y15_N28; Fanout = 1; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|nx1312'
+        Info: 61: + IC(0.250 ns) + CELL(0.149 ns) = 22.377 ns; Loc. = LCCOMB_X36_Y15_N30; Fanout = 12; COMB Node = 'i8051:inst|I8051_ALU:U_ALU|des_1_0'
+        Info: 62: + IC(0.267 ns) + CELL(0.149 ns) = 22.793 ns; Loc. = LCCOMB_X36_Y15_N4; Fanout = 2; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx55637'
+        Info: 63: + IC(0.251 ns) + CELL(0.275 ns) = 23.319 ns; Loc. = LCCOMB_X36_Y15_N6; Fanout = 1; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx56068'
+        Info: 64: + IC(0.757 ns) + CELL(0.149 ns) = 24.225 ns; Loc. = LCCOMB_X36_Y18_N28; Fanout = 1; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx55029'
+        Info: 65: + IC(0.248 ns) + CELL(0.149 ns) = 24.622 ns; Loc. = LCCOMB_X36_Y18_N6; Fanout = 1; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx56067'
+        Info: 66: + IC(0.245 ns) + CELL(0.149 ns) = 25.016 ns; Loc. = LCCOMB_X36_Y18_N16; Fanout = 8; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx55030'
+        Info: 67: + IC(0.678 ns) + CELL(0.150 ns) = 25.844 ns; Loc. = LCCOMB_X38_Y18_N0; Fanout = 1; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx55083'
+        Info: 68: + IC(0.248 ns) + CELL(0.149 ns) = 26.241 ns; Loc. = LCCOMB_X38_Y18_N12; Fanout = 1; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx56064'
+        Info: 69: + IC(0.249 ns) + CELL(0.149 ns) = 26.639 ns; Loc. = LCCOMB_X38_Y18_N20; Fanout = 1; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx47175'
+        Info: 70: + IC(0.000 ns) + CELL(0.084 ns) = 26.723 ns; Loc. = LCFF_X38_Y18_N21; Fanout = 19; REG Node = 'i8051:inst|I8051_CTR:U_CTR|alu_src_3_7'
+        Info: Total cell delay = 13.474 ns ( 50.42 % )
+        Info: Total interconnect delay = 13.249 ns ( 49.58 % )
+    Info: - Smallest clock skew is 0.009 ns
+        Info: + Shortest clock path from clock "clk" to destination register is 2.678 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_N2; Fanout = 7; CLK Node = 'clk'
+            Info: 2: + IC(0.118 ns) + CELL(0.000 ns) = 1.117 ns; Loc. = CLKCTRL_G2; Fanout = 1321; COMB Node = 'clk~clkctrl'
+            Info: 3: + IC(1.024 ns) + CELL(0.537 ns) = 2.678 ns; Loc. = LCFF_X38_Y18_N21; Fanout = 19; REG Node = 'i8051:inst|I8051_CTR:U_CTR|alu_src_3_7'
+            Info: Total cell delay = 1.536 ns ( 57.36 % )
+            Info: Total interconnect delay = 1.142 ns ( 42.64 % )
+        Info: - Longest clock path from clock "clk" to source register is 2.669 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_N2; Fanout = 7; CLK Node = 'clk'
+            Info: 2: + IC(0.118 ns) + CELL(0.000 ns) = 1.117 ns; Loc. = CLKCTRL_G2; Fanout = 1321; COMB Node = 'clk~clkctrl'
+            Info: 3: + IC(1.015 ns) + CELL(0.537 ns) = 2.669 ns; Loc. = LCFF_X33_Y18_N17; Fanout = 34; REG Node = 'i8051:inst|I8051_CTR:U_CTR|alu_src_1_7'
+            Info: Total cell delay = 1.536 ns ( 57.55 % )
+            Info: Total interconnect delay = 1.133 ns ( 42.45 % )
+    Info: + Micro clock to output delay of source is 0.250 ns
+    Info: + Micro setup delay of destination is -0.036 ns
+Warning: Circuit may not operate. Detected 109 non-operational path(s) clocked by clock "clk" with clock skew larger than data delay. See Compilation Report for details.
+Info: Found hold time violation between source  pin or register "i8051:inst|I8051_RAM:U_RAM|p0_out_6" and destination pin or register "ram_inout:inst2|ix4392_a_12_dup_79" for clock "clk" (Hold time is 6.063 ns)
+    Info: + Largest clock skew is 7.057 ns
+        Info: + Longest clock path from clock "clk" to destination register is 9.751 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_N2; Fanout = 7; CLK Node = 'clk'
+            Info: 2: + IC(1.598 ns) + CELL(0.787 ns) = 3.384 ns; Loc. = LCFF_X30_Y16_N3; Fanout = 20; REG Node = 'i8051:inst|I8051_RAM:U_RAM|p2_out_0'
+            Info: 3: + IC(1.067 ns) + CELL(0.245 ns) = 4.696 ns; Loc. = LCCOMB_X31_Y18_N28; Fanout = 22; COMB Node = 'ram_inout:inst2|ix4392_ix21_ix38_nx8'
+            Info: 4: + IC(0.736 ns) + CELL(0.420 ns) = 5.852 ns; Loc. = LCCOMB_X30_Y17_N2; Fanout = 1; COMB Node = 'ram_inout:inst2|nx4788'
+            Info: 5: + IC(2.321 ns) + CELL(0.000 ns) = 8.173 ns; Loc. = CLKCTRL_G14; Fanout = 8; COMB Node = 'ram_inout:inst2|nx4788~clkctrl'
+            Info: 6: + IC(1.428 ns) + CELL(0.150 ns) = 9.751 ns; Loc. = LCCOMB_X31_Y16_N20; Fanout = 1; REG Node = 'ram_inout:inst2|ix4392_a_12_dup_79'
+            Info: Total cell delay = 2.601 ns ( 26.67 % )
+            Info: Total interconnect delay = 7.150 ns ( 73.33 % )
+        Info: - Shortest clock path from clock "clk" to source register is 2.694 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_N2; Fanout = 7; CLK Node = 'clk'
+            Info: 2: + IC(0.118 ns) + CELL(0.000 ns) = 1.117 ns; Loc. = CLKCTRL_G2; Fanout = 1321; COMB Node = 'clk~clkctrl'
+            Info: 3: + IC(1.040 ns) + CELL(0.537 ns) = 2.694 ns; Loc. = LCFF_X31_Y16_N15; Fanout = 16; REG Node = 'i8051:inst|I8051_RAM:U_RAM|p0_out_6'
+            Info: Total cell delay = 1.536 ns ( 57.02 % )
+            Info: Total interconnect delay = 1.158 ns ( 42.98 % )
+    Info: - Micro clock to output delay of source is 0.250 ns
+    Info: - Shortest register to register delay is 0.744 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X31_Y16_N15; Fanout = 16; REG Node = 'i8051:inst|I8051_RAM:U_RAM|p0_out_6'
+        Info: 2: + IC(0.324 ns) + CELL(0.420 ns) = 0.744 ns; Loc. = LCCOMB_X31_Y16_N20; Fanout = 1; REG Node = 'ram_inout:inst2|ix4392_a_12_dup_79'
+        Info: Total cell delay = 0.420 ns ( 56.45 % )
+        Info: Total interconnect delay = 0.324 ns ( 43.55 % )
+    Info: + Micro hold delay of destination is 0.000 ns
+Info: tsu for register "i8051:inst|I8051_CTR:U_CTR|alu_src_2_5" (data pin = "rst", clock pin = "clk") is 19.248 ns
+    Info: + Longest pin to register delay is 21.953 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_N25; Fanout = 1440; PIN Node = 'rst'
+        Info: 2: + IC(2.005 ns) + CELL(0.245 ns) = 3.249 ns; Loc. = LCCOMB_X18_Y15_N20; Fanout = 1; COMB Node = 'i8051:inst|I8051_DEC:U_DEC|nx2397'
+        Info: 3: + IC(0.757 ns) + CELL(0.420 ns) = 4.426 ns; Loc. = LCCOMB_X17_Y13_N28; Fanout = 1; COMB Node = 'i8051:inst|I8051_DEC:U_DEC|nx2520'
+        Info: 4: + IC(0.255 ns) + CELL(0.420 ns) = 5.101 ns; Loc. = LCCOMB_X17_Y13_N6; Fanout = 1; COMB Node = 'i8051:inst|I8051_DEC:U_DEC|nx2493'
+        Info: 5: + IC(0.710 ns) + CELL(0.242 ns) = 6.053 ns; Loc. = LCCOMB_X18_Y11_N0; Fanout = 2; COMB Node = 'i8051:inst|I8051_DEC:U_DEC|nx1602'
+        Info: 6: + IC(0.272 ns) + CELL(0.420 ns) = 6.745 ns; Loc. = LCCOMB_X18_Y11_N26; Fanout = 1; COMB Node = 'i8051:inst|I8051_DEC:U_DEC|nx2424'
+        Info: 7: + IC(0.254 ns) + CELL(0.149 ns) = 7.148 ns; Loc. = LCCOMB_X18_Y11_N28; Fanout = 2; COMB Node = 'i8051:inst|I8051_DEC:U_DEC|modgen_or_2779_nx6'
+        Info: 8: + IC(0.260 ns) + CELL(0.149 ns) = 7.557 ns; Loc. = LCCOMB_X18_Y11_N8; Fanout = 1; COMB Node = 'i8051:inst|I8051_DEC:U_DEC|nx2433'
+        Info: 9: + IC(0.673 ns) + CELL(0.242 ns) = 8.472 ns; Loc. = LCCOMB_X20_Y11_N4; Fanout = 1; COMB Node = 'i8051:inst|I8051_DEC:U_DEC|nx2429'
+        Info: 10: + IC(0.254 ns) + CELL(0.245 ns) = 8.971 ns; Loc. = LCCOMB_X20_Y11_N22; Fanout = 146; COMB Node = 'i8051:inst|I8051_DEC:U_DEC|op_out_5'
+        Info: 11: + IC(1.538 ns) + CELL(0.150 ns) = 10.659 ns; Loc. = LCCOMB_X32_Y11_N18; Fanout = 24; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx54528'
+        Info: 12: + IC(0.981 ns) + CELL(0.150 ns) = 11.790 ns; Loc. = LCCOMB_X33_Y8_N8; Fanout = 14; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx54567'
+        Info: 13: + IC(1.173 ns) + CELL(0.275 ns) = 13.238 ns; Loc. = LCCOMB_X35_Y11_N8; Fanout = 1; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx55979'
+        Info: 14: + IC(0.255 ns) + CELL(0.245 ns) = 13.738 ns; Loc. = LCCOMB_X35_Y11_N2; Fanout = 1; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx54629'
+        Info: 15: + IC(0.241 ns) + CELL(0.149 ns) = 14.128 ns; Loc. = LCCOMB_X35_Y11_N24; Fanout = 1; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx55977'
+        Info: 16: + IC(0.258 ns) + CELL(0.245 ns) = 14.631 ns; Loc. = LCCOMB_X35_Y11_N18; Fanout = 2; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx55032'
+        Info: 17: + IC(1.189 ns) + CELL(0.242 ns) = 16.062 ns; Loc. = LCCOMB_X24_Y11_N24; Fanout = 1; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx55074'
+        Info: 18: + IC(0.274 ns) + CELL(0.438 ns) = 16.774 ns; Loc. = LCCOMB_X24_Y11_N2; Fanout = 1; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx55954'
+        Info: 19: + IC(0.242 ns) + CELL(0.149 ns) = 17.165 ns; Loc. = LCCOMB_X24_Y11_N4; Fanout = 3; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx55078'
+        Info: 20: + IC(1.253 ns) + CELL(0.245 ns) = 18.663 ns; Loc. = LCCOMB_X29_Y14_N14; Fanout = 1; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx55209'
+        Info: 21: + IC(0.255 ns) + CELL(0.242 ns) = 19.160 ns; Loc. = LCCOMB_X29_Y14_N8; Fanout = 1; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx55204'
+        Info: 22: + IC(0.255 ns) + CELL(0.242 ns) = 19.657 ns; Loc. = LCCOMB_X29_Y14_N12; Fanout = 1; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx48372'
+        Info: 23: + IC(0.243 ns) + CELL(0.150 ns) = 20.050 ns; Loc. = LCCOMB_X29_Y14_N30; Fanout = 8; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|NOT_nx49578'
+        Info: 24: + IC(1.243 ns) + CELL(0.660 ns) = 21.953 ns; Loc. = LCFF_X34_Y18_N29; Fanout = 31; REG Node = 'i8051:inst|I8051_CTR:U_CTR|alu_src_2_5'
+        Info: Total cell delay = 7.113 ns ( 32.40 % )
+        Info: Total interconnect delay = 14.840 ns ( 67.60 % )
+    Info: + Micro setup delay of destination is -0.036 ns
+    Info: - Shortest clock path from clock "clk" to destination register is 2.669 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_N2; Fanout = 7; CLK Node = 'clk'
+        Info: 2: + IC(0.118 ns) + CELL(0.000 ns) = 1.117 ns; Loc. = CLKCTRL_G2; Fanout = 1321; COMB Node = 'clk~clkctrl'
+        Info: 3: + IC(1.015 ns) + CELL(0.537 ns) = 2.669 ns; Loc. = LCFF_X34_Y18_N29; Fanout = 31; REG Node = 'i8051:inst|I8051_CTR:U_CTR|alu_src_2_5'
+        Info: Total cell delay = 1.536 ns ( 57.55 % )
+        Info: Total interconnect delay = 1.133 ns ( 42.45 % )
+Info: tco from clock "clk" to destination pin "disp_high[0]" through register "i8051:inst|I8051_RAM:U_RAM|p1_out_5" is 11.775 ns
+    Info: + Longest clock path from clock "clk" to source register is 2.673 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_N2; Fanout = 7; CLK Node = 'clk'
+        Info: 2: + IC(0.118 ns) + CELL(0.000 ns) = 1.117 ns; Loc. = CLKCTRL_G2; Fanout = 1321; COMB Node = 'clk~clkctrl'
+        Info: 3: + IC(1.019 ns) + CELL(0.537 ns) = 2.673 ns; Loc. = LCFF_X43_Y14_N9; Fanout = 7; REG Node = 'i8051:inst|I8051_RAM:U_RAM|p1_out_5'
+        Info: Total cell delay = 1.536 ns ( 57.46 % )
+        Info: Total interconnect delay = 1.137 ns ( 42.54 % )
+    Info: + Micro clock to output delay of source is 0.250 ns
+    Info: + Longest register to pin delay is 8.852 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X43_Y14_N9; Fanout = 7; REG Node = 'i8051:inst|I8051_RAM:U_RAM|p1_out_5'
+        Info: 2: + IC(2.146 ns) + CELL(0.406 ns) = 2.552 ns; Loc. = LCCOMB_X20_Y14_N24; Fanout = 1; COMB Node = 'Lab2:inst4|inst5~154'
+        Info: 3: + IC(3.511 ns) + CELL(2.789 ns) = 8.852 ns; Loc. = PIN_V20; Fanout = 0; PIN Node = 'disp_high[0]'
+        Info: Total cell delay = 3.195 ns ( 36.09 % )
+        Info: Total interconnect delay = 5.657 ns ( 63.91 % )
+Info: th for register "i8051:inst|I8051_CTR:U_CTR|cpu_state_1_repl1" (data pin = "rst", clock pin = "clk") is -2.168 ns
+    Info: + Longest clock path from clock "clk" to destination register is 2.686 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_N2; Fanout = 7; CLK Node = 'clk'
+        Info: 2: + IC(0.118 ns) + CELL(0.000 ns) = 1.117 ns; Loc. = CLKCTRL_G2; Fanout = 1321; COMB Node = 'clk~clkctrl'
+        Info: 3: + IC(1.032 ns) + CELL(0.537 ns) = 2.686 ns; Loc. = LCFF_X25_Y15_N17; Fanout = 58; REG Node = 'i8051:inst|I8051_CTR:U_CTR|cpu_state_1_repl1'
+        Info: Total cell delay = 1.536 ns ( 57.19 % )
+        Info: Total interconnect delay = 1.150 ns ( 42.81 % )
+    Info: + Micro hold delay of destination is 0.266 ns
+    Info: - Shortest pin to register delay is 5.120 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_N25; Fanout = 1440; PIN Node = 'rst'
+        Info: 2: + IC(2.045 ns) + CELL(0.420 ns) = 3.464 ns; Loc. = LCCOMB_X20_Y11_N22; Fanout = 146; COMB Node = 'i8051:inst|I8051_DEC:U_DEC|op_out_5'
+        Info: 3: + IC(1.297 ns) + CELL(0.275 ns) = 5.036 ns; Loc. = LCCOMB_X25_Y15_N16; Fanout = 2; COMB Node = 'i8051:inst|I8051_CTR:U_CTR|nx49192'
+        Info: 4: + IC(0.000 ns) + CELL(0.084 ns) = 5.120 ns; Loc. = LCFF_X25_Y15_N17; Fanout = 58; REG Node = 'i8051:inst|I8051_CTR:U_CTR|cpu_state_1_repl1'
+        Info: Total cell delay = 1.778 ns ( 34.73 % )
+        Info: Total interconnect delay = 3.342 ns ( 65.27 % )
+Info: Quartus II Classic Timing Analyzer was successful. 0 errors, 151 warnings
+    Info: Peak virtual memory: 165 megabytes
+    Info: Processing ended: Wed Oct 27 11:39:23 2010
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:07
+
+
