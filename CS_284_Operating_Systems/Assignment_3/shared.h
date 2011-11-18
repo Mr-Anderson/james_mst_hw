@@ -19,6 +19,7 @@
 #include <sys/socket.h>  /* define socket */ 
 #include <netinet/in.h>  /* define internet socket */ 
 #include <netdb.h>
+#include <time.h>
 
 #define SERVER_PORT              9877 //defines operating port
 #define CLIENT_SUPPORT           10 //defines number of clients that can connect

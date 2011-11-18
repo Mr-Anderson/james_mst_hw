@@ -6,6 +6,8 @@ ClientGui::ClientGui(QWidget *parent) :
     ui(new Ui::ClientGui)
 {
     ui->setupUi(this);
+
+
 }
 
 ClientGui::~ClientGui()
@@ -15,5 +17,16 @@ ClientGui::~ClientGui()
 
 void ClientGui::on_actionCange_User_activated()
 {
-
+    sendMsg();
 }
+
+void ClientGui::on_sendButton_clicked()
+{
+    sendMsg();
+}
+
+void ClientGui::sendMsg()
+{
+    ui.messageInput->value()
+}
+

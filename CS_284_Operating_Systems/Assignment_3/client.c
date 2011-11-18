@@ -70,6 +70,7 @@ int main( int argc, char** argv )
     while( gets( buf) ) 
     {
         printf("\033[1A\r                                                 \r");
+        printf("\033[5;37;44mYou\033[0m:%s\n",buf);
         write(soc, buf, sizeof(buf)); 
         
         if( strcmp(buf,"/exit") == 0 ||
@@ -80,12 +81,13 @@ int main( int argc, char** argv )
             }
 
     } 
-
-    pthread_exit(&client_pthread);
+    
+    printf("See you soon.\n");
     
     close(soc); 
     
-    return(0); 
+    exit(0);
+    
 }
 
 
@@ -94,10 +96,27 @@ void * clientListener(void * socket )
     int netSock = *(int*)socket;
     int k;
     char readBuff[MAX_BUFFER_SIZE];
+    time_t timeout;
+    bool final = false;
     
     while( (k = read(netSock, readBuff, sizeof(readBuff))) != 0 )
     {
+
         printf("%s",readBuff);
+
+        //check for the last messages
+        if(strcmp(readBuff, "Have a nice day\n") == 0)
+        {
+            //tell user
+            printf("Client is shuting down\n");
+            
+            //close the socket
+            close(netSock);
+            
+            //close the program
+            exit(1);
+        }
+
     }
 }
 

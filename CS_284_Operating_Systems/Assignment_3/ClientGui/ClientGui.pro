@@ -12,10 +12,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         clientgui.cpp \
-    username.cpp
+    username.cpp \
+    hostname.cpp
 
 HEADERS  += clientgui.h \
-    username.h
+    username.h \
+    hostname.h
 
 FORMS    += clientgui.ui \
-    username.ui
+    username.ui \
+    hostname.ui

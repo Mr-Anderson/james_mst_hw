@@ -18,8 +18,13 @@ public:
 private slots:
     void on_actionCange_User_activated();
 
+    void on_sendButton_clicked();
+
 private:
     Ui::ClientGui *ui;
+
+    void sendMsg();
+
 };
 
 #endif // CLIENTGUI_H
