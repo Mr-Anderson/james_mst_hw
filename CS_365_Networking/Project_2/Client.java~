@@ -406,7 +406,7 @@ public class Client{
       if(request_type == "SETUP")
       {
       	RTSPBufferedWriter.write("Transport: RTP/UDP; client_port= ");
-		RTSPBufferedWriter.write(RTP_RCV_PORT);
+		RTSPBufferedWriter.write(Integer.toString(RTP_RCV_PORT));
       }
       else
       {
