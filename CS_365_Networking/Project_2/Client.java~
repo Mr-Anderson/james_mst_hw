@@ -407,12 +407,14 @@ public class Client{
       {
       	RTSPBufferedWriter.write("Transport: RTP/UDP; client_port= ");
 		RTSPBufferedWriter.write(Integer.toString(RTP_RCV_PORT));
+		RTSPBufferedWriter.write("\n");
       }
       else
       {
 	    //otherwise, write the Session line from the RTSPid field
       	RTSPBufferedWriter.write("Session: ");
 		RTSPBufferedWriter.write(RTSPid);
+		RTSPBufferedWriter.write("\n");
       }
 
       RTSPBufferedWriter.flush();

@@ -413,7 +413,7 @@ public class Client{
       {
 	    //otherwise, write the Session line from the RTSPid field
       	RTSPBufferedWriter.write("Session: ");
-		RTSPBufferedWriter.write(RTSPid);
+		RTSPBufferedWriter.write(Integer.toString(RTSPid));
 		RTSPBufferedWriter.write("\n");
       }
 
