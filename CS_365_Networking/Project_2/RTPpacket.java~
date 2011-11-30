@@ -81,7 +81,7 @@ public class RTPpacket{
     payload = new byte[data_length];
 
     //fill payload array of byte from data (given in parameter of the constructor)
-    payload = data;
+    //......
 
     // ! Do not forget to uncomment method printheader() below !
 
