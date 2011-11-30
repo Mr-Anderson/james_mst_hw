@@ -387,15 +387,26 @@ public class Client{
       //write the request line:
       RTSPBufferedWriter.write(request_type);
 
+      if(request_type == "SETUP")
+      {
+        RTSPBufferedWriter.write(" ");
+        RTSPBufferedWriter.write(VideoFileName);
+        RTSPBufferedWriter.write(" RTSP/1.0");
+      }
+      
+      RTSPBufferedWriter.write("\n");
+      
       //write the CSeq line: 
       RTSPBufferedWriter.write("CSeq: ");
-	  RTSPBufferedWriter.write(RTSPSeqNb);
+	  RTSPBufferedWriter.write(Integer.toString(RTSPSeqNb));
 
+      RTSPBufferedWriter.write("\n");
+      
       //check if request_type is equal to "SETUP" and in this case write the Transport: line advertising to the server the port used to receive the RTP packets RTP_RCV_PORT
       if(request_type == "SETUP")
       {
-      	RTSPBufferedWriter.write("Transport: ");
-		RTSPBufferedWriter.write(RTP_RCV_PORT);
+      	RTSPBufferedWriter.write("Transport: RTP/UDP; client_port= ");
+		RTSPBufferedWriter.write(Integer.toString(RTP_RCV_PORT));
       }
       else
       {
